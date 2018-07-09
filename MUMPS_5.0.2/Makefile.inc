@@ -84,7 +84,6 @@ INCSEQ = -I$(topdir)/libseq
 LIBSEQ = $(topdir)/libseq/libmpiseq.lib
 #LIBBLAS = -L/usr/lib/xmm/ -lf77blas -latlas
 #LIBBLAS = -L/local/BLAS -lblas
-#LIBBLAS = mkl_intel_ilp64.lib mkl_intel_thread.lib mkl_core.lib mkl_blacs_intelmpi_ilp64.lib libiomp5md.lib
 LIBBLAS =   mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib
 #LIBOTHERS = -lpthread
 LIBOTHERS = -link $(PATHORDERINGS)
