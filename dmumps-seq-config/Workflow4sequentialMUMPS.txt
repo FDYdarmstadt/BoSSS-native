@@ -1,14 +1,14 @@
 # DLL_Workflow
 ==============
 workflow for creating sequential DLL of MUMPS_5
-trial A	-- using cygwin (for 'make') out of intel-shell (for compilation) and link .libs with VS 2017
+trial A	-- using cygwin (for 'make') out of intel-shell (for compilation) and link .libs with VS 2017 under Windows 7
 
 Software:
 -Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
 -CYGWIN_NT-6.1 pcmit32 2.10.0(0.325/5/3) 2018-02-02 15:16 x86_64 Cygwin
 -Microsoft Visual Studio Community 2017 Version 15.7.4 
 
-1.	delete link.exe from cygwin installation (ugly workaround, otherwise conflict with link from Intel-shell)
+1.	add path of Intel's link.exe to the front of the PATH-variable: >export PATH="<dir>":$PATH (otherwise conflict with cygwin's link.exe)
 2.	start Intel-shell (C:\Windows\System32\cmd.exe /E:ON /V:ON /K ""C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\bin\ipsxe-comp-vars.bat" intel64 vs2017")
 3.	load cygwin Batchskript: c:\cygwin\Cygwin.bat
 4.	adjust Makefile.inc: use https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor/ if you are not sure, which .lib fits
@@ -21,11 +21,9 @@ Software:
 	-Attention: put 64 before 32 under ~\Additional Library Directories
 	-Additional Library Directories:
 		C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win
-		C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\ia32_win
 		C:\DLL_Workflow\MUMPS_5.0.2\lib
 		C:\DLL_Workflow\MUMPS_5.0.2\libseq
 		C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win
-		C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\ia32_win
 	-Additional Dependencies:
 		libdmumps.lib
 		libmumps_common.lib
@@ -35,3 +33,4 @@ Software:
 		mkl_sequential.lib
 		mkl_core.lib
 8.	Build solution & be happy
+
