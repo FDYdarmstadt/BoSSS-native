@@ -163,14 +163,15 @@
       <AdditionalIncludeDirectories>$(MSMPI_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;libmpiseq.lib;mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win;C:\DLL_Workflow\MUMPS_5.0.2\lib;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win;C:\DLL_Workflow\MUMPS_5.0.2\libseq;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;mkl_scalapack_lp64.lib;mkl_blacs_msmpi_lp64.lib;msmpi.lib;msmpifec.lib;mkl_sequential.lib;mkl_core.lib;mkl_intel_lp64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win;C:\BoSSS-native\MUMPS_5.0.2\lib;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
