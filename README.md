@@ -23,3 +23,6 @@ Annotations:
 export PATH="/cygdrive/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428/bin/HostX64/x64":$PATH
 export PATH="/cygdrive/c/Program Files/Microsoft MPI/Bin":$PATH
 ... into C:\cygwin\home\weber\.bash_profile
+
+9.	copy dll's into: C:\BoSSS\public\src\L4-application\ipPoisson\bin\Debug\amd64
+	Execute test Method: ipPoisson.exe
