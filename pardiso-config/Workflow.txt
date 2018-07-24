@@ -1,0 +1,15 @@
+# DLL_Workflow
+==============
+workflow for creating parallel DLL of MUMPS_5 with MPI support
+trial A	-- using cygwin (for 'make') out of intel-shell (for compilation) and link .libs with VS 2017 under Windows 7
+
+Software:
+-Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
+-Microsoft Visual Studio Community 2017 Version 15.7.4
+
+1.	run batch-script "vsgen-metis-seq.bat"
+2.	done
+
+Annotations:
+-(Solved)Problem with BoSSS-Test (copy .dll to BoSSS, test program: -n 4 IBM_Solver.exe -c "cs:BoSSS.Application.IBM_Solver.HardcodedTestExamples.IBMCylinderFlow()" ): execution dies when reaching MPI.Init() alias DLL Hell: Conflict of msmpi (5.0.12435.6) from BoSSS with mpiexe (9.0.12497.11)
+	delete/comment out msmpi from BoSSS
