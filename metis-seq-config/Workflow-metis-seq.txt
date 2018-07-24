@@ -1,0 +1,22 @@
+# DLL_Workflow
+==============
+workflow for creating seq DLL of metis
+trial A	-- using exclusively vs-cmd (for 'cmake' and 'devenv')
+
+Software:
+-Microsoft Visual Studio Community 2017 Version 15.7.4
+-metis-5.1.0
+
+1.	edit gk_arch.h in C:\BoSSS-native\metis-5.1.0\GKlib, because the following part causes VS-build errors:
+	#ifdef __MSC__
+	/* MSC does not have rint() function */
+	#define rint(x) ((int)((x)+0.5))  
+
+	/* MSC does not have INFINITY defined */
+	#ifndef INFINITY
+	#define INFINITY FLT_MAX
+	#endif
+	#endif
+2.	Follow instructions of metis manuals for Windows Installation: .\vsgen -G "Visual Studio 15 2017 Win64"
+3.	navigate to build\windows in metis directory and build ALL_BUILD.vcxproj: devenv ALL_BUILD.vcxproj /Build "Release|x64"
+4.	done
