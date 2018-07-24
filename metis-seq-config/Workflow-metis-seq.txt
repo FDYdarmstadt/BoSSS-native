@@ -20,3 +20,6 @@ Software:
 2.	Follow instructions of metis manuals for Windows Installation: .\vsgen -G "Visual Studio 15 2017 Win64"
 3.	navigate to build\windows in metis directory and build ALL_BUILD.vcxproj: devenv ALL_BUILD.vcxproj /Build "Release|x64"
 4.	done
+
+Annotations:
+-There is no test to verify metis correctness

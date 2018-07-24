@@ -1,14 +1,45 @@
 # DLL_Workflow
 ==============
-workflow for creating parallel DLL of MUMPS_5 with MPI support
+workflow for creating DLL of sequential/openMP PARDISO from MKL library 
 trial A	-- using cygwin (for 'make') out of intel-shell (for compilation) and link .libs with VS 2017 under Windows 7
 
 Software:
 -Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
 -Microsoft Visual Studio Community 2017 Version 15.7.4
 
-1.	run batch-script "vsgen-metis-seq.bat"
-2.	done
+sequential:
+1.	setup/use VS-project "PARDISO"
+2.	add functions in exports.def at the end:
+	pardiso_
+    pardisoinit_
+3.	Set additional include directories (Project Properties\C/C++\All Options):
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\include
+4.	Set additional library directories (Project Properties\Linker\All Options):
+	..\Release
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win
+5.	Set additonal dependencies (Project Properties\Linker\All Options):
+	mkl_intel_lp64.lib
+	mkl_sequential.lib
+	mkl_core.lib
+6.	build "Release|x64"
+	
+openMP:
+1.	setup/use VS-project "PARDISO"
+2.	add functions in exports.def at the end:
+	pardiso_
+    pardisoinit_
+3.	Set additional include directories:
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\include
+4.	Set additional library directories (Project Properties\Linker\All Options):
+	..\Release
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win
+5.	Set additonal dependencies (Project Properties\Linker\All Options):
+	mkl_intel_lp64_dll.lib
+	mkl_intel_thread_dll.lib
+	mkl_core_dll.lib
+	libiomp5md.lib
+6.	build "Release|x64"
 
 Annotations:
 -(Solved)Problem with BoSSS-Test (copy .dll to BoSSS, test program: -n 4 IBM_Solver.exe -c "cs:BoSSS.Application.IBM_Solver.HardcodedTestExamples.IBMCylinderFlow()" ): execution dies when reaching MPI.Init() alias DLL Hell: Conflict of msmpi (5.0.12435.6) from BoSSS with mpiexe (9.0.12497.11)
