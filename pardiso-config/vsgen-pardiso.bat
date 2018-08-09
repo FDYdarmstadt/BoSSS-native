@@ -52,6 +52,7 @@ IF DEFINED CHECK (
 ECHO Build successful
 ) ELSE (
 ECHO Build failed
+IF DEFINED ERRORS set /a ERRORS=%ERRORS%+1
 )
 
 :EOF
