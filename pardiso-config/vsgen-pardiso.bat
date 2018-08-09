@@ -37,10 +37,10 @@ SET CONFIG=Release
 ::devenv PARDISO-seq.vcxproj /Build "Release|x64"
 ::devenv PARDISO-openMP.vcxproj /Build "Release|x64"
 IF %PARDISO_TYPE%==SEQ (
-msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-seq.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-seq.vcxproj
 )
 IF %PARDISO_TYPE%==OPENMP (
-msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-openMP.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-openMP.vcxproj
 )
 ::check if build was successful
 
