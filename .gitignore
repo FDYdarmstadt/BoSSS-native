@@ -98,3 +98,4 @@ doxyerr.txt
 doxyout.txt
 # emacs-stuff
 auto/
+*.tar
