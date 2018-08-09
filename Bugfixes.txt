@@ -1,0 +1,14 @@
+Encountered Issues:
+Intel related
+-C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\include\stdint.h: __MS_VC_INSTALL_PATH points to invalid PATH, Solution: #define __MS_VC_INSTALL_PATH c:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428
+MSVS related
+-link outdir appears in VS but is not set in property file -> building with msbuild throws warnings. Solution: add "<OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>" to linker options
+-$(SolutionName) can not be found by msbuild, because msbuild does not consider SolutionName
+Cygwin related
+-msbuild can not be started from within Intel cmd/cygwin, Solution: alias in bashrc: alias msbuild="'/cygdrive/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe'" oder VS cmd/cygwin verwenden,
+
+MUMPS related
+-.exe are not deleted with "make clean", add to examples\Makefile under clean ... : $(RM) *.exe [sdcz]simpletest c_example
+CMD related:
+-THERE HAS TO BE NO GAP IN FRONT OF PATH ENTRIES!!! cmd stops reading the path when gap occures after ";"
+-NO "" AROUND PATH ENTRIES
