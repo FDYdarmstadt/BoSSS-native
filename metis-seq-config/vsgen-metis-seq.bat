@@ -24,13 +24,14 @@ SET METIS_BUILD=%METIS_THIRDPARTY%\build\windows
 ECHO =======================
 ECHO clean METIS
 ECHO =======================
-cd %METIS_BUILD%\..\
-rmdir windows /s /q
-MKDIR windows
+::cd %METIS_BUILD%\..\
+::rmdir windows /s /q
+::MKDIR windows
+del /q "%METIS_BUILD%\*"
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
-CALL xcopy gk_arch.h %METIS_THIRDPARTY%\GKlib /y
+xcopy gk_arch.h %METIS_THIRDPARTY%\GKlib /y
 CD %METIS_BUILD%
 
 for %%i in (*.sln) do set SLN_NAME=%%~ni
