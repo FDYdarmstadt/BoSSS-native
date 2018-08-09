@@ -36,7 +36,6 @@ CD %METIS_CONFIG%
 xcopy /y gk_arch.h "%METIS_THIRDPARTY%\GKlib\"
 CD %METIS_BUILD%
 
-for %%i in (*.sln) do set SLN_NAME=%%~ni
 SET PLATFORM=x64
 SET CONFIG=Release
 
@@ -46,6 +45,7 @@ CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 15 201
 ECHO VS files have been generated in %METIS_BUILD%
 ::devenv METIS.sln /Clean
 ::devenv ALL_BUILD.vcxproj /Build "Release|x64"
+for %%i in (*.sln) do set SLN_NAME=%%~ni
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% ALL_BUILD.vcxproj
 ) ELSE (
 ECHO YOU ARE NOT SUPPOSED TO DO THAT
