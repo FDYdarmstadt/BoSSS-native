@@ -1,2 +1,0 @@
-﻿  dllmain.cpp
-c:\dll_workflow\mumps\dmumps_visualstudio2008\dmumps\dmumps\dllmain.cpp(2): fatal error C1083: Cannot open precompiled header file: 'Release\dmumps.pch': No such file or directory

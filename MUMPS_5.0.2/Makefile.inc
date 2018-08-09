@@ -39,9 +39,9 @@ IPORD    = -I$(topdir)/PORD/include/
 PATHPORD = -LIBPATH:$(LPORDDIR)
 LPORD    = libpord.lib
 
-#LMETISDIR = C:/DLL_Workflow/metis-5.1.0
+#LMETISDIR = /local/metis/
 #PATHMETIS = -LIBPATH:$(PATHMETIS)
-#IMETIS    = C:/DLL_Workflow/parmetis-4.0.3/include # should be provided if you use parmetis, to access parmetis.h
+#IMETIS    = # should be provided if you use parmetis, to access parmetis.h
 
 # You have to choose one among the following two lines depending on
 # the type of analysis you want to perform. If you want to perform only
@@ -78,26 +78,23 @@ CC = cl
 FC = ifort
 FL = ifort
 AR = lib -out:
+#RANLIB = ranlib
 RANLIB  = echo
-
-INCPAR = -I"C:\Program Files (x86)\Microsoft SDKs\MPI\Include" -I"C:\Program Files (x86)\Microsoft SDKs\MPI\Include\x64"
-LIBPAR = mkl_scalapack_lp64.lib mkl_blacs_msmpi_lp64.lib msmpi.lib msmpifec.lib
-
+INCSEQ = -I$(topdir)/libseq
+LIBSEQ = $(topdir)/libseq/libmpiseq.lib
 #LIBBLAS = -L/usr/lib/xmm/ -lf77blas -latlas
 #LIBBLAS = -L/local/BLAS -lblas
-#LIBBLAS = mkl_intel_c.lib mkl_intel_thread.lib mkl_core.lib libiomp5md.lib
-#LIBMPIDIR = "C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
-LIBBLAS = mkl_sequential.lib mkl_core.lib mkl_intel_lp64.lib
-LIBOTHERS = -link $(PATHORDERINGS) -link -LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
-
+LIBBLAS =   mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib
+#LIBOTHERS = -lpthread
+LIBOTHERS = -link $(PATHORDERINGS)
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
 
 #Begin Optimized options
-OPTF    = -Zi -MD -Dintel_ -DALLOW_NON_INIT -fpp
-OPTL    =
+OPTF    = -O -MD -Dintel_ -DALLOW_NON_INIT -fpp
+OPTL    = 
 OPTC    = -O2 -MD
 #End Optimized options
-INCS = $(INCPAR)
-LIBS = $(LIBPAR) $(LIBBLAS) -link /NODEFAULTLIB:LIBCMT
-LIBSEQNEEDED =
+INCS = $(INCSEQ)
+LIBS = $(LIBSEQ)
+LIBSEQNEEDED = libseqneeded

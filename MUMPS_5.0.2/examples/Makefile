@@ -80,3 +80,4 @@ $(LIBMUMPS_COMMON):
 
 clean:
 	$(RM) *.o [sdcz]simpletest c_example
+	$(RM) *.exe [sdcz]simpletest c_example

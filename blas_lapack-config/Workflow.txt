@@ -1,0 +1,23 @@
+# DLL_Workflow
+==============
+workflow for creating DLL of sequential BLAS+LAPACK from MKL library 
+trial A	-- using intel-shell
+
+Software:
+-Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
+-Microsoft Visual Studio Community 2017 Version 15.7.4
+
+sequential:
+1.	setup VS-Project: New Project>Visual C++>Windows Desktop>Dynamic-Link Library (DLL)
+2.	create exports.def (see sample) and add it to VS-Project
+3.	Set additional library directories (Project Properties\Linker\All Options):
+	..\Release
+	C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win
+4.	Set additonal dependencies (Project Properties\Linker\All Options):
+	mkl_intel_lp64.lib
+	mkl_sequential.lib
+	mkl_core.lib
+5.	build "Release|x64"
+	
+Annotations:
+-	it is crucial to use VS2017, otherwise different workflow
