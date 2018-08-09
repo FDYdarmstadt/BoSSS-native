@@ -32,7 +32,7 @@ ECHO ========================
 ECHO clean up MUMPS directory
 ECHO ========================
 
-make clean
+CALL make clean
 DEL Makefile.inc
 
 IF %MUMPS_TYPE%==SEQ (
@@ -61,7 +61,7 @@ ECHO ======================
 ECHO build static libraries
 ECHO ======================
 
-make
+CALL make
 ::path to examples from vendor to test libs, probably changes with future releases
 CD examples
 ::chose single or double precision [s/d]
@@ -81,32 +81,32 @@ IF %PRECISION%==d (
 	ECHO double precision
 	IF %PARALLEL%==y (
 		ECHO parallel test
-		"%MS_MPI%" -n 2 c_example
-		"%MS_MPI%" -n 2 dsimpletest < input_simpletest_real
+		CALL "%MS_MPI%" -n 2 c_example
+		CALL "%MS_MPI%" -n 2 dsimpletest < input_simpletest_real
 	)
 		::"-n 4" leads to deadlock --> internal Bug of MUMPS ?!?!
 		::"$MS_MPI" -n 4 ./c_example
 		::"$MS_MPI" -n 4 ./dsimpletest < input_simpletest_real
 	IF %PARALLEL%==n (
 		ECHO sequential test
-		c_example
-		dsimpletest < input_simpletest_real
+		CALL c_example
+		CALL dsimpletest < input_simpletest_real
 	)
 )
 IF %PRECISION%==s (
 	ECHO single precision
 	IF %PARALLEL%==y (
 		ECHO parallel test
-		"%MS_MPI%" -n 2 c_example
-		"%MS_MPI%" -n 2 ssimpletest < input_simpletest_real
+		CALL "%MS_MPI%" -n 2 c_example
+		CALL "%MS_MPI%" -n 2 ssimpletest < input_simpletest_real
 	)
 		::"-n 4" leads to deadlock --> internal Bug of MUMPS ?!?!
 		::"$MS_MPI" -n 4 ./c_example
 		::"$MS_MPI" -n 4 ./ssimpletest < input_simpletest_real
 	IF %PARALLEL%==n (
 		ECHO sequential test
-		c_example
-		ssimpletest < input_simpletest_real
+		CALL c_example
+		CALL ssimpletest < input_simpletest_real
 	)
 )
 
@@ -122,15 +122,15 @@ SET CONFIG=Release
 
 IF %MUMPS_TYPE%==SEQ (
 ECHO sequential MUMPS build initiated
-msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% dmumps-seq.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% dmumps-seq.vcxproj
 )
 IF %MUMPS_TYPE%==OPENMP (
 ECHO OpenMP MUMPS build initiated
-msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-openMP.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-openMP.vcxproj
 )
 IF %MUMPS_TYPE%==HYBRID (
 ECHO OpenMP and MPI MUMPS build initiated
-msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-Hybrid.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-Hybrid.vcxproj
 )
 ::check if build was successful
 

@@ -32,7 +32,7 @@ echo done.
 
 SET /P var= clean up MUMPS directory ... <nul
 CD %MUMPS_THIRDPARTY% >nul 2>&1
-make clean >nul 2>&1
+CALL make clean >nul 2>&1
 DEL Makefile.inc >nul 2>&1
 echo done.
 
