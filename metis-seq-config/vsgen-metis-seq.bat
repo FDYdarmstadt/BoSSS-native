@@ -31,7 +31,7 @@ del /q "%METIS_BUILD%\*"
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
-xcopy gk_arch.h %METIS_THIRDPARTY%\GKlib /y
+xcopy gk_arch.h "%METIS_THIRDPARTY%\GKlib" /y
 CD %METIS_BUILD%
 
 for %%i in (*.sln) do set SLN_NAME=%%~ni
