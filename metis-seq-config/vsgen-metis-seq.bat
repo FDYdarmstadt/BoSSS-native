@@ -24,9 +24,9 @@ SET METIS_BUILD=%METIS_THIRDPARTY%\build\windows
 ECHO =======================
 ECHO clean METIS
 ECHO =======================
-
-rmdir %METIS_BUILD% /s /q
-MKDIR %METIS_BUILD%
+cd %METIS_BUILD%\..\
+rmdir windows /s /q
+MKDIR windows
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
