@@ -41,11 +41,11 @@ COPY /y "%MUMPS_CONFIG%\Makefile.inc.seq" "%MUMPS_THIRDPARTY%\Makefile.inc"
 )
 IF %MUMPS_TYPE%==OPENMP (
 ECHO OpenMP MUMPS build initiated
-COPY /y %MUMPS_CONFIG%\Makefile.inc.OpenMP %MUMPS_THIRDPARTY%\Makefile.inc
+COPY /y "%MUMPS_CONFIG%\Makefile.inc.OpenMP" "%MUMPS_THIRDPARTY%\Makefile.inc"
 )
 IF %MUMPS_TYPE%==HYBRID (
 ECHO OpenMP and MPI MUMPS build initiated
-COPY /y %MUMPS_CONFIG%\Makefile.inc.Hybrid %MUMPS_THIRDPARTY%\Makefile.inc
+COPY /y "%MUMPS_CONFIG%\Makefile.inc.Hybrid" "%MUMPS_THIRDPARTY%\Makefile.inc"
 )
 
 ECHO done.
