@@ -25,6 +25,8 @@ SET MUMPS_CONFIG=%WORKINGDIR%\dmumps-config
 ECHO Working directory ... %WORKINGDIR%
 ECHO MUMPS build type ... %MUMPS_TYPE%
 ECHO MS MPI path ... %MS_MPI%
+ECHO MUMPS_THIRDPARTY ... %MUMPS_THIRDPARTY%
+ECHO MUMPS_VSPROJECT ... %MUMPS_VSPROJECT%
 
 CD %MUMPS_THIRDPARTY%
 
@@ -54,7 +56,7 @@ ECHO ===========================
 ECHO clean up MUMPS-VS directory
 ECHO ===========================
 
-rmdir %MUMPS_VSPROJECT%\x64 /s /q
+rmdir "%MUMPS_VSPROJECT%\x64" /s /q
 ECHO done.
 
 ECHO ======================
@@ -81,16 +83,16 @@ IF %PRECISION%==d (
 	ECHO double precision
 	IF %PARALLEL%==y (
 		ECHO parallel test
-		CALL "%MS_MPI%" -n 2 c_example
-		CALL "%MS_MPI%" -n 2 dsimpletest < input_simpletest_real
+		"%MS_MPI%" -n 2 c_example
+		"%MS_MPI%" -n 2 dsimpletest < input_simpletest_real
 	)
 		::"-n 4" leads to deadlock --> internal Bug of MUMPS ?!?!
 		::"$MS_MPI" -n 4 ./c_example
 		::"$MS_MPI" -n 4 ./dsimpletest < input_simpletest_real
 	IF %PARALLEL%==n (
 		ECHO sequential test
-		CALL c_example
-		CALL dsimpletest < input_simpletest_real
+		.\c_example
+		.\dsimpletest < input_simpletest_real
 	)
 )
 IF %PRECISION%==s (
