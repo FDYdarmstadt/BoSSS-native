@@ -34,7 +34,7 @@ ECHO ========================
 ECHO clean up MUMPS directory
 ECHO ========================
 
-CALL make clean 2>&1
+CALL make clean
 DEL Makefile.inc
 
 IF %MUMPS_TYPE%==SEQ (
@@ -91,8 +91,8 @@ IF %PRECISION%==d (
 		::"$MS_MPI" -n 4 ./dsimpletest < input_simpletest_real
 	IF %PARALLEL%==n (
 		ECHO sequential test
-		.\c_example
-		.\dsimpletest < input_simpletest_real
+		call c_example
+		call dsimpletest < input_simpletest_real
 	)
 )
 IF %PRECISION%==s (
