@@ -36,12 +36,13 @@ CD %METIS_CONFIG%
 xcopy /y gk_arch.h "%METIS_THIRDPARTY%\GKlib\"
 CD %METIS_BUILD%
 
-Echo ich war hier
+Echo vor build
 
 SET PLATFORM=x64
 SET CONFIG=Release
 
 IF %METIS_TYPE%==SEQ (
+echo mittendrin ...
 CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1
 :: cmake -DCMAKE_CONFIGURATION_TYPES="Release" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1 -DCMAKE_C_COMPILER=cl
 ECHO VS files have been generated in %METIS_BUILD%
@@ -52,6 +53,8 @@ CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /pro
 ) ELSE (
 ECHO YOU ARE NOT SUPPOSED TO DO THAT
 )
+
+Echo nach build
 
 :: check if build was successful
 CD %METIS_BUILD%\libmetis\Release
