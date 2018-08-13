@@ -34,7 +34,9 @@ ECHO =======================
 
 CD %METIS_CONFIG%
 xcopy /y gk_arch.h "%METIS_THIRDPARTY%\GKlib\"
-::CD %METIS_BUILD%
+CD %METIS_BUILD%
+
+Echo ich war hier
 
 SET PLATFORM=x64
 SET CONFIG=Release
