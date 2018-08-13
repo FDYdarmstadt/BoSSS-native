@@ -32,7 +32,7 @@ ECHO ========================
 ECHO clean up MUMPS directory
 ECHO ========================
 
-CALL make clean
+CALL make clean || true
 DEL Makefile.inc
 
 IF %MUMPS_TYPE%==SEQ (
