@@ -28,6 +28,7 @@ ECHO =======================
 ::rmdir windows /s /q
 ::MKDIR windows
 del /q "%METIS_BUILD%\*"
+MKDIR %METIS_BUILD%\..\windows
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
@@ -41,8 +42,10 @@ Echo vor build
 SET PLATFORM=x64
 SET CONFIG=Release
 
-IF %METIS_TYPE%==SEQ (
 echo mittendrin ...
+
+IF %METIS_TYPE%==SEQ (
+
 CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1
 :: cmake -DCMAKE_CONFIGURATION_TYPES="Release" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1 -DCMAKE_C_COMPILER=cl
 ECHO VS files have been generated in %METIS_BUILD%
