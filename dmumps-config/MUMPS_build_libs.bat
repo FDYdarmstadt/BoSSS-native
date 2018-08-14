@@ -49,6 +49,7 @@ IF %MUMPS_TYPE%==HYBRID (
 ECHO OpenMP and MPI MUMPS build initiated
 COPY /y "%MUMPS_CONFIG%\Makefile.inc.Hybrid" "%MUMPS_THIRDPARTY%\Makefile.inc"
 )
+MKDIR "%MUMPS_THIRDPARTY%\lib"
 
 ECHO done.
 

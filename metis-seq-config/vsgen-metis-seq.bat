@@ -27,8 +27,9 @@ ECHO =======================
 ::cd %METIS_BUILD%\..\
 ::rmdir windows /s /q
 ::MKDIR windows
-del /q "%METIS_BUILD%\*"
-MKDIR %METIS_BUILD%\..\windows
+IF exist %METIS_BUILD% del /q "%METIS_BUILD%\*"
+MKDIR %METIS_BUILD%
+
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
@@ -37,12 +38,8 @@ CD %METIS_CONFIG%
 xcopy /y gk_arch.h "%METIS_THIRDPARTY%\GKlib\"
 CD %METIS_BUILD%
 
-Echo vor build
-
 SET PLATFORM=x64
 SET CONFIG=Release
-
-echo mittendrin ...
 
 IF %METIS_TYPE%==SEQ (
 
@@ -56,8 +53,6 @@ CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /pro
 ) ELSE (
 ECHO YOU ARE NOT SUPPOSED TO DO THAT
 )
-
-Echo nach build
 
 :: check if build was successful
 CD %METIS_BUILD%\libmetis\Release

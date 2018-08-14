@@ -1,9 +1,5 @@
 @echo off
-:: Choose PLATFORM
-IF DEFINED JTEST (
-set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
-set WORKINGDIR=C:\Users\JenkinsCI\test\workspace
-)
+:: Choose ...
 IF DEFINED JENKINS (
 set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
@@ -31,8 +27,8 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 
 set ERRORS=0
 :: run individual Batch-Files
-::CALL pardiso-config\vsgen-pardiso.bat
-::CALL metis-seq-config\vsgen-metis-seq.bat
+CALL pardiso-config\vsgen-pardiso.bat
+CALL metis-seq-config\vsgen-metis-seq.bat
 CALL dmumps-config\MUMPS_build_libs.bat
 CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
