@@ -27,16 +27,16 @@ ECHO =======================
 ::cd %METIS_BUILD%\..\
 ::rmdir windows /s /q
 ::MKDIR windows
-IF exist %METIS_BUILD% del /q "%METIS_BUILD%\*"
-MKDIR %METIS_BUILD%
+IF exist "%METIS_BUILD%" del /q "%METIS_BUILD%\*"
+IF NOT exist "%METIS_BUILD%" MKDIR "%METIS_BUILD%"
 
 ECHO =======================
 ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
 
-CD %METIS_CONFIG%
-xcopy /y gk_arch.h "%METIS_THIRDPARTY%\GKlib\"
-CD %METIS_BUILD%
+CD "%METIS_CONFIG%"
+XCOPY" /y gk_arch.h %METIS_THIRDPARTY%\GKlib"
+CD "%METIS_BUILD%"
 
 SET PLATFORM=x64
 SET CONFIG=Release
