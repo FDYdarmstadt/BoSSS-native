@@ -1,13 +1,24 @@
 @echo off
-:: Choose ...
+:: Choose PLATFORM
 IF DEFINED JENKINS (
 set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-echo test
+:: specify paths for VS-projects, plz edit if necessary:
+set "MKL_DIR=C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows"
+set "MKL_LIB_DIR=%MKL_DIR%\mkl\lib\intel64_win"
+:: directory of libiomp5md.lib ...
+set "MKL_OPENMP_DIR=%MKL_DIR%\compiler\lib\intel64_win"
+set "MS_MPI_DIR=C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
 )
 IF DEFINED HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
+:: specify paths for VS-projects, plz edit if necessary:
+set "MKL_DIR=C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows"
+set "MKL_LIB_DIR=%MKL_DIR%\mkl\lib\intel64_win"
+:: directory of libiomp5md.lib ...
+set "MKL_OPENMP_DIR=%MKL_DIR%\compiler\lib\intel64_win"
+set "MS_MPI_DIR=C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
 )
 
 :: Build composition ::

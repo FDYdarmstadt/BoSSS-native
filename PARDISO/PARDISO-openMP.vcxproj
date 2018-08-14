@@ -134,7 +134,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>c:\libs\Microsoft_HPC_Pack_2008_SDK\Include;c:\libs\Intel\MKL\10.2.5.035\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;F77LAPACK_IS__SMALL_TRAILING_UNDERSCORE;F77BLAS_IS__SMALL_TRAILING_UNDERSCORE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -146,7 +146,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\libs\Intel\MKL\10.2.5.035\em64t\lib;..\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -208,7 +208,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>mkl_intel_thread.lib;mkl_intel_lp64.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Release;%MKL_OPENMP_DIR%;%MKL_LIB_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

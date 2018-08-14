@@ -121,8 +121,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;msmpi.lib;msmpifec.lib;mkl_scalapack_lp64.lib;mkl_blacs_msmpi_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;mkl_intel_lp64.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\Intel\Compiler\11.0\066\fortran\mkl\em64t\lib;C:\MUMPS_5.0.2\lib;C:\Program Files\Microsoft MPI\Lib\amd64;C:\Program Files (x86)\Intel\Compiler\11.0\066\fortran\lib\intel64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -166,7 +166,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;libmpiseq.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win;C:\BoSSS-native\MUMPS_5.0.2\lib;C:\BoSSS-native\MUMPS_5.0.2\libseq;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%MKL_LIB_DIR%;%MUMPS_THIRDPARTY%\lib;%MUMPS_THIRDPARTY%\libseq;%MKL_OPENMP_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

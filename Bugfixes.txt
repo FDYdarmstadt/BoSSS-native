@@ -6,6 +6,7 @@ MSVS related
 -$(SolutionName) can not be found by msbuild, because msbuild does not consider SolutionName
 Cygwin related
 -msbuild can not be started from within Intel cmd/cygwin, Solution: alias in bashrc: alias msbuild="'/cygdrive/c/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe'" oder VS cmd/cygwin verwenden,
+-ctype.h not found, solution: select SDK package in VS-installer>modify: universal windows platform development>Windows 10 SDK (10.0.15063.0)
 
 MUMPS related
 -.exe are not deleted with "make clean", add to examples\Makefile under clean ... : $(RM) *.exe [sdcz]simpletest c_example
