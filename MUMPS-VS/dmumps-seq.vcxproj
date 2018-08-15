@@ -166,7 +166,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;libmpiseq.lib;mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%MKL_LIB_DIR%;%MUMPS_THIRDPARTY%\lib;%MUMPS_THIRDPARTY%\libseq;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%MKL_OPENMP_DIR%;%MKL_LIB_DIR%;%MUMPS_THIRDPARTY%\lib;%MUMPS_THIRDPARTY%\libseq;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
