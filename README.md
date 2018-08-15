@@ -22,4 +22,5 @@ Do not touch these directories! All necessary changes are made from within *-con
 To execute all Batch files run the ... Batch-file.
 
 Annotations:
--
+-If new versions have to be build, remember to adjust directories relative to working directory within
+the batch-files. Never forget to put paths with spaces etc. in parenthesis: check Bugfixes.txt for details

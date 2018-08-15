@@ -49,7 +49,7 @@ ECHO VS files have been generated in %METIS_BUILD%
 ::devenv METIS.sln /Clean
 ::devenv ALL_BUILD.vcxproj /Build "Release|x64"
 for %%i in (*.sln) do set SLN_NAME=%%~ni
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% ALL_BUILD.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% libmetis\metis.vcxproj
 ) ELSE (
 ECHO YOU ARE NOT SUPPOSED TO DO THAT
 )
