@@ -15,8 +15,8 @@ ECHO WORKINGDIR[path], BLAS_LAPACK_TYPE[SEQ]
 GOTO EOF
 )
 ::Define all pending directories
-SET BLAS_LAPACK_CONFIG=%WORKINGDIR%\blas_lapack-config
-SET BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK
+SET "BLAS_LAPACK_CONFIG=%WORKINGDIR%\blas_lapack-config"
+SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
 
 ECHO ======================
 ECHO clean BLAS and LAPACK
@@ -38,7 +38,7 @@ CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /pro
 )
 
 ::check if build was successful
-CD %BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%
+CD "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%"
 
 set "CHECK="
 IF EXIST BLAS_LAPACK.dll SET CHECK=1
@@ -50,7 +50,7 @@ IF DEFINED ERRORS set /a ERRORS=%ERRORS%+1
 )
 
 :EOF
-CD %WORKINGDIR%
+CD "%WORKINGDIR%"
 ECHO building BLAS and LAPACK finished, returning to working directory ...
 ECHO =======================
 ECHO ^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>

@@ -15,8 +15,8 @@ ECHO WORKINGDIR[path], PARDISO_TYPE[SEQ/OPENMP/HYBRID]
 GOTO EOF
 )
 ::Define all pending directories
-SET PARDISO_CONFIG=%WORKINGDIR%\pardiso-config
-SET PARDISO_BUILD=%WORKINGDIR%\PARDISO
+SET "PARDISO_CONFIG=%WORKINGDIR%\pardiso-config"
+SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
 
 ECHO ======================
 ECHO clean PARDISO
@@ -44,7 +44,7 @@ CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /pro
 )
 ::check if build was successful
 
-CD %PARDISO_BUILD%\%PLATFORM%\%CONFIG%
+CD "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%"
 
 set "CHECK="
 IF EXIST PARDISO.dll SET CHECK=1

@@ -17,9 +17,9 @@ ECHO WORKINGDIR[path], MUMPS_TYPE[SEQ/OPENMP/HYBRID]
 GOTO EOF
 )
 ::Define all pending directories
-SET METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0
-SET METIS_CONFIG=%WORKINGDIR%\metis-seq-config
-SET METIS_BUILD=%METIS_THIRDPARTY%\build\windows
+SET "METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0"
+SET "METIS_CONFIG=%WORKINGDIR%\metis-seq-config"
+SET "METIS_BUILD=%METIS_THIRDPARTY%\build\windows"
 
 ECHO =======================
 ECHO clean METIS
@@ -35,7 +35,7 @@ ECHO build METIS %METIS_TYPE%-Type
 ECHO =======================
 
 CD "%METIS_CONFIG%"
-XCOPY" /y gk_arch.h %METIS_THIRDPARTY%\GKlib"
+XCOPY /y "gk_arch.h" "%METIS_THIRDPARTY%\GKlib"
 CD "%METIS_BUILD%"
 
 SET PLATFORM=x64
@@ -45,7 +45,7 @@ IF %METIS_TYPE%==SEQ (
 
 CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1
 :: cmake -DCMAKE_CONFIGURATION_TYPES="Release" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1 -DCMAKE_C_COMPILER=cl
-ECHO VS files have been generated in %METIS_BUILD%
+ECHO VS files have been generated in "%METIS_BUILD%"
 ::devenv METIS.sln /Clean
 ::devenv ALL_BUILD.vcxproj /Build "Release|x64"
 for %%i in (*.sln) do set SLN_NAME=%%~ni
@@ -55,7 +55,7 @@ ECHO YOU ARE NOT SUPPOSED TO DO THAT
 )
 
 :: check if build was successful
-CD %METIS_BUILD%\libmetis\Release
+CD "%METIS_BUILD%\libmetis\Release"
 set "CHECK="
 IF EXIST metis.dll SET CHECK=1
 IF DEFINED CHECK (
@@ -66,7 +66,7 @@ IF DEFINED ERRORS set /a ERRORS=%ERRORS%+1
 )
 
 :EOF
-CD %WORKINGDIR%
+CD "%WORKINGDIR%"
 ECHO building METIS finished, returning to working directory ...
 ECHO =======================
 ECHO ^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>
