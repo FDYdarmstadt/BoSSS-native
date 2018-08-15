@@ -14,38 +14,38 @@ set WORKINGDIR=C:\BoSSS-native
 )
 
 :: directories
-SET MUMPS_THIRDPARTY=%WORKINGDIR%\MUMPS_5.0.2
-SET MUMPS_VSPROJECT=%WORKINGDIR%\MUMPS-VS
-SET MUMPS_CONFIG=%WORKINGDIR%\dmumps-config
-SET PARDISO_CONFIG=%WORKINGDIR%\pardiso-config
-SET PARDISO_BUILD=%WORKINGDIR%\PARDISO
-SET BLAS_LAPACK_CONFIG=%WORKINGDIR%\blas_lapack-config
-SET BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK
-SET METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0
-SET METIS_CONFIG=%WORKINGDIR%\metis-seq-config
-SET METIS_BUILD=%METIS_THIRDPARTY%\build\windows
+SET "MUMPS_THIRDPARTY=%WORKINGDIR%\MUMPS_5.0.2"
+SET "MUMPS_VSPROJECT=%WORKINGDIR%\MUMPS-VS"
+SET "MUMPS_CONFIG=%WORKINGDIR%\dmumps-config"
+SET "PARDISO_CONFIG=%WORKINGDIR%\pardiso-config"
+SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
+SET "BLAS_LAPACK_CONFIG=%WORKINGDIR%\blas_lapack-config"
+SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
+SET "METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0"
+SET "METIS_CONFIG=%WORKINGDIR%\metis-seq-config"
+SET "METIS_BUILD=%METIS_THIRDPARTY%\build\windows"
 
 SET /P var= clean PARDISO ... <nul
-cd %PARDISO_BUILD% >nul 2>&1
+cd "%PARDISO_BUILD%" >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean up MUMPS directory ... <nul
-CD %MUMPS_THIRDPARTY% >nul 2>&1
+CD "%MUMPS_THIRDPARTY%" >nul 2>&1
 CALL make clean >nul 2>&1
 DEL Makefile.inc >nul 2>&1
 echo done.
 
 SET /P var= clean up MUMPS-VS directory ... <nul
-rmdir %MUMPS_VSPROJECT%\x64 /s /q >nul 2>&1
+rmdir "%MUMPS_VSPROJECT%\x64" /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean METIS ... <nul
-rmdir %METIS_BUILD% /s /q >nul 2>&1
+rmdir "%METIS_BUILD%" /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean BLAS and LAPACK ... <nul
-cd %BLAS_LAPACK_BUILD% >nul 2>&1
+cd "%BLAS_LAPACK_BUILD%" >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 echo done.
 
