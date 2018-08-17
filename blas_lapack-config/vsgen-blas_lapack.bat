@@ -34,7 +34,7 @@ SET PLATFORM=x64
 SET CONFIG=Release
 
 IF %BLAS_LAPACK_TYPE%==SEQ (
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% /property:MKL_LIB_DIR="%MKL_LIB_DIR%" BLAS_LAPACK-seq.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% /property:_MKL_LIB_DIR="%MKL_LIB_DIR%" BLAS_LAPACK-seq.vcxproj
 )
 
 ::check if build was successful
