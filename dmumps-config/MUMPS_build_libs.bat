@@ -125,7 +125,7 @@ SET CONFIG=Release
 
 IF %MUMPS_TYPE%==SEQ (
 ECHO sequential MUMPS build initiated
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% /property:MKL_OPENMP_DIR=%MKL_OPENMP_DIR% /property:MKL_LIB_DIR?=%MKL_LIB_DIR% /property:MUMPS_THIRDPARTY=%MUMPS_THIRDPARTY% dmumps-seq.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% /property:MKL_OPENMP_DIR="%MKL_OPENMP_DIR%" /property:MKL_LIB_DIR?="%MKL_LIB_DIR%" /property:MUMPS_THIRDPARTY="%MUMPS_THIRDPARTY%" dmumps-seq.vcxproj
 )
 IF %MUMPS_TYPE%==OPENMP (
 ECHO OpenMP MUMPS build initiated
