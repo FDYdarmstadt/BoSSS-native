@@ -1,15 +1,15 @@
 @echo off
 :: Choose PLATFORM
 IF DEFINED JENKINS (
-set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
+set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-rename PropertySheet_JENKINS.props PropertySheet.props
+xcopy /y PropertySheet_JENKINS.props PropertySheet.props
 )
 
 IF DEFINED HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
-rename PropertySheet_HOME.props PropertySheet.props
+xcopy /y PropertySheet_HOME.props PropertySheet.props
 )
 
 :: Build composition ::
@@ -35,7 +35,6 @@ CALL dmumps-config\MUMPS_build_libs.bat
 CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
 
-IF DEFINED JENKINS RENAME PropertySheet.props PropertySheet_JENKINS.props
-IF DEFINED HOME RENAME PropertySheet.props PropertySheet_HOME.props
+del /q PropertySheet.props
 
 ECHO %ERRORS% build failed
