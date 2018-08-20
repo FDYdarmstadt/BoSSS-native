@@ -3,22 +3,13 @@
 IF DEFINED JENKINS (
 set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-:: specify paths for VS-projects, plz edit if necessary:
-set "MKL_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows"
-set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win"
-:: directory of libiomp5md.lib ...
-set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win"
-set "MS_MPI_DIR=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Lib\x64"
+rename PropertySheet_JENKINS.props PropertySheet.props
 )
 
 IF DEFINED HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
-set "MKL_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows"
-set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win"
-:: directory of libiomp5md.lib ...
-set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win"
-set "MS_MPI_DIR=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Lib\x64"
+rename PropertySheet_HOME.props PropertySheet.props
 )
 
 :: Build composition ::
@@ -38,10 +29,13 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 
 set ERRORS=0
 :: run individual Batch-Files
-::CALL pardiso-config\vsgen-pardiso.bat
-::CALL metis-seq-config\vsgen-metis-seq.bat
-::CALL dmumps-config\MUMPS_build_libs.bat
+CALL pardiso-config\vsgen-pardiso.bat
+CALL metis-seq-config\vsgen-metis-seq.bat
+CALL dmumps-config\MUMPS_build_libs.bat
 CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
+
+IF DEFINED JENKINS RENAME PropertySheet.props PropertySheet_JENKINS.props
+IF DEFINED HOME RENAME PropertySheet.props PropertySheet_HOME.props
 
 ECHO %ERRORS% build failed
