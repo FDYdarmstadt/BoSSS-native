@@ -2,9 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <MKL_LIB_DIR>%MKL_LIB_DIR%</MKL_LIB_DIR>
-    <MKL_OPENMP_DIR>%MKL_OPENMP_DIR%</MKL_OPENMP_DIR>
-    <MS_MPI_DIR>%MS_MPI_DIR%</MS_MPI_DIR>
+    <MKL_LIB_DIR></MKL_LIB_DIR>
+    <MKL_OPENMP_DIR></MKL_OPENMP_DIR>
+    <MS_MPI_DIR></MS_MPI_DIR>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>LIB_PATHS</_PropertySheetDisplayName>
@@ -12,15 +12,15 @@
   <ItemDefinitionGroup />
   <ItemGroup>
     <BuildMacro Include="MKL_LIB_DIR">
-      <Value>$(MKL_LIB_DIR)</Value>
+      <Value>%MKL_LIB_DIR%</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="MKL_OPENMP_DIR">
-      <Value>$(MKL_OPENMP_DIR)</Value>
+      <Value>%MKL_OPENMP_DIR%</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="MS_MPI_DIR">
-      <Value>$(MS_MPI_DIR)</Value>
+      <Value>%MS_MPI_DIR%</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>
