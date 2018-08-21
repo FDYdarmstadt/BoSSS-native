@@ -89,6 +89,7 @@ LIBBLAS =   mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib
 LIBOTHERS = -link $(PATHORDERINGS)
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
+AUXINC=-I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include"
 
 #Begin Optimized options
 OPTF    = -O -MD -Dintel_ -DALLOW_NON_INIT -fpp
