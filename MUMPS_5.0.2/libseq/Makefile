@@ -17,6 +17,6 @@ libmpiseq$(PLAT)$(LIBEXT): mpi.o mpic.o elapse.o
 	$(FC) $(OPTF)              -c $*.f $(OUTF)$*.o
 .c.o:
 	Echo "$(PATH)"
-	$(CC) $(OPTC) $(CDEFS) -I. -I$(AUXINC) -c $*.c $(OUTC)$*.o
+	$(CC) $(OPTC) $(CDEFS) -I. $(AUXINC) -c $*.c $(OUTC)$*.o
 clean:
 	$(RM) *.o *$(LIBEXT)
