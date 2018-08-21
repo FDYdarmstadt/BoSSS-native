@@ -6,7 +6,7 @@
 # Otherwise, adequate variables for CC, CFLAGS, AR and
 # RANLIB must be passed to make.
 #
-
+include ../../Makefile.inc
 INCLUDES = -I../include $(AUXINC)
 
 COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS)
