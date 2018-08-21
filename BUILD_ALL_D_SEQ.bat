@@ -2,8 +2,11 @@
 :: Choose PLATFORM
 setlocal EnableDelayedExpansion
 IF DEFINED JENKINS (
-set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt"
+:: add path for cmake, make 
+set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin"
+:: add path for msbuild
 set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin"
+:: add path for ifort and link.exe 
 set "PATH=!PATH!;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\bin\intel64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\Hostx64\x64"
 :: auxiliary include paths to make MUMPS work (are used within MakeFiles)
 :: for example time.h, etc.
@@ -39,10 +42,10 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 
 set ERRORS=0
 :: run individual Batch-Files
-::CALL pardiso-config\vsgen-pardiso.bat
-::CALL metis-seq-config\vsgen-metis-seq.bat
+CALL pardiso-config\vsgen-pardiso.bat
+CALL metis-seq-config\vsgen-metis-seq.bat
 CALL dmumps-config\MUMPS_build_libs.bat
-::CALL blas_lapack-config\vsgen-blas_lapack.bat
+CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
 
 del /q PropertySheet.props
