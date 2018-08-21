@@ -12,6 +12,8 @@ set WORKINGDIR=C:\BoSSS-native
 copy /y "PropertySheet_HOME.props" "PropertySheet.props"
 )
 
+Echo modified PATH=%PATH%
+
 :: Build composition ::
 set MUMPS_TYPE=SEQ
 set PARDISO_TYPE=SEQ
@@ -29,10 +31,10 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 
 set ERRORS=0
 :: run individual Batch-Files
-CALL pardiso-config\vsgen-pardiso.bat
-CALL metis-seq-config\vsgen-metis-seq.bat
+::CALL pardiso-config\vsgen-pardiso.bat
+::CALL metis-seq-config\vsgen-metis-seq.bat
 CALL dmumps-config\MUMPS_build_libs.bat
-CALL blas_lapack-config\vsgen-blas_lapack.bat
+::CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
 
 del /q PropertySheet.props
