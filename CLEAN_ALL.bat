@@ -49,6 +49,6 @@ cd "%BLAS_LAPACK_BUILD%" >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 echo done.
 
-del /q PropertySheet.props
+del /q PropertySheet.props >nul 2>&1
 
 cd %~dp0

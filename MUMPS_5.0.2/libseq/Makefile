@@ -16,7 +16,7 @@ libmpiseq$(PLAT)$(LIBEXT): mpi.o mpic.o elapse.o
 .f.o:
 	$(FC) $(OPTF)              -c $*.f $(OUTF)$*.o
 .c.o:
-	$(CC) $(OPTC) $(CDEFS) -I. -c $*.c $(OUTC)$*.o
+	$(CC) $(OPTC) $(CDEFS) -I. -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt" -c $*.c $(OUTC)$*.o
 
 clean:
 	$(RM) *.o *$(LIBEXT)
