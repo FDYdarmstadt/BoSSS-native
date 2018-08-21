@@ -17,8 +17,6 @@ libmpiseq$(PLAT)$(LIBEXT): mpi.o mpic.o elapse.o
 	$(FC) $(OPTF)              -c $*.f $(OUTF)$*.o
 .c.o:
 	Echo "$(PATH)"
-	WININCDIR="C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt"
-	VSINCDIR="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include"
-	$(CC) $(OPTC) $(CDEFS) -I. -I$(WININCDIR) -I$(VSINCDIR) -c $*.c $(OUTC)$*.o
+	$(CC) $(OPTC) $(CDEFS) -I. -I$(AUXINC) -c $*.c $(OUTC)$*.o
 clean:
 	$(RM) *.o *$(LIBEXT)
