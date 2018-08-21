@@ -7,7 +7,7 @@
 # RANLIB must be passed to make.
 #
 
-INCLUDES = -I../include
+INCLUDES = -I../include $(AUXINC)
 
 COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS)
 
