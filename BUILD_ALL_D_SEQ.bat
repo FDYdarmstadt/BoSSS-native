@@ -1,10 +1,11 @@
 @echo off
 :: Choose PLATFORM
+setlocal EnableDelayedExpansion
 IF DEFINED JENKINS (
-set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt"
-set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin"
-set "PATH=%PATH%;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\bin\intel64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\Hostx64\x64"
-::set "PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include"
+set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt"
+set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin"
+set "PATH=!PATH!;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\bin\intel64;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\bin\Hostx64\x64"
+::set "PATH=!PATH!;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
 copy /y "PropertySheet_JENKINS.props" "PropertySheet.props"
 )
