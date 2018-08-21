@@ -89,7 +89,7 @@ LIBBLAS =   mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib
 LIBOTHERS = -link $(PATHORDERINGS)
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
-AUXINC=-I$(AUXONE) -I$(AUXTWO)
+AUXINC=-I$(shell echo AUXONE) -I$(shell echo AUXTWO)
 
 #Begin Optimized options
 OPTF    = -O -MD -Dintel_ -DALLOW_NON_INIT -fpp
