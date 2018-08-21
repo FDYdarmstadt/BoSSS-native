@@ -3,13 +3,13 @@
 IF DEFINED JENKINS (
 set "PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-xcopy /y PropertySheet_JENKINS.props PropertySheet.props
+copy /y "PropertySheet_JENKINS.props" "PropertySheet.props"
 )
 
 IF DEFINED HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
-xcopy /y PropertySheet_HOME.props PropertySheet.props
+copy /y "PropertySheet_HOME.props" "PropertySheet.props"
 )
 
 :: Build composition ::
