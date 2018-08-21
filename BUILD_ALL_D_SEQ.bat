@@ -44,7 +44,7 @@ set ERRORS=0
 :: run individual Batch-Files
 CALL pardiso-config\vsgen-pardiso.bat
 CALL metis-seq-config\vsgen-metis-seq.bat
-CALL dmumps-config\MUMPS_build_libs.bat
+::CALL dmumps-config\MUMPS_build_libs.bat
 CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::hypre-config\
 
