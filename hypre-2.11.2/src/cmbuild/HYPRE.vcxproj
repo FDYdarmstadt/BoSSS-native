@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DC1B4A7B-0868-338E-9FF0-20E853F93BEC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>HYPRE</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HYPRE.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">HYPRE</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">HYPRE.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">HYPRE</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">HYPRE.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">HYPRE</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">HYPRE.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">HYPRE</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <AdditionalDependencies>BLAS_LAPACK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\BoSSS-native\BLAS_LAPACK\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/BoSSS-native/hypre-2.11.2/src/CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\amg_linklist.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\binsearch.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\exchange_data.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\F90_HYPRE_error.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\fortran_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_ap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_complex.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_error.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_hopscotch_hash.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_memory.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_merge_sort.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_mpi_comm_f2c.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_prefix_sum.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_printf.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_qsort.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\memory_dmalloc.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\mpistubs.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\qsplit.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\random.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\threading.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\timer.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\timing.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\umalloc_local.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\multivector\multivector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\multivector\temp_multivector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\cgnr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_cgnr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_lobpcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\lobpcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matop.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matvec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\genpart.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_csr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_mapped_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_multiblock_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\mapped_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\multiblock_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\communicationT.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_HYPRE_parcsr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_HYPRE_parcsr_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_parcsr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_par_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\HYPRE_parcsr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\HYPRE_parcsr_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\new_commpkg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\numbers.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_aat.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_assumed_part.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_bool_matop.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_bool_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_communication.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matop.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matop_marked.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matvec.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_make_system.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\csr_block_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\csr_block_matvec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_matvec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_comm.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_rap_communication.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_block_nodal_systems.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\HYPRE_distributed_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_ISIS.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_PETSc.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_parcsr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\aux_parcsr_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\aux_par_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_HYPRE_IJMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_HYPRE_IJVector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_IJMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\HYPRE_IJMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\HYPRE_IJVector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJ_assumed_part.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJMatrix_parcsr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJVector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJVector_parcsr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix\HYPRE_ConvertParCSRMatrixToDistributedMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix\HYPRE_ConvertPETScMatrixToDistributedMatrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\comm.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\debug.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\distributed_qsort.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\distributed_qsort_si.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\HYPRE_DistributedMatrixPilutSolver.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\ilut.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\parilut.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\parutil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\pblas1.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\serilut.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\trifactor.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\util.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\ConjGrad.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\DiagScale.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\FGmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Hash.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\hypre_ParaSails.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\LoadBal.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Mem.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Numbering.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\OrderStat.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\ParaSails.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\PrunedRows.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\RowPatt.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\StoredRows.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\blas_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Euclid_apply.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Euclid_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ExternalRows_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Factor_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\getRow_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\globalObjects.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Hash_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Hash_i_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_mpi_bj.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_mpi_pilu.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_seq.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\io_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\krylov_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Mat_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\mat_dh_private.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\MatGenFD.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Mem_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Numbering_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Parser_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\shellSort_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\sig_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SortedList_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SortedSet_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SubdomainGraph_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\TimeLog_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Timer_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Vec_dh.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\amg_hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\aux_interp.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_hypre_laplace.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_amg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_block.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_cgnr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_Euclid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_ParaSails.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_pilut.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_schwarz.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_ams.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\gen_redcs_mat.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_amg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_block.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_cgnr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_Euclid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_ParaSails.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_pilut.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_schwarz.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ams.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ads.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ame.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_solve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_solveT.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cg_relax_wt.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coarsen.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cgc_coarsen.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coarse_parms.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coordinates.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cr.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cycle.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_add_cycle.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_difconv.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_gsmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_indepset.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_jacobi_interp.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_multi_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace_27pt.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace_9pt.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_lr_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_nongalerkin.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_nodal_systems.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rap.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rap_communication.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rotate_7pt.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_vardifconv.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax_more.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax_interface.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_scaled_matnorm.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_schwarz.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_stats.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_strength.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_sv_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_sv_interp_ln.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\partial.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\pcg_par.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\schwarz.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\block_tridiag.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ams.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ads.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ame.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\assumed_part.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_algebra.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_boundary.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_manager.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\communication_info.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\computation.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\project.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_axpy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_communication.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_copy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_innerprod.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_io.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matrix_mask.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matvec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_scale.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\coarsen.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\cyclic_reduction.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_cycred.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_jacobi.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_smg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_sparse_msg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\general.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_cycred.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_hybrid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_jacobi.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_smg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_sparse_msg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\jacobi.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pcg_struct.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg2_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg3_setup_rap.c">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Disabled</Optimization>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Disabled</Optimization>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap5.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap7.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_solve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\point_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\red_black_constantcoef_gs.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\red_black_gs.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_restrict.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg2_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg3_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_axpy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_residual.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_restrict.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_solve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg2_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg3_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_filter.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_restrict.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_solve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_graph.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_graph.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_axpy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_copy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_graph.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_grid.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_innerprod.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_matrix.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_matvec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_scale.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_stencil.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_vector.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_InterFAC.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_maxwell.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_split.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_sys_pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_bicgstab.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_gmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_flexgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_lgmres.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_InterFAC.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_int.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_maxwell.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_pcg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_split.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_sys_pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_fcoarsen.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_zero_data.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_cf_coarsen.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_cfstencil_box.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_CFInterfaceExtents.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_interp2.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_restrict2.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_setup2.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_solve3.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_zero_cdata.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_zero_stencilcoef.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_bsearch.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\krylov.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\krylov_sstruct.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\eliminate_rowscols.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_grad.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_physbdy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_PNedelec.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_PNedelec_bdy.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_semi_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_TV.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_TV_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_zeroBC.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_MaxwellSolve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_MaxwellSolve2.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\nd1_amge_interpolation.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\node_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_amr_intercommunication.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_owninfo.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_recvinfo.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_sendinfo.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_sharedDOFComm.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_relax.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup_rap.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_solve.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_semi_interp.c" />
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_semi_restrict.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\BoSSS-native\hypre-2.11.2\src\cmbuild\ZERO_CHECK.vcxproj">
+      <Project>{6E95FC27-4DFA-3821-A27D-171B03F6301F}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
