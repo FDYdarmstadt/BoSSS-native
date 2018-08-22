@@ -1,0 +1,122 @@
+LIBRARY	"BLAS_LAPACK"
+EXPORTS
+    
+  	; ######################################################################
+	; ######################################################################
+	; BLAS+LAPACK
+	; ######################################################################
+	; ######################################################################
+    
+	;all functions necessary for PARDISO and HYPRE
+	
+	;BLAS BoSSS related
+	DAXPY
+	DDOT
+	DGEMM
+	DNRM2
+	DSCAL
+	DSWAP
+	
+	;BLAS hypre related
+	DASUM
+	DCOPY
+	DGEMV
+	DGER
+	DROT
+	DSYMM
+	DSYMV
+	DSYR2
+	DSYR2K
+	DSYRK
+	DTRMM
+	DTRMV
+	DTRSM
+	DTRSV
+	IDAMAX
+
+    ;LAPACK BoSSS related
+	DGELSS
+	DGELSY
+	DGEQP3
+	DGETRF
+	DGETRS
+	DGETRI
+	DORGQR
+	DPOSV
+	DPOTRF
+	DPOTRI
+	DTRTRI
+	DGEQRF
+	
+	;LAPACK hypre related
+	dbdsqr
+	dgebd2
+	dgebrd
+	dgelq2
+	dgelqf
+	dgels 
+	dgeqr2
+	dgesvd 
+	dgetf2
+	dlabad 
+	dlabrd 
+	dlacpy 
+	dlae2 
+	dlaev2 
+	dlamch 
+	dlange 
+	dlanst 
+	dlansy 
+	dlapy2 
+	dlarf 
+	dlarfb 
+	dlarfg 
+	dlarft 
+	dlartg 
+	dlas2 
+	dlascl 
+	dlaset 
+	dlasq1 
+	dlasq2 
+	dlasq3 
+	dlasq4 
+	dlasq5 
+	dlasq6 
+	dlasr 
+	dlasrt 
+	dlassq 
+	dlasv2 
+	dlaswp 
+	dlatrd 
+	dorg2l 
+	dorg2r 
+	dorgbr 
+	dorgl2 
+	dorglq 
+	dorgql
+	dorgtr 
+	dorm2r 
+	dormbr 
+	dorml2 
+	dormlq 
+	dormqr 
+	dpotf2
+	dpotrs 
+	dsteqr 
+	dsterf 
+	dsyev 
+	dsygs2 
+	dsygst 
+	dsygv 
+	dsytd2 
+	dsytrd 
+	ieeeck 
+	ilaenv
+	lsame
+	xerbla
+
+
+
+
+
+	

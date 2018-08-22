@@ -42,11 +42,11 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 
 set ERRORS=0
 :: run individual Batch-Files
-CALL pardiso-config\vsgen-pardiso.bat
-CALL metis-seq-config\vsgen-metis-seq.bat
-::CALL dmumps-config\MUMPS_build_libs.bat
 CALL blas_lapack-config\vsgen-blas_lapack.bat
+::CALL pardiso-config\vsgen-pardiso.bat
 ::hypre-config\
+::CALL metis-seq-config\vsgen-metis-seq.bat
+::CALL dmumps-config\MUMPS_build_libs.bat
 
 del /q PropertySheet.props
 
