@@ -14,18 +14,16 @@ set "AUXONE=C:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt"
 :: for vcruntime.h
 set "AUXTWO=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.14.26428\include"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-copy /y "PropertySheet_JENKINS.props" "PropertySheet.props"
 )
 
 IF DEFINED HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
-copy /y "PropertySheet_HOME.props" "PropertySheet.props"
 )
 
 Echo modified PATH=%PATH%
 
-:: Build composition ::
+:: Build composition Default
 set MUMPS_TYPE=SEQ
 set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
@@ -43,11 +41,9 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 set ERRORS=0
 :: run individual Batch-Files
 CALL blas_lapack-config\vsgen-blas_lapack.bat
-::CALL pardiso-config\vsgen-pardiso.bat
-::hypre-config\
-::CALL metis-seq-config\vsgen-metis-seq.bat
-::CALL dmumps-config\MUMPS_build_libs.bat
-
-del /q PropertySheet.props
+CALL pardiso-config\vsgen-pardiso.bat
+CALL hypre-config\vsgen-hypre.bat
+CALL metis-seq-config\vsgen-metis-seq.bat
+CALL dmumps-config\MUMPS_build_libs.bat
 
 ECHO %ERRORS% build failed

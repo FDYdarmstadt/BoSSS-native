@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6E95FC27-4DFA-3821-A27D-171B03F6301F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ZERO_CHECK</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\48f0a16dad8e4de1d973c2513a286dba\generate.stamp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/hypre.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/48f0a16dad8e4de1d973c2513a286dba/generate.stamp.rule;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/hypre.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/48f0a16dad8e4de1d973c2513a286dba/generate.stamp.rule;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/hypre.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/48f0a16dad8e4de1d973c2513a286dba/generate.stamp.rule;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\bin\cmake.exe -HC:/BoSSS-native/hypre-2.11.2/src -BC:/BoSSS-native/hypre-2.11.2/src/cmbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/BoSSS-native/hypre-2.11.2/src/cmbuild/hypre.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/48f0a16dad8e4de1d973c2513a286dba/generate.stamp.rule;C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeCXXCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeRCCompiler.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\3.12.1\CMakeSystem.cmake;C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\FindMPI\test_mpi.cpp;C:\BoSSS-native\hypre-2.11.2\src\config\HYPRE_config.h.cmake.in;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCXXInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeGenericSystem.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeInitializeConfigs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeLanguageInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeRCInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInformation.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\CMakeSystemSpecificInitialize.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Compiler\MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindMPI\test_mpi.c;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageHandleStandardArgs.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\FindPackageMessage.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-C.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows-MSVC.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\Windows.cmake;C:\Users\weber\Downloads\cmake-3.12.1-win64-x64\share\cmake-3.12\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\BoSSS-native\hypre-2.11.2\src\cmbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

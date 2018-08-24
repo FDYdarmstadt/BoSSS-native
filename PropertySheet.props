@@ -5,6 +5,7 @@
     <MKL_LIB_DIR>%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win</MKL_LIB_DIR>
     <MKL_OPENMP_DIR>%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win</MKL_OPENMP_DIR>
     <MS_MPI_DIR>%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Lib\x64</MS_MPI_DIR>
+    <MS_MPI_INC>%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Include</MS_MPI_INC>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>LIB_PATHS</_PropertySheetDisplayName>
@@ -22,6 +23,9 @@
     <BuildMacro Include="MS_MPI_DIR">
       <Value>$(MS_MPI_DIR)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="MS_MPI_INC">
+      <Value>$(MS_MPI_INC)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

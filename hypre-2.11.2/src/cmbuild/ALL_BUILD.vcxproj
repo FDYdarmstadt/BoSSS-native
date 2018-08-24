@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{51A9A2DE-06F3-364E-81AF-E8DFB4584860}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\BoSSS-native\hypre-2.11.2\src\cmbuild;C:\BoSSS-native\hypre-2.11.2\src;C:\BoSSS-native\hypre-2.11.2\src\blas;C:\BoSSS-native\hypre-2.11.2\src\lapack;C:\BoSSS-native\hypre-2.11.2\src\utilities;C:\BoSSS-native\hypre-2.11.2\src\multivector;C:\BoSSS-native\hypre-2.11.2\src\krylov;C:\BoSSS-native\hypre-2.11.2\src\seq_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv;C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv;C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix;C:\BoSSS-native\hypre-2.11.2\src\IJ_mv;C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid;C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails;C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls;C:\BoSSS-native\hypre-2.11.2\src\struct_mv;C:\BoSSS-native\hypre-2.11.2\src\struct_ls;C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv;C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls;C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mpi\intel64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\BoSSS-native\hypre-2.11.2\src\cmbuild\ZERO_CHECK.vcxproj">
+      <Project>{6E95FC27-4DFA-3821-A27D-171B03F6301F}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

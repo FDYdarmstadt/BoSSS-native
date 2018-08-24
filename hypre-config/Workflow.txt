@@ -1,0 +1,20 @@
+# DLL_Workflow
+==============
+workflow for creating DLL of parallel hypre with MPI support
+trial A	-- using intel-shell
+
+Software:
+-Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
+-Microsoft Visual Studio Community 2017 Version 15.7.4
+
+parallel:
+1.	configure and generate VS build...
+2. 	open cmake-gui set source dir: hypre-2.11.2\src and set build dir hypre-2.11.2\src\cmbuild
+3.	click configure-button, set paths to native Compilers (e.g. ifort and cl)
+4.	unselect everything except NO_GLOBAL_PARTITION and BUILD_SHARED (select HYPRE_BLAS and HYPRE_LAPACK to use blas and lapack derivates distributed by HYPRE)
+5.	click Configure- and Generate-Button
+6. 	Navigate to hypre-2.11.2\src\cmbuild open HYPRE.vcxproj
+7.	
+	
+Annotations:
+-	

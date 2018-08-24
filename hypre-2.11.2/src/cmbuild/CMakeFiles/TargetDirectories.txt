@@ -1,0 +1,4 @@
+C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/HYPRE.dir
+C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/INSTALL.dir
+C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/ALL_BUILD.dir
+C:/BoSSS-native/hypre-2.11.2/src/cmbuild/CMakeFiles/ZERO_CHECK.dir
