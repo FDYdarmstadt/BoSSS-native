@@ -6,117 +6,103 @@ EXPORTS
 	; BLAS+LAPACK
 	; ######################################################################
 	; ######################################################################
-    
-	;all functions necessary for PARDISO and HYPRE
-	
-	;BLAS BoSSS related
-	DAXPY
-	DDOT
-	DGEMM
-	DNRM2
-	DSCAL
-	DSWAP
-	
-	;BLAS hypre related
-	DASUM
-	DCOPY
-	DGEMV
-	DGER
-	DROT
-	DSYMM
-	DSYMV
-	DSYR2
-	DSYR2K
-	DSYRK
-	DTRMM
-	DTRMV
-	DTRSM
-	DTRSV
-	IDAMAX
 
-    ;LAPACK BoSSS related
-	DGELSS
-	DGELSY
-	DGEQP3
-	DGETRF
-	DGETRS
-	DGETRI
-	DORGQR
-	DPOSV
-	DPOTRF
-	DPOTRI
-	DTRTRI
-	DGEQRF
-	
-	;LAPACK hypre related
-	dbdsqr
-	dgebd2
-	dgebrd
-	dgelq2
-	dgelqf
-	dgels 
-	dgeqr2
-	dgesvd 
-	dgetf2
-	dlabad 
-	dlabrd 
-	dlacpy 
-	dlae2 
-	dlaev2 
-	dlamch 
-	dlange 
-	dlanst 
-	dlansy 
-	dlapy2 
-	dlarf 
-	dlarfb 
-	dlarfg 
-	dlarft 
-	dlartg 
-	dlas2 
-	dlascl 
-	dlaset 
-	dlasq1 
-	dlasq2 
-	dlasq3 
-	dlasq4 
-	dlasq5 
-	dlasq6 
-	dlasr 
-	dlasrt 
-	dlassq 
-	dlasv2 
-	dlaswp 
-	dlatrd 
-	dorg2l 
-	dorg2r 
-	dorgbr 
-	dorgl2 
-	dorglq 
-	dorgql
-	dorgtr 
-	dorm2r 
-	dormbr 
-	dorml2 
-	dormlq 
-	dormqr 
-	dpotf2
-	dpotrs 
-	dsteqr 
-	dsterf 
-	dsyev 
-	dsygs2 
-	dsygst 
-	dsygv 
-	dsytd2 
-	dsytrd 
-	ieeeck 
-	ilaenv
-	lsame
-	xerbla
-
-
-
-
-
-	
+xerbla_=xerbla 
+daxpy_=daxpy 
+ddot_=ddot 
+dgemm_=dgemm 
+dnrm2_=dnrm2 
+dscal_=dscal 
+dswap_=dswap 
+dasum_=dasum 
+dcopy_=dcopy 
+dgemv_=dgemv 
+dger_=dger 
+drot_=drot 
+dsymm_=dsymm 
+dsymv_=dsymv 
+dsyr2_=dsyr2 
+dsyr2k_=dsyr2k 
+dsyrk_=dsyrk 
+dtrmm_=dtrmm 
+dtrmv_=dtrmv 
+dtrsm_=dtrsm 
+dtrsv_=dtrsv 
+idamax_=idamax 
+dgelss_=dgelss 
+dgelsy_=dgelsy 
+dgeqp3_=dgeqp3 
+dgetrf_=dgetrf 
+dgetrs_=dgetrs 
+dgetri_=dgetri 
+dorgqr_=dorgqr 
+dposv_=dposv 
+dpotrf_=dpotrf 
+dpotri_=dpotri 
+dtrtri_=dtrtri 
+dgeqrf_=dgeqrf 
+dbdsqr_=dbdsqr 
+dgebd2_=dgebd2 
+dgebrd_=dgebrd 
+dgelq2_=dgelq2 
+dgelqf_=dgelqf 
+dgels_=dgels 
+dgeqr2_=dgeqr2 
+dgesvd_=dgesvd 
+dgetf2_=dgetf2 
+dlabad_=dlabad 
+dlabrd_=dlabrd 
+dlacpy_=dlacpy 
+dlae2_=dlae2 
+dlaev2_=dlaev2 
+dlamch_=dlamch 
+dlange_=dlange 
+dlanst_=dlanst 
+dlansy_=dlansy 
+dlapy2_=dlapy2 
+dlarf_=dlarf 
+dlarfb_=dlarfb 
+dlarfg_=dlarfg 
+dlarft_=dlarft 
+dlartg_=dlartg 
+dlas2_=dlas2 
+dlascl_=dlascl 
+dlaset_=dlaset 
+dlasq1_=dlasq1 
+dlasq2_=dlasq2 
+dlasq3_=dlasq3 
+dlasq4_=dlasq4 
+dlasq5_=dlasq5 
+dlasq6_=dlasq6 
+dlasr_=dlasr 
+dlasrt_=dlasrt 
+dlassq_=dlassq 
+dlasv2_=dlasv2 
+dlaswp_=dlaswp 
+dlatrd_=dlatrd 
+dorg2l_=dorg2l 
+dorg2r_=dorg2r 
+dorgbr_=dorgbr 
+dorgl2_=dorgl2 
+dorglq_=dorglq 
+dorgql_=dorgql 
+dorgtr_=dorgtr 
+dorm2r_=dorm2r 
+dormbr_=dormbr 
+dorml2_=dorml2 
+dormlq_=dormlq 
+dormqr_=dormqr 
+dpotf2_=dpotf2 
+dpotrs_=dpotrs 
+dsteqr_=dsteqr 
+dsterf_=dsterf 
+dsyev_=dsyev 
+dsygs2_=dsygs2 
+dsygst_=dsygst 
+dsygv_=dsygv 
+dsytd2_=dsytd2 
+dsytrd_=dsytrd 
+ieeeck_=ieeeck 
+ilaenv_=ilaenv 
+lsame_=lsame 
+xerbla_=xerbla 

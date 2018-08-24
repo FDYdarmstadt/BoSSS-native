@@ -1,0 +1,1240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\amg_linklist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\binsearch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\exchange_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\F90_HYPRE_error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\fortran_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_ap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_complex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_hopscotch_hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_memory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_merge_sort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_mpi_comm_f2c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_prefix_sum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_printf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\hypre_qsort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\memory_dmalloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\mpistubs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\qsplit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\random.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\threading.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\timing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\utilities\umalloc_local.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\multivector\multivector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\multivector\temp_multivector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\cgnr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_cgnr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\HYPRE_lobpcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\krylov\lobpcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\csr_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\genpart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_csr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_mapped_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_multiblock_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\HYPRE_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\mapped_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\multiblock_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\seq_mv\vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\communicationT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_HYPRE_parcsr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_HYPRE_parcsr_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_parcsr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\F90_par_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\HYPRE_parcsr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\HYPRE_parcsr_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\new_commpkg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\numbers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_aat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_assumed_part.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_bool_matop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_bool_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_communication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matop_marked.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_csr_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_mv\par_make_system.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\csr_block_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\csr_block_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_comm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_rap_communication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_csr_block_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_block_mv\par_block_nodal_systems.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\HYPRE_distributed_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_ISIS.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_PETSc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_matrix\distributed_matrix_parcsr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\aux_parcsr_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\aux_par_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_HYPRE_IJMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_HYPRE_IJVector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\F90_IJMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\HYPRE_IJMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\HYPRE_IJVector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJ_assumed_part.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJMatrix_parcsr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJVector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\IJ_mv\IJVector_parcsr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix\HYPRE_ConvertParCSRMatrixToDistributedMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\matrix_matrix\HYPRE_ConvertPETScMatrixToDistributedMatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\comm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\debug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\distributed_qsort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\distributed_qsort_si.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\HYPRE_DistributedMatrixPilutSolver.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\ilut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\parilut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\parutil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\pblas1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\serilut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\trifactor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\pilut\util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\ConjGrad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\DiagScale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\FGmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\hypre_ParaSails.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\LoadBal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\Numbering.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\OrderStat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\ParaSails.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\PrunedRows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\RowPatt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\ParaSails\StoredRows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\blas_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Euclid_apply.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Euclid_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ExternalRows_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Factor_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\getRow_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\globalObjects.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Hash_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Hash_i_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_mpi_bj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_mpi_pilu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\ilu_seq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\io_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\krylov_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Mat_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\mat_dh_private.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\MatGenFD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Mem_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Numbering_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Parser_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\shellSort_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\sig_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SortedList_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SortedSet_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\SubdomainGraph_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\TimeLog_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Timer_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\distributed_ls\Euclid\Vec_dh.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\amg_hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\aux_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_hypre_laplace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_amg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_block.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_cgnr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_Euclid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_ParaSails.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_pilut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_parcsr_schwarz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\F90_HYPRE_ams.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\gen_redcs_mat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_amg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_block.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_cgnr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_Euclid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_ParaSails.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_pilut.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_parcsr_schwarz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ams.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ads.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\HYPRE_ame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_amg_solveT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cg_relax_wt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coarsen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cgc_coarsen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coarse_parms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_coordinates.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_cycle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_add_cycle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_difconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_gsmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_indepset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_jacobi_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_multi_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace_27pt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace_9pt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_laplace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_lr_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_nongalerkin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_nodal_systems.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rap_communication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_rotate_7pt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_vardifconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax_more.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_relax_interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_scaled_matnorm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_schwarz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_stats.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_strength.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_sv_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\par_sv_interp_ln.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\partial.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\pcg_par.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\schwarz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\block_tridiag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ams.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ads.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\parcsr_ls\ame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\assumed_part.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_algebra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_boundary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\box_manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\communication_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\computation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\F90_HYPRE_struct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\HYPRE_struct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\project.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_axpy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_communication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_copy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_innerprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_io.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matrix_mask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_scale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_mv\struct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\coarsen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\cyclic_reduction.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_cycred.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_jacobi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_smg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\F90_HYPRE_struct_sparse_msg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\general.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_cycred.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_hybrid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_jacobi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_smg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_sparse_msg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\HYPRE_struct_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\jacobi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pcg_struct.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg2_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg3_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap7.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\pfmg_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\point_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\red_black_constantcoef_gs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\red_black_gs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_restrict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\semi_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg2_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg3_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_axpy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_residual.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_setup_restrict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\smg_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg2_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg3_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_filter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_restrict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\struct_ls\sparse_msg_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\F90_HYPRE_sstruct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\HYPRE_sstruct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_axpy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_copy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_grid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_innerprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_matvec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_scale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_stencil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_mv\sstruct_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_InterFAC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_maxwell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_split.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\F90_HYPRE_sstruct_sys_pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_bicgstab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_gmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_flexgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_lgmres.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_InterFAC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_maxwell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_pcg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_split.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\HYPRE_sstruct_sys_pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_fcoarsen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_amr_zero_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_cf_coarsen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_cfstencil_box.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_CFInterfaceExtents.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_interp2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_restrict2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_setup2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_solve3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_zero_cdata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\fac_zero_stencilcoef.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_bsearch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\krylov.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\krylov_sstruct.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\eliminate_rowscols.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_grad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_physbdy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_PNedelec.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_PNedelec_bdy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_semi_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_TV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_TV_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\maxwell_zeroBC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_MaxwellSolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\hypre_MaxwellSolve2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\nd1_amge_interpolation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\node_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_amr_intercommunication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_owninfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_recvinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_sendinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sstruct_sharedDOFComm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_relax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_setup_rap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_pfmg_solve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_semi_interp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\BoSSS-native\hypre-2.11.2\src\sstruct_ls\sys_semi_restrict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\BoSSS-native\hypre-2.11.2\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{CB8C7FE3-526F-3BFC-BD1C-C31886E45C53}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

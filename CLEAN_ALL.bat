@@ -24,6 +24,9 @@ SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
 SET "METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0"
 SET "METIS_CONFIG=%WORKINGDIR%\metis-seq-config"
 SET "METIS_BUILD=%METIS_THIRDPARTY%\build\windows"
+SET "HYPRE_CONFIG=%WORKINGDIR%\hypre-config"
+SET "HYPRE_THIRDPARTY=%WORKINGDIR%\hypre-2.11.2"
+SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
 
 SET /P var= clean PARDISO ... <nul
 cd "%PARDISO_BUILD%" >nul 2>&1
@@ -49,6 +52,12 @@ cd "%BLAS_LAPACK_BUILD%" >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 echo done.
 
-del /q PropertySheet.props >nul 2>&1
+SET /P var= clean HYPRE ... <nul
+cd %HYPRE_BUILD%
+CALL msbuild HYPRE-MPI.proj /target:Clean >nul 2>&1
+rmdir x64 /s /q >nul 2>&1
+rmdir "HYPRE.dir" /s /q >nul 2>&1
+rmdir Release /s /q >nul 2>&1
+echo done.
 
 cd %~dp0
