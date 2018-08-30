@@ -6,15 +6,24 @@ trial A	-- using intel-shell
 Software:
 -Intel(R) Parallel Studio XE 2018 Update 3 Cluster Edition for Windows
 -Microsoft Visual Studio Community 2017 Version 15.7.4
+-hypre-2.11.2
 
 parallel:
-1.	configure and generate VS build...
-2. 	open cmake-gui set source dir: hypre-2.11.2\src and set build dir hypre-2.11.2\src\cmbuild
-3.	click configure-button, set paths to native Compilers (e.g. ifort and cl)
-4.	unselect everything except NO_GLOBAL_PARTITION and BUILD_SHARED (select HYPRE_BLAS and HYPRE_LAPACK to use blas and lapack derivates distributed by HYPRE)
-5.	click Configure- and Generate-Button
-6. 	Navigate to hypre-2.11.2\src\cmbuild open HYPRE.vcxproj
-7.	
+1. 	open cmake-gui, set source dir: hypre-X.XX.X\src and set build dir hypre-X.XX.X\src\cmbuild (as suggested in hypre-X.XX.X\src\INSTALL.txt)
+2.	click configure-button, set paths to native Compilers (e.g. ifort and cl)
+3.	unselect everything except NO_GLOBAL_PARTITION and BUILD_SHARED (select HYPRE_BLAS and HYPRE_LAPACK to use blas and lapack derivates distributed with hypre-X.XX.X\src\blas and hypre-X.XX.X\src\lapack)
+4.	click Configure- and Generate-Button
+5. 	Navigate to hypre-X.XX.X\src\cmbuild and edit HYPRE.vcxproj:
+	-add path of mpi.h to Properties\compiler\AdditionalIncludeDirectories
+	-if you are not using distributed blas and lapack, specify paths to this libraries
+	-if custom blas&lapack-build shall be used add entry-points within ...\blas and ...\lapack directories to .def-File of BLAS&LAPACK-build
+	-add msmpi.lib path to Properties\link\AdditionalLibraryDirectories
+	-make sure paths are set right (cmake generates absolute paths in .vcxproj, so cloning this to another machine, will lead to errors)
+	-When you plan to port this process to other machines delete <CustomBuild>...</CustomBuild> part of HYPRE.vcxproj (open File with Notepad++), check annotations for details
+	-check the upper points also for ZERO_CHECK.vcxproj (build of ZERO_CHECK is triggered from within HYPRE.vcxproj via include)
+6.	Build .vcxproj, be happy
 	
 Annotations:
--	
+-	HYPRE uses its own distributed includes and libraries by default. To use outer includes and libraries one has to edit the .vcxproj. Cmake's configure and generate is therefore not considered in automatic build-process, because it would overwrite changes made to .vcxproj. Adjusting cmake build process is extensive and makes no sense due to the fact, that with an update to hypre it probalby has to be reestablished. So we accept that this build-process is "static". For a new version of hypre this workflow has to be repeated.
+-	porting HYPRE to other machines leads to error, because paths in Cmake and VS-projects differ, solution: accept "static" build-process (delete cmake-update check within .vcxproj: <CustomBuild>...</CustomBuild>) or repeat workflow on target machine manually
+-	cmake will generate absolute paths in .vcxproj, workaround for automatic build: set paths in environment varibales in .props file, now paths can be used with $(...) in .vcxproj-Files
