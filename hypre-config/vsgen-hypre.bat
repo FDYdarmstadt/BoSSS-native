@@ -1,4 +1,5 @@
-@echo off
+::@echo off
+echo
 
 ECHO ^>^>^>^>^>^>HYPRE BUILD^>^>^>^>^>^>
 ECHO =======================
@@ -41,7 +42,7 @@ SET PLATFORM=x64
 SET CONFIG=Release
 
 IF %HYPRE_TYPE%==MPI (
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% HYPRE-MPI.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% HYPRE-MPI.vcxproj 
 )
 
 ::check if build was successful
