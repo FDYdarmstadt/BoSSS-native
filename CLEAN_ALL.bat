@@ -11,7 +11,7 @@ set WORKINGDIR=C:\BoSSS-native
 
 :: directories
 SET "MUMPS_THIRDPARTY=%WORKINGDIR%\MUMPS_5.0.2"
-SET "MUMPS_VSPROJECT=%WORKINGDIR%\MUMPS-VS"
+SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
 SET "MUMPS_CONFIG=%WORKINGDIR%\dmumps-config"
 SET "PARDISO_CONFIG=%WORKINGDIR%\pardiso-config"
 SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
@@ -29,14 +29,11 @@ cd "%PARDISO_BUILD%" >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 echo done.
 
-SET /P var= clean MUMPS directory ... <nul
+SET /P var= clean MUMPS ... <nul
 CD "%MUMPS_THIRDPARTY%" >nul 2>&1
 CALL make clean >nul 2>&1
-DEL Makefile.inc >nul 2>&1
-echo done.
-
-SET /P var= clean MUMPS-VS directory ... <nul
-rmdir "%MUMPS_VSPROJECT%\x64" /s /q >nul 2>&1
+DEL "Makefile.inc" /q >nul 2>&1
+rmdir "%MUMPS_BUILD%\x64" /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean METIS ... <nul
@@ -58,4 +55,7 @@ echo done.
 
 cd %WORKINGDIR%
 
-del /q "PropertySheet.props" >nul 2>&1
+SET /P var= clean Working directory ... <nul
+del "PropertySheet.props" /q >nul 2>&1
+rmdir "BUILDS" /q /s >nul 2>&1
+echo done.
