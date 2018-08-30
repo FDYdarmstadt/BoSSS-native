@@ -96,30 +96,66 @@ set ERRORS=0
 
 :: run individual Batch-Files
 CALL blas_lapack-config\vsgen-blas_lapack.bat
-CALL pardiso-config\vsgen-pardiso.bat
-CALL hypre-config\vsgen-hypre.bat
-CALL metis-seq-config\vsgen-metis-seq.bat
-CALL dmumps-config\MUMPS_build_libs.bat
-
-ECHO %ERRORS% build failed
+::CALL pardiso-config\vsgen-pardiso.bat
+::CALL hypre-config\vsgen-hypre.bat
+::CALL metis-seq-config\vsgen-metis-seq.bat
+::CALL dmumps-config\MUMPS_build_libs.bat
 
 :: copy files to build directory
 mkdir BUILDS
 set "DESTDIR=%WORKINGDIR%\BUILDS"
-xcopy "%BLAS_LAPACK_BUILD%\BLAS_LAPACK.dll" "%DESTDIR%" /y
-xcopy "%PARDISO_BUILD%\PARDISO.dll" "%DESTDIR%" /y 
-xcopy "%HYPRE_BUILD%\HYPRE.dll" "%DESTDIR%" /y 
-xcopy "%METIS_BUILD%\metis.dll" "%DESTDIR%" /y
-xcopy "%MUMPS_BUILD%\dmumps.dll" "%DESTDIR%" /y
+set "PLATFORM=x64"
+set "CONFIG=Release"
+set BLAS_LAPACK_STATUS=unknown
+set PARDISO_STATUS=unknown
+set HYPRE_STATUS=unknown
+set METIS_STATUS=unknown
+set MUMPS_STATUS=unknown
+
+xcopy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%" /y
+if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
+if %errorlevel%==1 (
+set BLAS_LAPACK_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+xcopy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO.dll" "%DESTDIR%" /y
+if %errorlevel%==0 set PARDISO_STATUS=success
+if %errorlevel%==1 (
+set PARDISO_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+xcopy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%" /y
+if %errorlevel%==0 set HYPRE_STATUS=success
+if %errorlevel%==1 (
+set HYPRE_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+xcopy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%" /y
+if %errorlevel%==0 set METIS_STATUS=success
+if %errorlevel%==1 (
+set METIS_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+xcopy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps.dll" "%DESTDIR%" /y
+if %errorlevel%==0 set MUMPS_STATUS=success
+if %errorlevel%==1 (
+set MUMPS_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
+ECHO PARDISO ... %PARDISO_STATUS%
+ECHO HYPRE ... %HYPRE_STATUS%
+ECHO METIS ... %METIS_STATUS%
+ECHO MUMPS ... %MUMPS_STATUS%
+ECHO Total failures ... %ERRORS%
 
 :: add linked libraries
 
 
 
-:: Hand files over to BoSSS_Install_dir
-
 
 
 del /q PropertySheet.props
 :EOF
-EXIT %ERRORS%
+::EXIT %ERRORS%
