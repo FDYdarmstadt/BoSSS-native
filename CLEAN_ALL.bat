@@ -1,10 +1,10 @@
 @echo off
 :: Choose PLATFORM
-IF DEFINED JENKINS (
+IF %MACHINE%==JENKINS (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
 set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
 )
-IF DEFINED HOME (
+IF %MACHINE%==HOME (
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 set WORKINGDIR=C:\BoSSS-native
 )
@@ -46,7 +46,7 @@ rmdir x64 /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean HYPRE ... <nul
-cd %HYPRE_BUILD%
+cd "%HYPRE_BUILD%"
 CALL msbuild HYPRE-MPI.proj /target:Clean >nul 2>&1
 rmdir x64 /s /q >nul 2>&1
 rmdir "HYPRE.dir" /s /q >nul 2>&1
