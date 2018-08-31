@@ -9,15 +9,19 @@ IF NOT DEFINED ALL_TYPE set ErrorInput=1
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
 ECHO MACHINE[JENKINS/HOME], ALL_TYPE[SER/PAR]
+ECHO optional: BUILD_SPEED[SLOW/FAST]
 set ERRORS=1
 GOTO EOF
 )
+IF NOT DEFINED BUILD_SPEED set BUILD_SPEED=SLOW
+ECHO.
 ECHO MACHINE = %MACHINE%
+ECHO BUILD SPEED = %BUILD_SPEED%
 ECHO.
 
 :: MACHINE dependent specification
 IF %MACHINE%==JENKINS (
-set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
+if not defined WORKINGDIR set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
 :: add path for cmake, make 
 set "PATH=!PATH!;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin"
 :: add path for msbuild
@@ -37,7 +41,7 @@ set "MS_MPI_INC=C:\Program Files\Microsoft MPI\Inc"
 )
 
 IF %MACHINE%==HOME (
-set WORKINGDIR=C:\BoSSS-native
+if not defined WORKINGDIR set WORKINGDIR=C:\BoSSS-native
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
 :: MS and Intel .lib paths ...
 set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win"
@@ -76,13 +80,13 @@ set HYPRE_TYPE=MPI
 
 IF %ALL_TYPE%==PAR (
 :: Build composition Parallel
-set MUMPS_TYPE=OpenMP
-set PARDISO_TYPE=OpenMP
+set MUMPS_TYPE=OPENMP
+set PARDISO_TYPE=OPENMP
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
 set HYPRE_TYPE=MPI
 )
-
+echo.
 echo slected composition: %ALL_TYPE%
 echo.
 echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
@@ -95,14 +99,34 @@ echo MUMPS_TYPE ... %MUMPS_TYPE%
 set ERRORS=0
 
 :: run individual Batch-Files
+if %BUILD_SPEED%==SLOW (
 ::CALL blas_lapack-config\vsgen-blas_lapack.bat
 ::CALL pardiso-config\vsgen-pardiso.bat
 ::CALL hypre-config\vsgen-hypre.bat
-::CALL metis-seq-config\vsgen-metis-seq.bat
-CALL dmumps-config\MUMPS_build_libs.bat
+CALL metis-seq-config\vsgen-metis-seq.bat
+::CALL dmumps-config\MUMPS_build_libs.bat
+ECHO whatever
+)
+
+if %BUILD_SPEED%==FAST (
+start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat"
+start "PARDISO" cmd /C "CALL pardiso-config\vsgen-pardiso.bat"
+start "HYPRE" cmd /C "CALL hypre-config\vsgen-hypre.bat"
+start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat"
+start "MUMPS" cmd /C "CALL dmumps-config\MUMPS_build_libs.bat"
+)| pause
+
+if %BUILD_SPEED%==FAST (
+:: choosing fast build the paths defined in batch-Files are lost and have to be set
+SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
+SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
+SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
+SET "METIS_BUILD=%METIS_THIRDPARTY%\build\windows"
+SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
+)
 
 :: copy files to build directory
-mkdir BUILDS
+mkdir "%WORKINGDIR%\BUILDS"
 set "DESTDIR=%WORKINGDIR%\BUILDS"
 set "PLATFORM=x64"
 set "CONFIG=Release"
