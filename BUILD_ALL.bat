@@ -95,10 +95,10 @@ echo MUMPS_TYPE ... %MUMPS_TYPE%
 set ERRORS=0
 
 :: run individual Batch-Files
-CALL blas_lapack-config\vsgen-blas_lapack.bat
-CALL pardiso-config\vsgen-pardiso.bat
-CALL hypre-config\vsgen-hypre.bat
-CALL metis-seq-config\vsgen-metis-seq.bat
+::CALL blas_lapack-config\vsgen-blas_lapack.bat
+::CALL pardiso-config\vsgen-pardiso.bat
+::CALL hypre-config\vsgen-hypre.bat
+::CALL metis-seq-config\vsgen-metis-seq.bat
 CALL dmumps-config\MUMPS_build_libs.bat
 
 :: copy files to build directory

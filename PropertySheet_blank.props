@@ -6,7 +6,8 @@
     <MKL_OPENMP_DIR>_MKL_OPENMP_DIR</MKL_OPENMP_DIR>
     <MS_MPI_DIR>_MS_MPI_DIR</MS_MPI_DIR>
     <MS_MPI_INC>_MS_MPI_INC</MS_MPI_INC>
-	<WORKINGDIR>_WORKINGDIR</WORKINGDIR>
+    <WORKINGDIR>_WORKINGDIR</WORKINGDIR>
+    <MUMPS_THIRDPARTY>_WORKINGDIR\MUMPS_5.0.2</MUMPS_THIRDPARTY>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>LIB_PATHS</_PropertySheetDisplayName>
@@ -27,11 +28,14 @@
     </BuildMacro>
     <BuildMacro Include="MS_MPI_INC">
       <Value>$(MS_MPI_INC)</Value>
-	  <EnvironmentVariable>true</EnvironmentVariable>
+      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
-	<BuildMacro Include="WORKINGDIR">
+    <BuildMacro Include="WORKINGDIR">
       <Value>$(WORKINGDIR)</Value>
-	  <EnvironmentVariable>true</EnvironmentVariable>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="MUMPS_THIRDPARTY">
+      <Value>$(MUMPS_THIRDPARTY)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
