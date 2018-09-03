@@ -100,11 +100,11 @@ set ERRORS=0
 
 :: run individual Batch-Files
 if %BUILD_SPEED%==SLOW (
-::CALL blas_lapack-config\vsgen-blas_lapack.bat
-::CALL pardiso-config\vsgen-pardiso.bat
-::CALL hypre-config\vsgen-hypre.bat
+CALL blas_lapack-config\vsgen-blas_lapack.bat
+CALL pardiso-config\vsgen-pardiso.bat
+CALL hypre-config\vsgen-hypre.bat
 CALL metis-seq-config\vsgen-metis-seq.bat
-::CALL dmumps-config\MUMPS_build_libs.bat
+CALL dmumps-config\MUMPS_build_libs.bat
 ECHO whatever
 )
 
@@ -121,7 +121,7 @@ if %BUILD_SPEED%==FAST (
 SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
 SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
 SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
-SET "METIS_BUILD=%METIS_THIRDPARTY%\build\windows"
+SET "METIS_BUILD=%WORKINGDIR%\metis-5.1.0\build\windows"
 SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
 )
 
@@ -136,33 +136,33 @@ set HYPRE_STATUS=unknown
 set METIS_STATUS=unknown
 set MUMPS_STATUS=unknown
 
-xcopy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%" /y
+copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
-if %errorlevel%==1 (
+if not %errorlevel%==0 (
 set BLAS_LAPACK_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-xcopy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO.dll" "%DESTDIR%" /y
+copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set PARDISO_STATUS=success
-if %errorlevel%==1 (
+if not %errorlevel%==0 (
 set PARDISO_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-xcopy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%" /y
+copy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set HYPRE_STATUS=success
-if %errorlevel%==1 (
+if not %errorlevel%==0 (
 set HYPRE_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-xcopy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%" /y
+copy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set METIS_STATUS=success
-if %errorlevel%==1 (
+if not %errorlevel%==0 (
 set METIS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-xcopy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps.dll" "%DESTDIR%" /y
+copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set MUMPS_STATUS=success
-if %errorlevel%==1 (
+if not %errorlevel%==0 (
 set MUMPS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
