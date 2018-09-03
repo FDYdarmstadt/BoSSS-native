@@ -50,7 +50,7 @@ set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_201
 set "MS_MPI_DIR=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Lib\x64"
 set "MS_MPI_INC=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Include"
 :: paths to related shared libraries
-set "INTEL_REDIST=C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
+set "INTEL_REDIST=%PROGRAMFILES(x86)%\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 )
 
 :: set paths in .property file (necessary for the VS builds)
