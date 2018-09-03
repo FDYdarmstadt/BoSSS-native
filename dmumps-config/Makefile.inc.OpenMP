@@ -102,6 +102,6 @@ OPTF    = -Zi -MD -Dintel_ -DALLOW_NON_INIT -fpp
 OPTL    =
 OPTC    = -O2 -MD
 #End Optimized options
-INCS = $(INCSEQ)
+INCS = $(INCSEQ) $(AUXINC)
 LIBS = $(LIBSEQ) $(LIBBLAS)
 LIBSEQNEEDED = libseqneeded
