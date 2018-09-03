@@ -38,6 +38,7 @@ set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3
 set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win"
 set "MS_MPI_DIR=C:\Program Files\Microsoft MPI\Lib\amd64"
 set "MS_MPI_INC=C:\Program Files\Microsoft MPI\Inc"
+:: paths to related shared libraries
 )
 
 IF %MACHINE%==HOME (
@@ -48,6 +49,8 @@ set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3
 set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win"
 set "MS_MPI_DIR=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Lib\x64"
 set "MS_MPI_INC=%PROGRAMFILES(x86)%\Microsoft SDKs\MPI\Include"
+:: paths to related shared libraries
+set "INTEL_REDIST=C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 )
 
 :: set paths in .property file (necessary for the VS builds)
@@ -174,11 +177,13 @@ ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS ... %MUMPS_STATUS%
 ECHO Total failures ... %ERRORS%
 
-:: add linked libraries
-
-
-
-
+:: add linked libraries ...
+IF %MACHINE%==HOME (
+:: MUMPS ...
+copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
+copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
+copy "%INTEL_REDIST%\SVML_DISPMD.DLL" "%DESTDIR%\" /y
+)
 
 del /q PropertySheet.props
 :EOF
