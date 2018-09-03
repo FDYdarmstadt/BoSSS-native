@@ -95,6 +95,8 @@ LIBOTHERS = -link $(PATHORDERINGS)
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
 
+AUXINC=-I"$(AUXONE)" -I"$(AUXTWO)"
+
 #Begin Optimized options
 OPTF    = -Zi -MD -Dintel_ -DALLOW_NON_INIT -fpp
 OPTL    =
