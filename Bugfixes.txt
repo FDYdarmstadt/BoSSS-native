@@ -14,6 +14,7 @@ CMD related:
 -THERE HAS TO BE NO GAP IN FRONT OF PATH ENTRIES!!! cmd stops reading the path when gap occures after ";"
 -NO "" AROUND PATH ENTRIES -> cmd can not read path anymore
 -If there are () or spaces, because of a path, within a command, strange behavior or errors will occur, solution: parenthesis, e.g. set "PATH=C:\Program Files (x86)"
+-CMD dislikes comment before closing bracket of statements: if(... ::bla)
 
 JEKINS related
 -missing Incude files during MUMPS-build: e.g. time.h or vcruntime.h, etc. are not found (works on intel cmd on the same machine), solution: add necessary paths to command, ugly workaround, because of hardcoded changes to MUMPS-makefiles

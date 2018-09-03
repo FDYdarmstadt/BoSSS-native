@@ -39,6 +39,7 @@ set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_201
 set "MS_MPI_DIR=C:\Program Files\Microsoft MPI\Lib\amd64"
 set "MS_MPI_INC=C:\Program Files\Microsoft MPI\Inc"
 :: paths to related shared libraries
+set "INTEL_REDIST=%PROGRAMFILES(x86)%\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 )
 
 IF %MACHINE%==HOME (
@@ -178,13 +179,11 @@ ECHO MUMPS ... %MUMPS_STATUS%
 ECHO Total failures ... %ERRORS%
 
 :: add linked libraries ...
-IF %MACHINE%==HOME (
 :: MUMPS ...
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\SVML_DISPMD.DLL" "%DESTDIR%\" /y
-)
 
 del /q PropertySheet.props
 :EOF
-::EXIT %ERRORS%
+EXIT %ERRORS%
