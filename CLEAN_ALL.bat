@@ -58,4 +58,5 @@ cd %WORKINGDIR%
 SET /P var= clean Working directory ... <nul
 del "PropertySheet.props" /q >nul 2>&1
 rmdir "BUILDS" /q /s >nul 2>&1
+del log.txt /q >nul 2>&1
 echo done.
