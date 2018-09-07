@@ -113,12 +113,17 @@ ECHO whatever
 )
 
 if %BUILD_SPEED%==FAST (
-start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat"
-start "PARDISO" cmd /C "CALL pardiso-config\vsgen-pardiso.bat"
-start "HYPRE" cmd /C "CALL hypre-config\vsgen-hypre.bat"
-start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat"
-start "MUMPS" cmd /C "CALL dmumps-config\MUMPS_build_libs.bat"
+start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat >log_0.txt | type log_0.txt" 
+start "PARDISO" cmd /C "CALL pardiso-config\vsgen-pardiso.bat >log_1.txt | type log_1.txt" 
+start "HYPRE" cmd /C "CALL hypre-config\vsgen-hypre.bat >log_2.txt | type log_2.txt" 
+start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat >log_3.txt | type log_3.txt"
+start "MUMPS" cmd /C "CALL dmumps-config\MUMPS_build_libs.bat >log_4.txt | type log_4.txt" 
 )| pause
+
+for /L %%I in (0,1,4) do (
+echo "log_%%I.txt">>log.txt
+del "log_%%I.txt" /q
+)
 
 if %BUILD_SPEED%==FAST (
 :: choosing fast build the paths defined in batch-Files are lost and have to be set
@@ -186,4 +191,4 @@ copy "%INTEL_REDIST%\SVML_DISPMD.DLL" "%DESTDIR%\" /y
 
 del /q PropertySheet.props
 :EOF
-EXIT %ERRORS%
+::EXIT %ERRORS%
