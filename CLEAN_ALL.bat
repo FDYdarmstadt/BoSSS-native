@@ -1,13 +1,13 @@
 @echo off
 :: Choose PLATFORM
-IF %MACHINE%==JENKINS (
-set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;"
-set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
-)
-IF %MACHINE%==HOME (
-set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
-set WORKINGDIR=C:\BoSSS-native
-)
+::IF %MACHINE%==JENKINS (
+set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\cygwin\bin;"
+::set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
+::)
+::IF %MACHINE%==HOME (
+::set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin\bin;"
+::set WORKINGDIR=C:\BoSSS-native
+::)
 
 :: directories
 SET "MUMPS_THIRDPARTY=%WORKINGDIR%\MUMPS_5.0.2"
@@ -58,4 +58,5 @@ cd %WORKINGDIR%
 SET /P var= clean Working directory ... <nul
 del "PropertySheet.props" /q >nul 2>&1
 rmdir "BUILDS" /q /s >nul 2>&1
+del log.txt /q >nul 2>&1
 echo done.
