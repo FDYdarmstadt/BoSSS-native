@@ -177,7 +177,7 @@ echo !target! was found at INTEL_REDIST=!INTEL_REDIST!)
 )
 
 set "AddPath=%PATH%"
-
+ECHO.
 for %%E in (%Executables%) do (
 if not defined path_%%~nE (
 echo path to %%~nE.exe not found!
@@ -193,7 +193,7 @@ if not %ERRORS%==0 echo %ERRORS% paths not found! Make sure you installed stuff 
 :: After this error counter will indicate how many builds have failed
 IF NOT %ERRORS%==0 GOTO EOF
 
-ECHO MKL_OPENMP_DIR ... %MKL_OPENMP_DIR%
+ECHO.
 Echo modified PATH=%PATH%
 
 :: set paths in .property file (necessary for the VS builds)
@@ -315,6 +315,7 @@ set MUMPS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
 
+ECHO.
 ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
 ECHO HYPRE ... %HYPRE_STATUS%
