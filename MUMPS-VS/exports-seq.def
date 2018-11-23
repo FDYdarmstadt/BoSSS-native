@@ -1,4 +1,4 @@
-LIBRARY	"dmumps"
+LIBRARY	"dmumps-seq"
 EXPORTS
     
     

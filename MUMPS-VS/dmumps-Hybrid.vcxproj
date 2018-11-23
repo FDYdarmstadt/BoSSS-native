@@ -126,7 +126,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>exports-hybrid.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -169,7 +169,7 @@
     <Link>
       <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;mkl_scalapack_lp64.lib;mkl_blacs_msmpi_lp64.lib;msmpifec.lib;msmpi.lib;mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(MKL_LIB_DIR);$(MUMPS_THIRDPARTY)\lib;$(MS_MPI_DIR);$(MKL_OPENMP_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>exports-hybrid.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -183,7 +183,7 @@
     <ClCompile Include="dllmain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="exports.def" />
+    <None Include="exports-hybrid.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
