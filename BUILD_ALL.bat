@@ -284,6 +284,9 @@ set HYPRE_STATUS=unknown
 set METIS_STATUS=unknown
 set MUMPS_STATUS=unknown
 
+::name mumps properly
+
+
 copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
 if not %errorlevel%==0 (

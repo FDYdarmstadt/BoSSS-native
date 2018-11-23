@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{43EE5B7B-7776-4DAE-9B3E-D10C65B15ECC}</ProjectGuid>
+    <ProjectGuid>{888779E5-C12F-4124-B145-9B83E48FEE3B}</ProjectGuid>
     <RootNamespace>dmumps</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -166,8 +166,8 @@
       <AdditionalIncludeDirectories>$(MSMPI_INC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;libmpiseq.lib;mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(MKL_OPENMP_DIR);$(MKL_LIB_DIR);$(MUMPS_THIRDPARTY)\lib;$(MUMPS_THIRDPARTY)\libseq;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libdmumps.lib;libmumps_common.lib;libpord.lib;mkl_scalapack_lp64.lib;mkl_blacs_msmpi_lp64.lib;msmpi.lib;mkl_intel_lp64.lib;mkl_core.lib;mkl_sequential.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MKL_LIB_DIR);$(MUMPS_THIRDPARTY)\lib;$(MS_MPI_DIR);$(MKL_OPENMP_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

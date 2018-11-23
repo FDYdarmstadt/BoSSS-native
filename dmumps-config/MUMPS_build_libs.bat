@@ -49,6 +49,10 @@ IF %MUMPS_TYPE%==HYBRID (
 ECHO OpenMP and MPI MUMPS build initiated
 COPY /y "%MUMPS_CONFIG%\Makefile.inc.Hybrid" "%MUMPS_THIRDPARTY%\Makefile.inc"
 )
+IF %MUMPS_TYPE%==MPI (
+ECHO MPI MUMPS build initiated
+COPY /y "%MUMPS_CONFIG%\Makefile.inc.MPI" "%MUMPS_THIRDPARTY%\Makefile.inc"
+)
 MKDIR "%MUMPS_THIRDPARTY%\lib"
 
 ECHO done.
@@ -124,23 +128,31 @@ SET PLATFORM=x64
 SET CONFIG=Release
 
 IF %MUMPS_TYPE%==SEQ (
+SET "PROOFSTRING=dmumps_seq.dll"
 ECHO sequential MUMPS build initiated
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% dmumps-seq.vcxproj
 )
 IF %MUMPS_TYPE%==OPENMP (
+SET "PROOFSTRING=dmumps_openmp.dll"
 ECHO OpenMP MUMPS build initiated
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-openMP.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-openmp.vcxproj
 )
 IF %MUMPS_TYPE%==HYBRID (
+SET "PROOFSTRING=dmumps_hybrid.dll"
 ECHO OpenMP and MPI MUMPS build initiated
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-Hybrid.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-hybrid.vcxproj
+)
+IF %MUMPS_TYPE%==MPI (
+SET "PROOFSTRING=dmumps_mpi.dll"
+ECHO MPI MUMPS build initiated
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-mpi.vcxproj
 )
 ::check if build was successful
 
 CD "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%"
 
 set "CHECK="
-IF EXIST dmumps.dll SET CHECK=1
+IF EXIST %PROOFSTRING% SET CHECK=1
 IF DEFINED CHECK (
 ECHO Build successful
 ) ELSE (
