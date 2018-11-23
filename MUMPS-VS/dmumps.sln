@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dmumps-seq", "dmumps-seq.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dmumps-Hybrid", "dmumps-Hybrid.vcxproj", "{8CA13116-CA49-422D-B59C-76935B5DC899}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dmumps-mpi", "dmumps-mpi.vcxproj", "{888779E5-C12F-4124-B145-9B83E48FEE3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +43,14 @@ Global
 		{8CA13116-CA49-422D-B59C-76935B5DC899}.Release|Win32.Build.0 = Release|Win32
 		{8CA13116-CA49-422D-B59C-76935B5DC899}.Release|x64.ActiveCfg = Release|x64
 		{8CA13116-CA49-422D-B59C-76935B5DC899}.Release|x64.Build.0 = Release|x64
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Debug|Win32.Build.0 = Debug|Win32
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Debug|x64.ActiveCfg = Debug|x64
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Debug|x64.Build.0 = Debug|x64
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Release|Win32.ActiveCfg = Release|Win32
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Release|Win32.Build.0 = Release|Win32
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Release|x64.ActiveCfg = Release|x64
+		{888779E5-C12F-4124-B145-9B83E48FEE3B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
