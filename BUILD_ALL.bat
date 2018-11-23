@@ -52,7 +52,7 @@ ECHO.
 ::set "INTEL_REDIST= "
 
 :: try to set paths automatically ...
-Echo Searching for executables, inculde and library directories ...
+Echo Searching for executable, inculde and library directories ...
 
 set "Intel_Version=2018.3.210"
 set "Executables=cmake make msbuild ifort link"	
@@ -226,7 +226,7 @@ set HYPRE_TYPE=MPI
 
 IF %ALL_TYPE%==PAR (
 :: Build composition Parallel
-set MUMPS_TYPE=OPENMP
+set MUMPS_TYPE=MPI
 set PARDISO_TYPE=OPENMP
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
@@ -241,7 +241,7 @@ echo HYPRE_TYPE ... %HYPRE_TYPE%
 echo METIS_TYPE ... %METIS_TYPE%
 echo MUMPS_TYPE ... %MUMPS_TYPE%
 
-:: run individual Batch-Files
+:: run at Jenkins-native
 if %BUILD_SPEED%==SLOW (
 CALL blas_lapack-config\vsgen-blas_lapack.bat
 CALL pardiso-config\vsgen-pardiso.bat
@@ -284,9 +284,14 @@ set HYPRE_STATUS=unknown
 set METIS_STATUS=unknown
 set MUMPS_STATUS=unknown
 
-::name mumps properly
+::set dll names properly
+set "MUMPS_DLL_NAME="
+if %MUMPS_TYPE%==SEQ set "MUMPS_DLL_NAME=dmumps-seq.dll"
+if %MUMPS_TYPE%==OPENMP set "MUMPS_DLL_NAME=dmumps-openmp.dll"
+if %MUMPS_TYPE%==MPI set "MUMPS_DLL_NAME=dmumps-mpi.dll"
+if %MUMPS_TYPE%==HYBRID set "MUMPS_DLL_NAME=dmumps-hybrid.dll"
 
-
+::gather and check DLLs
 copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
 if not %errorlevel%==0 (
@@ -311,7 +316,7 @@ if not %errorlevel%==0 (
 set METIS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps.dll" "%DESTDIR%\" /y
+copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\%MUMPS_DLL_NAME%" "%DESTDIR%\" /y
 if %errorlevel%==0 set MUMPS_STATUS=success
 if not %errorlevel%==0 (
 set MUMPS_STATUS=failure
@@ -326,12 +331,12 @@ ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS ... %MUMPS_STATUS%
 ECHO Total failures ... %ERRORS%
 
-:: add linked libraries ...
+:: add linked libraries
 :: MUMPS ...
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\SVML_DISPMD.DLL" "%DESTDIR%\" /y
 
-del /q PropertySheet.props
+::del /q PropertySheet.props
 :EOF
 ::EXIT %ERRORS%

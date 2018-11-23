@@ -84,7 +84,7 @@ INCPAR = -I"C:\Program Files (x86)\Microsoft SDKs\MPI\Include" -I"C:\Program Fil
 #LIBSEQ = $(topdir)/libseq/libmpiseq.lib
 #LIBBLAS = -L/usr/lib/xmm/ -lf77blas -latlas
 #LIBBLAS = -L/local/BLAS -lblas
-LIBPAR =  mkl_scalapack_lp64.lib mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib mkl_blacs_msmpi_lp64.lib msmpi.lib
+LIBPAR =  mkl_scalapack_lp64.lib mkl_intel_lp64.lib mkl_sequential.lib mkl_core.lib mkl_blacs_msmpi_lp64.lib msmpi.lib msmpifec.lib
 #LIBOTHERS = -lpthread
 LIBOTHERS = -link $(PATHORDERINGS) -link -LIBPATH:"C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)

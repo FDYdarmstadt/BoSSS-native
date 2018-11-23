@@ -12,7 +12,7 @@ IF NOT DEFINED MUMPS_TYPE set ErrorInput=1
 ::IF NOT DEFINED MS_MPI set ErrorInput=1
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
-ECHO WORKINGDIR[path], MUMPS_TYPE[SEQ/OPENMP/HYBRID]
+ECHO WORKINGDIR[path], MUMPS_TYPE[SEQ/OPENMP/HYBRID/MPI]
 GOTO EOF
 )
 IF NOT DEFINED MS_MPI SET MS_MPI=c:\Program Files\Microsoft MPI\Bin\mpiexec.exe
