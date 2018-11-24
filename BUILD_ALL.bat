@@ -218,7 +218,7 @@ Echo PropertySheet.props was created ...
 IF %ALL_TYPE%==SER (
 :: Build composition Serial
 set MUMPS_TYPE=SEQ
-set PARDISO_TYPE=SEQ
+::set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
 set HYPRE_TYPE=MPI
@@ -228,9 +228,9 @@ IF %ALL_TYPE%==PAR (
 :: Build composition Parallel
 set MUMPS_TYPE=MPI
 set PARDISO_TYPE=OPENMP
-set METIS_TYPE=SEQ
-set BLAS_LAPACK_TYPE=SEQ
-set HYPRE_TYPE=MPI
+::set METIS_TYPE=SEQ
+::set BLAS_LAPACK_TYPE=SEQ
+::set HYPRE_TYPE=MPI
 )
 echo.
 echo slected composition: %ALL_TYPE%
