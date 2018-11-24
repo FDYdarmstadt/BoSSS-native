@@ -37,8 +37,8 @@ ECHO.
 :: MS and Intel .lib paths ...
 ::set "MKL_LIB_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\mkl\lib\intel64_win"
 ::set "MKL_OPENMP_DIR=%PROGRAMFILES(x86)%\IntelSWTools\compilers_and_libraries_2018.3.210\windows\compiler\lib\intel64_win"
-::set "MS_MPI_DIR=C:\Program Files\Microsoft MPI\Lib\amd64"
-::set "MS_MPI_INC=C:\Program Files\Microsoft MPI\Inc"
+set "MS_MPI_DIR=C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
+set "MS_MPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include"
 :: paths to related shared libraries
 ::set "INTEL_REDIST=%PROGRAMFILES(x86)%\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 
