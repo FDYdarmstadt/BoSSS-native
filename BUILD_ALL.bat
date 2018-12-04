@@ -6,11 +6,11 @@ set ERRORS=0
 ::check if all necessary variables are set
 set "ErrorInput="
 IF NOT DEFINED WORKINGDIR set ErrorInput=1
-IF NOT DEFINED ALL_TYPE set ErrorInput=1
+::IF NOT DEFINED ALL_TYPE set ErrorInput=1
 ::ERROR ... EXECUTION IS ABORTED
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
-ECHO WORKINGDIR[...], ALL_TYPE[SER/PAR]
+ECHO WORKINGDIR[...]
 ECHO optional: BUILD_SPEED[SLOW/FAST]
 set ERRORS=1
 GOTO EOF
@@ -42,7 +42,7 @@ set "MS_MPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include"
 :: paths to related shared libraries
 ::set "INTEL_REDIST=%PROGRAMFILES(x86)%\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
 
-:: preset variables for auto filling
+::you can preset PATHS, then they are not searched ...
 ::set "AUXONE= "
 ::set "AUXTWO= "
 ::set "MKL_LIB_DIR= "
@@ -52,185 +52,36 @@ set "MS_MPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include"
 ::set "INTEL_REDIST= "
 
 :: try to set paths automatically ...
-Echo Searching for executable, inculde and library directories ...
+CALL SET_PATHS.bat
+if not %ERRORS%==0 goto EOF
+For /f "tokens=*" %%p in ('more addpath.txt') do set "PATH=%PATH%%%p"
+echo PATH is set to ... %PATH%
+For /f "tokens=*" %%e in ('more variables.txt') do set %%e
+::echo %AUXTWO%
 
-set "Intel_Version=2018.3.210"
-set "Executables=cmake make msbuild ifort link"	
+:: sauberen Ausgangszustand herstellen ...
+set ALL_TYPE=SER
+del "log.txt" /q
 
-for /F %%E in ("%Executables%") do set "path_%%E="
-
-for /F "tokens=*" %%I IN ('dir /s /b "c:\Program Files (x86)\Microsoft Visual Studio\" ^| find /i "bin\cmake.exe" ^| find /i /v ".config"') do (
-set "a=%%~fI"
-set "path_cmake=!a:\cmake.exe=!"
-)
-
-for /F "tokens=*" %%I IN ('dir /s /b "c:\Program Files (x86)\Microsoft Visual Studio\" ^| find /i "Hostx64\x64\link.exe" ^| find /i /v ".config"') do (
-set "a=%%~fI"
-set "path_link=!a:\link.exe=!"
-)
-
-for /F "tokens=*" %%I IN ('dir /s /b "c:\Program Files (x86)\Microsoft Visual Studio\" ^| find /i "Bin\MSBuild.exe" ^| find /i /v ".config"') do (
-set "a=%%~fI"
-set "path_msbuild=!a:\msbuild.exe=!"
-)
-
-for /F "tokens=*" %%I IN ('^(dir /s /b "c:\cygwin\" ^|^| dir /s /b "c:\cygwin64\" ^|^| dir /s /b "c:\Program Files (x86)\cygwin\" ^|^| dir /s /b "c:\Program Files (x86)\cygwin64\"^)^|find /i "bin\make.exe"') do (
-set "a=%%~fI"
-set "path_make=!a:\make.exe=!"
-)
-
-for /F "tokens=*" %%I IN ('dir /s /b "C:\Program Files (x86)\IntelSWTools\" ^| find /i "windows\bin\intel64\ifort.exe" ^| find /i "%Intel_Version%" ^| find /i /v ".config"') do (
-set "a=%%~fI"
-set "path_ifort=!a:\ifort.exe=!"
-)
-
-set "target=time.h"
-if not defined AUXONE (
-for /F "tokens=*" %%I IN ('dir /s /b "C:\Program Files (x86)\Windows Kits\" ^| find /i "\%target%"') do (
-set "a=%%~fI"
-set "AUXONE=!a:\%target%=!"
-)
-if not defined AUXONE (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at AUXONE=!AUXONE!)
-)
-
-set "target=vcruntime.h"
-if not defined AUXTWO (
-for /F "tokens=*" %%I IN ('dir /s /b "C:\Program Files (x86)\Microsoft Visual Studio\" ^| find /i "\%target%"') do (
-set "a=%%~fI"
-set "AUXTWO=!a:\%target%=!"
-)
-if not defined AUXTWO (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at AUXTWO=!AUXTWO!)
-)
+:START_PAR_BUILD
 
 
-set "target=mkl_core.lib"
-if not defined MKL_LIB_DIR (
-for /F "tokens=*" %%I IN ('dir /s /b "C:\Program Files (x86)\IntelSWTools\" ^| find /i  "windows" ^| find /i "64" ^| find /i "\%target%" ^| find /i "%Intel_Version%"') do (
-set "a=%%~fI"
-set "MKL_LIB_DIR=!a:\%target%=!"
-)
-if not defined MKL_LIB_DIR (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at MKL_LIB_DIR=!MKL_LIB_DIR!)
-)
-
-set "target=libiomp5md.lib"
-if not defined MKL_OPENMP_DIR (
-for /F "tokens=*" %%I IN (' dir /s /b "C:\Program Files (x86)\IntelSWTools\" ^| find /i  "windows" ^| find /i "64" ^| find /i "\%target%" ^| find /i "%Intel_Version%"') do (
-set "a=%%~fI"
-set "MKL_OPENMP_DIR=!a:\%target%=!"
-)
-if not defined MKL_OPENMP_DIR (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at MKL_OPENMP_DIR=!MKL_OPENMP_DIR!)
-)
-
-set "target=msmpi.lib"
-if not defined MS_MPI_DIR (
-for /F "tokens=*" %%I IN (' ^(dir /s /b "C:\Program Files\" ^| find /i "64" ^| find /i "mpi" ^| find /i "\%target%"^) ^|^| ^(dir /s /b "C:\Program Files (x86)\" ^| find /i "64" ^| find /i "mpi" ^| find /i "\%target%"^)') do (
-set "a=%%~fI"
-set "MS_MPI_DIR=!a:\%target%=!"
-)
-if not defined MS_MPI_DIR (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at MS_MPI_DIR=!MS_MPI_DIR!)
-)
-
-set "target=mpi.h"
-if not defined MS_MPI_INC (
-for /F "tokens=*" %%I IN ('^(dir /s /b "C:\Program Files\" ^| find /i "mpi" ^| find /i "\%target%"^) ^|^| ^(dir /s /b "C:\Program Files (x86)\" ^| find /i "mpi" ^| find /i "\%target%"^)') do (
-set "a=%%~fI"
-set "MS_MPI_INC=!a:\%target%=!"
-)
-if not defined MS_MPI_INC (
-echo path to !target! not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at MS_MPI_INC=!MS_MPI_INC!)
-)
-
-set "target=libmmd.dll"
-if not defined INTEL_REDIST (
-for /F "tokens=*" %%I IN ('^(dir /s /b "C:\Program Files\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^) ^|^| ^(dir /s /b "C:\Program Files (x86)\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^)') do (
-set "a=%%~fI"
-set "INTEL_REDIST=!a:\%target%=!"
-)
-if not defined INTEL_REDIST (
-echo path to %target% not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo !target! was found at INTEL_REDIST=!INTEL_REDIST!)
-)
-
-set "AddPath=%PATH%"
-ECHO.
-for %%E in (%Executables%) do (
-if not defined path_%%~nE (
-echo path to %%~nE.exe not found!
-set /a ERRORS=%ERRORS%+1
-) else (
-echo path to %%~nE.exe is set to !path_%%~nE!
-)
-set "AddPath=!AddPath!!path_%%~nE!;"
-)
-
-set PATH=%AddPath%
-if not %ERRORS%==0 echo %ERRORS% paths not found! Make sure you installed stuff at C:\Program Files or C:Program Files (x86). Otherwise set the variables manually!
-:: After this error counter will indicate how many builds have failed
-IF NOT %ERRORS%==0 GOTO EOF
-
-ECHO.
-Echo modified PATH=%PATH%
-
-:: set paths in .property file (necessary for the VS builds)
-del /q "PropertySheet.props"
-for /L %%i in (0,1,%x%) do (
-	for /f "tokens=*" %%a in (PropertySheet_blank.props) do (
-		SET s=%%a
-		SET "s=!s:_MKL_LIB_DIR=%MKL_LIB_DIR%!"
-		set "s=!s:_MKL_OPENMP_DIR=%MKL_OPENMP_DIR%!"
-		set "s=!s:_MS_MPI_DIR=%MS_MPI_DIR%!"
-		set "s=!s:_MS_MPI_INC=%MS_MPI_INC%!"
-		set "s=!s:_WORKINGDIR=%WORKINGDIR%!"
-		echo !s!>>"PropertySheet.props"
-	)
-)
-
-Echo PropertySheet.props was created ...
-
-
-
-:: specify build composition
-IF %ALL_TYPE%==SER (
 :: Build composition Serial
+IF %ALL_TYPE%==SER (
 set MUMPS_TYPE=SEQ
-::set PARDISO_TYPE=SEQ
+set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
-set HYPRE_TYPE=MPI
+set "HYPRE_TYPE="
 )
-
-IF %ALL_TYPE%==PAR (
+:: CAUTION: if names are not unique, dll are overwritten!
 :: Build composition Parallel
-::set METIS_TYPE=SEQ
-::set BLAS_LAPACK_TYPE=SEQ
-::set HYPRE_TYPE=MPI
+IF %ALL_TYPE%==PAR (
+set "METIS_TYPE="
+set "BLAS_LAPACK_TYPE="
+set HYPRE_TYPE=MPI
+set "PARDISO_TYPE="
 set MUMPS_TYPE=MPI
-set PARDISO_TYPE=OPENMP
 )
 echo.
 echo slected composition: %ALL_TYPE%
@@ -258,7 +109,12 @@ start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat >log_3.txt"
 start "MUMPS" cmd /C "CALL dmumps-config\MUMPS_build_libs.bat >log_4.txt" 
 )| pause
 
-del "log.txt" /q
+::unify logtexts
+(
+echo this is output log of %ALL_TYPE%-build ...
+echo started at %date% %time%
+echo .
+) >>log.txt
 for /L %%I in (0,1,4) do (
 type log_%%I.txt>>log.txt
 del "log_%%I.txt" /q
@@ -274,7 +130,7 @@ SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
 )
 
 :: copy files to build directory
-mkdir "%WORKINGDIR%\BUILDS"
+IF NOT EXIST "%WORKINGDIR%\BUILDS" mkdir "%WORKINGDIR%\BUILDS"
 set "DESTDIR=%WORKINGDIR%\BUILDS"
 set "PLATFORM=x64"
 set "CONFIG=Release"
@@ -292,37 +148,46 @@ if %MUMPS_TYPE%==MPI set "MUMPS_DLL_NAME=dmumps-mpi.dll"
 if %MUMPS_TYPE%==HYBRID set "MUMPS_DLL_NAME=dmumps-hybrid.dll"
 
 ::gather and check DLLs
+if not defined BLAS_LAPACK_TYPE GOTO PARDISOCHECK
 copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
 if not %errorlevel%==0 (
 set BLAS_LAPACK_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
+:PARDISOCHECK
+if not defined PARDISO_TYPE GOTO HYPRECHECK
 copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set PARDISO_STATUS=success
 if not %errorlevel%==0 (
 set PARDISO_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
+:HYPRECHECK
+if not defined HYPRE_TYPE GOTO METISCHECK
 copy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set HYPRE_STATUS=success
 if not %errorlevel%==0 (
 set HYPRE_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
+:METISCHECK
+if not defined METIS_TYPE GOTO MUMPSCHECK
 copy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set METIS_STATUS=success
 if not %errorlevel%==0 (
 set METIS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
+:MUMPSCHECK
+if not defined MUMPS_TYPE GOTO EOFCHECKS
 copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\%MUMPS_DLL_NAME%" "%DESTDIR%\" /y
 if %errorlevel%==0 set MUMPS_STATUS=success
 if not %errorlevel%==0 (
 set MUMPS_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
-
+:EOFCHECKS
 ECHO.
 ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
@@ -331,11 +196,47 @@ ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS ... %MUMPS_STATUS%
 ECHO Total failures ... %ERRORS%
 
-:: add linked libraries
+:: create changelog
+IF %ALL_TYPE%==SER (
+ECHO === CHANGELOG === >>changelog.txt
+)
+(
+ECHO build finished at %date% %time%
+ECHO %ALL_TYPE%-build configuration
+echo.
+echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
+echo PARDISO_TYPE ... %PARDISO_TYPE%
+echo HYPRE_TYPE ... %HYPRE_TYPE%
+echo METIS_TYPE ... %METIS_TYPE%
+echo MUMPS_TYPE ... %MUMPS_TYPE%
+echo.
+ECHO %ALL_TYPE%-build status
+ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
+ECHO PARDISO ... %PARDISO_STATUS%
+ECHO HYPRE ... %HYPRE_STATUS%
+ECHO METIS ... %METIS_STATUS%
+ECHO MUMPS ... %MUMPS_STATUS%
+ECHO.
+)>>changelog.txt
+
+IF %ALL_TYPE%==SER (
+set ALL_TYPE=PAR
+GOTO START_PAR_BUILD
+)
+
+:: get finished: add linked libraries
 :: MUMPS ...
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\SVML_DISPMD.DLL" "%DESTDIR%\" /y
+
+:: and list these libraries in changelog
+(
+ECHO DLL bundle is containing: 
+echo.
+dir "%DESTDIR%" /b 
+)>>changelog.txt
+move /y "C:\BoSSS-native\changelog.txt" "C:\BoSSS-native\BUILDS\"
 
 ::del /q PropertySheet.props
 :EOF

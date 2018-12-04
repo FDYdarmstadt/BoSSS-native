@@ -1,6 +1,7 @@
 @echo off
 :: Choose PLATFORM
 ::IF %MACHINE%==JENKINS (
+set WORKINGDIR=%cd%
 set "PATH=%PATH%C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\cygwin64\bin;C:\cygwin\bin;"
 ::set "WORKINGDIR=C:\Program Files (x86)\Jenkins\jobs\BoSSS-native\workspace"
 ::)
@@ -25,15 +26,19 @@ SET "HYPRE_THIRDPARTY=%WORKINGDIR%\hypre-2.11.2"
 SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
 
 SET /P var= clean PARDISO ... <nul
-cd "%PARDISO_BUILD%" >nul 2>&1
-rmdir x64 /s /q >nul 2>&1
+(
+cd "%PARDISO_BUILD%"
+rmdir x64 /s /q
+)>nul 2>&1
 echo done.
 
 SET /P var= clean MUMPS ... <nul
-CD "%MUMPS_THIRDPARTY%" >nul 2>&1
-CALL make clean >nul 2>&1
-DEL "Makefile.inc" /q >nul 2>&1
-rmdir "%MUMPS_BUILD%\x64" /s /q >nul 2>&1
+(
+CD "%MUMPS_THIRDPARTY%"
+CALL make clean
+DEL "Makefile.inc" /q
+rmdir "%MUMPS_BUILD%\x64" /s /q 
+)>nul 2>&1
 echo done.
 
 SET /P var= clean METIS ... <nul
@@ -41,22 +46,31 @@ rmdir "%METIS_BUILD%" /s /q >nul 2>&1
 echo done.
 
 SET /P var= clean BLAS and LAPACK ... <nul
-cd "%BLAS_LAPACK_BUILD%" >nul 2>&1
-rmdir x64 /s /q >nul 2>&1
+(
+cd "%BLAS_LAPACK_BUILD%"
+rmdir x64 /s /q
+)>nul 2>&1
 echo done.
 
 SET /P var= clean HYPRE ... <nul
+(
 cd "%HYPRE_BUILD%"
-CALL msbuild HYPRE-MPI.proj /target:Clean >nul 2>&1
-rmdir x64 /s /q >nul 2>&1
-rmdir "HYPRE.dir" /s /q >nul 2>&1
-rmdir Release /s /q >nul 2>&1
+CALL msbuild HYPRE-MPI.proj /target:Clean
+rmdir x64 /s /q
+rmdir "HYPRE.dir" /s /q
+rmdir Release /s /q
+)>nul 2>&1
 echo done.
 
 cd %WORKINGDIR%
 
 SET /P var= clean Working directory ... <nul
+(
 del "PropertySheet.props" /q >nul 2>&1
-rmdir "BUILDS" /q /s >nul 2>&1
-del log.txt /q >nul 2>&1
+del variables.txt /q
+del changelog.txt /q
+del addpath.txt /q
+rmdir "BUILDS" /q /s
+del log.txt /q
+)>nul 2>&1
 echo done.

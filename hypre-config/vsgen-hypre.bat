@@ -5,7 +5,6 @@ ECHO ^>^>^>^>^>^>HYPRE BUILD^>^>^>^>^>^>
 ECHO =======================
 ECHO.
 
-set HYPRE_TYPE=MPI
 ::check if all necessary variables are set
 set "ErrorInput="
 IF NOT DEFINED WORKINGDIR set ErrorInput=1
