@@ -128,22 +128,22 @@ SET PLATFORM=x64
 SET CONFIG=Release
 
 IF %MUMPS_TYPE%==SEQ (
-SET "PROOFSTRING=dmumps_seq.dll"
+SET "PROOFSTRING=dmumps-seq.dll"
 ECHO sequential MUMPS build initiated
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM%  /property:SolutionName=%SLN_NAME% dmumps-seq.vcxproj
 )
 IF %MUMPS_TYPE%==OPENMP (
-SET "PROOFSTRING=dmumps_openmp.dll"
+SET "PROOFSTRING=dmumps-openmp.dll"
 ECHO OpenMP MUMPS build initiated
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-openmp.vcxproj
 )
 IF %MUMPS_TYPE%==HYBRID (
-SET "PROOFSTRING=dmumps_hybrid.dll"
+SET "PROOFSTRING=dmumps-hybrid.dll"
 ECHO OpenMP and MPI MUMPS build initiated
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-hybrid.vcxproj
 )
 IF %MUMPS_TYPE%==MPI (
-SET "PROOFSTRING=dmumps_mpi.dll"
+SET "PROOFSTRING=dmumps-mpi.dll"
 ECHO MPI MUMPS build initiated
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% dmumps-mpi.vcxproj
 )
