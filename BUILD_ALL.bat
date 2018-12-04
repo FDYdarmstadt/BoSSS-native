@@ -238,6 +238,5 @@ dir "%DESTDIR%" /b
 )>>changelog.txt
 move /y "C:\BoSSS-native\changelog.txt" "C:\BoSSS-native\BUILDS\"
 
-::del /q PropertySheet.props
 :EOF
-::EXIT %ERRORS%
+EXIT %ERRORS%
