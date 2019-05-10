@@ -175,4 +175,3 @@ echo.
 If %ERRORS%==0 echo PropertySheet.props was created successfully...
 echo.
 :EOF
-EXIT %ERRORS%
