@@ -84,7 +84,7 @@ set PARDISO_TYPE=OPENMP
 set MUMPS_TYPE=MPI
 )
 echo.
-echo slected composition: %ALL_TYPE%
+echo selected composition: %ALL_TYPE%
 echo.
 echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
 echo PARDISO_TYPE ... %PARDISO_TYPE%
