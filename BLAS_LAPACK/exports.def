@@ -29,6 +29,8 @@ EXPORTS
 	DTRTRI
 	DGEQRF
 	DSYTRF
+	
+	fuckup666
 
 	;BLAS level 1
 	;DROTG

@@ -29,3 +29,5 @@ EXPORTS
 	DTRTRI
 	DGEQRF
 	DSYTRF
+	
+	fuckup111
