@@ -7,6 +7,7 @@ EXPORTS
 	; ######################################################################
 	; ######################################################################
 
+	fuckup22_=fuckup22_
 xerbla_=xerbla 
 daxpy_=daxpy 
 ddot_=ddot 
@@ -17,6 +18,7 @@ dswap_=dswap
 dasum_=dasum 
 dcopy_=dcopy 
 dgemv_=dgemv 
+dsytrf_=dsytrf
 dger_=dger 
 drot_=drot 
 dsymm_=dsymm 
