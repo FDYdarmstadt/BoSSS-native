@@ -1,0 +1,29 @@
+import os
+env = Environment()
+#env = env.Append(LINKFLAGS=['-Wl,--unresolved-symbols=report-all'])
+MKLROOT = '/opt/intel/compilers_and_libraries_2019.4.243/linux/mkl/lib/intel64/'
+
+mkl_intel_lp64 = File(MKLROOT + 'libmkl_intel_lp64.a')
+mkl_sequential = File(MKLROOT + 'libmkl_sequential.a')
+mkl_core = File(MKLROOT + 'libmkl_core.a')
+
+env.SharedLibrary('BLAS_LAPACK', ['BLASexports.c'],
+               LINKFLAGS=['-Wl,--unresolved-symbols=report-all'],
+               LIBS=[mkl_intel_lp64, mkl_sequential, mkl_core, 'm', 'pthread', 'dl'])
+
+#mkl_intel_lp64 = File('libmkl_intel_lp64.a')
+#mkl_sequential = File('libmkl_sequential.a')
+#mkl_core = File('libmkl_core.a')
+#SharedLibrary('BLAS_LAPACK', ['BLASexports.c'],
+#               LINKFLAGS=['-Wl,--unresolved-symbols=report-all'],
+#               LIBS=[mkl_intel_lp64, mkl_sequential, mkl_core, 'm', 'pthread', 'dl'],
+#	       LIBPATH=['/opt/intel/compilers_and_libraries_2019.4.243/linux/mkl/lib/intel64']
+#		)
+
+
+# produces dynamic linking to the MKL
+#SharedLibrary('BLAS_LAPACK', ['BLASexports.c'],
+#               LINKFLAGS=['-Wl,--unresolved-symbols=report-all'],
+#               LIBS=['mkl_intel_lp64', 'mkl_sequential', 'mkl_core', 'm', 'pthread', 'dl'],
+#	       LIBPATH='/opt/intel/compilers_and_libraries_2019.4.243/linux/mkl/lib/intel64'
+#		)
