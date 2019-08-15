@@ -1,0 +1,4 @@
+/home/rieckmann/SU2/SU2/externals/tecio/teciosrc/CMakeFiles/rebuild_cache.dir
+/home/rieckmann/SU2/SU2/externals/tecio/teciosrc/CMakeFiles/edit_cache.dir
+/home/rieckmann/SU2/SU2/externals/tecio/teciosrc/CMakeFiles/szcombine.dir
+/home/rieckmann/SU2/SU2/externals/tecio/teciosrc/CMakeFiles/tecio.dir
