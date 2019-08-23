@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO remove lib folder and thirdpartylibs folder
 echo ==========================================
 echo Cleaning of libBoSSSnative_seq.so started!
 

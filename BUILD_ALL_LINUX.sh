@@ -1,174 +1,296 @@
-#!/bin/sh
-echo "\n==========================================\n"
-echo "Building of BoSSSnative dynamic libraries started!\n"
+#!/bin/bash
+
+# exit on error
+set -e
+
+# read command line arguments
+quiet=
+verbose=
+for i in "$@"
+do
+case $i in
+    -q|--quiet)
+    quiet=1
+    shift # past argument=value
+    ;;
+    -v|--verbose)
+    verbose=1
+    shift # past argument=value
+    ;;
+    -h|--help)
+    printf "
+    This Script is supplied with all needed dependencies and ready to run.
+    To execute just type \e[2m\$bash BUILD_ALL_LINUX.sh\e[0m.
+    There are additional flags available:\n
+      -q|--quiet: run in silent mode with minimal feedback
+      -v|--verbose: display issued commands, gets overriden by -q
+      -h|--help: display this help text
+      \n"
+    exit
+    shift # past argument=value
+    ;;
+    *)
+          # unknown option
+    ;;
+esac
+done
+
+if [ "$quiet" = 1 ] ; then
+  exec 4>/dev/null 3>/dev/null
+elif [ "$verbose" = 1 ] ; then
+  set -x
+  exec 4>&2 3>&1
+else
+  exec 4>&2 3>&1
+fi
+
+printf "\n==========================================\n"
+printf "\e[4;35m\nBuilding of BoSSSnative shared objects started!\e[0m\n\n"
 
 # declare some path variables
+export MUMPSDIR=MUMPS_5.0.2
+export METISDIR=metis-5.1.0
+export TECIODIR=TECIO
+export BOSSSNATIVESEQ=BoSSSnative_seq
+export BOSSSNATIVEMPI=BoSSSnative_mpi
+export BOSSSNATIVEOMP=BoSSSnative_omp
+
 export WORKINGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
+printf "Setting working directory: $WORKINGDIR\n"
+
 export LIBDIR="$WORKINGDIR/lib"
+printf "Setting output directory: $LIBDIR\n"
+
 export INCLUDEDIR="$WORKINGDIR/thirdpartylibs"
-export MKLROOT=/opt/intel/compilers_and_libraries_2019.4.243/linux/mkl
+printf "Setting search directory for thirdparty libraries: $INCLUDEDIR\n"
+
+if [  "$(uname -m | sed "s/\\ /_/g")" = "x86_64" ]; then
+    ARCH=intel64
+    printf "Target architecture is: x86_64\n"
+  else
+    printf "\e[31mUnsupported Architecture, exiting ...\n\e[0m"
+    exit -1
+fi
+
+if [ "$(uname -s)" = "Linux" ]; then
+    PLTFRM=linux
+    printf "Target OS is: Linux\n"
+  else
+    printf "\e[31mUnsupported OS, exiting ...\n\e[0m"
+    exit -1
+fi
+
+# Set Pathvariable for Intel MKL
+if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
+    printf "\e[31mUnable to locate intel mkl, exiting ...\n\e[0m" && exit -1
+fi
+printf "Setting path to intel mkl: $MKLROOT\n"
+
+printf "\n"
+printf "Entering working directory ...\n"
 cd $WORKINGDIR
 
-
-# clean and create the thirdparty library directory
-echo "Working in $WORKINGDIR"
+# create the thirdparty library directory
 if [ -d "$INCLUDEDIR" ]; then
-    echo "Thirdparty library folder $INCLUDEDIR already exists, commencing ..."
+    printf "\e[32mThirdparty library folder $INCLUDEDIR already exists, commencing ...\e[0m\n"
   else
-    echo "Thirdparty library folder $INCLUDEDIR does not exist, creating ..."
+    printf "\e[33mThirdparty library folder $INCLUDEDIR does not exist, creating ...\e[0m\n"
     mkdir $INCLUDEDIR
 fi
 
-# clean and create the output directory
+# create the output directory
 if [ -d "$LIBDIR" ]; then
-    echo "Output folder $LIBDIR already exists, commencing ..."
+    printf "\e[32mOutput folder $LIBDIR already exists, commencing ...\e[0m\n"
   else
-    echo "Output folder $LIBDIR does not exist, creating ..."
+    printf "\e[33mOutput folder $LIBDIR does not exist, creating ...\e[0m\n"
     mkdir $LIBDIR
 fi
+
+printf "\e[32m\nSet-up completed commencing build process\e[0m\n"
+printf "\n==========================================\n"
+
+printf "\e[35m\nSearching for required thirdparty libraries\e[0m\n"
+
+printf "\n==========================================\n"
 
 # check for the required libraries if they exist in the correct location
 # if not compile them from source using the respective build system
 # for more information consider the readmes in the specific folders
-echo "\n==========================================\n"
-echo "Creating static third-party libraries ..."
 
-echo "Compiling single and double precision sequential MUMPS"
+printf "\n\e[35mChecking for single and double precision sequential MUMPS\e[0\n"
 FILE1=libmumps_common_seq.a
 FILE2=libdmumps_seq.a
 FILE3=libsmumps_seq.a
 if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] &&  [ -f "$INCLUDEDIR/$FILE3" ]; then
-  echo "$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS"
+  printf "\e[32m$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS\e[0m\n"
 else
-  echo "sequential MUMPS incomplete, commencing compilation of MUMPS"
-  cd $WORKINGDIR/MUMPS_5.0.2
+  printf "\e[33msequential MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
+  cd $WORKINGDIR/$MUMPSDIR
   # first clean up
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
   cp Make.inc/Makefile.MUMPS.SEQ ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
-    echo "$FILE2 does not exist, starting compilation of dMUMPS"
-    make 'd'
+    printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
+    if ! make 'd' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libdmumps.a $INCLUDEDIR/$FILE2
   fi
   if [ ! -f "$INCLUDEDIR/$FILE3" ]; then
-    echo "$FILE3 does not exist, starting compilation of sMUMPS"
-    make 's'
+    printf "\e[33m$FILE3 does not exist, starting compilation of sMUMPS\e[0m\n"
+    if ! make 's' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libsmumps.a $INCLUDEDIR/$FILE3
   fi
   cp lib/libmumps_common.a $INCLUDEDIR/$FILE1
   cp lib/libpord.a $INCLUDEDIR/libpord_seq.a
   cp libseq/libmpiseq.a $INCLUDEDIR/libmpiseq.a
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
+  rm ./Makefile.inc
   cd $WORKINGDIR
-  echo "Done compiling sequential MUMPS\n"
+  printf "\e[32mDone compiling sequential MUMPS\e[0m\n"
 fi
 
-echo "Compiling single and double precision openMP parallel MUMPS"
+printf "\n==========================================\n"
+
+printf "\n\e[35mChecking for single and double precision openMP parallel MUMPS\e[0m\n"
 FILE1=libmumps_common_omp.a
 FILE2=libdmumps_omp.a
 FILE3=libsmumps_omp.a
 if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] && [ -f "$INCLUDEDIR/$FILE3" ]; then
-  echo "$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS"
+  printf "\e[32m$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS\e[0m\n"
 else
-  echo "openMP parallel MUMPS incomplete, commencing compilation of MUMPS"
-  cd $WORKINGDIR/MUMPS_5.0.2
+  printf "\e[33mopenMP parallel MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
+  cd $WORKINGDIR/$MUMPSDIR
   # first clean up
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
   cp Make.inc/Makefile.MUMPS.OMP ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
-    echo "$FILE2 does not exist, starting compilation of dMUMPS"
-    make 'd'
+    printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
+    if ! make 'd' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libdmumps.a $INCLUDEDIR/$FILE2
   fi
   if [ ! -f "$INCLUDEDIR/$FILE3" ]; then
-    echo "$FILE3 does not exist, starting compilation of sMUMPS"
-    make 's'
+    printf "\e[33m$FILE3 does not exist, starting compilation of sMUMPS\e[0m\n"
+    if ! make 's' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libsmumps.a $INCLUDEDIR/$FILE3
   fi
   cp lib/libmumps_common.a $INCLUDEDIR/$FILE1
     cp lib/libpord.a $INCLUDEDIR/libpord_omp.a
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
+  rm ./Makefile.inc
   cd $WORKINGDIR
-  echo "Done compiling openMP parallel MUMPS\n"
+  printf "\e[32mDone compiling openMP parallel MUMPS\e[0m\n"
 fi
 
-echo "Compiling single and double precision MPI parallel MUMPS"
+printf "\n==========================================\n"
+
+printf "\n\e[35mChecking for single and double precision MPI parallel MUMPS\e[0m\n"
 FILE1=libmumps_common_mpi.a
 FILE2=libdmumps_mpi.a
 FILE3=libsmumps_mpi.a
 if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] && [ -f "$INCLUDEDIR/$FILE3" ]; then
-  echo "$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS"
+  printf "\e[32m$FILE1, $FILE2, $FILE3 exists, skipping compilation of MUMPS\e[0m\n"
 else
-  echo "MPI parallel MUMPS incomplete, commencing compilation of MUMPS"
-  cd $WORKINGDIR/MUMPS_5.0.2
+  printf "\e[33mMPI parallel MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
+  cd $WORKINGDIR/$MUMPSDIR
   # first clean up
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
   cp Make.inc/Makefile.MUMPS.MPI ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
-    echo "$FILE2 does not exist, starting compilation of dMUMPS"
-    make 'd'
+    printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
+    if ! make 'd' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libdmumps.a $INCLUDEDIR/$FILE2
   fi
   if [ ! -f "$INCLUDEDIR/$FILE3" ]; then
-    echo "$FILE3 does not exist, starting compilation of sMUMPS"
-    make 's'
+    printf "\e[33m$FILE3 does not exist, starting compilation of sMUMPS\e[0m\n"
+    if ! make 's' >&3 2>&4 ; then
+      printf "\e[31mAn Error occured while building MUMPS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+    fi
     cp lib/libsmumps.a $INCLUDEDIR/$FILE3
   fi
   cp lib/libmumps_common.a $INCLUDEDIR/$FILE1
     cp lib/libpord.a $INCLUDEDIR/libpord_mpi.a
-  make clean 1>/dev/null 2>&1
+  make clean 1>/dev/null
+  rm ./Makefile.inc
   cd $WORKINGDIR
-  echo "Done compiling MPI parallel MUMPS\n"
+  printf "\e[32mDone compiling MPI parallel MUMPS\e[0m\n"
 fi
 
-echo "Compiling METIS"
+printf "\n==========================================\n"
+
+printf "\e[35m\nChecking for METIS\e[0m\n"
 FILE=libmetis.a
 if [ -f "$INCLUDEDIR/$FILE" ]; then
-  echo "$FILE exists, skipping compilation of METIS"
+  printf "\e[32m$FILE exists, skipping compilation of METIS\e[0m\n"
 else
-  echo "$FILE does not exist, commencing compilation of METIS"
-  cd $WORKINGDIR/metis-5.1.0
-  make config cc=gcc prefix=$WORKINGDIR/metis-5.1.0/install
-  make install
+  printf "\e[33m$FILE does not exist, commencing compilation of METIS\e[0m\n"
+  cd $WORKINGDIR/$METISDIR
+  if ! make config cc=gcc prefix=$WORKINGDIR/metis-5.1.0/install >&3 2>&4 && ! make install >&3 2>&4 ; then
+    printf "\e[31mAn Error occured while building METIS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+  fi
   cp install/lib/libmetis.a $INCLUDEDIR
   cd build/Linux-x86_64
-  make clean
+  make clean 1>/dev/null
   cd ../..
-  make clean
-  make uninstall
-  make distclean
+  make clean 1>/dev/null
+  make uninstall 1>/dev/null
+  make distclean 1>/dev/null
   cd $WORKINGDIR
-  echo "Done compiling METIS\n"
+  printf "\e[32mDone compiling METIS\e[0m\n"
 fi
 
-echo "Compiling TECIO Tecplot library"
+printf "\n==========================================\n"
+
+printf "\e[35m\nChecking for TECIO Tecplot library\e[0m\n"
 FILE=libtecio.a
 if [ -f "$INCLUDEDIR/$FILE" ]; then
-  echo "$FILE exists, skipping compilation of TECIO"
+  printf "\e[32m$FILE exists, skipping compilation of TECIO\e[0m\n"
 else
-  echo "$FILE does not exist, commencing compilation of TECIO"
-  cd $WORKINGDIR/TECIO/teciosrc
-  make -f Makefile.linux clean
-  make -f Makefile.linux
+  printf "\e[33m$FILE does not exist, commencing compilation of TECIO\e[0m\n"
+  cd $WORKINGDIR/$TECIODIR/teciosrc
+  make -f Makefile.linux clean 1>/dev/null
+  if ! make -f Makefile.linux >&3 2>&4 ; then
+    printf "\e[31mAn Error occured while building TECIO!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+  fi
   cp libtecio.a $INCLUDEDIR
+  make -f Makefile.linux clean 1>/dev/null
   cd $WORKINGDIR
-  echo "Done compiling TECIO\n"
+  printf "\e[32mDone compiling TECIO\e[0m\n"
 fi
 
-echo "All thirdparty libraries existent!"
+printf "\n==========================================\n"
 
-echo "\n==========================================\n"
-echo "Starting compiling and linking of libBoSSSnative_seq.so"
-ERRORS=""
-cd $WORKINGDIR/BoSSSnative_seq
-make -f $WORKINGDIR/BoSSSnative_seq/Makefile
-make clean -f $WORKINGDIR/BoSSSnative_seq/Makefile 1>/dev/null 2>&1
-echo "Finished compiling and linking of libBoSSSnative_seq.so\n"
+printf "\n\e[32mAll thirdparty libraries existent!\e[0m\n"
 
-echo "\n==========================================\n"
-echo "Starting compiling and linking of libBoSSSnative_mpi.so"
-ERRORS=""
-cd $WORKINGDIR/BoSSSnative_seq
-make -f $WORKINGDIR/BoSSSnative_mpi/Makefile
-make clean -f $WORKINGDIR/BoSSSnative_mpi/Makefile 1>/dev/null 2>&1
-echo "Finished compiling and linking of libBoSSSnative_mpi.so\n"
+printf "\n==========================================\n"
+
+printf "\n\e[35mStarting compiling and linking of libBoSSSnative_seq.so\e[0m\n\n"
+cd $WORKINGDIR/$BOSSSNATIVESEQ
+if ! make >&3 2>&4 ; then
+  printf "\e[31mAn Error occured while building/linking libBoSSSnative_seq.so!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+fi
+#make clean -f $WORKINGDIR/BoSSSnative_seq/Makefile 1>/dev/null 2>&1
+make clean 1>/dev/null
+printf "\e[32m\nFinished compiling and linking of libBoSSSnative_seq.so\e[0m\n"
+
+printf "\n==========================================\n"
+
+printf "\e[35m\nStarting compiling and linking of libBoSSSnative_mpi.so\e[0m\n\n"
+cd $WORKINGDIR/$BOSSSNATIVEMPI
+if ! make >&3 2>&4 ; then
+  printf "\e[31mAn Error occured while building/linking libBoSSSnative_mpi.so!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+fi
+make clean 1>/dev/null
+printf "\e[32m\nFinished compiling and linking of libBoSSSnative_mpi.so\e[0m\n"
+
+printf "\n==========================================\n"
+
+printf "\e[4;32m\nBuild process for BoSSSnative shared objects succesfully completed!\e[0m\n\n"
