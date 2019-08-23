@@ -1,4 +1,3 @@
-#define PARAM0
 #define PARAM1              void* _1
 #define PARAM2     PARAM1,  void* _2
 #define PARAM3     PARAM2,  void* _3
@@ -12,13 +11,7 @@
 #define PARAM11    PARAM10, void* _11
 #define PARAM12    PARAM11, void* _12
 #define PARAM13    PARAM12, void* _13
-#define PARAM14    PARAM13, void* _14
-#define PARAM15    PARAM14, void* _15
-#define PARAM16    PARAM15, void* _16
-#define PARAM17    PARAM16, void* _17
-#define PARAM18    PARAM17, void* _18
 
-#define CALL0
 #define CALL1              _1
 #define CALL2      CALL1,  _2
 #define CALL3      CALL2,  _3
@@ -32,22 +25,19 @@
 #define CALL11     CALL10, _11
 #define CALL12     CALL11, _12
 #define CALL13     CALL12, _13
-#define CALL14     CALL13, _14
-#define CALL15     CALL14, _15
-#define CALL16     CALL15, _16
-#define CALL17     CALL16, _17
-#define CALL18     CALL17, _18
+
 
 #ifdef _WINDOWS
 #define DLL_EXPORT __declspec(dllexport)
-#define TECIO_API
+#define METIS_API
 #else
 #define DLL_EXPORT
-#define TECIO_API
+#define METIS_API
 #endif
 
+
 #define MAKE_FORTRAN_EXPORT(funcname,NoArgs)         \
-void TECIO_API funcname(PARAM##NoArgs);                     \
+void METIS_API funcname(PARAM##NoArgs);                     \
 DLL_EXPORT void BoSSS_##funcname(PARAM##NoArgs) {      \
     funcname(CALL##NoArgs);                  \
 }

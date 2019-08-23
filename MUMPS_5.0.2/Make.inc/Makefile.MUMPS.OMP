@@ -46,27 +46,25 @@ FC = gfortran
 FL = gfortran
 AR = ar vr
 RANLIB = ranlib
-SCALAP  = $(MKLROOT)/lib/intel64/libmkl_scalapack_lp64.a -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a $(MKLROOT)/lib/intel64/libmkl_blacs_openmpi_lp64.a -Wl,--end-group
 
-INCPAR = -m64 -I$(MKLROOT)/include -I/usr/lib/openmpi/include
 
-LIBPAR = $(SCALAP)   -lmpi -lmpi_mpifh #-lmpi_f77
 
-#INCSEQ = -I$(topdir)/libseq
-#LIBSEQ  =  -L$(topdir)/libseq -lmpiseq
+INCSEQ = -I$(topdir)/libseq  -m64 -I$(MKLROOT)/include
+LIBSEQ  =  -L$(topdir)/libseq -lmpiseq
 
-#LIBBLAS = -lblas
-LIBOTHERS = -lpthread -lm -ldl
+LIBBLAS =  -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_gnu_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group
+
+LIBOTHERS = -lgomp -lpthread -lm -ldl
 
 #Preprocessor defs for calling Fortran from C (-DAdd_ or -DAdd__ or -DUPPER)
 CDEFS   = -DAdd_
 
 #Begin Optimized options
 # uncomment -fopenmp in lines below to benefit from OpenMP
-OPTF    = -O -fPIC -DALLOW_NON_INIT # -fopenmp
-OPTL    = -O # -fopenmp
-OPTC    = -O -fPIC # -fopenmp
+OPTF    = -O -fPIC -DALLOW_NON_INIT -fopenmp
+OPTL    = -O -fopenmp
+OPTC    = -O -fPIC -fopenmp
 #End Optimized options
-INCS = $(INCPAR)
-LIBS = $(LIBPAR)
-LIBSEQNEEDED =
+INCS = $(INCSEQ)
+LIBS = $(LIBSEQ)
+LIBSEQNEEDED = libseqneeded

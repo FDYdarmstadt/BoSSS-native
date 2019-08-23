@@ -1,0 +1,5 @@
+/* Control which symbols are exported, in this case only the BoSSS* Wrapperfunctions */
+CODEABI_1.0 {
+    global: *BoSSS*;
+    local: *;
+};

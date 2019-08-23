@@ -13,7 +13,7 @@ COPTIONS = $(INCLUDES) $(CFLAGS) $(OPTFLAGS)
 
 OBJS = graph.o gbipart.o gbisect.o ddcreate.o ddbisect.o nestdiss.o \
        multisector.o gelim.o bucket.o tree.o \
-       symbfac.o interface.o sort.o minpriority.o 
+       symbfac.o interface.o sort.o minpriority.o
 
 # Note: numfac.c read.c mapping.c triangular.c matrix.c kernel.c
 # were not direcly used by MUMPS and have been removed from the
@@ -22,10 +22,10 @@ OBJS = graph.o gbipart.o gbisect.o ddcreate.o ddbisect.o nestdiss.o \
 # OUTC = -o
 
 .c.o:
-	$(CC) $(COPTIONS) -c $*.c $(OUTC)$*.o
+	$(CC) $(COPTIONS) -c $*.c $(OUTC) $*.o
 
 libpord$(LIBEXT):$(OBJS)
-	$(AR)$@ $(OBJS)
+	$(AR) $@ $(OBJS)
 	$(RANLIB) $@
 
 clean:
