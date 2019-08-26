@@ -146,6 +146,9 @@ printf "\n==========================================\n"
 # if not compile them from source using the respective build system
 # for more information consider the readmes in the specific folders
 
+# *.lib dirs are ignored by git, but this one is necessary
+mkdir $WORKINGDIR/$MUMPSDIR/lib
+
 printf "\n\e[35mChecking for single and double precision sequential MUMPS\e[0\n"
 FILE1=libmumps_common_seq.a
 FILE2=libdmumps_seq.a
