@@ -155,9 +155,9 @@ if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] &&  [ -f "$INCLUDE
 else
   printf "\e[33msequential MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
   cd $WORKINGDIR/$MUMPSDIR
+  cp Make.inc/Makefile.MUMPS.SEQ ./Makefile.inc
   # first clean up
   make clean 1>/dev/null
-  cp Make.inc/Makefile.MUMPS.SEQ ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
     printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
     if ! make 'd' >&3 2>&4 ; then
@@ -192,9 +192,9 @@ if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] && [ -f "$INCLUDED
 else
   printf "\e[33mopenMP parallel MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
   cd $WORKINGDIR/$MUMPSDIR
+  cp Make.inc/Makefile.MUMPS.OMP ./Makefile.inc
   # first clean up
   make clean 1>/dev/null
-  cp Make.inc/Makefile.MUMPS.OMP ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
     printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
     if ! make 'd' >&3 2>&4 ; then
@@ -228,9 +228,9 @@ if [ -f "$INCLUDEDIR/$FILE1" ] && [ -f "$INCLUDEDIR/$FILE2" ] && [ -f "$INCLUDED
 else
   printf "\e[33mMPI parallel MUMPS incomplete, commencing compilation of MUMPS\e[0m\n"
   cd $WORKINGDIR/$MUMPSDIR
+  cp Make.inc/Makefile.MUMPS.MPI ./Makefile.inc
   # first clean up
   make clean 1>/dev/null
-  cp Make.inc/Makefile.MUMPS.MPI ./Makefile.inc
   if [ ! -f "$INCLUDEDIR/$FILE2" ]; then
     printf "\e[33m$FILE2 does not exist, starting compilation of dMUMPS\e[0m\n"
     if ! make 'd' >&3 2>&4 ; then
