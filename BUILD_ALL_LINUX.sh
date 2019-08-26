@@ -262,7 +262,10 @@ if [ -f "$INCLUDEDIR/$FILE" ]; then
 else
   printf "\e[33m$FILE does not exist, commencing compilation of METIS\e[0m\n"
   cd $WORKINGDIR/$METISDIR
-  if ! make config cc=gcc prefix=$WORKINGDIR/metis-5.1.0/install >&3 2>&4 && ! make install >&3 2>&4 ; then
+  if ! make config cc=gcc prefix=$WORKINGDIR/metis-5.1.0/install >&3 2>&4 ; then
+    printf "\e[31mAn Error occured while building METIS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+  fi
+  if ! make install >&3 2>&4 ; then
     printf "\e[31mAn Error occured while building METIS!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
   fi
   cp install/lib/libmetis.a $INCLUDEDIR
