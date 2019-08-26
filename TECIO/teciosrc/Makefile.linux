@@ -101,7 +101,7 @@ LDFLAGS = -fPIC -fmessage-length=0 -fvisibility=hidden -Wall
 all: $(TECIOLIB) $(SZCOMBINE)
 
 clean:
-	rm *.o *.a szcombine
+	rm -f *.o *.a szcombine
 
 $(OBJS) : %.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $< -o $@ -lstdc++
