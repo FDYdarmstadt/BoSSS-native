@@ -147,7 +147,10 @@ printf "\n==========================================\n"
 # for more information consider the readmes in the specific folders
 
 # *.lib dirs are ignored by git, but this one is necessary
-mkdir $WORKINGDIR/$MUMPSDIR/lib
+if [ ! -d $WORKINGDIR/$MUMPSDIR/lib ] ; then
+  printf "creating $WORKINGDIR/$MUMPSDIR/lib ...\n"
+  mkdir $WORKINGDIR/$MUMPSDIR/lib
+fi
 
 printf "\n\e[35mChecking for single and double precision sequential MUMPS\e[0\n"
 FILE1=libmumps_common_seq.a
