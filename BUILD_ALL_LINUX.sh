@@ -34,36 +34,31 @@ case $i in
     -c|--clean)
     printf "
     Cleanup of the BoSSSnative linux library started.
-    \e[33mThis Script will remove all *.so and *.a files otherwise created by it.\e[0m
-    Do you wish to continue?[y|n]:\n"
-    read -n 1 value
-    printf "\n"
-    if [ "$value" = "y" ] ; then
-      printf "Continuing with cleaning process\n"
-      WORKINGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
-      LIBDIR="$WORKINGDIR/lib"
-      INCLUDEDIR="$WORKINGDIR/thirdpartylibs"
+    \e[33mThis Script will remove all *.so and *.a files otherwise created by it.\e[0m\n"
+    pintf "\n"
+    printf "Continuing with cleaning process\n"
+    WORKINGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
+    LIBDIR="$WORKINGDIR/lib"
+    INCLUDEDIR="$WORKINGDIR/thirdpartylibs"
 
-      if [ -d $LIBDIR ]; then
-        printf "Removing shared objects directory $LIBDIR\n"
-        rm -r $LIBDIR
-      else
-        printf "$LIBDIR does not exist, nothing to be done\n"
-      fi
-
-      if [ -d $INCLUDEDIR ]; then
-        printf "Removing static objects directory $INCLUDEDIR\n"
-        rm -r $INCLUDEDIR
-      else
-        printf "$INCLUDEDIR does not exist, nothing to be done\n"
-      fi
-
-      LIBDIR="$WORKINGDIR/lib"
-      INCLUDEDIR="$WORKINGDIR/thirdpartylibs"
-      printf "\e[32mCleanup process complete, exiting ...\e[0m\n"
+    if [ -d $LIBDIR ]; then
+      printf "Removing shared objects directory $LIBDIR\n"
+      rm -r $LIBDIR
     else
-      printf "aborting ...\n"
+      printf "$LIBDIR does not exist, nothing to be done\n"
     fi
+
+    if [ -d $INCLUDEDIR ]; then
+      printf "Removing static objects directory $INCLUDEDIR\n"
+      rm -r $INCLUDEDIR
+    else
+      printf "$INCLUDEDIR does not exist, nothing to be done\n"
+    fi
+
+    LIBDIR="$WORKINGDIR/lib"
+    INCLUDEDIR="$WORKINGDIR/thirdpartylibs"
+    printf "\e[32mCleanup process complete, exiting ...\e[0m\n"
+
     exit 0
     ;;
 esac
