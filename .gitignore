@@ -23,7 +23,7 @@ Thumbs.db
 *.sdf
 *.exp
 [Bb]in
-[Dd]ebug*/
+# necessary debug subfolder in TECIO/boost/... [Dd]ebug*/
 ipch/
 *.opensdf
 *.lib
