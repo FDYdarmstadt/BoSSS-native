@@ -35,7 +35,7 @@ case $i in
     printf "
     Cleanup of the BoSSSnative linux library started.
     \e[33mThis Script will remove all *.so and *.a files otherwise created by it.\e[0m\n"
-    pintf "\n"
+    printf "\n"
     printf "Continuing with cleaning process\n"
     WORKINGDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
     LIBDIR="$WORKINGDIR/lib"
