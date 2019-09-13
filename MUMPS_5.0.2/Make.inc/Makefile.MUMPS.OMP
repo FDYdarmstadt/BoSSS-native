@@ -44,7 +44,7 @@ RM = /bin/rm -f
 CC = gcc
 FC = gfortran
 FL = gfortran
-AR = ar vr
+AR = ar vr 
 RANLIB = ranlib
 
 

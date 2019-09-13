@@ -53,9 +53,9 @@ c_example:	$(LIBDMUMPS) $$@.o
 
 .SUFFIXES: .c .F .o
 .F.o:
-	$(FC) $(OPTF) $(INCS) -I. -I$(topdir)/include -c $*.F $(OUTF) $*.o
+	$(FC) $(OPTF) $(INCS) -I. -I$(topdir)/include -c $*.F $(OUTF)$*.o
 .c.o:
-	$(CC) $(OPTC) $(INCS) $(CDEFS) -I. -I$(topdir)/include -I$(topdir)/src -c $*.c $(OUTC) $*.o
+	$(CC) $(OPTC) $(INCS) $(CDEFS) -I. -I$(topdir)/include -I$(topdir)/src -c $*.c $(OUTC)$*.o
 
 
 $(libdir)/libsmumps$(PLAT)$(LIBEXT):
