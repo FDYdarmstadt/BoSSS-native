@@ -27,6 +27,9 @@ Thumbs.db
 ipch/
 *.opensdf
 *.lib
+#ignore linux specific build libraries
+thirdpartylibs/
+*.so
 *.sbr
 internal/src/packages/
 obj/

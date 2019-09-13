@@ -265,7 +265,7 @@ $(OBJS_OTHER):$(OBJS_COMMON_MOD) $(OBJS_MOD)
 
 $(ARITH)mumps_c.o:	mumps_c.c
 	$(CC) $(OPTC) $(INCS) $(CDEFS) -DMUMPS_ARITH=MUMPS_ARITH_$(ARITH) \
-	      $(IORDERINGSC) $(ORDERINGSC) $(LIBS) -I../include -c mumps_c.c $(OUTC) $@
+	      $(IORDERINGSC) $(ORDERINGSC) $(LIBS) -I../include -c mumps_c.c $(OUTC)$@
 
 
 clean:
