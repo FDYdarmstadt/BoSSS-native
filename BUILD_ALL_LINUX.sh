@@ -331,4 +331,18 @@ printf "\e[32m\nFinished compiling and linking of libBoSSSnative_mpi.so\e[0m\n"
 
 printf "\n==========================================\n"
 
+printf "\nAttempting to fix mpi dependencies\n"
+
+cd $WORKINGDIR
+if hash patchelf 2>/dev/null; then
+  printf "WARNING: Following command only works on libmpi.so.12 and libmpifh_mpifh.so.12\n"
+  printf "Change the versions accordingly if needed.\n"
+  patchelf --replace-needed libmpi.so.12 libmpi.so $LIBDIR/libBoSSSnative_mpi.so
+  patchelf --replace-needed libmpi_mpifh.so.12 libmpi_mpifh.so $LIBDIR/libBoSSSnative_mpi.so
+else
+  printf "patchelf is not installed on this System continuing without further action\n"
+fi
+
+printf "\n==========================================\n"
+
 printf "\e[4;32m\nBuild process for BoSSSnative shared objects succesfully completed!\e[0m\n\n"
