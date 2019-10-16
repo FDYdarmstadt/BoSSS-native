@@ -11,7 +11,7 @@ all: $(TARGET)
 # into one dynamic library
 $(TARGET): $(patsubst %.c,%.o,$(WRAPPERS))
 	@printf "\e[34mTrying to link ...\e[0m\n"
-	$(CC) $^ -shared -o $(LIBDIR)/$@ -I$(MKLROOT)/include -Wl,--start-group  $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -lmpi -lmpi_mpifh -lpthread -lm -ldl -lstdc++ -lgfortran
+	$(CC) $^ -shared -o $(LIBDIR)/$@ -I$(MKLROOT)/include -Wl,--start-group  $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_mpi.version -lmpi -lmpi_mpifh -lpthread -lm -ldl -lstdc++ -lgfortran
 	@printf "\e[34mSuccess!\e[0m\n"
 
 # This generic target matches any file with the pattern BASENAME.o
