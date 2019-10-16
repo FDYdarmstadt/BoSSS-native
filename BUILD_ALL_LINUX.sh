@@ -321,6 +321,18 @@ printf "\e[32m\nFinished compiling and linking of libBoSSSnative_seq.so\e[0m\n"
 
 printf "\n==========================================\n"
 
+printf "\e[35m\nStarting compiling and linking of libBoSSSnative_omp.so\e[0m\n\n"
+cd $WORKINGDIR/$BOSSSNATIVEOMP
+if ! make >&3 2>&4 ; then
+  printf "\e[31mAn Error occured while building/linking libBoSSSnative_omp.so!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+fi
+make clean 1>/dev/null
+printf "\e[32m\nFinished compiling and linking of libBoSSSnative_omp.so\e[0m\n"
+
+printf "\n==========================================\n"
+
+printf "\nAttempting to fix mpi dependencies\n"
+
 printf "\e[35m\nStarting compiling and linking of libBoSSSnative_mpi.so\e[0m\n\n"
 cd $WORKINGDIR/$BOSSSNATIVEMPI
 if ! make >&3 2>&4 ; then

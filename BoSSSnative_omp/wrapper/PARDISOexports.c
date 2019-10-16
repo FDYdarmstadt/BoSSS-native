@@ -2,7 +2,7 @@
 
 /*
  * Within this file, we define just those PARDISO functions that should be exported by the
- * PARDISO - library;
+ * PARDISO - library ;
  * We add a BoSSS-prefix to avoid naming confusion.
  * (On Windows, it would be easier to us an .def - export file, but that is not supported
  * by gcc compiler Linux)
