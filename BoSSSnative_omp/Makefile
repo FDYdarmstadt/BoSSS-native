@@ -1,19 +1,26 @@
 CC := gcc
-WRAPPERS := $(wildcard *.c)
-TARGET := libBoSSSnative_seq.so
-MKLROOT := /opt/intel/compilers_and_libraries_2019.4.243/linux/mkl
+SHELL := /bin/bash
+CURRENTDIRECTORY := $(BOSSSNATIVEOMP)
+WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
+TARGET := libBoSSSnative_omp.so
+LIBINCLUDE :=${MKLROOT}/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gnu_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a
 
 all: $(TARGET)
 
 # Compile all functions targeted by the wrappers
 # into one dynamic library
 $(TARGET): $(patsubst %.c,%.o,$(WRAPPERS))
-	$(CC) $^ -shared -o $@ -Wl,--start-group $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a -Wl,--end-group -Wl,--unresolved-symbols=report-all  -lpthread -lm -ldl
+	@printf "\e[34mTrying to link ...\e[0m\n"
+	$(CC) $^ -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp
+	@printf "\e[34mSuccess!\e[0m\n"
 
 # This generic target matches any file with the pattern BASENAME.o
 # which is built from a dependency called BASENAME.c
 %.o: %.c
+	@printf "\e[34mCompiling $<\e[0m\n"
 	$(CC) -fPIC -c $< -o $@
+	@printf "\e[34mDone!\e[0m\n\n"
 
 clean:
-	@rm -f *.o *.so
+	cd "$(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper"; \
+	rm -f $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.o

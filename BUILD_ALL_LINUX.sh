@@ -321,6 +321,18 @@ printf "\e[32m\nFinished compiling and linking of libBoSSSnative_seq.so\e[0m\n"
 
 printf "\n==========================================\n"
 
+printf "\e[35m\nStarting compiling and linking of libBoSSSnative_omp.so\e[0m\n\n"
+cd $WORKINGDIR/$BOSSSNATIVEOMP
+if ! make >&3 2>&4 ; then
+  printf "\e[31mAn Error occured while building/linking libBoSSSnative_omp.so!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+fi
+make clean 1>/dev/null
+printf "\e[32m\nFinished compiling and linking of libBoSSSnative_omp.so\e[0m\n"
+
+printf "\n==========================================\n"
+
+printf "\nAttempting to fix mpi dependencies\n"
+
 printf "\e[35m\nStarting compiling and linking of libBoSSSnative_mpi.so\e[0m\n\n"
 cd $WORKINGDIR/$BOSSSNATIVEMPI
 if ! make >&3 2>&4 ; then
@@ -328,6 +340,20 @@ if ! make >&3 2>&4 ; then
 fi
 make clean 1>/dev/null
 printf "\e[32m\nFinished compiling and linking of libBoSSSnative_mpi.so\e[0m\n"
+
+printf "\n==========================================\n"
+
+printf "\nAttempting to fix mpi dependencies\n"
+
+cd $WORKINGDIR
+if hash patchelf 2>/dev/null; then
+  printf "WARNING: Following command only works on libmpi.so.12 and libmpifh_mpifh.so.12\n"
+  printf "Change the versions accordingly if needed.\n"
+  patchelf --replace-needed libmpi.so.12 libmpi.so $LIBDIR/libBoSSSnative_mpi.so
+  patchelf --replace-needed libmpi_mpifh.so.12 libmpi_mpifh.so $LIBDIR/libBoSSSnative_mpi.so
+else
+  printf "patchelf is not installed on this System continuing without further action\n"
+fi
 
 printf "\n==========================================\n"
 

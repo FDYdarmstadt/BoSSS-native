@@ -63,6 +63,8 @@ _ReSharper*/
 *.bcf
 *.run.xml
 # Ignore Tecplot - files
+libtecio.a
+szcombine
 *.plt
 *.lay
 # Ignore MacOS-systemfiles
