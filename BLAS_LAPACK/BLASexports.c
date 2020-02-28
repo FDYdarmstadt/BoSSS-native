@@ -9,5 +9,6 @@
  */
 
 MAKE_FORTRAN_EXPORT(dgemm,13)
+MAKE_FORTRAN_EXPORT(dgecon,9)
 
 
