@@ -108,3 +108,5 @@ ilaenv_=ilaenv
 lsame_=lsame 
 xerbla_=xerbla 
 dgecon_=dgecon
+dgeev_=dgeev
+dsyev_=dsyev

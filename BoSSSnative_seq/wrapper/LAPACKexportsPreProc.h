@@ -11,6 +11,8 @@
 #define PARAM11    PARAM10, void* _11
 #define PARAM12    PARAM11, void* _12
 #define PARAM13    PARAM12, void* _13
+#define PARAM14    PARAM13, void* _14
+#define PARAM15    PARAM14, void* _15
 
 #define CALL1              _1
 #define CALL2      CALL1,  _2
@@ -25,6 +27,8 @@
 #define CALL11     CALL10, _11
 #define CALL12     CALL11, _12
 #define CALL13     CALL12, _13
+#define CALL14     CALL13, _14
+#define CALL15     CALL14, _15
 
 
 #ifdef _WINDOWS
