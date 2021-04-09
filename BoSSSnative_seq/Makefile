@@ -3,7 +3,7 @@ SHELL := /bin/bash
 CURRENTDIRECTORY := $(BOSSSNATIVESEQ)
 WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
 TARGET := libBoSSSnative_seq.so
-LIBINCLUDE :=$(INCLUDEDIR)/libpord_mpi.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)/libmumps_common_seq.a $(INCLUDEDIR)/libdmumps_seq.a $(INCLUDEDIR)/libsmumps_seq.a $(INCLUDEDIR)/libmetis.a $(INCLUDEDIR)/libtecio.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a
+LIBINCLUDE :=$(INCLUDEDIR)/libpord_seq.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)/libmumps_common_seq.a $(INCLUDEDIR)/libdmumps_seq.a $(INCLUDEDIR)/libsmumps_seq.a $(INCLUDEDIR)/libmetis.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a $(INCLUDEDIR)/libtecio.a
 
 all: $(TARGET)
 
