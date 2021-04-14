@@ -133,6 +133,17 @@ if [ -d "$LIBDIR" ]; then
   else
     printf "\e[33mOutput folder $LIBDIR does not exist, creating ...\e[0m\n"
     mkdir $LIBDIR
+    mkdir $LIBDIR/dependencies
+fi
+
+# create the dependeny directory
+if [ -d "$LIBDIR/dependencies" ]; then
+    printf "\e[32mDependency folder $LIBDIR/dependencies already exists, resetting ...\e[0m\n"
+    rm -r $LIBDIR/dependencies
+    mkdir $LIBDIR/dependencies
+  else
+    printf "\e[33mDependency folder $LIBDIR/dependencies does not exist, creating ...\e[0m\n"
+    mkdir $LIBDIR/dependencies
 fi
 
 printf "\e[32m\nSet-up completed commencing build process\e[0m\n"
@@ -319,6 +330,14 @@ fi
 make clean 1>/dev/null
 printf "\e[32m\nFinished compiling and linking of libBoSSSnative_seq.so\e[0m\n"
 
+OUTPUT=$(ldd $LIBDIR/libBoSSSnative_seq.so)
+while read -r line ; do
+    DEP=$(echo $line | cut -d" " -f3)
+    [ -z "$DEP" ] && continue
+    [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
+    DEPS=$DEPS" "$DEP
+done <<< "$OUTPUT"
+
 printf "\n==========================================\n"
 
 printf "\e[35m\nStarting compiling and linking of libBoSSSnative_omp.so\e[0m\n\n"
@@ -329,9 +348,15 @@ fi
 make clean 1>/dev/null
 printf "\e[32m\nFinished compiling and linking of libBoSSSnative_omp.so\e[0m\n"
 
-printf "\n==========================================\n"
+OUTPUT=$(ldd $LIBDIR/libBoSSSnative_omp.so)
+while read -r line ; do
+    DEP=$(echo $line | cut -d" " -f3)
+    [ -z "$DEP" ] && continue
+    [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
+    DEPS=$DEPS" "$DEP
+done <<< "$OUTPUT"
 
-printf "\nAttempting to fix mpi dependencies\n"
+printf "\n==========================================\n"
 
 printf "\e[35m\nStarting compiling and linking of libBoSSSnative_mpi.so\e[0m\n\n"
 cd $WORKINGDIR/$BOSSSNATIVEMPI
@@ -341,20 +366,38 @@ fi
 make clean 1>/dev/null
 printf "\e[32m\nFinished compiling and linking of libBoSSSnative_mpi.so\e[0m\n"
 
-printf "\n==========================================\n"
-
-printf "\nAttempting to fix mpi dependencies\n"
-
-cd $WORKINGDIR
-if hash patchelf 2>/dev/null; then
-  printf "WARNING: Following command only works on libmpi.so.12 and libmpifh_mpifh.so.12\n"
-  printf "Change the versions accordingly if needed.\n"
-  patchelf --replace-needed libmpi.so.12 libmpi.so $LIBDIR/libBoSSSnative_mpi.so
-  patchelf --replace-needed libmpi_mpifh.so.12 libmpi_mpifh.so $LIBDIR/libBoSSSnative_mpi.so
-else
-  printf "patchelf is not installed on this System continuing without further action\n"
-fi
+OUTPUT=$(ldd $LIBDIR/libBoSSSnative_mpi.so)
+while read -r line ; do
+    DEP=$(echo $line | cut -d" " -f3)
+    [ -z "$DEP" ] && continue
+    [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
+    DEPS=$DEPS" "$DEP
+done <<< "$OUTPUT"
 
 printf "\n==========================================\n"
+
+printf "\n\e[35mCopying direct dependencies to rpath directory\e[0m\n\n"
+for value in $DEPS; do
+  DEP=$(echo $value | rev | cut -d/ -f1 | rev)
+  echo Copying $DEP to dependency directory  
+  cp $value $LIBDIR/dependencies/$DEP
+  patchelf --set-rpath '$ORIGIN/.' $LIBDIR/dependencies/$DEP
+done
+
+printf "\n==========================================\n"
+
+# printf "\nAttempting to fix mpi dependencies\n"
+
+# cd $WORKINGDIR
+# if hash patchelf 2>/dev/null; then
+#   printf "WARNING: Following command only works on libmpi.so.12 and libmpifh_mpifh.so.12\n"
+#   printf "Change the versions accordingly if needed.\n"
+#   patchelf --replace-needed libmpi.so.12 libmpi.so $LIBDIR/libBoSSSnative_mpi.so
+#   patchelf --replace-needed libmpi_mpifh.so.12 libmpi_mpifh.so $LIBDIR/libBoSSSnative_mpi.so
+# else
+#   printf "patchelf is not installed on this System continuing without further action\n"
+# fi
+
+# printf "\n==========================================\n"
 
 printf "\e[4;32m\nBuild process for BoSSSnative shared objects succesfully completed!\e[0m\n\n"

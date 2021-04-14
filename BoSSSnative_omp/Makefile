@@ -11,7 +11,7 @@ all: $(TARGET)
 # into one dynamic library
 $(TARGET): $(patsubst %.c,%.o,$(WRAPPERS))
 	@printf "\e[34mTrying to link ...\e[0m\n"
-	$(CC) $^ -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp
+	$(CC) $^ -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp -Wl,-rpath,'$$ORIGIN'/dependencies
 	@printf "\e[34mSuccess!\e[0m\n"
 
 # This generic target matches any file with the pattern BASENAME.o
