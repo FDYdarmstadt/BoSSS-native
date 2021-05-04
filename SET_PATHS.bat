@@ -5,7 +5,7 @@ set ERRORS=0
 
 Echo Searching for executable, inculde and library directories ...
 echo.
-set "Intel_Version=2018.3.210"
+set "Intel_Version=2019.1.144"
 set "Executables=cmake make msbuild ifort link"	
 
 for /F %%E in ("%Executables%") do set "path_%%E="
