@@ -72,7 +72,7 @@ set MUMPS_TYPE=SEQ
 set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
-set "HYPRE_TYPE="
+set HYPRE_TYPE=MPI
 )
 :: CAUTION: if names are not unique, dll are overwritten!
 :: Build composition Parallel
