@@ -175,6 +175,7 @@
       <ImportLibrary>$(SolutionDir)Release\HYPRE.lib</ImportLibrary>
       <ProgramDataBaseFile>$(SolutionDir)Release\HYPRE.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
+      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -218,6 +219,7 @@
       <ImportLibrary>$(SolutionDir)MinSizeRel\HYPRE.lib</ImportLibrary>
       <ProgramDataBaseFile>$(SolutionDir)MinSizeRel\HYPRE.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
+      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -260,6 +262,7 @@
       <ImportLibrary>$(SolutionDir)RelWithDebInfo\HYPRE.lib</ImportLibrary>
       <ProgramDataBaseFile>$(SolutionDir)RelWithDebInfo\HYPRE.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
+      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
