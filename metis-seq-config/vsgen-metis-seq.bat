@@ -43,7 +43,7 @@ SET CONFIG=Release
 
 IF %METIS_TYPE%==SEQ (
 
-CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 19 2019 Win64" -DSHARED=1
+CALL cmake -DCMAKE_CONFIGURATION_TYPES="%CONFIG%" ..\.. -G "Visual Studio 16 2019" -DSHARED=1
 :: cmake -DCMAKE_CONFIGURATION_TYPES="Release" ..\.. -G "Visual Studio 15 2017 Win64" -DSHARED=1 -DCMAKE_C_COMPILER=cl
 ECHO VS files have been generated in "%METIS_BUILD%"
 ::devenv METIS.sln /Clean
