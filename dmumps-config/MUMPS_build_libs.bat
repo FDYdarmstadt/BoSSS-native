@@ -1,5 +1,7 @@
 @echo off
 
+set PATH=C:\cygwin64\bin;%PATH%
+
 ECHO ^>^>^>^>^>^>MUMPS BUILD^>^>^>^>^>^>
 ECHO ========================
 ECHO.
