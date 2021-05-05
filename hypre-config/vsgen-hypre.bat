@@ -5,6 +5,9 @@ ECHO ^>^>^>^>^>^>HYPRE BUILD^>^>^>^>^>^>
 ECHO =======================
 ECHO.
 
+ECHO WORKINGDIR is %WORKINGDIR%
+ECHO HYPRE_TYPE is %HYPRE_TYPE%
+
 ::check if all necessary variables are set
 set "ErrorInput="
 IF NOT DEFINED WORKINGDIR set ErrorInput=1
