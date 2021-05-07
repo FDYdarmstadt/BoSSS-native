@@ -334,8 +334,11 @@ OUTPUT=$(ldd $LIBDIR/libBoSSSnative_seq.so)
 while read -r line ; do
     DEP=$(echo $line | cut -d" " -f3)
     [ -z "$DEP" ] && continue
-    [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
-    DEPS=$DEPS" "$DEP
+    [[ $DEPS =~ (^| )$DEP($| ) ]] && continue  
+    # see https://stackoverflow.com/questions/2172352/in-bash-how-can-i-check-if-a-string-begins-with-some-value
+    if [[ $DEP == *libgfortran* ]] ; then
+        DEPS=$DEPS" "$DEP
+    fi
 done <<< "$OUTPUT"
 
 printf "\n==========================================\n"
@@ -353,7 +356,11 @@ while read -r line ; do
     DEP=$(echo $line | cut -d" " -f3)
     [ -z "$DEP" ] && continue
     [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
-    DEPS=$DEPS" "$DEP
+    # see https://stackoverflow.com/questions/2172352/in-bash-how-can-i-check-if-a-string-begins-with-some-value
+    if [[ $DEP == libgfortran* ]] ;
+    then
+        DEPS=$DEPS" "$DEP
+    fi
 done <<< "$OUTPUT"
 
 printf "\n==========================================\n"
@@ -371,7 +378,11 @@ while read -r line ; do
     DEP=$(echo $line | cut -d" " -f3)
     [ -z "$DEP" ] && continue
     [[ $DEPS =~ (^| )$DEP($| ) ]] && continue
-    DEPS=$DEPS" "$DEP
+    # see https://stackoverflow.com/questions/2172352/in-bash-how-can-i-check-if-a-string-begins-with-some-value
+    if [[ $DEP == libgfortran* ]] ;
+    then
+        DEPS=$DEPS" "$DEP
+    fi
 done <<< "$OUTPUT"
 
 printf "\n==========================================\n"
