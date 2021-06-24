@@ -65,6 +65,7 @@ del "log.txt" /q
 
 :START_PAR_BUILD
 
+::echo checkpoint1: %ALL_TYPE%
 
 :: Build composition Serial
 IF %ALL_TYPE%==SER (
@@ -72,8 +73,11 @@ set MUMPS_TYPE=SEQ
 set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
 set BLAS_LAPACK_TYPE=SEQ
-set HYPRE_TYPE=MPI
+set "HYPRE_TYPE="
 )
+
+::echo checkpoint2: %ALL_TYPE%
+
 :: CAUTION: if names are not unique, dll are overwritten!
 :: Build composition Parallel
 IF %ALL_TYPE%==PAR (
@@ -91,6 +95,8 @@ echo PARDISO_TYPE ... %PARDISO_TYPE%
 echo HYPRE_TYPE ... %HYPRE_TYPE%
 echo METIS_TYPE ... %METIS_TYPE%
 echo MUMPS_TYPE ... %MUMPS_TYPE%
+
+::echo checkpoint3: %ALL_TYPE%
 
 :: run at Jenkins-native
 if %BUILD_SPEED%==SLOW (
@@ -157,7 +163,7 @@ set /a ERRORS=%ERRORS%+1
 )
 :PARDISOCHECK
 if not defined PARDISO_TYPE GOTO HYPRECHECK
-copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO.dll" "%DESTDIR%\" /y
+copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO*.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set PARDISO_STATUS=success
 if not %errorlevel%==0 (
 set PARDISO_STATUS=failure
@@ -219,6 +225,8 @@ ECHO MUMPS ... %MUMPS_STATUS%
 ECHO.
 )>>changelog.txt
 
+
+:: switch to parallel ans start over (goto-loop)
 IF %ALL_TYPE%==SER (
 set ALL_TYPE=PAR
 GOTO START_PAR_BUILD
