@@ -1,0 +1,17 @@
+LIBRARY	"PARDISO"
+EXPORTS
+    
+  	; ######################################################################
+	; ######################################################################
+	; PARDISO
+	; ######################################################################
+	; ######################################################################
+    
+    dcsrilu0_
+	dcsrilut_
+	mkl_sparse_d_trsv_ = mkl_sparse_d_trsv
+	mkl_sparse_d_create_csr_ = mkl_sparse_d_create_csr
+	mkl_sparse_optimize_ = mkl_sparse_optimize
+	mkl_sparse_destroy_ = mkl_sparse_destroy
+	mkl_sparse_d_export_csr_ = mkl_sparse_d_export_csr
+	sparse_matrix_checker_ = sparse_matrix_checker
