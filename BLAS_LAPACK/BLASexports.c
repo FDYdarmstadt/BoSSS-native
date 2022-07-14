@@ -8,7 +8,8 @@
  * by gcc compiler Linux)
  */
 
-MAKE_FORTRAN_EXPORT(dgemm,13)
+MAKE_FORTRAN_EXPORT(dgemm, 13)
+MAKE_FORTRAN_EXPORT(sgemm, 13)
 MAKE_FORTRAN_EXPORT(dgecon,9)
 MAKE_FORTRAN_EXPORT(dgeev,14)
 MAKE_FORTRAN_EXPORT(dsyev,9)
