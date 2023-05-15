@@ -1,7 +1,5 @@
-===================================================
-				DLL_Workflow
-===================================================
-workflow for creating Thirdparty DLL with Intel cmd
+# MS Windows Dynamilc Libraries Workflow
+workflow for creating Thirdparty DLLs with Intel MKL libraries using cmd
 
 Information about versions
 --------------------------
@@ -70,3 +68,9 @@ Annotations:
 -If new versions have to be build, remember to adjust directories relative to working directory within
 the batch-files. Never forget to put paths with spaces etc. in parenthesis: check Bugfixes.txt for details
 -if make is not recognized adjust included packages of cygwin
+
+# Linux Shared Library Workflow
+
+workflow for creating Thirdparty so with Intel MKL libraries
+
+Todo....
