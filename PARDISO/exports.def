@@ -12,5 +12,6 @@ EXPORTS
 
 
     dgemm_=dgemm 
+	omp_set_num_threads_
 
     
