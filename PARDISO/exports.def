@@ -9,4 +9,8 @@ EXPORTS
     
     pardiso_
     pardisoinit_
+
+
+    dgemm_=dgemm 
+
     
