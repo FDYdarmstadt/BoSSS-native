@@ -1,14 +1,15 @@
-#include <mkl_service.h>
+#include "stdafx.h"
+
 
 //_Mkl_Api(int,MKL_Set_Num_Threads_Local,(int nth))
 //#define mkl_set_num_threads         MKL_Set_Num_Threads
-void BoSSS_set_num_threads(int nth) {
+__declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 	mkl_set_num_threads(nth); 
 }
 
 //_Mkl_Api(int,MKL_Get_Max_Threads,(void))
 //#define mkl_get_max_threads         MKL_Get_Max_Threads
-int BoSSS_get_max_threads() {
+ __declspec(dllexport) int BoSSS_get_max_threads() {
 	return mkl_get_max_threads(); 
 }
 

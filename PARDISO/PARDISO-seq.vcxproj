@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="mkl_service.c" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
