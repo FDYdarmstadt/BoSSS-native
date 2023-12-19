@@ -9,7 +9,7 @@ void BoSSS_set_num_threads(int nth) {
 //_Mkl_Api(int,MKL_Get_Max_Threads,(void))
 //#define mkl_get_max_threads         MKL_Get_Max_Threads
 int BoSSS_get_num_threads() {
-	return mkl_get_max_threads()); 
+	return mkl_get_max_threads(); 
 }
 
 
