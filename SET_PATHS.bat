@@ -120,11 +120,11 @@ echo !target! was found at MS_MPI_INC=!MS_MPI_INC!)
 )
 
 set "target=libmmd.dll"
-if not defined INTEL_REDIST (
-for /F "tokens=*" %%I IN ('^(dir /s /b "C:\Program Files\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^) ^|^| ^(dir /s /b "C:\Program Files (x86)\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^)') do (
-set "a=%%~fI"
-set "INTEL_REDIST=!a:\%target%=!"
-)
+rem if not defined INTEL_REDIST (
+rem for /F "tokens=*" %%I IN ('^(dir /s /b "C:\Program Files\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^) ^|^| ^(dir /s /b "C:\Program Files (x86)\" ^| find /i "intel" ^| find /i "64" ^| find /i "\%target%"^)') do (
+rem set "a=%%~fI"
+rem set "INTEL_REDIST=!a:\%target%=!"
+rem )
 if not defined INTEL_REDIST (
 echo path to %target% not found!
 set /a ERRORS=%ERRORS%+1
