@@ -40,7 +40,7 @@ ECHO.
 set "MS_MPI_DIR=C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
 set "MS_MPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include"
 :: paths to related shared libraries
-::set "INTEL_REDIST=%PROGRAMFILES(x86)%\Common Files\Intel\Shared Libraries\redist\intel64_win\compiler"
+set "INTEL_REDIST=C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin"
 
 ::you can preset PATHS, then they are not searched ...
 ::set "AUXONE= "

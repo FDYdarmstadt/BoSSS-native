@@ -1,0 +1,28 @@
+BUILDS:
+1341056 Dec 13 01:46 ../BUILDS/libifcoremd.dll*
+2096256 Nov 16 21:46 ../BUILDS/libiomp5md.dll*
+4148864 Dec 13 01:46 ../BUILDS/libmmd.dll*
+18210432 Dec 13 01:46 ../BUILDS/svml_dispmd.dll*
+
+
+WinDlls:
+1341056 Feb  6 12:29 libifcoremd.dll*
+2096256 Feb  6 12:29 libiomp5md.dll*
+4148864 Feb  6 12:29 libmmd.dll*
+18210432 Feb  6 12:30 svml_dispmd.dll*
+
+
+**** Should be from here: *****
+C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin:
+1341056 Dec 13 01:46 libifcoremd.dll
+2096256 Nov 16 21:46 libiomp5md.dll
+4148864 Dec 13 01:46 libmmd.dll
+18210432 Dec 13 01:46 svml_dispmd.dll
+
+**** Not those: ****
+C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2019.1.144\windows\redist\intel64_win\compiler\
+1720536 Oct 18  2018 libifcoremd.dll*
+1717464 Oct 18  2018 libiomp5md.dll*
+4271832 Oct 18  2018 libmmd.dll*
+18840280 Oct 18  2018 svml_dispmd.dll*
+
