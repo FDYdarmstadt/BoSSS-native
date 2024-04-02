@@ -64,6 +64,20 @@ set /a ERRORS=%ERRORS%+1
 echo !target! was found at AUXTWO=!AUXTWO!)
 )
 
+set "target=mkl.h"
+rem if not defined MKL_INC_DIR (
+rem for /F "tokens=*" %%I IN ('dir /s /b "C:\Program Files (x86)\Intel\oneAPI\" ^| find /i "\%target%" ^| find /i "%Intel_Version%"') do (
+rem set "a=%%~fI"
+rem set "MKL_INC_DIR=!a:\%target%=!"
+rem )
+set "MKL_INC_DIR=C:\Program Files (x86)\Intel\oneAPI\mkl\2024.0\include"
+if not defined MKL_INC_DIR (
+echo path to !target! not found!
+set /a ERRORS=%ERRORS%+1
+) else (
+echo !target! was found at MKL_INC_DIR=!MKL_INC_DIR!)
+)
+
 
 set "target=mkl_core.lib"
 rem if not defined MKL_LIB_DIR (
@@ -156,6 +170,7 @@ echo export variables to file: variables.txt
 (
 echo "AUXONE=%AUXONE%"
 echo "AUXTWO=%AUXTWO%"
+echo "MKL_INC_DIR=%MKL_INC_DIR%"
 echo "MKL_LIB_DIR=%MKL_LIB_DIR%"
 echo "MKL_OPENMP_DIR=%MKL_OPENMP_DIR%"
 echo "MS_MPI_DIR=%MS_MPI_DIR%"
@@ -168,6 +183,7 @@ del /q "PropertySheet.props"
 for /L %%i in (0,1,%x%) do (
 	for /f "tokens=*" %%a in (PropertySheet_blank.props) do (
 		SET s=%%a
+		SET "s=!s:_MKL_INC_DIR=%MKL_INC_DIR%!"
 		SET "s=!s:_MKL_LIB_DIR=%MKL_LIB_DIR%!"
 		set "s=!s:_MKL_OPENMP_DIR=%MKL_OPENMP_DIR%!"
 		set "s=!s:_MS_MPI_DIR=%MS_MPI_DIR%!"

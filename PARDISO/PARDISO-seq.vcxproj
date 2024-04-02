@@ -105,6 +105,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <AdditionalDependencies>mkl_intel_lp64.lib;mkl_core.lib;mkl_sequential.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -126,7 +127,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="mkl_service.c" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
