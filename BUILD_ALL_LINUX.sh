@@ -111,7 +111,8 @@ fi
 
 # Set Pathvariable for Intel MKL
 if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
-    printf "\e[31mUnable to locate intel mkl, exiting ...\n\e[0m" && exit -1
+    printf "\e[31mWarning: Unable to locate intel mkl, exiting ...\n\e[0m" 
+	#&& exit -1
 fi
 printf "Setting path to intel mkl: $MKLROOT\n"
 
