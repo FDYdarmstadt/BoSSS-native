@@ -7,6 +7,14 @@
 #include <stdio.h>
 #include <string.h>
 
+//#include <windows.h>
+
+#define NUMBER_OF_SUPPORTED_PROCGROUPS  16
+
+// C++ headers
+//#include <iostream>
+//#include <string>
+//#include <sstream> // Include for std::ostringstream
 
 /* Intel affinity API; included only in the omp.h used for Intel compiler; not contained for the MS compiler */
 #   if defined(_WIN32)
@@ -182,8 +190,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 
  }
 
-
-
+//
  // From:
  // https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/developer-guide-reference/2023-0/thread-affinity-interface.html#EXPLICITLY_SPECIFYING_OS_PROC_IDS__GOMP_CPU_AFFINITY
  // 
@@ -212,10 +219,47 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
  //       with low-level affinity API calls, 
  //       if program execution obeys the three aforementioned rules from the OpenMP specification.
  //
+ //
+ //
 
+ //
+ // Note: this must be linked against the Intel OpenMP library (libiomp5),
+ // because the routines to control thread-affinity (kmp_set_affinity, ...)
+ // are Intel-specifiv and don't have a conterpart in other OpenMP implementations, 
+ // e.g., GNU OpenMP (libgomp).
+ //
+ // Compilation/Linking with Intel Compiler against Inptel OpenMP is straigtforward;
+ // Just use the `-liomp5` library:
+ // icx -I"${MKLROOT}/include" -fopenmp -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a ${MKLROOT}/lib/intel64/libmkl_intel_thread.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -liomp5 -lpthread -lm -ldl  myomp.c -o my$
+ //
+ // Compilation with gcc against the `libomp5` is difficult:
+ // See, e.g., the discussion here: https://stackoverflow.com/questions/25986091/telling-gcc-to-not-link-libgomp-so-it-links-libiomp5-instead
+ // I was, however, not able to reproduse the solution  there.
+ // - Providing `-liomp5` for the linker seems to pe ignored; `kmp_set_affinity`, etc., remains unresolved.
+ // - Removing the `-fopenmp` switch from the linker just produces 
+ // Finally, tweak the `/usr/lib/gcc/x86_64-linux-gnu/7/libgomp.spec` file which seems to enforce to link to `libgomp` 
+ // ```
+ //    # This spec file is read by gcc when linking.  It is used to specify the
+ //    # standard libraries we need in order to link with libgomp.
+ //    #*link_gomp: -lgomp %{static: -ldl } # old 
+ //    *link_gomp: -liomp5 %{static: -ldl } #modifyed
+ // ```
+ //
+ // Then, `gcc` finally seems to be able to link against `libomp5` 
+ // gcc  -I"${MKLROOT}/include"  -fopenmp -c myomp.c # for compilation, the `-fopenmp` switsch is required, otherwise the OpenMP-code is just not parallelized 
+ // gcc  -fopenmp -lm -ldl -o myomp myomp.o          # 
+ //
+ //
+ // Furthermore, `kmp_set_affinity_mask_proc`, etc. chrash from time to time
+ // and shut-down the entire process:
+ // ```
+ //    OMP: Error #13: Assertion failure at kmp_affinity.cpp(5334).
+ //    OMP: Hint Please submit a bug report with this message, compile and run commands used, and machine configuration info including native compiler and operating system versions. Faster response will be obtained by including all program sources. For information on submitting this issue, please see http://www.intel.com/software/products/support/.
+ // ```
+ //
+ // a more portable, easier approch is suggested here:
+ // see also: https://stackoverflow.com/questions/24862488/thread-affinity-with-windows-msvc-and-openmp
 
- // Force the executing thread to execute on logical CPU i
- // Returns 0 on success, something else on failure.
  int forceAffinity(int i)
  {
      kmp_affinity_mask_t mask;
@@ -225,10 +269,10 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 
      return kmp_set_affinity(&mask);
  }
- // see also: https://stackoverflow.com/questions/24862488/thread-affinity-with-windows-msvc-and-openmp
+
  __declspec(dllexport) int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
      mkl_set_num_threads(NumThreads);
-     omp_set_num_threads(NumThreads); // doppelt hält besser
+     omp_set_num_threads(NumThreads); // doppelt h?lt besser
 
      
 
@@ -246,7 +290,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          return -666;
 
 
-     //printf("Main thread: %I64x\n", (__int64) mainThread);
+     printf("Main thread: %I64x\n", (__int64) mainThread);
 #pragma omp parallel
      {
          int thread_id = omp_get_thread_num(); // Get the thread ID of the current thread
@@ -282,28 +326,6 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          //
          //CPUindices[thread_id] = forceAffinity(CPUindices[thread_id]);
      }
-
-
-     USHORT groupsAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
-     GROUP_AFFINITY AffinitiesAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
-     int NumberOfGroupsAfter = GetAffinities(groupsAfter, AffinitiesAfter);
-     if (NumberOfGroupsAfter > 0) {
-         if (NumberOfGroupsAfter != NumberOfGroups) {
-             printf("Warning: Number of proc groups in main thread changed: %d (before) vs. %d (after)\n", NumberOfGroups, NumberOfGroupsAfter);
-             fflush(stdout);
-         }
-
-         if (memcmp(groups, groupsAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(USHORT)) != 0
-             || memcmp(Affinities, AffinitiesAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(GROUP_AFFINITY))) {
-             char AffString[1024];
-             GetAffinityString(AffString);
-             printf("Warning: affinity of main thread changed: %s \n", AffString);
-             fflush(stdout);
-         }
-     }
-         
-
-
      //printf("finished OMP thread binding; ----------- \n\n ");
      //fflush(stdout);
      int i;
