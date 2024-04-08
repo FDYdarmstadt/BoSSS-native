@@ -290,7 +290,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          return -666;
 
 
-     printf("Main thread: %I64x\n", (__int64) mainThread);
+     //printf("Main thread: %I64x\n", (__int64) mainThread);
 #pragma omp parallel
      {
          int thread_id = omp_get_thread_num(); // Get the thread ID of the current thread
