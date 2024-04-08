@@ -235,7 +235,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 
      return kmp_set_affinity(&mask);
  }
-
+ // see also: https://stackoverflow.com/questions/24862488/thread-affinity-with-windows-msvc-and-openmp
  __declspec(dllexport) int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
      mkl_set_num_threads(NumThreads);
      omp_set_num_threads(NumThreads); // doppelt hält besser
@@ -256,7 +256,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          return -666;
 
 
-     printf("Main thread: %I64x\n", (__int64) mainThread);
+     //printf("Main thread: %I64x\n", (__int64) mainThread);
 #pragma omp parallel
      {
          int thread_id = omp_get_thread_num(); // Get the thread ID of the current thread
@@ -292,6 +292,28 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          //
          //CPUindices[thread_id] = forceAffinity(CPUindices[thread_id]);
      }
+
+
+     USHORT groupsAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
+     GROUP_AFFINITY AffinitiesAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
+     int NumberOfGroupsAfter = GetAffinities(groupsAfter, AffinitiesAfter);
+     if (NumberOfGroupsAfter > 0) {
+         if (NumberOfGroupsAfter != NumberOfGroups) {
+             printf("Warning: Number of proc groups in main thread changed: %d (before) vs. %d (after)\n", NumberOfGroups, NumberOfGroupsAfter);
+             fflush(stdout);
+         }
+
+         if (memcmp(groups, groupsAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(USHORT)) != 0
+             || memcmp(Affinities, AffinitiesAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(GROUP_AFFINITY))) {
+             char AffString[1024];
+             GetAffinityString(AffString);
+             printf("Warning: affinity of main thread changed: %s \n", AffString);
+             fflush(stdout);
+         }
+     }
+         
+
+
      //printf("finished OMP thread binding; ----------- \n\n ");
      //fflush(stdout);
      int i;
