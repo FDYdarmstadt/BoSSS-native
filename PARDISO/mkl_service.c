@@ -4,7 +4,7 @@
 #include <mkl.h>
 
 
-/* Intel affinity API */
+/* Intel affinity API - not present in the Microsoft omp.h */
 #   if defined(_WIN32)
 #       define __KAI_KMPC_CONVENTION __cdecl
 #       ifndef __KMP_IMP
@@ -33,7 +33,6 @@ extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity_mask_proc(int, kmp_affinit
 //_Mkl_Api(int,MKL_Set_Num_Threads_Local,(int nth))
 //#define mkl_set_num_threads         MKL_Set_Num_Threads
 __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
-	printf("sada");
 	mkl_set_num_threads(nth); 
 }
 
