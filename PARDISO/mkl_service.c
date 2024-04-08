@@ -147,7 +147,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
              memcpy(pAff + cntGroup, &groupAffinity, sizeof(GROUP_AFFINITY));
          } else {
              DWORD errorCode = GetLastError();
-             fprintf(stderr, "Failed to get thread group affinity (Error code = %d).\n", errorCode);
+             fprintf(stderr, "BoSSS_bind_omp_threads: Failed to get thread group affinity (Error code = %d).\n", errorCode);
              return -1;
          }
      }
@@ -164,7 +164,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
              
          } else {
              DWORD errorCode = GetLastError();
-             fprintf(stderr, "Failed to SET thread group affinity (Error code = %d).\n", errorCode);
+             fprintf(stderr, "BoSSS_bind_omp_threads: Failed to SET thread group affinity (Error code = %d).\n", errorCode);
              return -1;
          }
      }
@@ -290,7 +290,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          return -666;
 
 
-     printf("Main thread: %I64x\n", (__int64) mainThread);
+     //printf("Main thread: %I64x\n", (__int64) mainThread);
 #pragma omp parallel
      {
          int thread_id = omp_get_thread_num(); // Get the thread ID of the current thread
@@ -326,6 +326,26 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
          //
          //CPUindices[thread_id] = forceAffinity(CPUindices[thread_id]);
      }
+
+     USHORT groupsAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
+     GROUP_AFFINITY AffinitiesAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
+     int NumberOfGroupsAfter = GetAffinities(groupsAfter, AffinitiesAfter);
+     if (NumberOfGroupsAfter > 0) {
+         if (NumberOfGroupsAfter != NumberOfGroups) {
+             printf("BoSSS_bind_omp_threads Warning: Number of proc groups in main thread changed: %d (before) vs. %d (after)\n", NumberOfGroups, NumberOfGroupsAfter);
+             fflush(stdout);
+         }
+
+         if (memcmp(groups, groupsAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(USHORT)) != 0
+             || memcmp(Affinities, AffinitiesAfter, min(NumberOfGroups, NumberOfGroupsAfter) * sizeof(GROUP_AFFINITY))) {
+             char AffString[1024];
+             GetAffinityString(AffString);
+             printf("BoSSS_bind_omp_threads Warning: affinity of main thread changed: %s \n", AffString);
+             fflush(stdout);
+         }
+     }
+
+
      //printf("finished OMP thread binding; ----------- \n\n ");
      //fflush(stdout);
      int i;
