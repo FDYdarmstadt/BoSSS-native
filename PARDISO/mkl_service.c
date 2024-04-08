@@ -7,14 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 
-//#include <windows.h>
-
-#define NUMBER_OF_SUPPORTED_PROCGROUPS  16
-
-// C++ headers
-//#include <iostream>
-//#include <string>
-//#include <sstream> // Include for std::ostringstream
 
 /* Intel affinity API; included only in the omp.h used for Intel compiler; not contained for the MS compiler */
 #   if defined(_WIN32)
@@ -190,8 +182,6 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 
  }
 
-//_Mkl_Api(int,MKL_Get_Dynamic,(void))
-//#define mkl_get_dynamic             MKL_Get_Dynamic
 
 
  // From:
