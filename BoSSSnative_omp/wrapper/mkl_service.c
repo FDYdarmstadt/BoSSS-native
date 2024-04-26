@@ -164,15 +164,12 @@ int ParseCPUindices(int ThreadIndex, int* CPUindices, int** CPUindices_iThread) 
 
      int retval = 0;
      int iThread = 0;
-     while (iThread <= ThreadIndex)
-     {
+     while (iThread <= ThreadIndex) {
          if (*CPUindices < -999999999) {
              retval = -1000000000; // affinity OMP thread # `iThread` shall be cloned from main thread
-         }
-         else if (*CPUindices >= 0) {
+         } else if (*CPUindices >= 0) {
              retval = 1; // OMP thread # `iThread` is attaced to 1 CPU, CPU index is *CPUindices;
-         }
-         else {
+         } else {
              retval = -(*CPUindices) - 1; // eintry is -m, m > 0: the next m-1 entries are CPU indices for OMP thread # `iThread`
 
              if (iThread < ThreadIndex) {
@@ -194,6 +191,23 @@ int ParseCPUindices(int ThreadIndex, int* CPUindices, int** CPUindices_iThread) 
  }
 
 int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
+
+    printf("BoSSS_bind_omp_threads, NumThreads = %d\n", NumThreads);
+    for (int i = 0; i < NumThreads; i++) {
+         printf("  thread %d ", i);
+         fflush(stdout);
+         int* pout;
+         int NumCPUs = ParseCPUindices(i, CPUindices, &pout);
+         printf(" NoOfCPUS = %d :", NumCPUs);
+         for (int j = 0; j < NumCPUs; j++) {
+             printf(" %d", pout[j]);
+             fflush(stdout);
+         }
+         printf("\n");
+         fflush(stdout);
+     }
+
+
     mkl_set_num_threads(NumThreads);
     omp_set_num_threads(NumThreads); // doppelt hält besser
 
@@ -202,7 +216,7 @@ int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
 
     // we use Pthreads to set the OpenMP thread affinity;
     // Since GNU OpenMP (GOMP) builds on Pthreads, this should work.
-    // We also assume that libBoSSSnative_omp is linked again GOMP and not Intel OpenMP (iomp5).
+    // We also assume that libBoSSSnative_omp is linked against GOMP and **not** Intel OpenMP (iomp5).
     cpu_set_t  mask;
     CPU_ZERO(&mask);
     for(int i = 0; i < NumThreads; i++) {
@@ -210,7 +224,7 @@ int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
     }
 
     sched_setaffinity(0, sizeof(mask), &mask);
-    #pragma omp parallel 
+#pragma omp parallel 
     {
         int iThread = omp_get_thread_num();
         int* CPUindices_iThread;
@@ -229,6 +243,7 @@ int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
         } else {
             CPUindices_iThread[0] = 0;
         }
+        printf("retval in thread %d = %d\n", iThread, CPUindices_iThread[0]); fflush(stdout);
 
     }
 

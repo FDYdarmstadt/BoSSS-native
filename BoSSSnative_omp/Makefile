@@ -11,14 +11,14 @@ all: $(TARGET)
 # into one dynamic library
 $(TARGET): $(patsubst %.c,%.o,$(WRAPPERS))
 	@printf "\e[34mTrying to link ...\e[0m\n"
-	$(CC) $^ -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp -Wl,-rpath,'$$ORIGIN'/dependencies
+	$(CC) $^ -fopenmp -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp -Wl,-rpath,'$$ORIGIN'/dependencies
 	@printf "\e[34mSuccess!\e[0m\n"
 
 # This generic target matches any file with the pattern BASENAME.o
 # which is built from a dependency called BASENAME.c
 %.o: %.c
 	@printf "\e[34mCompiling $<\e[0m\n"
-	$(CC) -fPIC -c $< -o $@
+	$(CC) -fopenmp -fPIC -c $< -o $@
 	@printf "\e[34mDone!\e[0m\n\n"
 
 clean:
