@@ -38,46 +38,6 @@ extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity_mask_proc(int, kmp_affinit
 
 */
 
-#define _GNU_SOURCE
-#include <pthread.h>
-#include <sched.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-	   
-#include <omp.h>
-#include <mkl.h>
-
-/*
- //Intel affinity API - not present in the standard omp.h 
-#   if defined(_WIN32)
-#       define __KAI_KMPC_CONVENTION __cdecl
-#       ifndef __KMP_IMP
-#           define __KMP_IMP __declspec(dllimport)
-#       endif
-#   else
-#       define __KAI_KMPC_CONVENTION
-#       ifndef __KMP_IMP
-#           define __KMP_IMP
-#       endif
-#   endif
-
-
-typedef void* kmp_affinity_mask_t;
-
-extern int    __KAI_KMPC_CONVENTION  kmp_set_affinity(kmp_affinity_mask_t*);
-extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity(kmp_affinity_mask_t*);
-extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity_max_proc(void);
-extern void   __KAI_KMPC_CONVENTION  kmp_create_affinity_mask(kmp_affinity_mask_t*);
-extern void   __KAI_KMPC_CONVENTION  kmp_destroy_affinity_mask(kmp_affinity_mask_t*);
-extern int    __KAI_KMPC_CONVENTION  kmp_set_affinity_mask_proc(int, kmp_affinity_mask_t*);
-extern int    __KAI_KMPC_CONVENTION  kmp_unset_affinity_mask_proc(int, kmp_affinity_mask_t*);
-extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity_mask_proc(int, kmp_affinity_mask_t*);
-
-
-
-*/
-
 void BoSSS_set_num_threads(int nth) {
 	mkl_set_num_threads(nth); 
 }
