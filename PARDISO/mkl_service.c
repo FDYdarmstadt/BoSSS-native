@@ -46,12 +46,18 @@ extern int    __KAI_KMPC_CONVENTION  kmp_get_affinity_mask_proc(int, kmp_affinit
 //#define mkl_set_num_threads         MKL_Set_Num_Threads
 __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 	mkl_set_num_threads(nth); 
+    omp_set_num_threads(nth);
+}
+
+__declspec(dllexport) int BoSSS_get_num_threads() {
+    return omp_get_num_threads();
 }
 
 //_Mkl_Api(int,MKL_Get_Max_Threads,(void))
 //#define mkl_get_max_threads         MKL_Get_Max_Threads
- __declspec(dllexport) int BoSSS_get_max_threads() {
-	return mkl_get_max_threads(); 
+ __declspec(dllexport) int BoSSS_get_max_threads(int* ompSetting) {
+    *ompSetting = omp_get_max_threads();
+    return mkl_get_max_threads(); 
 }
 
 
@@ -157,6 +163,8 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
 
  int SetClonedAffinities(int NumberOfGroups, GROUP_AFFINITY* pAff) {
 
+     //printf("Cloning %d groups, mask = %I64x\n", NumberOfGroups, pAff->Mask);
+
      for (int cntGroup = 0; cntGroup < NumberOfGroups; cntGroup++) {
          //USHORT group = groups[cntGroup];
          //GROUP_AFFINITY groupAffinity;
@@ -173,12 +181,34 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
  }
 
 
- int BindToCPU_Win32(int CPUIndex) {
+ int BindToCPU_Win32(int NoOfCPUs, int* CPUIndex) {
+
+    /* int thread_id = omp_get_thread_num();
+     {
+         printf("  thread %d, %d CPUs: ", thread_id, NoOfCPUs);
+         fflush(stdout);
+         for (int j = 0; j < NoOfCPUs; j++) {
+             printf(" %d", CPUIndex[j]);
+             fflush(stdout);
+         }
+         printf("\n");
+         fflush(stdout);
+     }*/
 
      GROUP_AFFINITY groupAffinity;
      ZeroMemory(&groupAffinity, sizeof(GROUP_AFFINITY));
-     groupAffinity.Mask = (KAFFINITY)1 << (CPUIndex % 64); // Bind to the first core in the group
-     groupAffinity.Group = (USHORT)(CPUIndex / 64);
+     WORD group = (WORD)(CPUIndex[0] / 64);
+     for (int i = 0; i < NoOfCPUs; i++) {
+         if (CPUIndex[i] / 64 != group) {
+             fprintf(stderr, "Unsupported: multiple CPU groups for a single thread.\n");
+             return -77;
+         }
+
+         groupAffinity.Mask |= (KAFFINITY)1 << (CPUIndex[i] % 64); // Bind to the first core in the group
+         groupAffinity.Group = group;
+     }
+     /*printf("affinity mask = %I64x\n", groupAffinity.Mask);
+     fflush(stdout);*/
 
      if (SetThreadGroupAffinity(GetCurrentThread(), &groupAffinity, NULL)) {
          return 0;
@@ -270,11 +300,59 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
      return kmp_set_affinity(&mask);
  }
 
+
+ int ParseCPUindices(int ThreadIndex, int* CPUindices, int** CPUindices_iThread) {
+
+     int retval = 0;
+     int iThread = 0;
+     while (iThread <= ThreadIndex) {
+         if (*CPUindices < -999999999) {
+             retval = -1000000000; // affinity OMP thread # `iThread` shall be cloned from main thread
+         } else if (*CPUindices >= 0) {
+             retval = 1; // OMP thread # `iThread` is attaced to 1 CPU, CPU index is *CPUindices;
+         } else {
+             retval = -(*CPUindices) - 1; // eintry is -m, m > 0: the next m-1 entries are CPU indices for OMP thread # `iThread`
+
+             if (iThread < ThreadIndex) {
+                 for (int m = 0; m < retval; m++)
+                     CPUindices++;
+             } else {
+                 CPUindices++;
+             }
+         }
+
+         iThread++;
+         CPUindices++;
+     }
+     CPUindices--;
+
+     *CPUindices_iThread = CPUindices;
+     
+     return retval;
+ }
+
+
+
  __declspec(dllexport) int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
      mkl_set_num_threads(NumThreads);
      omp_set_num_threads(NumThreads); // doppelt h?lt besser
-
      
+     /*
+     for (int i = 0; i < NumThreads; i++) {
+         printf("  thread %d ", i);
+         fflush(stdout);
+         int* pout;
+         int NumCPUs = ParseCPUindices(i, CPUindices, &pout);
+         printf(" NoOfCPUS = %d :", NumCPUs);
+         for (int j = 0; j < NumCPUs; j++) {
+             printf(" %d", pout[j]);
+             fflush(stdout);
+         }
+         printf("\n");
+         fflush(stdout);
+     }
+     */
+
 
      // Dynamic threads must be turned of for setting affinity
      omp_set_dynamic(0); 
@@ -289,36 +367,23 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
      if (NumberOfGroups <= 0)
          return -666;
 
-
-     //printf("Main thread: %I64x\n", (__int64) mainThread);
 #pragma omp parallel
      {
-         int thread_id = omp_get_thread_num(); // Get the thread ID of the current thread
-         
-         
-         //printf("Hello from thread %d, setting affinity to CPU/core %d ...", thread_id, CPUindices[thread_id]);
-         //printf(" success: %d\n", CPUindices[thread_id]);
-
-         //char affinityInfo[1024];
-         //GetAffinityString(affinityInfo);
-
-         //HANDLE ompThread = GetCurrentThread();
+         int thread_id = omp_get_thread_num(); // Get the thread index of the current thread
          DWORD ompThreadId = GetCurrentThreadId();
-         //BOOL equalToMain = ompThreadId == mainThreadId;
-         //printf("Thread %d, to CPU %d, equal to main %d, %s \n", thread_id, CPUindices[thread_id], equalToMain, affinityInfo);
-
-         if(ompThreadId != mainThreadId) {
+         
+         int* CPUindices_thread_id;
+         int NumCPUs = ParseCPUindices(thread_id, CPUindices, &CPUindices_thread_id);
+         
+         {
              // duplicate from main thread
-             if(CPUindices[thread_id] < 0)
+             if (NumCPUs < 0) {
                  // clone from main thread
-                 CPUindices[thread_id] = SetClonedAffinities(NumberOfGroups, Affinities);
-             else 
+                 CPUindices_thread_id[0] = SetClonedAffinities(NumberOfGroups, Affinities);
+             } else if (NumCPUs >= 0) {
                  // bind to specific CPU
-                 CPUindices[thread_id] = BindToCPU_Win32(CPUindices[thread_id]);
-
-         } else {
-             // never mess with the main thread
-             CPUindices[thread_id] = 0;
+                 CPUindices_thread_id[0] = BindToCPU_Win32(NumCPUs, CPUindices_thread_id);
+             }
          }
 
 
@@ -346,13 +411,7 @@ __declspec(dllexport) void BoSSS_set_num_threads(int nth) {
      }
 
 
-     //printf("finished OMP thread binding; ----------- \n\n ");
-     //fflush(stdout);
-     int i;
-     for (i = 0; i < NumThreads; i++) {
-         if (CPUindices[i] != 0)
-             return -i - 1;
-     }
+     
 
      return 0;
  }
