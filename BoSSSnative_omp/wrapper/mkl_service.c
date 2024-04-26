@@ -191,7 +191,7 @@ int ParseCPUindices(int ThreadIndex, int* CPUindices, int** CPUindices_iThread) 
  }
 
 int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
-
+    /*
     printf("BoSSS_bind_omp_threads, NumThreads = %d\n", NumThreads);
     for (int i = 0; i < NumThreads; i++) {
          printf("  thread %d ", i);
@@ -205,7 +205,7 @@ int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
          }
          printf("\n");
          fflush(stdout);
-     }
+     }*/
 
 
     mkl_set_num_threads(NumThreads);
@@ -243,7 +243,7 @@ int BoSSS_bind_omp_threads(int NumThreads, int* CPUindices) {
         } else {
             CPUindices_iThread[0] = 0;
         }
-        printf("retval in thread %d = %d\n", iThread, CPUindices_iThread[0]); fflush(stdout);
+        //printf("retval in thread %d = %d\n", iThread, CPUindices_iThread[0]); fflush(stdout);
 
     }
 
