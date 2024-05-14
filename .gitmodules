@@ -1,0 +1,3 @@
+[submodule "Algoim/Algoimwrapper/algoim"]
+	path = Algoim/Algoimwrapper/algoim
+	url = https://github.com/algoim/algoim.git
