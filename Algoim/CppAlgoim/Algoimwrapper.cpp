@@ -112,18 +112,18 @@ struct PhiDataPolyRef {
 
     //returns N-th basis function in D-th component for input x
     template<typename T>
-    T getBasis(int D, int N, const T x) const {
+	T getBasis(int d, int n, const T x) const { //changed uppercase D to lowercase d since, it otherwise leads to shadowing of the type parameter D and fails with GCC copmiler.
         T ret = static_cast<T>(1);
 
-        int offset = m_offsets[D]; //offset for D-th axis
-        double xn = m_data->x[offset+N]; //get the x_N in D-th component
+        int offset = m_offsets[d]; //offset for d-th axis
+        double xn = m_data->x[offset+n]; //get the x_N in d-th component
 
         if (x == ret * xn) 
             return ret;
 
 
-        for (int i = 0; i < m_sizes[D]; i++) {
-            if (i != N) {
+        for (int i = 0; i < m_sizes[d]; i++) {
+            if (i != n) {
                 double xi = m_data->x[offset+i];
                 ret *= (x - xi) / (xn - xi);
             }

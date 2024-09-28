@@ -1,10 +1,17 @@
 // MyLibrary.h
 #pragma once
 
-#ifdef MATHLIBRARY_EXPORTS
-#define MYLIBRARY_API __declspec(dllexport)
+// Conditional definition for MYLIBRARY_API
+#ifdef _WIN32
+    // Windows: Use __declspec(dllimport) or __declspec(dllexport)
+    #ifdef MATHLIBRARY_EXPORTS
+        #define MYLIBRARY_API __declspec(dllexport)
+    #else
+        #define MYLIBRARY_API __declspec(dllimport)
+    #endif
 #else
-#define MYLIBRARY_API __declspec(dllimport)
+    // Linux: Empty definition for MYLIBRARY_API
+    #define MYLIBRARY_API
 #endif
 
 #ifndef ALGOIMWRAPPER_H

@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#ifdef _MSC_VER  // For Microsoft compilers
+#include <errno.h>  // errno_t is defined here
+#else  // For GCC or other compilers
+typedef int errno_t;  // Define errno_t as int for non-MSVC compilers
+#endif
+
 // For delegate transfer
 // Define the implementation of the phi function
 double phi_function(double* x) {
@@ -37,11 +43,19 @@ void outputQuadratureRuleAsVtpXML(QuadScheme q, const char* fn) {
     FILE* stream;
     errno_t err;
 
-    err = fopen_s(&stream, fn, "w");;
+#ifdef _MSC_VER  // Use fopen_s for Microsoft compilers
+    err = fopen_s(&stream, fn, "w");
     if (err != 0) {
-        printf("Error opening file.\n");
+        printf("Error opening file: %s\n", fn);
         return;
     }
+#else  // Use standard fopen for GCC or other compilers
+    stream = fopen(fn, "w");
+    if (stream == NULL) {
+        printf("Error opening file: %s\n", fn);
+        return;
+    }
+#endif
 
     fprintf(stream, "<?xml version=\"1.0\"?>\n");
     fprintf(stream, "<VTKFile type=\"PolyData\" version=\"0.1\" byte_order=\"LittleEndian\">\n");
