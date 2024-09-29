@@ -1,0 +1,2 @@
+The original algoim files are obtained from https://github.com/algoim/algoim.git at the 30.04.2024
+Commit hash: da1d81499608e1d499695d255f0233140b8c81e8

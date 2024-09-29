@@ -264,7 +264,7 @@ int main(int argc, char* argv[]) {
 
 }
 
-QuadScheme GetVolumeScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y)
+QuadScheme BoSSS_GetVolumeScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y)
 {
     quadType intType = Volume;
     PhiData myData;
@@ -279,7 +279,7 @@ QuadScheme GetVolumeScheme(const int dim, const int p, const int q, const int* s
     return AlgoimScheme;
 }
 
-QuadScheme GetSurfaceScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y)
+QuadScheme BoSSS_GetSurfaceScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y)
 {
     quadType intType = Surface;
     PhiData myData;

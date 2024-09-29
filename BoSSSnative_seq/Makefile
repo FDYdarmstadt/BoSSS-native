@@ -23,9 +23,13 @@ LIBINCLUDE :=$(INCLUDEDIR)/libpord_seq.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)
 
 # Compiler flags for Algoimwrapper (C++ files)
 CXXFLAGS := -std=c++17 -Wall -Wextra -g -fPIC \
-            -DADD_ -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -D_CONSOLE \
-            -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include# Compiler flags for C files
-CFLAGS := -Wall -Wextra -g -DLINUX -fPIC -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include
+            -fvisibility=default -DADD_ -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -D_CONSOLE \
+            -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include
+
+# Compiler flags for C files
+CFLAGS := -Wall -Wextra -g -DLINUX -fPIC -fvisibility=default \
+          -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include
+
 
 # Algoim libraries
 # ALGOIM_LIBS := -llapacke -llapack -lblas
