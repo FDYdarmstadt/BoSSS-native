@@ -43,7 +43,7 @@ extern "C" {
                                         // (e.g. for 2d: y[0] is for (x0[0], x1[0]) and y[1] is for (x0[1], x1[0] )
     } PhiData;
 
-    // Define the Phi struct using typedef
+    // Define quadrature scheme struct using typedef
     typedef struct {
         int dimension;                  // dimension of the space
         int size;                       // number of points/nodes
@@ -51,8 +51,18 @@ extern "C" {
         double* weights;                // size(weights) = size; weights of each node
     } QuadScheme;
 
+    // Define combo (surface + volume) quadrature scheme struct using typedef
+    typedef struct {
+        int dimension;                  // dimension of the space
+        int sizeSurf;                   // number of points/nodes in surface scheme
+        int sizeVol;                    // number of points/nodes in volume scheme
+        double* nodes;                  // size(nodes) = (sizeSurf + sizeVol) * dimension; array that stores coordinates of nodes in each axes. e.g. nodes[0]= 0th coordinate of 0.th node, nodes[1]= 1th coordinate of 0.th node
+        double* weights;                // size(weights) = sizeSurf + sizeVol; weights of each node
+    } QuadSchemeCombo;
+
     // Define enum
     typedef enum {
+        Combo,                          //surface + volume
         Surface,
         Volume
     } quadType;
@@ -63,6 +73,7 @@ extern "C" {
     MYLIBRARY_API QuadScheme call_quad_general_poly(Poly a, int q, quadType type);
     MYLIBRARY_API QuadScheme call_quad_multi_poly(Poly a, int p, int q, quadType type);
     MYLIBRARY_API QuadScheme call_quad_multi_poly_withData(PhiData a, int p, int q, quadType type);
+    MYLIBRARY_API QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData a, int p, int q, quadType type);
 #ifdef __cplusplus
 }
 #endif

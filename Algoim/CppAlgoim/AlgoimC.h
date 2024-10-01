@@ -8,3 +8,5 @@
 
 DLL_EXPORT QuadScheme BoSSS_GetVolumeScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y);
 DLL_EXPORT QuadScheme BoSSS_GetSurfaceScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y);
+DLL_EXPORT QuadSchemeCombo BoSSS_GetComboScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y);
+

@@ -26,7 +26,7 @@
     <ClCompile Include="Algoimwrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.c">
+    <ClCompile Include="AlgoimC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

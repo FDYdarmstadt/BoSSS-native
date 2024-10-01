@@ -181,7 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algoimwrapper.cpp" />
-    <ClCompile Include="main.c" />
+    <ClCompile Include="AlgoimC.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

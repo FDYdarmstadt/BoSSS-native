@@ -10,7 +10,7 @@ ALGOIM_SOURCE_DIR := ../Algoim/CppAlgoim/algoim/algoim
 
 # Source files
 WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
-ALGOIMWRAPPER_C_SOURCES := $(ALGOIMWRAPPER_DIR)/main.c # C source files
+ALGOIMWRAPPER_C_SOURCES := $(ALGOIMWRAPPER_DIR)/AlgoimC.c # C source files
 ALGOIMWRAPPER_CPP_SOURCES := $(ALGOIMWRAPPER_DIR)/Algoimwrapper.cpp # C++ source files
 TARGET := libBoSSSnative_seq.so
 

@@ -356,13 +356,55 @@ QuadScheme CastMultiPolQuadScheme(const std::vector<uvector<real, D + 1>> Scheme
     return ret;
 }
 
+//Takes the algoim quadrature rule and casts it into the double format for C interface
+template<int D>
+QuadSchemeCombo CastMultiPolQuadSchemeCombo(const std::tuple<std::vector<uvector<real, D + 1>>, std::vector<uvector<real, D + 1>>> SchemeTuple, double xmin, double xmax, quadType type) {
+    QuadSchemeCombo ret;
+    ret.dimension = D;
+
+    // Access the first and second elements
+    auto surfScheme = std::get<0>(SchemeTuple);               // first item (surf)
+    auto volScheme = std::get<1>(SchemeTuple);                // second item (phase0)
+
+    const int numNodesSurf = surfScheme.size();               // Get the number of nodes in the surface scheme
+    const int numNodesVol = volScheme.size();                 // Get the number of nodes in the volume scheme
+    ret.sizeSurf = numNodesSurf;
+	ret.sizeVol = numNodesVol;
+
+    const int numNodes = numNodesSurf + numNodesVol;          // Get the total number of nodes in the schemes
+
+    // Allocate memory for nodes and weights arrays inside QuadScheme struct
+    ret.nodes = new double[numNodes * D];
+    ret.weights = new double[numNodes];
+
+    // Calculate the scaling factor based on the quadType
+    const double scaleSurf = std::abs(pow(xmax - xmin, D - 1));
+    const double scaleVol =  std::abs(pow(xmax - xmin, D));
+
+    // Lambda to handle node processing
+    auto processNode = [&](const uvector<real, D + 1>& node, int index, double scale) {
+        for (int n = 0; n < D; n++) {
+            ret.nodes[index * D + n] = xmin + (xmax - xmin) * static_cast<double>(node(n));
+        }
+        ret.weights[index] = static_cast<double>(node(D)) * scale;
+        };
+
+    // Surface nodes
+    for (int k = 0; k < numNodesSurf; k++) {
+        processNode(surfScheme[k], k, scaleSurf);
+    }
+
+    // Volume nodes
+    for (int k = 0; k < numNodesVol; k++) {
+        processNode(volScheme[k], numNodesSurf + k, scaleVol);
+    }
+
+    return ret;
+}
+
 template<int D, typename F>
 std::vector<uvector<real, D + 1>> outputQuadSchemeSurface(const F& fphi, real xmin, real xmax, const uvector<int, D>& P, int q)
 {
-
-    //const uvector<int, D>&  P2 = fphi.degree();
-    //std::cout << "Degree (Org): " << P << "Degree (New): " << P2;
-
     // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
     xarray<real, D> phi(nullptr, P);
     algoim_spark_alloc(real, phi);
@@ -395,7 +437,6 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F& fphi, real xmi
     xarray<real, D> phi(nullptr, P);
     algoim_spark_alloc(real, phi);
 
-    //bernstein::bernsteinInterpolate<D>([&](const uvector<real, D>& x) { return fphi(xmin + x * (xmax - xmin)); }, phi);
     //scale the fphi function
     auto interpolated_fphi = [&](const uvector<real, D>& x) {
         uvector<real, D> modified_x = xmin + x * (xmax - xmin);
@@ -414,6 +455,39 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F& fphi, real xmi
         });
 
     return phase0;
+}
+
+template<int D, typename F>
+std::tuple<std::vector<uvector<real, D + 1>>, std::vector<uvector<real, D + 1>>> outputQuadSchemeCombo(const F& fphi, real xmin, real xmax, const uvector<int, D>& P, int q)
+{
+    // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
+    xarray<real, D> phi(nullptr, P);
+    algoim_spark_alloc(real, phi);
+
+    //scale the fphi function
+    auto interpolated_fphi = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi(modified_x);
+        };
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi, phi);
+
+    // Build quadrature hierarchy
+    ImplicitPolyQuadrature<D> ipquad(phi);
+
+    std::vector<uvector<real, D + 1>> phase0;
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi, x) > 0)
+                phase0.push_back(add_component(x, D, w));
+        });
+    std::vector<uvector<real, D + 1>> surf;
+    ipquad.integrate_surf(AutoMixed, q, [&](const uvector<real, D>& x, real w, const uvector<real, D>& wn)
+        {
+            surf.push_back(add_component(x, D, w));
+        });
+	
+    //return the tuple of both quadrature rules
+    return std::make_tuple(surf, phase0);
 }
 
 QuadScheme call_quad_general_poly(Poly poly, int q, quadType type) {
@@ -666,6 +740,61 @@ QuadScheme call_quad_multi_poly_volume(Poly poly, int p, int q) {
     }
 }
 
+/// <summary>
+/// Return both surface and volume quad rules
+/// </summary>
+/// <param name="phiData">level set data</param>
+/// <param name="p">number of points (level set degree + 1)</param>
+/// <param name="q">requested degree of quadrature</param>
+/// <returns></returns>
+QuadSchemeCombo call_quad_multi_poly_combo(PhiData phiData, int p, int q) {
+    //reference frame
+    double xmin = -1.0;
+    double xmax = 1.0;
+    switch (phiData.dimension) {
+    case 1: {
+        throw std::out_of_range("Surface integrals are supported only for N > 1");
+    }
+    case 2: {
+        PhiDataPolyRef<2> phi2(&phiData);
+        auto q2 = outputQuadSchemeCombo<2, PhiDataPolyRef<2>>(phi2, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<2>(q2, xmin, xmax, quadType::Volume);
+    }
+    case 3: {
+        PhiDataPolyRef<3> phi3(&phiData);
+        auto q3 = outputQuadSchemeCombo<3, PhiDataPolyRef<3>>(phi3, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<3>(q3, xmin, xmax, quadType::Volume);
+    }
+    case 4: {
+        PhiDataPolyRef<4> phi4(&phiData);
+        auto q4 = outputQuadSchemeCombo<4, PhiDataPolyRef<4>>(phi4, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<4>(q4, xmin, xmax, quadType::Volume);;
+    }
+    case 5: {
+        PhiDataPolyRef<5> phi5(&phiData);
+        auto q5 = outputQuadSchemeCombo<5, PhiDataPolyRef<5>>(phi5, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<5>(q5, xmin, xmax, quadType::Volume);
+    }
+    case 6: {
+        PhiDataPolyRef<6> phi6(&phiData);
+        auto q6 = outputQuadSchemeCombo<6, PhiDataPolyRef<6>>(phi6, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<6>(q6, xmin, xmax, quadType::Volume);
+    }
+    case 7: {
+        PhiDataPolyRef<7> phi7(&phiData);
+        auto q7 = outputQuadSchemeCombo<7, PhiDataPolyRef<7>>(phi7, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<7>(q7, xmin, xmax, quadType::Volume);
+    }
+    case 8: {
+        PhiDataPolyRef<8> phi8(&phiData);
+        auto q8 = outputQuadSchemeCombo<8, PhiDataPolyRef<8>>(phi8, xmin, xmax, p, q);
+        return CastMultiPolQuadSchemeCombo<8>(q8, xmin, xmax, quadType::Volume);
+    }
+    default:
+        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
+    }
+}
+
 QuadScheme call_quad_multi_poly(Poly poly, int p, int q, quadType type) {
 
     if (type == quadType::Surface)
@@ -684,6 +813,10 @@ QuadScheme call_quad_multi_poly_withData(PhiData PhiData, int p, int q, quadType
         return call_quad_multi_poly_volume(PhiData, p, q);
     else
         throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
+}
+
+QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData PhiData, int p, int q, quadType type) {
+        return call_quad_multi_poly_combo(PhiData, p, q);
 }
 
 int example_calculation(int a) {

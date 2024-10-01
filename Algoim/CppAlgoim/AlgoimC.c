@@ -4,11 +4,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#ifdef _MSC_VER  // For Microsoft compilers
-#include <errno.h>  // errno_t is defined here
-#else  // For GCC or other compilers
-typedef int errno_t;  // Define errno_t as int for non-MSVC compilers
-#endif
 
 // For delegate transfer
 // Define the implementation of the phi function
@@ -41,7 +36,7 @@ void outputQuadratureRuleAsVtpXML(QuadScheme q, const char* fn) {
     const double* weights = q.weights;
     size_t size = (size_t)(q.size);
     FILE* stream;
-    errno_t err;
+    int err;
 
 #ifdef _MSC_VER  // Use fopen_s for Microsoft compilers
     err = fopen_s(&stream, fn, "w");
@@ -94,8 +89,23 @@ void outputQuadratureRuleAsVtpXML(QuadScheme q, const char* fn) {
     fclose(stream);
 }
 
-//A hardcoded test for different calls
+// Helper function to print and calculate volume
+void printVolume(QuadScheme AlgoimScheme, bool printNodes, double* vol) {
+    for (int k = 0; k < AlgoimScheme.size; k++) {
+        if (printNodes) {
+            printf("x: ");
+            for (int dim = 0; dim < AlgoimScheme.dimension; dim++) {
+                printf("%lf ", AlgoimScheme.nodes[k * AlgoimScheme.dimension + dim]);
+            }
+            printf(" w: %lf \n", AlgoimScheme.weights[k]);
+        }
+        *vol += AlgoimScheme.weights[k];
+    }
+}
+
+// A hardcoded test for different calls
 int main(int argc, char* argv[]) {
+    printf("Performing an example calculation\n");
 	//example_calculation(1);
     bool printNodes = false;
     int q = 3;
@@ -104,12 +114,7 @@ int main(int argc, char* argv[]) {
     quadType intType = Volume;
     int* myNumbers = NULL;
     double* coefVal = NULL;
-    //myPoly.dimension = dim; // Example dimension value
-    //int myNumbers[] = { 0,0,2,0,0,2 };
-    //myPoly.exp = &myNumbers; // Assigning the pointer to exp
-    //double coefVal[] = { -1,1,4 }; // Example coefficient value
-    //myPoly.coef = &coefVal; // Assigning the pointer to coef
-    //myPoly.size = 3;
+
 
     //Example test cases
     if (dim == 2) {
@@ -140,8 +145,7 @@ int main(int argc, char* argv[]) {
 
         myPoly.coef = coefVal;
         myPoly.size = 3;
-    }
-    else {
+    } else if (dim ==3){
         myPoly.dimension = dim;
         myNumbers = (int*)malloc(12 * sizeof(int));
         if (myNumbers == NULL) {
@@ -176,24 +180,16 @@ int main(int argc, char* argv[]) {
 
         myPoly.coef = coefVal;
         myPoly.size = 4;
+    } else {
+        printf("Dimension is not supported");
+        return 1;
     }
 
     // Calling routine from 2015 Paper
     QuadScheme AlgoimScheme = call_quad_general_poly(myPoly,q, intType);
 
     double vol =0.0, vol1 = 0.0, vol2 = 0.0;
-    for (int k = 0; k < AlgoimScheme.size; k++) {
-        if (printNodes) {
-            printf("x: ");
-            for (int dim = 0; dim < AlgoimScheme.dimension; dim++) {
-                printf("%lf ", AlgoimScheme.nodes[k * AlgoimScheme.dimension + dim]);
-            }
-            printf(" w: %lf \n", AlgoimScheme.weights[k]);
-        }
-
-
-        vol += AlgoimScheme.weights[k];
-    }
+    printVolume(AlgoimScheme, printNodes, &vol);
     printf(" Volume: %lf \n", vol);
 
     outputQuadratureRuleAsVtpXML(AlgoimScheme,"algoim1.vtp");
@@ -201,19 +197,7 @@ int main(int argc, char* argv[]) {
 
     // Calling routine from 2022 Paper
     QuadScheme AlgoimScheme2 = call_quad_multi_poly(myPoly, q, q, intType);
-
-    for (int k = 0; k < AlgoimScheme2.size; k++) {
-        if (printNodes) {
-            printf("x: ");
-            for (int dim = 0; dim < AlgoimScheme2.dimension; dim++) {
-                printf("%lf ", AlgoimScheme2.nodes[k * AlgoimScheme2.dimension + dim]);
-            }
-            printf(" w: %lf \n", AlgoimScheme2.weights[k]);
-        }
-
-        vol1 += AlgoimScheme2.weights[k];
-    }
-
+    printVolume(AlgoimScheme, printNodes, &vol);
     printf(" Volume: %lf \n", vol1);
     outputQuadratureRuleAsVtpXML(AlgoimScheme2, "algoim2.vtp");
 
@@ -245,21 +229,13 @@ int main(int argc, char* argv[]) {
     myData.y = points_1dy;
 
     QuadScheme AlgoimScheme3 = call_quad_multi_poly_withData(myData, q, q, intType);
-
-    for (int k = 0; k < AlgoimScheme3.size; k++) {
-        if (printNodes) {
-            printf("x: ");
-            for (int dim = 0; dim < AlgoimScheme3.dimension; dim++) {
-                printf("%lf ", AlgoimScheme3.nodes[k * AlgoimScheme3.dimension + dim]);
-            }
-            printf(" w: %lf \n", AlgoimScheme3.weights[k]);
-        }
-        vol2 += AlgoimScheme3.weights[k];
-    }
-
+    printVolume(AlgoimScheme, printNodes, &vol);
     printf(" Volume: %lf \n", vol2);
     outputQuadratureRuleAsVtpXML(AlgoimScheme3, "algoim3.vtp");
 
+    // Freeing allocated memory
+    free(myPoly.exp);
+    free(myPoly.coef);
     return 0;
 
 }
@@ -291,5 +267,20 @@ QuadScheme BoSSS_GetSurfaceScheme(const int dim, const int p, const int q, const
     myData.y = y;
 
     QuadScheme AlgoimScheme = call_quad_multi_poly_withData(myData, p, q, intType);
+    return AlgoimScheme;
+}
+
+QuadSchemeCombo BoSSS_GetComboScheme(const int dim, const int p, const int q, const int* sizes, const double* x, const double* y)
+{
+    quadType intType = Combo;
+    PhiData myData;
+
+    // Assign values to PhiData
+    myData.dimension = dim;
+    myData.sizes = sizes;
+    myData.x = x;
+    myData.y = y;
+
+    QuadSchemeCombo AlgoimScheme = call_quad_multi_poly_withDataCombo(myData, p, q, intType);
     return AlgoimScheme;
 }
