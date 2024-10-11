@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <time.h>
 
 // For delegate transfer
 // Define the implementation of the phi function
@@ -105,18 +105,46 @@ void printVolume(QuadScheme AlgoimScheme, bool printNodes, double* vol) {
 
 // A hardcoded test for different calls
 int main(int argc, char* argv[]) {
-    printf("Performing an example calculation\n");
+    // Start the timer
+    clock_t start, end;
+    start = clock();
+
+    printf("      ___           ___           ___           ___           ___     \n");
+    printf("     /\\  \\         /\\  \\         /\\  \\         /\\  \\         /\\  \\    \n");
+    printf("    /::\\  \\       /::\\  \\       /::\\  \\       /::\\  \\       /::\\  \\   \n");
+    printf("   /:/\\:\\  \\     /:/\\:\\  \\     /:/\\ \\  \\     /:/\\ \\  \\     /:/\\ \\  \\  \n");
+    printf("  /::\\~\\:\\__\\   /:/  \\:\\  \\   _\\:\\~\\ \\  \\   _\\:\\~\\ \\  \\   _\\:\\~\\ \\  \\ \n");
+    printf(" /:/\\:\\ \\:|__| /:/__/ \\:\\__\\ /\\ \\:\\ \\ \\__\\ /\\ \\:\\ \\ \\__\\ /\\ \\:\\ \\ \\__\\\n");
+    printf(" \\:\\~\\:\\/:/  / \\:\\  \\ /:/  / \\:\\ \\:\\ \\/__/ \\:\\ \\:\\ \\/__/ \\:\\ \\:\\ \\/__/\n");
+    printf("  \\:\\ \\::/  /   \\:\\  /:/  /   \\:\\ \\:\\__\\    \\:\\ \\:\\__\\    \\:\\ \\:\\__\\  \n");
+    printf("   \\:\\/:/  /     \\:\\/:/  /     \\:\\/:/  /     \\:\\/:/  /     \\:\\/:/  /  \n");
+    printf("    \\::/__/       \\::/  /       \\::/  /       \\::/  /       \\::/  /   \n");
+    printf("     ~~            \\/__/         \\/__/         \\/__/         \\/__/    \n");
+    printf("                                                                      \n");
+    printf("Welcome to BoSSS - Algoim interface \n");
+    printf("Performing an example calculation ...\n \n");
+    printf("Ellipse with a=0.5 b=1, exact area is pi/2 (1.5707963267948966) \n");
+    printf(" \n");
+
 	//example_calculation(1);
     bool printNodes = false;
     int q = 3;
+    int p = 3; //number of points to describe polynomial
     Poly myPoly;
     int dim = 2;
     quadType intType = Volume;
     int* myNumbers = NULL;
     double* coefVal = NULL;
 
+    // Print parameters and their values
+    printf("Parameters and their values:\n");
+    printf("printNodes: %s\n", printNodes ? "true" : "false");
+    printf("Quadrature order: %d\n", q);
+    printf("Dim: %d\n", dim);
+    printf("integral Type: %s\n", intType == Volume ? "Volume" : "Surface");
+    printf("\n");
 
-    //Example test cases
+    printf("1) Calculating with routine from 2015 paper and passing a polynomial\n");
     if (dim == 2) {
         myPoly.dimension = dim;
         myNumbers = (int*)malloc(6 * sizeof(int));
@@ -194,48 +222,72 @@ int main(int argc, char* argv[]) {
 
     outputQuadratureRuleAsVtpXML(AlgoimScheme,"algoim1.vtp");
 
+    printf("\n");
+
 
     // Calling routine from 2022 Paper
-    QuadScheme AlgoimScheme2 = call_quad_multi_poly(myPoly, q, q, intType);
-    printVolume(AlgoimScheme, printNodes, &vol);
+    printf("2) Calculating with routine from 2022 paper and passing a polynomial\n");
+    for (int i = 0; i < myPoly.size; i++) {
+        coefVal[i] = -coefVal[i]; //level-set should be negatively manipulated
+    }
+    myPoly.coef = coefVal;
+
+    QuadScheme AlgoimScheme2 = call_quad_multi_poly(myPoly, p, q, intType);
+    printVolume(AlgoimScheme, printNodes, &vol1);
     printf(" Volume: %lf \n", vol1);
     outputQuadratureRuleAsVtpXML(AlgoimScheme2, "algoim2.vtp");
+    printf("\n");
 
     // Calling routine from 2022 Paper with Lagrange interpolation
+    printf("3) Calculating with routine from 2022 paper and passing data at Lagrange points\n");
     PhiData myData;
+
     const double points[9][2] = {
         {-1.0, -1.0}, {0.0, -1.0}, {1.0, -1.0},
         {-1.0, 0.0}, {0.0, 0.0}, {1.0, 0.0},
         {-1.0, 1.0}, {0.0, 1.0}, {1.0, 1.0}
     };
 
+    const double points_1dx_combined[6] = { -1.0, 0.0, 1.0, -1.0, 0.0, 1.0 }; // nodes in x + nodes in y (concatenated from of points array)
+
     const double points_1dy[9] = {
-        4.0, 3.0, 4.0,
-        0.0, -1.0, 0.0,
-        4.0, 3.0, 4.0
+    -4.0, -3.0, -4.0,
+    0.0, +1.0, 0.0,
+    -4.0, -3.0, -4.0
     };
 
-    const double* points_1dx = (double[]){ -1.0, 0.0, 1.0 };
-
-    const double* l[2] = { points_1dx, points_1dx };
+    const int sizes[2] = { 3, 3 };
 
     // Assign values to PhiData
     myData.dimension = 2;
-
-    const int sizes[2] = { 3, 3 };
     myData.sizes = sizes;
-
-    myData.x = l;
+    myData.x = points_1dx_combined;
     myData.y = points_1dy;
 
-    QuadScheme AlgoimScheme3 = call_quad_multi_poly_withData(myData, q, q, intType);
-    printVolume(AlgoimScheme, printNodes, &vol);
+    QuadScheme AlgoimScheme3 = call_quad_multi_poly_withData(myData, p, q, intType);
+
+    for (int i = 0; i < 1000; i++)
+    {
+        for (int k = 0; k < 20; k++) {
+            AlgoimScheme3 = call_quad_multi_poly_withData(myData, p, k, intType);
+        }
+    }
+
+    printVolume(AlgoimScheme, printNodes, &vol2);
     printf(" Volume: %lf \n", vol2);
     outputQuadratureRuleAsVtpXML(AlgoimScheme3, "algoim3.vtp");
 
     // Freeing allocated memory
     free(myPoly.exp);
     free(myPoly.coef);
+
+    // End the timer
+    end = clock();
+
+    // Calculate and print the elapsed time
+    double elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+    printf("\nElapsed time: %f seconds\n", elapsed_time);
+
     return 0;
 
 }
