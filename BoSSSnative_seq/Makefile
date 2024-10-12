@@ -5,8 +5,8 @@ SHELL := /bin/bash
 CURRENTDIRECTORY := $(BOSSSNATIVESEQ)
 
 # Algoim wrapper and source file locations
-ALGOIMWRAPPER_DIR := ../Algoim/CppAlgoim
-ALGOIM_SOURCE_DIR := ../Algoim/CppAlgoim/algoim/algoim
+ALGOIMWRAPPER_DIR := $(WORKINGDIR)/Algoim/CppAlgoim
+ALGOIM_SOURCE_DIR := $(WORKINGDIR)/Algoim/CppAlgoim/algoim/algoim
 
 # Source files
 WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
@@ -21,18 +21,15 @@ LIBINCLUDE :=$(INCLUDEDIR)/libpord_seq.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)
              $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a \
              $(INCLUDEDIR)/libtecio.a
 
-# Compiler flags for Algoimwrapper (C++ files)
-CXXFLAGS := -std=c++17 -Wall -Wextra -g -fPIC \
-            -fvisibility=default -DADD_ -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -D_CONSOLE \
-            -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include
 
-# Compiler flags for C files
-CFLAGS := -Wall -Wextra -g -DLINUX -fPIC -fvisibility=default \
-          -I$(ALGOIM_SOURCE_DIR) -I$(ALGOIMWRAPPER_DIR)/include
 
+# # Compiler flags for Algoimwrapper 
+PREPROCESSOR_DEFS := -DADD_ -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -D_CONSOLE
+CFLAGS := -fPIC -O3 $(PREPROCESSOR_DEFS)
+CXXFLAGS := -std=c++17 -I$(ALGOIM_SOURCE_DIR) -fPIC -O3 $(PREPROCESSOR_DEFS)
 
 # Algoim libraries
-# ALGOIM_LIBS := -llapacke -llapack -lblas
+# ALGOIM_LIBS := -llapacke -llapack -lblas (in case of other linking options)
 
 # Object files
 ALGOIMWRAPPER_C_OBJECTS := $(ALGOIMWRAPPER_C_SOURCES:.c=.o)
@@ -54,6 +51,12 @@ $(ALGOIMWRAPPER_C_OBJECTS): %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 	@printf "\e[34mDone!\e[0m\n"
 
+# Compile BoSSSnative_seq wrapper object files
+$(WRAPPER_OBJECTS): %.o: %.c
+	@printf "\e[34mCompiling $<...\e[0m\n"
+	$(CC) -fPIC -c $< -o $@
+	@printf "\e[34mDone!\e[0m\n\n"
+
 # Compile and link BoSSSnative_seq including Algoimwrapper
 $(TARGET): $(WRAPPER_OBJECTS) $(ALGOIMWRAPPER_C_OBJECTS) $(ALGOIMWRAPPER_CPP_OBJECTS)
 	@printf "\e[34mTrying to link libBoSSSnative_seq.so (including Algoimwrapper) ...\e[0m\n"
@@ -61,12 +64,6 @@ $(TARGET): $(WRAPPER_OBJECTS) $(ALGOIMWRAPPER_C_OBJECTS) $(ALGOIMWRAPPER_CPP_OBJ
 	       -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_seq.version \
 	       -lpthread -lm -ldl -lstdc++ -lgfortran -Wl,-rpath,'$$ORIGIN'/dependencies
 	@printf "\e[34mSuccess!\e[0m\n"
-
-# Compile BoSSSnative_seq wrapper object files
-%.o: %.c
-	@printf "\e[34mCompiling $<...\e[0m\n"
-	$(CC) -fPIC -c $< -o $@
-	@printf "\e[34mDone!\e[0m\n\n"
 
 # Clean the object files and the target
 clean:

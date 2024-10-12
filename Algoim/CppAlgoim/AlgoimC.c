@@ -266,16 +266,17 @@ int main(int argc, char* argv[]) {
 
     QuadScheme AlgoimScheme3 = call_quad_multi_poly_withData(myData, p, q, intType);
 
+    printVolume(AlgoimScheme, printNodes, &vol2);
+    printf(" Volume: %lf \n", vol2);
+    outputQuadratureRuleAsVtpXML(AlgoimScheme3, "algoim3.vtp");
+
+    printf("\nPerforming a performance study, calling routinefrom quadrature order 0 to 19, each with 1000 times)\n");
     for (int i = 0; i < 1000; i++)
     {
         for (int k = 0; k < 20; k++) {
             AlgoimScheme3 = call_quad_multi_poly_withData(myData, p, k, intType);
         }
     }
-
-    printVolume(AlgoimScheme, printNodes, &vol2);
-    printf(" Volume: %lf \n", vol2);
-    outputQuadratureRuleAsVtpXML(AlgoimScheme3, "algoim3.vtp");
 
     // Freeing allocated memory
     free(myPoly.exp);
@@ -286,7 +287,7 @@ int main(int argc, char* argv[]) {
 
     // Calculate and print the elapsed time
     double elapsed_time = ((double)(end - start)) / CLOCKS_PER_SEC;
-    printf("\nElapsed time: %f seconds\n", elapsed_time);
+    printf("\nTotal elapsed time: %f seconds\n", elapsed_time);
 
     return 0;
 

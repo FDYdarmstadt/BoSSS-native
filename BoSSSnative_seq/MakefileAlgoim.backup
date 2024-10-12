@@ -1,0 +1,60 @@
+CC := gcc
+CXX := g++
+SHELL := /bin/bash
+
+# Algoim wrapper and source file locations
+ALGOIMWRAPPER_DIR := ../Algoim/CppAlgoim
+ALGOIM_SOURCE_DIR := ../Algoim/CppAlgoim/algoim/algoim
+
+# Source and wrapper files
+WRAPPERS := $(wildcard $(ALGOIMWRAPPER_DIR)/*.c)
+CPP_SOURCES := $(wildcard $(ALGOIMWRAPPER_DIR)/Algoimwrapper.cpp) 
+TARGET := Algoimwrapper_exec
+
+# Add preprocessor definitions
+PREPROCESSOR_DEFS := -DADD_ -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -D_CONSOLE
+
+# Library includes
+LIBINCLUDE := $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_core.a \
+              $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a
+
+# Include directories
+
+# conservative
+# CFLAGS := -fPIC $(PREPROCESSOR_DEFS)
+# CXXFLAGS := -std=c++17 -I$(ALGOIM_SOURCE_DIR) -fPIC $(PREPROCESSOR_DEFS)
+
+# with native optimization (dependant on the cpu, may cause portability problems)
+# CFLAGS := -fPIC -O3 -march=native $(PREPROCESSOR_DEFS)
+# CXXFLAGS := -std=c++17 -I$(ALGOIM_SOURCE_DIR) -fPIC -O3 -march=native $(PREPROCESSOR_DEFS)
+
+# with optimization flag (significant increase in performance)
+CFLAGS := -fPIC -O3 $(PREPROCESSOR_DEFS)
+CXXFLAGS := -std=c++17 -I$(ALGOIM_SOURCE_DIR) -fPIC -O3 $(PREPROCESSOR_DEFS)
+
+all: $(TARGET)
+
+# Compile all functions from wrapper and source files into one dynamic library
+$(TARGET): $(patsubst %.c,%.o,$(WRAPPERS)) $(patsubst %.cpp,%.o,$(CPP_SOURCES))
+	printf "\e[34mTrying to link ...\e[0m\n"
+	$(CC) $^ -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group \
+	-lpthread -lm -ldl -lstdc++ -lgfortran -Wl,-rpath,'$$ORIGIN'/dependencies
+	printf "\e[34mSuccess!\e[0m\n"
+	
+# Compilation rule for C source files
+%.o: %.c
+	printf "\e[34mCompiling $< (C file)\e[0m\n"
+	$(CC) $(CFLAGS) -c $< -o $@
+	printf "\e[34mDone!\e[0m\n\n"
+
+# Compilation rule for C++ source files
+%.o: %.cpp
+	printf "\e[34mCompiling $< (C++ file)\e[0m\n"
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+	printf "\e[34mDone!\e[0m\n\n"
+
+clean:
+	cd "$(ALGOIMWRAPPER_DIR)"; \
+	rm -f *.o
+	cd "$(ALGOIM_SOURCE_DIR)"; \
+	rm -f *.o
