@@ -13,6 +13,43 @@
 
 using namespace algoim;
 
+// Given a set of quadrature points and weights, output them to an VTP XML file for visualisation
+// purposes, e.g., using ParaView
+template<int N>
+void outputQuadratureRuleAsVtpXMLc(std::vector<uvector<real, N + 1>>& q, std::string fn)
+{
+    //static_assert(N == 2 || N == 3, "outputQuadratureRuleAsVtpXML only supports 2D and 3D quadrature schemes");
+    std::ofstream stream(fn);
+    stream << "<?xml version=\"1.0\"?>\n";
+    stream << "<VTKFile type=\"PolyData\" version=\"0.1\" byte_order=\"LittleEndian\">\n";
+    stream << "<PolyData>\n";
+    stream << "<Piece NumberOfPoints=\"" << q.size() << "\" NumberOfVerts=\"" << q.size() << "\" NumberOfLines=\"0\" NumberOfStrips=\"0\" NumberOfPolys=\"0\">\n";
+    stream << "<Points>\n";
+    stream << "  <DataArray type=\"Float32\" Name=\"Points\" NumberOfComponents=\"3\" format=\"ascii\">";
+    for (const auto& pt : q)
+        stream << pt(0) << ' ' << pt(1) << ' ' << (N == 3 ? pt(2) : 0.0) << ' ';
+    stream << "</DataArray>\n";
+    stream << "</Points>\n";
+    stream << "<Verts>\n";
+    stream << "  <DataArray type=\"Int32\" Name=\"connectivity\" format=\"ascii\">";
+    for (size_t i = 0; i < q.size(); ++i)
+        stream << i << ' ';
+    stream << "</DataArray>\n";
+    stream << "  <DataArray type=\"Int32\" Name=\"offsets\" format=\"ascii\">";
+    for (size_t i = 1; i <= q.size(); ++i)
+        stream << i << ' ';
+    stream << "</DataArray>\n";
+    stream << "</Verts>\n";
+    stream << "<PointData Scalars=\"w\">\n";
+    stream << "  <DataArray type=\"Float32\" Name=\"w\" NumberOfComponents=\"1\" format=\"ascii\">";
+    for (const auto& pt : q)
+        stream << pt(N) << ' ';
+    stream << "</DataArray>\n";
+    stream << "</PointData>\n";
+    stream << "</Piece>\n";
+    stream << "</PolyData>\n";
+    stream << "</VTKFile>\n";
+}
 
 template<int D>
 struct Ellipsoid
@@ -35,7 +72,6 @@ struct Ellipsoid
             return uvector<T, D>(2.0 * x(0), 8.0 * x(1), 18.0 * x(2));
     }
 };
-
 
 template<int D>
 struct PhiDataPolyRef {
@@ -112,7 +148,7 @@ struct PhiDataPolyRef {
 
     //returns N-th basis function in D-th component for input x
     template<typename T>
-	T getBasis(int d, int n, const T x) const { //changed uppercase D to lowercase d since, it otherwise leads to shadowing of the type parameter D and fails with GCC copmiler.
+	T getBasis(int d, int n, const T x) const {
         T ret = static_cast<T>(1);
 
         int offset = m_offsets[d]; //offset for d-th axis
@@ -295,7 +331,6 @@ struct PhiPolyRef {
     }
 };
 
-
 template<int D>
 QuadScheme CastGeneralQuadScheme(const QuadratureRule<D>& Scheme) {
     QuadScheme ret;
@@ -430,6 +465,40 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeSurface(const F& fphi, real xm
     return surf;
 }
 
+template<int D, typename F1, typename F2>
+std::vector<uvector<real, D + 1>> outputQuadSchemeSurface(const F1& fphi1, const F2& fphi2, real xmin, real xmax, const uvector<int, D>& P1, const uvector<int, D>& P2, int q)
+{
+    // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
+    xarray<real, D> phi1(nullptr, P1), phi2(nullptr, P2);
+    algoim_spark_alloc(real, phi1, phi2);
+    //scale the fphi functions
+    auto interpolated_fphi1 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi1(modified_x);
+        };
+    auto interpolated_fphi2 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi2(modified_x);
+        };
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi1, phi1);
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi2, phi2);
+
+    // Build quadrature hierarchy
+    ImplicitPolyQuadrature<D> ipquad(phi1, phi2);
+
+    // Compute quadrature scheme and record the nodes & weights; one could examine the signs
+    // of phi1 and phi2 in order to separate the nodes into different components, but for
+    // simplicity they are agglomerated
+    std::vector<uvector<real, D + 1>> surf;
+    ipquad.integrate_surf(AutoMixed, q, [&](const uvector<real, D>& x, real w, const uvector<real, D>& wn)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) >= 0 && bernstein::evalBernsteinPoly(phi2, x) >= 0)
+                surf.push_back(add_component(x, D, w));
+        });
+    outputQuadratureRuleAsVtpXMLc<D>(surf, "ex-surf2.vtp");
+    return surf;
+}
+
 template<int D, typename F>
 std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F& fphi, real xmin, real xmax, const uvector<int, D>& P, int q)
 {
@@ -455,6 +524,40 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F& fphi, real xmi
         });
 
     return phase0;
+}
+
+template<int D, typename F1, typename F2>
+std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F1& fphi1, const F2& fphi2, real xmin, real xmax, const uvector<int, D>& P1, const uvector<int, D>& P2, int q)
+{
+    // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
+    xarray<real, D> phi1(nullptr, P1), phi2(nullptr, P2);
+    algoim_spark_alloc(real, phi1, phi2);
+    //scale the fphi functions
+    auto interpolated_fphi1 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi1(modified_x);
+        };
+    auto interpolated_fphi2 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi2(modified_x);
+        };
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi1, phi1);
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi2, phi2);
+
+    // Build quadrature hierarchy
+    ImplicitPolyQuadrature<D> ipquad(phi1, phi2);
+
+    // Compute quadrature scheme and record the nodes & weights; one could examine the signs
+    // of phi1 and phi2 in order to separate the nodes into different components, but for
+    // simplicity they are agglomerated
+    std::vector<uvector<real, D + 1>> vol;
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) > 0 && bernstein::evalBernsteinPoly(phi2, x) > 0)
+            vol.push_back(add_component(x, D, w));
+        });
+    outputQuadratureRuleAsVtpXMLc<D>(vol, "ex-vol.vtp");
+    return vol;
 }
 
 template<int D, typename F>
@@ -488,6 +591,45 @@ std::tuple<std::vector<uvector<real, D + 1>>, std::vector<uvector<real, D + 1>>>
 	
     //return the tuple of both quadrature rules
     return std::make_tuple(surf, phase0);
+}
+
+template<int D, typename F1, typename F2>
+std::tuple<std::vector<uvector<real, D + 1>>, std::vector<uvector<real, D + 1>>> outputQuadSchemeCombo(const F1& fphi1, const F2& fphi2, real xmin, real xmax, const uvector<int, D>& P1, const uvector<int, D>& P2, int q)
+{
+    // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
+    xarray<real, D> phi1(nullptr, P1), phi2(nullptr, P2);
+    algoim_spark_alloc(real, phi1, phi2);
+    //scale the fphi functions
+    auto interpolated_fphi1 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi1(modified_x);
+        };
+    auto interpolated_fphi2 = [&](const uvector<real, D>& x) {
+        uvector<real, D> modified_x = xmin + x * (xmax - xmin);
+        return fphi2(modified_x);
+        };
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi1, phi1);
+    bernstein::bernsteinInterpolate<D>(interpolated_fphi2, phi2);
+
+    // Build quadrature hierarchy
+    ImplicitPolyQuadrature<D> ipquad(phi1, phi2);
+
+    // Compute quadrature scheme and record the nodes & weights; one could examine the signs
+    // of phi1 and phi2 in order to separate the nodes into different components, but for
+    // simplicity they are agglomerated
+    std::vector<uvector<real, D + 1>> vol, surf;
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) > 0 && bernstein::evalBernsteinPoly(phi2, x) > 0)
+                vol.push_back(add_component(x, D, w));
+        });
+    ipquad.integrate_surf(AutoMixed, q, [&](const uvector<real, D>& x, real w, const uvector<real, D>& wn)
+        {
+            surf.push_back(add_component(x, D, w));
+        });
+
+    //return the tuple of both quadrature rules
+    return std::make_tuple(surf, vol);
 }
 
 QuadScheme call_quad_general_poly(Poly poly, int q, quadType type) {
@@ -541,6 +683,8 @@ QuadScheme call_quad_general_poly(Poly poly, int q, quadType type) {
     }
 
 }
+
+// #region Functions using explicit polynomials
 QuadScheme call_quad_multi_poly_surface(Poly poly, int p, int q) {
     //reference frame
     double xmin = -1.0;
@@ -548,7 +692,7 @@ QuadScheme call_quad_multi_poly_surface(Poly poly, int p, int q) {
     //int degreeOfPoly = poly
     switch (poly.dimension) {
     case 1: {
-        throw std::out_of_range("Surface integrals are supported only for N > 1");
+        throw std::out_of_range("Surface integrals are supported only for D > 1");
     }
     case 2: {
         PhiPolyRef<2> phi2(&poly);
@@ -590,13 +734,75 @@ QuadScheme call_quad_multi_poly_surface(Poly poly, int p, int q) {
     }
 }
 
+QuadScheme call_quad_multi_poly_volume(Poly poly, int p, int q) {
+    //reference frame
+    double xmin = -1.0;
+    double xmax = 1.0;
+    switch (poly.dimension) {
+    case 1: {
+        PhiPolyRef<1> phi1(&poly);
+        auto q1 = outputQuadSchemeVolume<1, PhiPolyRef<1>>(phi1, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<1>(q1, xmin, xmax, quadType::Volume);
+    }
+    case 2: {
+        PhiPolyRef<2> phi2(&poly);
+        auto q2 = outputQuadSchemeVolume<2, PhiPolyRef<2>>(phi2, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<2>(q2, xmin, xmax, quadType::Volume);
+    }
+    case 3: {
+        PhiPolyRef<3> phi3(&poly);
+        auto q3 = outputQuadSchemeVolume<3, PhiPolyRef<3>>(phi3, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<3>(q3, xmin, xmax, quadType::Volume);
+    }
+    case 4: {
+        PhiPolyRef<4> phi4(&poly);
+        auto q4 = outputQuadSchemeVolume<4, PhiPolyRef<4>>(phi4, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<4>(q4, xmin, xmax, quadType::Volume);;
+    }
+    case 5: {
+        PhiPolyRef<5> phi5(&poly);
+        auto q5 = outputQuadSchemeVolume<5, PhiPolyRef<5>>(phi5, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<5>(q5, xmin, xmax, quadType::Volume);
+    }
+    case 6: {
+        PhiPolyRef<6> phi6(&poly);
+        auto q6 = outputQuadSchemeVolume<6, PhiPolyRef<6>>(phi6, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<6>(q6, xmin, xmax, quadType::Volume);
+    }
+    case 7: {
+        PhiPolyRef<7> phi7(&poly);
+        auto q7 = outputQuadSchemeVolume<7, PhiPolyRef<7>>(phi7, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<7>(q7, xmin, xmax, quadType::Volume);
+    }
+    case 8: {
+        PhiPolyRef<8> phi8(&poly);
+        auto q8 = outputQuadSchemeVolume<8, PhiPolyRef<8>>(phi8, xmin, xmax, p, q);
+        return CastMultiPolQuadScheme<8>(q8, xmin, xmax, quadType::Volume);
+    }
+    default:
+        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
+    }
+}
+
+QuadScheme call_quad_multi_poly(Poly poly, int p, int q, quadType type) {
+
+    if (type == quadType::Surface)
+        return call_quad_multi_poly_surface(poly, p, q);
+    else if (type == quadType::Volume)
+        return call_quad_multi_poly_volume(poly, p, q);
+    else
+        throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
+}
+// #endregion
+
+// #region Functions using data points to create Lagrange polynomial interpolation
 QuadScheme call_quad_multi_poly_surface(PhiData phiData, int p, int q) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
     switch (phiData.dimension) {
     case 1: {
-        throw std::out_of_range("Surface integrals are supported only for N > 1");
+        throw std::out_of_range("Surface integrals are supported only for D > 1");
     }
     case 2: {
 
@@ -689,55 +895,14 @@ QuadScheme call_quad_multi_poly_volume(PhiData phiData, int p, int q) {
     }
 }
 
+QuadScheme call_quad_multi_poly_withData(PhiData PhiData, int p, int q, quadType type) {
 
-QuadScheme call_quad_multi_poly_volume(Poly poly, int p, int q) {
-    //reference frame
-    double xmin = -1.0;
-    double xmax = 1.0;
-    switch (poly.dimension) {
-    case 1: {
-        PhiPolyRef<1> phi1(&poly);
-        auto q1 = outputQuadSchemeVolume<1, PhiPolyRef<1>>(phi1, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<1>(q1, xmin, xmax, quadType::Volume);
-    }
-    case 2: {
-        PhiPolyRef<2> phi2(&poly);
-        auto q2 = outputQuadSchemeVolume<2, PhiPolyRef<2>>(phi2, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<2>(q2, xmin, xmax, quadType::Volume);
-    }
-    case 3: {
-        PhiPolyRef<3> phi3(&poly);
-        auto q3 = outputQuadSchemeVolume<3, PhiPolyRef<3>>(phi3, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<3>(q3, xmin, xmax, quadType::Volume);
-    }
-    case 4: {
-        PhiPolyRef<4> phi4(&poly);
-        auto q4 = outputQuadSchemeVolume<4, PhiPolyRef<4>>(phi4, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<4>(q4, xmin, xmax, quadType::Volume);;
-    }
-    case 5: {
-        PhiPolyRef<5> phi5(&poly);
-        auto q5 = outputQuadSchemeVolume<5, PhiPolyRef<5>>(phi5, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<5>(q5, xmin, xmax, quadType::Volume);
-    }
-    case 6: {
-        PhiPolyRef<6> phi6(&poly);
-        auto q6 = outputQuadSchemeVolume<6, PhiPolyRef<6>>(phi6, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<6>(q6, xmin, xmax, quadType::Volume);
-    }
-    case 7: {
-        PhiPolyRef<7> phi7(&poly);
-        auto q7 = outputQuadSchemeVolume<7, PhiPolyRef<7>>(phi7, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<7>(q7, xmin, xmax, quadType::Volume);
-    }
-    case 8: {
-        PhiPolyRef<8> phi8(&poly);
-        auto q8 = outputQuadSchemeVolume<8, PhiPolyRef<8>>(phi8, xmin, xmax, p, q);
-        return CastMultiPolQuadScheme<8>(q8, xmin, xmax, quadType::Volume);
-    }
-    default:
-        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
-    }
+    if (type == quadType::Surface)
+        return call_quad_multi_poly_surface(PhiData, p, q);
+    else if (type == quadType::Volume)
+        return call_quad_multi_poly_volume(PhiData, p, q);
+    else
+        throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
 }
 
 /// <summary>
@@ -795,29 +960,226 @@ QuadSchemeCombo call_quad_multi_poly_combo(PhiData phiData, int p, int q) {
     }
 }
 
-QuadScheme call_quad_multi_poly(Poly poly, int p, int q, quadType type) {
-
-    if (type == quadType::Surface)
-        return call_quad_multi_poly_surface(poly, p, q);
-    else if (type == quadType::Volume)
-        return call_quad_multi_poly_volume(poly, p, q);
-    else
-        throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
-}
-
-QuadScheme call_quad_multi_poly_withData(PhiData PhiData, int p, int q, quadType type) {
-
-    if (type == quadType::Surface)
-        return call_quad_multi_poly_surface(PhiData, p, q);
-    else if (type == quadType::Volume)
-        return call_quad_multi_poly_volume(PhiData, p, q);
-    else
-        throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
-}
-
 QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData PhiData, int p, int q, quadType type) {
-        return call_quad_multi_poly_combo(PhiData, p, q);
+    return call_quad_multi_poly_combo(PhiData, p, q);
 }
+
+
+
+// #endregion
+
+
+// #region Functions using data points to create Lagrange polynomial interpolation for two level sets (double cut cells)
+QuadScheme call_quad_multi_poly_surfaceDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+    //reference frame
+    double xmin = -1.0;
+    double xmax = 1.0;
+    if (phiDataA.dimension != phiDataB.dimension)
+        throw std::exception("The level sets should have the same dimension");
+
+    switch (phiDataA.dimension) {
+    case 1: {
+        throw std::out_of_range("Surface integrals are supported only for D > 1");
+    }
+    case 2: {
+
+        PhiDataPolyRef<2> phi2A(&phiDataA);
+        PhiDataPolyRef<2> phi2B(&phiDataB);
+
+        auto q2 = outputQuadSchemeSurface<2, PhiDataPolyRef<2>>(phi2A, phi2B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<2>(q2, xmin, xmax, quadType::Surface);
+    }
+    case 3: {
+        PhiDataPolyRef<3> phi3A(&phiDataA);
+        PhiDataPolyRef<3> phi3B(&phiDataB);
+
+        auto q3 = outputQuadSchemeSurface<3, PhiDataPolyRef<3>>(phi3A, phi3B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<3>(q3, xmin, xmax, quadType::Surface);
+    }
+    case 4: {
+        PhiDataPolyRef<4> phi4A(&phiDataA);
+        PhiDataPolyRef<4> phi4B(&phiDataB);
+
+        auto q4 = outputQuadSchemeSurface<4, PhiDataPolyRef<4>>(phi4A, phi4B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<4>(q4, xmin, xmax, quadType::Surface);
+    }
+    case 5: {
+        PhiDataPolyRef<5> phi5A(&phiDataA);
+        PhiDataPolyRef<5> phi5B(&phiDataB);
+
+        auto q5 = outputQuadSchemeSurface<5, PhiDataPolyRef<5>>(phi5A, phi5B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<5>(q5, xmin, xmax, quadType::Surface);
+    }
+    case 6: {
+        PhiDataPolyRef<6> phi6A(&phiDataA);
+        PhiDataPolyRef<6> phi6B(&phiDataB);
+
+        auto q6 = outputQuadSchemeSurface<6, PhiDataPolyRef<6>>(phi6A, phi6B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<6>(q6, xmin, xmax, quadType::Surface);
+    }
+    case 7: {
+        PhiDataPolyRef<7> phi7A(&phiDataA);
+        PhiDataPolyRef<7> phi7B(&phiDataB);
+
+        auto q7 = outputQuadSchemeSurface<7, PhiDataPolyRef<7>>(phi7A, phi7B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<7>(q7, xmin, xmax, quadType::Surface);
+    }
+    case 8: {
+        PhiDataPolyRef<8> phi8A(&phiDataA);
+        PhiDataPolyRef<8> phi8B(&phiDataB);
+
+        auto q8 = outputQuadSchemeSurface<8, PhiDataPolyRef<8>>(phi8A, phi8B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<8>(q8, xmin, xmax, quadType::Surface);
+    }
+    default:
+        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
+    }
+}
+
+QuadScheme call_quad_multi_poly_volumeDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+    //reference frame
+    double xmin = -1.0;
+    double xmax = 1.0;
+
+    switch (phiDataA.dimension) {
+    case 1: {
+        PhiDataPolyRef<1> phi1A(&phiDataA);
+        PhiDataPolyRef<1> phi1B(&phiDataB);
+
+        auto q1 = outputQuadSchemeVolume<1, PhiDataPolyRef<1>>(phi1A, phi1B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<1>(q1, xmin, xmax, quadType::Volume);
+    }
+    case 2: {
+        PhiDataPolyRef<2> phi2A(&phiDataA);
+        PhiDataPolyRef<2> phi2B(&phiDataB);
+
+        auto q2 = outputQuadSchemeVolume<2, PhiDataPolyRef<2>>(phi2A, phi2B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<2>(q2, xmin, xmax, quadType::Volume);
+    }
+    case 3: {
+        PhiDataPolyRef<3> phi3A(&phiDataA);
+        PhiDataPolyRef<3> phi3B(&phiDataB);
+
+        auto q3 = outputQuadSchemeVolume<3, PhiDataPolyRef<3>>(phi3A, phi3B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<3>(q3, xmin, xmax, quadType::Volume);
+    }
+    case 4: {
+        PhiDataPolyRef<4> phi4A(&phiDataA);
+        PhiDataPolyRef<4> phi4B(&phiDataB);
+
+        auto q4 = outputQuadSchemeVolume<4, PhiDataPolyRef<4>>(phi4A, phi4B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<4>(q4, xmin, xmax, quadType::Volume);
+    }
+    case 5: {
+        PhiDataPolyRef<5> phi5A(&phiDataA);
+        PhiDataPolyRef<5> phi5B(&phiDataB);
+
+        auto q5 = outputQuadSchemeVolume<5, PhiDataPolyRef<5>>(phi5A, phi5B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<5>(q5, xmin, xmax, quadType::Volume);
+    }
+    case 6: {
+        PhiDataPolyRef<6> phi6A(&phiDataA);
+        PhiDataPolyRef<6> phi6B(&phiDataB);
+
+        auto q6 = outputQuadSchemeVolume<6, PhiDataPolyRef<6>>(phi6A, phi6B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<6>(q6, xmin, xmax, quadType::Volume);
+    }
+    case 7: {
+        PhiDataPolyRef<7> phi7A(&phiDataA);
+        PhiDataPolyRef<7> phi7B(&phiDataB);
+
+        auto q7 = outputQuadSchemeVolume<7, PhiDataPolyRef<7>>(phi7A, phi7B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<7>(q7, xmin, xmax, quadType::Volume);
+    }
+    case 8: {
+        PhiDataPolyRef<8> phi8A(&phiDataA);
+        PhiDataPolyRef<8> phi8B(&phiDataB);
+
+        auto q8 = outputQuadSchemeVolume<8, PhiDataPolyRef<8>>(phi8A, phi8B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadScheme<8>(q8, xmin, xmax, quadType::Volume);
+    }
+    default:
+        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
+    }
+}
+
+QuadScheme call_quad_multi_poly_withDataDouble(PhiData PhiDataA, PhiData PhiDataB, int pA, int pB, int q, quadType type) {
+
+    if (type == quadType::Surface)
+        return call_quad_multi_poly_surfaceDouble(PhiDataA, PhiDataB, pA, pB, q);
+    else if (type == quadType::Volume)
+        return call_quad_multi_poly_volumeDouble(PhiDataA, PhiDataB, pA, pB, q);
+    else
+        throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
+}
+
+QuadSchemeCombo call_quad_multi_poly_withDataComboDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q, quadType type) {
+    //reference frame
+    double xmin = -1.0;
+    double xmax = 1.0;
+    if (phiDataA.dimension != phiDataB.dimension)
+        throw std::exception("The level sets should have the same dimension");
+
+    switch (phiDataA.dimension) {
+    case 1: {
+        throw std::out_of_range("Surface integrals are supported only for D > 1");
+    }
+    case 2: {
+
+        PhiDataPolyRef<2> phi2A(&phiDataA);
+        PhiDataPolyRef<2> phi2B(&phiDataB);
+
+        auto q2 = outputQuadSchemeCombo<2, PhiDataPolyRef<2>>(phi2A, phi2B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<2>(q2, xmin, xmax, quadType::Surface);
+    }
+    case 3: {
+        PhiDataPolyRef<3> phi3A(&phiDataA);
+        PhiDataPolyRef<3> phi3B(&phiDataB);
+
+        auto q3 = outputQuadSchemeCombo<3, PhiDataPolyRef<3>>(phi3A, phi3B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<3>(q3, xmin, xmax, quadType::Surface);
+    }
+    case 4: {
+        PhiDataPolyRef<4> phi4A(&phiDataA);
+        PhiDataPolyRef<4> phi4B(&phiDataB);
+
+        auto q4 = outputQuadSchemeCombo<4, PhiDataPolyRef<4>>(phi4A, phi4B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<4>(q4, xmin, xmax, quadType::Surface);
+    }
+    case 5: {
+        PhiDataPolyRef<5> phi5A(&phiDataA);
+        PhiDataPolyRef<5> phi5B(&phiDataB);
+
+        auto q5 = outputQuadSchemeCombo<5, PhiDataPolyRef<5>>(phi5A, phi5B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<5>(q5, xmin, xmax, quadType::Surface);
+    }
+    case 6: {
+        PhiDataPolyRef<6> phi6A(&phiDataA);
+        PhiDataPolyRef<6> phi6B(&phiDataB);
+
+        auto q6 = outputQuadSchemeCombo<6, PhiDataPolyRef<6>>(phi6A, phi6B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<6>(q6, xmin, xmax, quadType::Surface);
+    }
+    case 7: {
+        PhiDataPolyRef<7> phi7A(&phiDataA);
+        PhiDataPolyRef<7> phi7B(&phiDataB);
+
+        auto q7 = outputQuadSchemeCombo<7, PhiDataPolyRef<7>>(phi7A, phi7B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<7>(q7, xmin, xmax, quadType::Surface);
+    }
+    case 8: {
+        PhiDataPolyRef<8> phi8A(&phiDataA);
+        PhiDataPolyRef<8> phi8B(&phiDataB);
+
+        auto q8 = outputQuadSchemeCombo<8, PhiDataPolyRef<8>>(phi8A, phi8B, xmin, xmax, pA, pB, q);
+        return CastMultiPolQuadSchemeCombo<8>(q8, xmin, xmax, quadType::Surface);
+    }
+    default:
+        throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
+    }
+}
+// #endregion
+
 
 int example_calculation(int a) {
 	printf("Hello world");
@@ -839,6 +1201,34 @@ int example_calculation(int a) {
         double area = q([](const auto& x) { return 1.0; });
         std::cout << "  computed area = " << area << "\n";
         std::cout << "    (exact area = 1.5707963267948966)\n\n";
+    }
+
+    // Visusalisation of a 2D implicitly-defined domain involving the intersection of two polynomials; this example
+// corresponds to the top-left example of Figure 15, https://doi.org/10.1016/j.jcp.2021.110720
+    {
+        auto phi0 = [](const uvector<real, 2>& xx)
+            {
+                real x = xx(0) * 2 - 1;
+                real y = xx(1) * 2 - 1;
+                return 0.014836540349115947 + 0.7022484024095262 * y + 0.09974561176434385 * y * y +
+                    x * (0.6863910464417281 + 0.03805619999999999 * y - 0.09440658332756446 * y * y) +
+                    x * x * (0.19266932968830816 - 0.2325190091204104 * y + 0.2957473125000001 * y * y);
+            };
+        auto phi1 = [](const uvector<real, 2>& xx)
+            {
+                real x = xx(0) * 2 - 1;
+                real y = xx(1) * 2 - 1;
+                return -0.18792528379702625 + 0.6713882473904913 * y + 0.3778666084723582 * y * y +
+                    x * x * (-0.14480813208127946 + 0.0897755603159206 * y - 0.141199875 * y * y) +
+                    x * (-0.6169311810674598 - 0.19449299999999994 * y - 0.005459163675646665 * y * y);
+            };
+        outputQuadSchemeVolume<2>(phi0, phi1, 0.0, 1.0, 3, 3, 3);
+        outputQuadSchemeSurface<2>(phi0, phi1, 0.0, 1.0, 3, 3, 3);
+
+        std::cout << "\n\nQuadrature visualisation of a 2D implicitly-defined domain involving the\n";
+        std::cout << "intersection of two polynomials, corresponding to the top-left example of Figure 15,\n";
+        std::cout << "https://doi.org/10.1016/j.jcp.2021.110720, written to exampleC-xxxx.vtp files\n";
+        std::cout << "(XML VTP file format).\n";
     }
 
 	return 0;

@@ -73,7 +73,10 @@ extern "C" {
     MYLIBRARY_API QuadScheme call_quad_general_poly(Poly a, int q, quadType type);
     MYLIBRARY_API QuadScheme call_quad_multi_poly(Poly a, int p, int q, quadType type);
     MYLIBRARY_API QuadScheme call_quad_multi_poly_withData(PhiData a, int p, int q, quadType type);
+    MYLIBRARY_API QuadScheme call_quad_multi_poly_withDataDouble(PhiData a, PhiData b, int pA, int pB, int q, quadType type);
     MYLIBRARY_API QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData a, int p, int q, quadType type);
+    MYLIBRARY_API QuadSchemeCombo call_quad_multi_poly_withDataComboDouble(PhiData a, PhiData b, int pA, int pB, int q, quadType type);
+
 #ifdef __cplusplus
 }
 #endif
