@@ -105,6 +105,11 @@ void printVolume(QuadScheme AlgoimScheme, bool printNodes, double* vol) {
 
 // A hardcoded test for different calls
 int main(int argc, char* argv[]) {
+
+    example_calculation(1);
+
+    return 0;
+
     // Start the timer
     clock_t start, end;
     start = clock();
@@ -335,5 +340,25 @@ QuadSchemeCombo BoSSS_GetComboScheme(const int dim, const int p, const int q, co
     myData.y = y;
 
     QuadSchemeCombo AlgoimScheme = call_quad_multi_poly_withDataCombo(myData, p, q, intType);
+    return AlgoimScheme;
+}
+
+QuadScheme BoSSS_GetVolumeSchemeDouble(const int dim, const int p1, const int p2, const int q, const int* sizes1, const int* sizes2, const double* x1, const double* x2, const double* y1, const double* y2)
+{
+    quadType intType = Volume;
+    PhiData myDataA, myDataB;
+
+    // Assign values to PhiData
+    myDataA.dimension = dim;
+    myDataA.sizes = sizes1;
+    myDataA.x = x1;
+    myDataA.y = y1;
+
+    myDataB.dimension = dim;
+    myDataB.sizes = sizes2;
+    myDataB.x = x2;
+    myDataB.y = y2;
+
+    QuadScheme AlgoimScheme = call_quad_multi_poly_withDataDouble(myDataA, myDataB, p1, p2, q, intType);
     return AlgoimScheme;
 }
