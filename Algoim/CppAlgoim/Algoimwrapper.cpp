@@ -963,14 +963,11 @@ QuadSchemeCombo call_quad_multi_poly_combo(PhiData phiData, int p, int q) {
 QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData PhiData, int p, int q, quadType type) {
     return call_quad_multi_poly_combo(PhiData, p, q);
 }
-
-
-
 // #endregion
 
 
 // #region Functions using data points to create Lagrange polynomial interpolation for two level sets (double cut cells)
-QuadScheme call_quad_multi_poly_surfaceDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+QuadScheme call_quad_multi_poly_surfaceTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
@@ -1036,7 +1033,7 @@ QuadScheme call_quad_multi_poly_surfaceDouble(PhiData phiDataA, PhiData phiDataB
     }
 }
 
-QuadScheme call_quad_multi_poly_volumeDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+QuadScheme call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
@@ -1103,17 +1100,17 @@ QuadScheme call_quad_multi_poly_volumeDouble(PhiData phiDataA, PhiData phiDataB,
     }
 }
 
-QuadScheme call_quad_multi_poly_withDataDouble(PhiData PhiDataA, PhiData PhiDataB, int pA, int pB, int q, quadType type) {
+QuadScheme call_quad_multi_poly_withDataTwoLS(PhiData PhiDataA, PhiData PhiDataB, int pA, int pB, int q, quadType type) {
 
     if (type == quadType::Surface)
-        return call_quad_multi_poly_surfaceDouble(PhiDataA, PhiDataB, pA, pB, q);
+        return call_quad_multi_poly_surfaceTwoLS(PhiDataA, PhiDataB, pA, pB, q);
     else if (type == quadType::Volume)
-        return call_quad_multi_poly_volumeDouble(PhiDataA, PhiDataB, pA, pB, q);
+        return call_quad_multi_poly_volumeTwoLS(PhiDataA, PhiDataB, pA, pB, q);
     else
         throw std::out_of_range("Unknown type of quadrature type, it should be either surface or volume");
 }
 
-QuadSchemeCombo call_quad_multi_poly_withDataComboDouble(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q, quadType type) {
+QuadSchemeCombo call_quad_multi_poly_withDataComboTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q, quadType type) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
