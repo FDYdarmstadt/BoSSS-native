@@ -51,6 +51,37 @@ void outputQuadratureRuleAsVtpXMLc(std::vector<uvector<real, N + 1>>& q, std::st
     stream << "</VTKFile>\n";
 }
 
+void printPhiData(const PhiData& data) {
+    std::cout << "PhiData Structure:" << std::endl;
+
+    // Print dimension
+    std::cout << "Dimension: " << data.dimension << std::endl;
+
+    // Print sizes array
+    std::cout << "Sizes: ";
+    int totSizeX = 0;
+    int totSizeY = 1;
+    for (int i = 0; i < data.dimension; ++i) {
+        totSizeX += data.sizes[i];
+        totSizeY *= data.sizes[i];
+        std::cout << data.sizes[i] << " ";
+    }
+    std::cout << std::endl;
+
+    // Print x array
+    std::cout << "X coordinates:" << std::endl;
+    for (int i = 0; i < totSizeX; ++i) {
+        std::cout << data.x[i] << ", ";
+    }
+    std::cout << std::endl;
+
+    // Print y array
+    std::cout << "Y values:" << std::endl;
+    for (int i = 0; i < totSizeY; ++i) {
+        std::cout << "y[" << i << "] = " << data.y[i] << std::endl;
+    }
+}
+
 template<int D>
 struct Ellipsoid
 {
