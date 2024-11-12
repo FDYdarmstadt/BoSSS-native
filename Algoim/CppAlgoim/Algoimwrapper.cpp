@@ -576,7 +576,7 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F& fphi, real xmi
 }
 
 template<int D, typename F1, typename F2>
-std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F1& fphi1, const F2& fphi2, real xmin, real xmax, const uvector<int, D>& P1, const uvector<int, D>& P2, int q)
+std::array<std::vector<uvector<real, D + 1>>, 4> outputQuadSchemeVolume(const F1& fphi1, const F2& fphi2, real xmin, real xmax, const uvector<int, D>& P1, const uvector<int, D>& P2, int q)
 {
     // Construct phi by mapping [0,1] onto bounding box [xmin,xmax]
     xarray<real, D> phi1(nullptr, P1), phi2(nullptr, P2);
@@ -599,14 +599,35 @@ std::vector<uvector<real, D + 1>> outputQuadSchemeVolume(const F1& fphi1, const 
     // Compute quadrature scheme and record the nodes & weights; one could examine the signs
     // of phi1 and phi2 in order to separate the nodes into different components, but for
     // simplicity they are agglomerated
-    std::vector<uvector<real, D + 1>> vol;
+    std::vector<uvector<real, D + 1>> vol0,vol1,vol2,vol3;
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) < 0 && bernstein::evalBernsteinPoly(phi2, x) < 0)
+            vol0.push_back(add_component(x, D, w));
+        });
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) < 0 && bernstein::evalBernsteinPoly(phi2, x) > 0)
+                vol1.push_back(add_component(x, D, w));
+        });
+    ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
+        {
+            if (bernstein::evalBernsteinPoly(phi1, x) > 0 && bernstein::evalBernsteinPoly(phi2, x) < 0)
+                vol2.push_back(add_component(x, D, w));
+        });
     ipquad.integrate(AutoMixed, q, [&](const uvector<real, D>& x, real w)
         {
             if (bernstein::evalBernsteinPoly(phi1, x) > 0 && bernstein::evalBernsteinPoly(phi2, x) > 0)
-            vol.push_back(add_component(x, D, w));
+                vol3.push_back(add_component(x, D, w));
         });
-    outputQuadratureRuleAsVtpXMLc<D>(vol, "ex-vol.vtp");
-    return vol;
+    std::array<std::vector<uvector<real, D + 1>>, 4> ret;
+
+    ret[0] = vol0;
+    ret[1] = vol1;
+    ret[2] = vol2;
+    ret[3] = vol3;
+
+    return ret;
 }
 
 template<int D, typename F>
@@ -1016,11 +1037,11 @@ QuadSchemeCombo call_quad_multi_poly_withDataCombo(PhiData PhiData, int p, int q
 
 
 // #region Functions using data points to create Lagrange polynomial interpolation for two level sets (double cut cells)
-std::array<QuadScheme, 2> call_quad_multi_poly_surfaceTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+QuadScheme* call_quad_multi_poly_surfaceTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
-    std::array<QuadScheme, 2> ret;
+    QuadScheme* ret = new QuadScheme[2];
 
     if (phiDataA.dimension != phiDataB.dimension)
         throw std::exception("The level sets should have the same dimension");
@@ -1097,10 +1118,12 @@ std::array<QuadScheme, 2> call_quad_multi_poly_surfaceTwoLS(PhiData phiDataA, Ph
     }
 }
 
-QuadScheme call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
+QuadScheme* call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q) {
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
+
+    QuadScheme* ret = new QuadScheme[4];
 
     switch (phiDataA.dimension) {
     case 1: {
@@ -1108,64 +1131,96 @@ QuadScheme call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB, 
         PhiDataPolyRef<1> phi1B(&phiDataB);
 
         auto q1 = outputQuadSchemeVolume<1, PhiDataPolyRef<1>>(phi1A, phi1B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<1>(q1, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<1>(q1[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<1>(q1[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<1>(q1[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<1>(q1[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 2: {
         PhiDataPolyRef<2> phi2A(&phiDataA);
         PhiDataPolyRef<2> phi2B(&phiDataB);
 
         auto q2 = outputQuadSchemeVolume<2, PhiDataPolyRef<2>>(phi2A, phi2B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<2>(q2, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<2>(q2[0], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<2>(q2[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<2>(q2[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<2>(q2[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 3: {
         PhiDataPolyRef<3> phi3A(&phiDataA);
         PhiDataPolyRef<3> phi3B(&phiDataB);
 
         auto q3 = outputQuadSchemeVolume<3, PhiDataPolyRef<3>>(phi3A, phi3B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<3>(q3, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<3>(q3[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<3>(q3[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<3>(q3[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<3>(q3[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 4: {
         PhiDataPolyRef<4> phi4A(&phiDataA);
         PhiDataPolyRef<4> phi4B(&phiDataB);
 
         auto q4 = outputQuadSchemeVolume<4, PhiDataPolyRef<4>>(phi4A, phi4B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<4>(q4, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<4>(q4[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<4>(q4[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<4>(q4[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<4>(q4[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 5: {
         PhiDataPolyRef<5> phi5A(&phiDataA);
         PhiDataPolyRef<5> phi5B(&phiDataB);
 
         auto q5 = outputQuadSchemeVolume<5, PhiDataPolyRef<5>>(phi5A, phi5B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<5>(q5, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<5>(q5[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<5>(q5[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<5>(q5[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<5>(q5[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 6: {
         PhiDataPolyRef<6> phi6A(&phiDataA);
         PhiDataPolyRef<6> phi6B(&phiDataB);
 
         auto q6 = outputQuadSchemeVolume<6, PhiDataPolyRef<6>>(phi6A, phi6B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<6>(q6, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<6>(q6[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<6>(q6[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<6>(q6[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<6>(q6[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 7: {
         PhiDataPolyRef<7> phi7A(&phiDataA);
         PhiDataPolyRef<7> phi7B(&phiDataB);
 
         auto q7 = outputQuadSchemeVolume<7, PhiDataPolyRef<7>>(phi7A, phi7B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<7>(q7, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<7>(q7[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<7>(q7[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<7>(q7[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<7>(q7[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     case 8: {
         PhiDataPolyRef<8> phi8A(&phiDataA);
         PhiDataPolyRef<8> phi8B(&phiDataB);
 
         auto q8 = outputQuadSchemeVolume<8, PhiDataPolyRef<8>>(phi8A, phi8B, xmin, xmax, pA, pB, q);
-        return CastMultiPolQuadScheme<8>(q8, xmin, xmax, quadType::Volume);
+        ret[0] = CastMultiPolQuadScheme<8>(q8[0], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<8>(q8[1], xmin, xmax, quadType::Volume);
+        ret[2] = CastMultiPolQuadScheme<8>(q8[2], xmin, xmax, quadType::Volume);
+        ret[3] = CastMultiPolQuadScheme<8>(q8[3], xmin, xmax, quadType::Volume);
+        return ret;
     }
     default:
         throw std::out_of_range("Wrapper does not support dimensions greater than eight i.e., 0 < dim <= 8");
     }
 }
 
-std::array<QuadScheme,2> call_quad_multi_poly_withDataTwoLS(PhiData PhiDataA, PhiData PhiDataB, int pA, int pB, int q, quadType type) {
 
+QuadScheme* call_quad_multi_poly_withDataTwoLS(PhiData PhiDataA, PhiData PhiDataB, int pA, int pB, int q, quadType type) {
     if (type == quadType::Surface)
         return call_quad_multi_poly_surfaceTwoLS(PhiDataA, PhiDataB, pA, pB, q);
     else if (type == quadType::Volume)
