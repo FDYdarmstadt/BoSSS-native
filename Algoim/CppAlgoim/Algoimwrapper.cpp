@@ -16,7 +16,7 @@ using namespace algoim;
 // Given a set of quadrature points and weights, output them to an VTP XML file for visualisation
 // purposes, e.g., using ParaView
 template<int N>
-void outputQuadratureRuleAsVtpXMLc(std::vector<uvector<real, N + 1>>& q, std::string fn)
+void outputQuadratureRuleAsVtpXMLc(const std::vector<uvector<real, N + 1>>& q, std::string fn)
 {
     //static_assert(N == 2 || N == 3, "outputQuadratureRuleAsVtpXML only supports 2D and 3D quadrature schemes");
     std::ofstream stream(fn);
@@ -27,7 +27,7 @@ void outputQuadratureRuleAsVtpXMLc(std::vector<uvector<real, N + 1>>& q, std::st
     stream << "<Points>\n";
     stream << "  <DataArray type=\"Float32\" Name=\"Points\" NumberOfComponents=\"3\" format=\"ascii\">";
     for (const auto& pt : q)
-        stream << pt(0) << ' ' << pt(1) << ' ' << (N == 3 ? pt(2) : 0.0) << ' ';
+        stream << pt(0) << ' ' << pt(1) << ' ' << (N == 3 ? pt(2) : 0.0) << '\n';
     stream << "</DataArray>\n";
     stream << "</Points>\n";
     stream << "<Verts>\n";
@@ -43,13 +43,13 @@ void outputQuadratureRuleAsVtpXMLc(std::vector<uvector<real, N + 1>>& q, std::st
     stream << "<PointData Scalars=\"w\">\n";
     stream << "  <DataArray type=\"Float32\" Name=\"w\" NumberOfComponents=\"1\" format=\"ascii\">";
     for (const auto& pt : q)
-        stream << pt(N) << ' ';
+        stream << pt(N) << '\n';
     stream << "</DataArray>\n";
     stream << "</PointData>\n";
     stream << "</Piece>\n";
     stream << "</PolyData>\n";
     stream << "</VTKFile>\n";
-}
+};
 
 void printPhiData(const PhiData& data) {
     std::cout << "PhiData Structure:" << std::endl;
@@ -1143,7 +1143,7 @@ QuadScheme* call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB,
 
         auto q2 = outputQuadSchemeVolume<2, PhiDataPolyRef<2>>(phi2A, phi2B, xmin, xmax, pA, pB, q);
         ret[0] = CastMultiPolQuadScheme<2>(q2[0], xmin, xmax, quadType::Volume);
-        ret[2] = CastMultiPolQuadScheme<2>(q2[1], xmin, xmax, quadType::Volume);
+        ret[1] = CastMultiPolQuadScheme<2>(q2[1], xmin, xmax, quadType::Volume);
         ret[2] = CastMultiPolQuadScheme<2>(q2[2], xmin, xmax, quadType::Volume);
         ret[3] = CastMultiPolQuadScheme<2>(q2[3], xmin, xmax, quadType::Volume);
         return ret;
