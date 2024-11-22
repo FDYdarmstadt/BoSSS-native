@@ -106,9 +106,7 @@ void printVolume(QuadScheme AlgoimScheme, bool printNodes, double* vol) {
 // A hardcoded test for different calls
 int main(int argc, char* argv[]) {
 
-    example_calculation(1);
-
-    return 0;
+    //example_calculation(1);
 
     // Start the timer
     clock_t start, end;
@@ -275,7 +273,7 @@ int main(int argc, char* argv[]) {
     printf(" Volume: %lf \n", vol2);
     outputQuadratureRuleAsVtpXML(AlgoimScheme3, "algoim3.vtp");
 
-    printf("\nPerforming a performance study, calling routinefrom quadrature order 0 to 19, each with 1000 times)\n");
+    printf("\nPerforming a performance study, calling routine from quadrature order 0 to 19, each with 1000 times)\n");
     for (int i = 0; i < 1000; i++)
     {
         for (int k = 0; k < 20; k++) {

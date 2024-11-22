@@ -21,12 +21,15 @@
     <ClInclude Include="AlgoimC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="quadrature_multipoly.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algoimwrapper.cpp">
+    <ClCompile Include="AlgoimC.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AlgoimC.c">
+    <ClCompile Include="Algoimwrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

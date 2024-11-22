@@ -178,10 +178,11 @@
   <ItemGroup>
     <ClInclude Include="Algoimwrapper.h" />
     <ClInclude Include="AlgoimC.h" />
+    <ClInclude Include="quadrature_multipoly.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Algoimwrapper.cpp" />
     <ClCompile Include="AlgoimC.c" />
+    <ClCompile Include="Algoimwrapper.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
