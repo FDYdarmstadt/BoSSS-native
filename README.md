@@ -24,6 +24,7 @@ This repository contains the description of the workflow to build third party li
 -pardiso (mkl)
 -hypre (uses blas&lapack build)
 -blas & lapack (mkl)
+-algoim
 
 What is it all about?
 ---------------------
@@ -53,6 +54,7 @@ Mumps sequential
 pardiso sequential
 hypre with MPI support
 BLAS & LAPACK sequential
+Algoim
 
 parallel:
 Metis sequential, single precision

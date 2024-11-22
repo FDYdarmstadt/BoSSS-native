@@ -1044,7 +1044,7 @@ QuadScheme* call_quad_multi_poly_surfaceTwoLS(PhiData phiDataA, PhiData phiDataB
     QuadScheme* ret = new QuadScheme[2];
 
     if (phiDataA.dimension != phiDataB.dimension)
-        throw std::exception("The level sets should have the same dimension");
+        throw std::runtime_error("The level sets should have the same dimension");
 
     switch (phiDataA.dimension) {
     case 1: {
@@ -1122,6 +1122,9 @@ QuadScheme* call_quad_multi_poly_volumeTwoLS(PhiData phiDataA, PhiData phiDataB,
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
+
+    if (phiDataA.dimension != phiDataB.dimension)
+        throw std::runtime_error("The level sets should have the same dimension");
 
     QuadScheme* ret = new QuadScheme[4];
 
@@ -1230,11 +1233,14 @@ QuadScheme* call_quad_multi_poly_withDataTwoLS(PhiData PhiDataA, PhiData PhiData
 }
 
 QuadSchemeCombo call_quad_multi_poly_withDataComboTwoLS(PhiData phiDataA, PhiData phiDataB, int pA, int pB, int q, quadType type) {
+    throw std::runtime_error("Not implemented");
+
     //reference frame
     double xmin = -1.0;
     double xmax = 1.0;
     if (phiDataA.dimension != phiDataB.dimension)
-        throw std::exception("The level sets should have the same dimension");
+        if (phiDataA.dimension != phiDataB.dimension)
+            throw std::runtime_error("The level sets should have the same dimension");
 
     switch (phiDataA.dimension) {
     case 1: {
