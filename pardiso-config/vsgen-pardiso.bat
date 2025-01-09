@@ -29,7 +29,7 @@ cd %PARDISO_BUILD%
 
 rmdir x64 /s /q
 ECHO ======================
-ECHO build PARDISO %PARDISO_TYPE%-Type
+ECHO build PARDISO 
 ECHO ======================
 
 for %%i in (*.sln) do set SLN_NAME=%%~ni
@@ -41,22 +41,22 @@ SET CONFIG=Release
 ::devenv PARDISO-seq.vcxproj /Build "Release|x64"
 ::devenv PARDISO-openMP.vcxproj /Build "Release|x64"
 set "DLL="
-IF %PARDISO_TYPE%==SEQ (
+::IF %PARDISO_TYPE%==SEQ (
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% libfakeintel.vcxproj
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-seq.vcxproj
-set DLL=PARDISO_seq.dll
-)
-IF %PARDISO_TYPE%==OPENMP (
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-openMP.vcxproj
-set DLL=PARDISO_omp.dll
-)
+
+
 ::check if build was successful
-
 CD "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%"
-
 set "CHECK="
-IF EXIST %DLL% SET CHECK=1
-IF DEFINED CHECK (
+set "FAILCHECK="
+IF NOT EXIST libfakeintel.dll SET FAILCHECK=1
+IF NOT EXIST PARDISO_seq.dll SET FAILCHECK=1
+IF NOT EXIST PARDISO_omp.dll SET FAILCHECK=1
+IF NOT DEFINED FAILCHECK (
 ECHO Build successful
+  set CHECK=1
 ) ELSE (
 ECHO Build failed
 )
