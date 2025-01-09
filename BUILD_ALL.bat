@@ -72,7 +72,7 @@ IF %ALL_TYPE%==SER (
 set MUMPS_TYPE=SEQ
 set PARDISO_TYPE=SEQ
 set METIS_TYPE=SEQ
-set BLAS_LAPACK_TYPE=SEQ
+::set BLAS_LAPACK_TYPE=SEQ
 set "HYPRE_TYPE="
 )
 
@@ -82,7 +82,7 @@ set "HYPRE_TYPE="
 :: Build composition Parallel
 IF %ALL_TYPE%==PAR (
 set "METIS_TYPE="
-set "BLAS_LAPACK_TYPE="
+::set "BLAS_LAPACK_TYPE="
 set HYPRE_TYPE=MPI
 set PARDISO_TYPE=OPENMP
 set MUMPS_TYPE=MPI
@@ -90,7 +90,7 @@ set MUMPS_TYPE=MPI
 echo.
 echo selected composition: %ALL_TYPE%
 echo.
-echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
+::echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
 echo PARDISO_TYPE ... %PARDISO_TYPE%
 echo HYPRE_TYPE ... %HYPRE_TYPE%
 echo METIS_TYPE ... %METIS_TYPE%
@@ -100,7 +100,7 @@ echo MUMPS_TYPE ... %MUMPS_TYPE%
 
 :: run at Jenkins-native
 if %BUILD_SPEED%==SLOW (
-CALL blas_lapack-config\vsgen-blas_lapack.bat
+::CALL blas_lapack-config\vsgen-blas_lapack.bat
 CALL pardiso-config\vsgen-pardiso.bat
 CALL hypre-config\vsgen-hypre.bat
 CALL metis-seq-config\vsgen-metis-seq.bat
@@ -108,7 +108,7 @@ CALL dmumps-config\MUMPS_build_libs.bat
 )
 
 if %BUILD_SPEED%==FAST (
-start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat >log_0.txt" 
+::start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat >log_0.txt" 
 start "PARDISO" cmd /C "CALL pardiso-config\vsgen-pardiso.bat >log_1.txt" 
 start "HYPRE" cmd /C "CALL hypre-config\vsgen-hypre.bat >log_2.txt" 
 start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat >log_3.txt"
@@ -128,7 +128,7 @@ del "log_%%I.txt" /q
 
 if %BUILD_SPEED%==FAST (
 :: choosing fast build the paths defined in batch-Files are lost and have to be set
-SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
+::SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
 SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
 SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
 SET "METIS_BUILD=%WORKINGDIR%\metis-5.1.0\build\windows"
@@ -140,7 +140,7 @@ IF NOT EXIST "%WORKINGDIR%\BUILDS" mkdir "%WORKINGDIR%\BUILDS"
 set "DESTDIR=%WORKINGDIR%\BUILDS"
 set "PLATFORM=x64"
 set "CONFIG=Release"
-set BLAS_LAPACK_STATUS=unknown
+::set BLAS_LAPACK_STATUS=unknown
 set PARDISO_STATUS=unknown
 set HYPRE_STATUS=unknown
 set METIS_STATUS=unknown
@@ -154,16 +154,17 @@ if %MUMPS_TYPE%==MPI set "MUMPS_DLL_NAME=dmumps-mpi.dll"
 if %MUMPS_TYPE%==HYBRID set "MUMPS_DLL_NAME=dmumps-hybrid.dll"
 
 ::gather and check DLLs
-if not defined BLAS_LAPACK_TYPE GOTO PARDISOCHECK
-copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
-if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
-if not %errorlevel%==0 (
-set BLAS_LAPACK_STATUS=failure
-set /a ERRORS=%ERRORS%+1
-)
+::if not defined BLAS_LAPACK_TYPE GOTO PARDISOCHECK
+::copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
+::if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
+::if not %errorlevel%==0 (
+::set BLAS_LAPACK_STATUS=failure
+::set /a ERRORS=%ERRORS%+1
+::)
 :PARDISOCHECK
 if not defined PARDISO_TYPE GOTO HYPRECHECK
 copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO*.dll" "%DESTDIR%\" /y
+copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\libfakeintel.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set PARDISO_STATUS=success
 if not %errorlevel%==0 (
 set PARDISO_STATUS=failure
@@ -195,7 +196,7 @@ set /a ERRORS=%ERRORS%+1
 )
 :EOFCHECKS
 ECHO.
-ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
+::ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
 ECHO HYPRE ... %HYPRE_STATUS%
 ECHO METIS ... %METIS_STATUS%
@@ -210,14 +211,14 @@ ECHO === CHANGELOG === >>changelog.txt
 ECHO build finished at %date% %time%
 ECHO %ALL_TYPE%-build configuration
 echo.
-echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
+::echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
 echo PARDISO_TYPE ... %PARDISO_TYPE%
 echo HYPRE_TYPE ... %HYPRE_TYPE%
 echo METIS_TYPE ... %METIS_TYPE%
 echo MUMPS_TYPE ... %MUMPS_TYPE%
 echo.
 ECHO %ALL_TYPE%-build status
-ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
+::ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
 ECHO HYPRE ... %HYPRE_STATUS%
 ECHO METIS ... %METIS_STATUS%
