@@ -158,7 +158,7 @@ ECHO MUMPS_MPI ... %MUMPS_MPI_STATUS%
 :: get finished: add linked libraries
 :: MUMPS ...
 copy ".\WinDlls\*.dll" "%DESTDIR%\" /y
-copy "%DESTDIR%\PARDISO_omp.dll %DESTDIR%\PARDISO2_omp.dll" /y
+copy "%DESTDIR%\PARDISO_omp.dll" "%DESTDIR%\PARDISO2_omp.dll" /y
 copy "%INTEL_REDIST%\libiomp5md.dll" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
