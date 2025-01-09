@@ -9,11 +9,10 @@ ECHO.
 ::check if all necessary variables are set
 set "ErrorInput="
 IF NOT DEFINED WORKINGDIR set ErrorInput=1
-IF NOT DEFINED PARDISO_TYPE set ErrorInput=1
 ::IF NOT DEFINED MS_MPI set ErrorInput=1
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
-ECHO WORKINGDIR[path], PARDISO_TYPE[SEQ/OPENMP/HYBRID]
+ECHO WORKINGDIR[path]
 GOTO EOF
 )
 ::Define all pending directories

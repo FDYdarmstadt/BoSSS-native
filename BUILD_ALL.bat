@@ -11,7 +11,6 @@ IF NOT DEFINED WORKINGDIR set ErrorInput=1
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
 ECHO WORKINGDIR[...]
-ECHO optional: BUILD_SPEED[SLOW/FAST]
 set ERRORS=1
 GOTO EOF
 )
@@ -19,8 +18,14 @@ IF NOT DEFINED BUILD_SPEED set BUILD_SPEED=SLOW
 ECHO DLL BUILD PROCESS STARTED ...
 ECHO.
 ECHO WORKINGDIR = %WORKINGDIR%
-ECHO BUILD SPEED = %BUILD_SPEED%
 ECHO.
+
+::set BLAS_LAPACK_STATUS=unknown
+set PARDISO_STATUS=unknown
+set HYPRE_STATUS=unknown
+set METIS_STATUS=unknown
+set MUMPS_SEQ_STATUS=unknown
+set MUMPS_MPI_STATUS=unknown
 
 :: MACHINE dependent specification
 :: add path for cmake, make 
@@ -39,6 +44,12 @@ set "MS_MPI_DIR=C:\Program Files (x86)\Microsoft SDKs\MPI\Lib\x64"
 set "MS_MPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include"
 :: paths to related shared libraries
 set "INTEL_REDIST=C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin"
+
+:: copy files to build directory
+IF NOT EXIST "%WORKINGDIR%\BUILDS" mkdir "%WORKINGDIR%\BUILDS"
+set "DESTDIR=%WORKINGDIR%\BUILDS"
+set "PLATFORM=x64"
+set "CONFIG=Release"
 
 ::you can preset PATHS, then they are not searched ...
 ::set "AUXONE= "
@@ -61,57 +72,61 @@ For /f "tokens=*" %%e in ('more variables.txt') do set %%e
 set ALL_TYPE=SER
 del "log.txt" /q
 
-:START_PAR_BUILD
-
-::echo checkpoint1: %ALL_TYPE%
-
-:: Build composition Serial
-IF %ALL_TYPE%==SER (
-set MUMPS_TYPE=SEQ
-set PARDISO_TYPE=SEQ
-set METIS_TYPE=SEQ
-::set BLAS_LAPACK_TYPE=SEQ
-set "HYPRE_TYPE="
-)
-
-::echo checkpoint2: %ALL_TYPE%
-
-:: CAUTION: if names are not unique, dll are overwritten!
-:: Build composition Parallel
-IF %ALL_TYPE%==PAR (
-set "METIS_TYPE="
-::set "BLAS_LAPACK_TYPE="
-set HYPRE_TYPE=MPI
-set PARDISO_TYPE=OPENMP
-set MUMPS_TYPE=MPI
-)
-echo.
-echo selected composition: %ALL_TYPE%
-echo.
-::echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
-echo PARDISO_TYPE ... %PARDISO_TYPE%
-echo HYPRE_TYPE ... %HYPRE_TYPE%
-echo METIS_TYPE ... %METIS_TYPE%
-echo MUMPS_TYPE ... %MUMPS_TYPE%
-
-::echo checkpoint3: %ALL_TYPE%
-
-:: run at Jenkins-native
-if %BUILD_SPEED%==SLOW (
-::CALL blas_lapack-config\vsgen-blas_lapack.bat
+:: Contains SEQ and OpenMP build
 CALL pardiso-config\vsgen-pardiso.bat 
-CALL hypre-config\vsgen-hypre.bat
-CALL metis-seq-config\vsgen-metis-seq.bat
-CALL dmumps-config\MUMPS_build_libs.bat
+
+copy "PARDISO\%PLATFORM%\%CONFIG%\PARDISO*.dll" "%DESTDIR%\" /y
+copy "PARDISO\%PLATFORM%\%CONFIG%\libfakeintel.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set PARDISO_STATUS=success
+if not %errorlevel%==0 (
+set PARDISO_STATUS=failure
+set /a ERRORS=%ERRORS%+1
 )
 
-if %BUILD_SPEED%==FAST (
-::start "Blas LAPACK" cmd /C "CALL blas_lapack-config\vsgen-blas_lapack.bat >log_0.txt" 
-start "PARDISO" cmd /C "CALL pardiso-config\vsgen-pardiso.bat >log_1.txt" 
-start "HYPRE" cmd /C "CALL hypre-config\vsgen-hypre.bat >log_2.txt" 
-start "METIS" cmd /C "CALL metis-seq-config\vsgen-metis-seq.bat >log_3.txt"
-start "MUMPS" cmd /C "CALL dmumps-config\MUMPS_build_libs.bat >log_4.txt" 
-)| pause
+:: Contains only MPI build
+CALL hypre-config\vsgen-hypre.bat
+
+copy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set HYPRE_STATUS=success
+if not %errorlevel%==0 (
+set HYPRE_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+:: Contains only SEQ build
+CALL metis-seq-config\vsgen-metis-seq.bat
+
+copy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set METIS_STATUS=success
+if not %errorlevel%==0 (
+set METIS_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+:: Build MUMPS in SEQ
+set MUMPS_TYPE=SEQ
+CALL dmumps-config\MUMPS_build_libs.bat
+
+copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps-seq.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set MUMPS_SEQ_STATUS=success
+if not %errorlevel%==0 (
+set MUMPS_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+:: Build MUMPS in MPI
+set MUMPS_TYPE=MPI
+CALL dmumps-config\MUMPS_build_libs.bat
+
+copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\dmumps-mpi.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set MUMPS_MPI_STATUS=success
+if not %errorlevel%==0 (
+set MUMPS_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+
+
 
 ::unify logtexts
 (
@@ -124,74 +139,6 @@ type log_%%I.txt>>log.txt
 del "log_%%I.txt" /q
 )
 
-if %BUILD_SPEED%==FAST (
-:: choosing fast build the paths defined in batch-Files are lost and have to be set
-::SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
-SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
-SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
-SET "METIS_BUILD=%WORKINGDIR%\metis-5.1.0\build\windows"
-SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
-)
-
-:: copy files to build directory
-IF NOT EXIST "%WORKINGDIR%\BUILDS" mkdir "%WORKINGDIR%\BUILDS"
-set "DESTDIR=%WORKINGDIR%\BUILDS"
-set "PLATFORM=x64"
-set "CONFIG=Release"
-::set BLAS_LAPACK_STATUS=unknown
-set PARDISO_STATUS=unknown
-set HYPRE_STATUS=unknown
-set METIS_STATUS=unknown
-set MUMPS_STATUS=unknown
-
-::set dll names properly
-set "MUMPS_DLL_NAME="
-if %MUMPS_TYPE%==SEQ set "MUMPS_DLL_NAME=dmumps-seq.dll"
-if %MUMPS_TYPE%==OPENMP set "MUMPS_DLL_NAME=dmumps-openmp.dll"
-if %MUMPS_TYPE%==MPI set "MUMPS_DLL_NAME=dmumps-mpi.dll"
-if %MUMPS_TYPE%==HYBRID set "MUMPS_DLL_NAME=dmumps-hybrid.dll"
-
-::gather and check DLLs
-::if not defined BLAS_LAPACK_TYPE GOTO PARDISOCHECK
-::copy "%BLAS_LAPACK_BUILD%\%PLATFORM%\%CONFIG%\BLAS_LAPACK.dll" "%DESTDIR%\" /y
-::if %errorlevel%==0 set BLAS_LAPACK_STATUS=success
-::if not %errorlevel%==0 (
-::set BLAS_LAPACK_STATUS=failure
-::set /a ERRORS=%ERRORS%+1
-::)
-:PARDISOCHECK
-if not defined PARDISO_TYPE GOTO HYPRECHECK
-copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\PARDISO*.dll" "%DESTDIR%\" /y
-copy "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%\libfakeintel.dll" "%DESTDIR%\" /y
-if %errorlevel%==0 set PARDISO_STATUS=success
-if not %errorlevel%==0 (
-set PARDISO_STATUS=failure
-set /a ERRORS=%ERRORS%+1
-)
-:HYPRECHECK
-if not defined HYPRE_TYPE GOTO METISCHECK
-copy "%HYPRE_BUILD%\%CONFIG%\HYPRE.dll" "%DESTDIR%\" /y
-if %errorlevel%==0 set HYPRE_STATUS=success
-if not %errorlevel%==0 (
-set HYPRE_STATUS=failure
-set /a ERRORS=%ERRORS%+1
-)
-:METISCHECK
-if not defined METIS_TYPE GOTO MUMPSCHECK
-copy "%METIS_BUILD%\libmetis\%CONFIG%\metis.dll" "%DESTDIR%\" /y
-if %errorlevel%==0 set METIS_STATUS=success
-if not %errorlevel%==0 (
-set METIS_STATUS=failure
-set /a ERRORS=%ERRORS%+1
-)
-:MUMPSCHECK
-if not defined MUMPS_TYPE GOTO EOFCHECKS
-copy "%MUMPS_BUILD%\%PLATFORM%\%CONFIG%\%MUMPS_DLL_NAME%" "%DESTDIR%\" /y
-if %errorlevel%==0 set MUMPS_STATUS=success
-if not %errorlevel%==0 (
-set MUMPS_STATUS=failure
-set /a ERRORS=%ERRORS%+1
-)
 :EOFCHECKS
 ECHO.
 ::ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
@@ -201,35 +148,11 @@ ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS ... %MUMPS_STATUS%
 ECHO Total failures ... %ERRORS%
 
-:: create changelog
-IF %ALL_TYPE%==SER (
-ECHO === CHANGELOG === >>changelog.txt
-)
-(
-ECHO build finished at %date% %time%
-ECHO %ALL_TYPE%-build configuration
-echo.
-::echo BLAS_LAPACK_TYPE ... %BLAS_LAPACK_TYPE%
-echo PARDISO_TYPE ... %PARDISO_TYPE%
-echo HYPRE_TYPE ... %HYPRE_TYPE%
-echo METIS_TYPE ... %METIS_TYPE%
-echo MUMPS_TYPE ... %MUMPS_TYPE%
-echo.
 ECHO %ALL_TYPE%-build status
-::ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
 ECHO HYPRE ... %HYPRE_STATUS%
 ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS ... %MUMPS_STATUS%
-ECHO.
-)>>changelog.txt
-
-
-:: switch to parallel ans start over (goto-loop)
-IF %ALL_TYPE%==SER (
-set ALL_TYPE=PAR
-GOTO START_PAR_BUILD
-)
 
 :: get finished: add linked libraries
 :: MUMPS ...
