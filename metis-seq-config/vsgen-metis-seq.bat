@@ -13,7 +13,7 @@ IF NOT DEFINED METIS_TYPE set ErrorInput=1
 ::IF NOT DEFINED MS_MPI set ErrorInput=1
 IF DEFINED ErrorInput (
 ECHO some variables are not set. please set:
-ECHO WORKINGDIR[path], MUMPS_TYPE[SEQ/OPENMP/HYBRID]
+ECHO WORKINGDIR=%WORKINGDIR% [expecting path], METIS_TYPE=%METIS_TYPE% [expecting one of SEQ/OPENMP/HYBRID]
 GOTO EOF
 )
 ::Define all pending directories

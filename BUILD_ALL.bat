@@ -101,7 +101,7 @@ echo MUMPS_TYPE ... %MUMPS_TYPE%
 :: run at Jenkins-native
 if %BUILD_SPEED%==SLOW (
 ::CALL blas_lapack-config\vsgen-blas_lapack.bat
-CALL pardiso-config\vsgen-pardiso.bat
+CALL pardiso-config\vsgen-pardiso.bat 
 CALL hypre-config\vsgen-hypre.bat
 CALL metis-seq-config\vsgen-metis-seq.bat
 CALL dmumps-config\MUMPS_build_libs.bat
