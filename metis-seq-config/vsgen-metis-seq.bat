@@ -4,7 +4,7 @@ ECHO ^>^>^>^>^>^>METIS BUILD^>^>^>^>^>^>
 ECHO =======================
 ECHO.
 
-::SET METIS_TYPE=SEQ
+SET METIS_TYPE=SEQ
 
 ::check if all necessary variables are set
 set "ErrorInput="
