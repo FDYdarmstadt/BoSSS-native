@@ -318,6 +318,16 @@ fi
 
 printf "\n==========================================\n"
 
+printf "\e[35m\nCompiling libfakeintel.so\e[0m\n"
+cd $WORKINGDIR/libfakeintel
+gcc -shared -fPIC -o libfakeintel.so fakeintel.c
+cp libfakeintel.so $LIBDIR
+cd $WORKINGDIR
+
+printf "\n==========================================\n"
+
+
+
 printf "\n\e[32mAll thirdparty libraries existent!\e[0m\n"
 
 printf "\n==========================================\n"
@@ -385,6 +395,7 @@ while read -r line ; do
         DEPS=$DEPS" "$DEP
     fi
 done <<< "$OUTPUT"
+
 
 printf "\n==========================================\n"
 
