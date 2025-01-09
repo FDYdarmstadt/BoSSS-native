@@ -5,6 +5,8 @@ ECHO ^>^>^>^>^>^>HYPRE BUILD^>^>^>^>^>^>
 ECHO =======================
 ECHO.
 
+set HYPRE_TYPE=MPI
+
 ECHO WORKINGDIR is %WORKINGDIR%
 ECHO HYPRE_TYPE is %HYPRE_TYPE%
 
