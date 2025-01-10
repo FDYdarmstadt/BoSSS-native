@@ -18,6 +18,7 @@
     <BuildMacro Include="MKL_INC_DIR">
       <Value>$(MKL_INC_DIR)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
     <BuildMacro Include="MKL_LIB_DIR">
       <Value>$(MKL_LIB_DIR)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
