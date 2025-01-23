@@ -16,6 +16,7 @@ SET "MUMPS_BUILD=%WORKINGDIR%\MUMPS-VS"
 SET "MUMPS_CONFIG=%WORKINGDIR%\dmumps-config"
 SET "PARDISO_CONFIG=%WORKINGDIR%\pardiso-config"
 SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
+SET "ALGOIM_BUILD=%WORKINGDIR%\Algoim\CppAlgoim"
 SET "BLAS_LAPACK_CONFIG=%WORKINGDIR%\blas_lapack-config"
 SET "BLAS_LAPACK_BUILD=%WORKINGDIR%\BLAS_LAPACK"
 SET "METIS_THIRDPARTY=%WORKINGDIR%\metis-5.1.0"
@@ -28,6 +29,13 @@ SET "HYPRE_BUILD=%WORKINGDIR%\hypre-2.11.2\src\cmbuild"
 SET /P var= clean PARDISO ... <nul
 (
 cd "%PARDISO_BUILD%"
+rmdir x64 /s /q
+)>nul 2>&1
+echo done.
+
+SET /P var= clean ALGOIM ... <nul
+(
+cd "%ALGOIM_BUILD%"
 rmdir x64 /s /q
 )>nul 2>&1
 echo done.
