@@ -22,6 +22,7 @@ ECHO.
 
 ::set BLAS_LAPACK_STATUS=unknown
 set PARDISO_STATUS=unknown
+set ALGOIM_STATUS=unknown
 set HYPRE_STATUS=unknown
 set METIS_STATUS=unknown
 set MUMPS_SEQ_STATUS=unknown
@@ -83,6 +84,19 @@ set PARDISO_STATUS=failure
 set /a ERRORS=%ERRORS%+1
 )
 
+:: Contains only SEQ build
+CALL algoim-config\vsgen-algoim.bat
+
+
+copy "Algoim\CppAlgoim\%PLATFORM%\%CONFIG%\Algoimwrapper.dll" "%DESTDIR%\" /y
+if %errorlevel%==0 set ALGOIM_STATUS=success
+if not %errorlevel%==0 (
+set ALGOIM_STATUS=failure
+set /a ERRORS=%ERRORS%+1
+)
+
+
+
 :: Contains only MPI build
 CALL hypre-config\vsgen-hypre.bat
 
@@ -143,18 +157,12 @@ del "log_%%I.txt" /q
 ECHO.
 ::ECHO BLAS AND LAPACK ... %BLAS_LAPACK_STATUS%
 ECHO PARDISO ... %PARDISO_STATUS%
-ECHO HYPRE ... %HYPRE_STATUS%
-ECHO METIS ... %METIS_STATUS%
-ECHO MUMPS ... %MUMPS_STATUS%
-ECHO Total failures ... %ERRORS%
-
-ECHO %ALL_TYPE%-build status
-ECHO PARDISO ... %PARDISO_STATUS%
+ECHO ALGOIM ... %ALGOIM_STATUS%
 ECHO HYPRE ... %HYPRE_STATUS%
 ECHO METIS ... %METIS_STATUS%
 ECHO MUMPS_SEQ ... %MUMPS_SEQ_STATUS%
 ECHO MUMPS_MPI ... %MUMPS_MPI_STATUS%
-
+ECHO Total failures ... %ERRORS%
 :: get finished: add linked libraries
 :: MUMPS ...
 copy ".\WinDlls\*.dll" "%DESTDIR%\" /y

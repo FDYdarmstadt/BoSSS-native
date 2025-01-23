@@ -125,4 +125,7 @@ dgecon_=dgecon
 dgeev_=dgeev
 dsyev_=dsyev
 
+LAPACKE_dggevx
+LAPACKE_dgesvd
+
     
