@@ -320,7 +320,7 @@ printf "\n==========================================\n"
 
 printf "\e[35m\nCompiling libfakeintel.so\e[0m\n"
 cd $WORKINGDIR/libfakeintel
-gcc -shared -fPIC -o libfakeintel.so fakeintel.c
+gcc -shared -fPIC -o libfakeintel.so libfakeintel.c
 cp libfakeintel.so $LIBDIR
 cd $WORKINGDIR
 
