@@ -391,7 +391,7 @@ __declspec(dllexport) int BoSSS_get_num_threads() {
          //
          //CPUindices[thread_id] = forceAffinity(CPUindices[thread_id]);
      }
-
+     /*
      USHORT groupsAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
      GROUP_AFFINITY AffinitiesAfter[NUMBER_OF_SUPPORTED_PROCGROUPS];
      int NumberOfGroupsAfter = GetAffinities(groupsAfter, AffinitiesAfter);
@@ -409,7 +409,7 @@ __declspec(dllexport) int BoSSS_get_num_threads() {
              fflush(stdout);
          }
      }
-
+     */
 
      
 
