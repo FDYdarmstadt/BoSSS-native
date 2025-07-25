@@ -4,16 +4,14 @@
 #define GB_FREE_WORKSPACE                                   \
 {                                                           \
     GB_FREE_MEMORY (&scalarx_cuda, scalarx_cuda_size) ;     \
-    if (stream != nullptr)                                  \
-    {                                                       \
-        cudaStreamSynchronize (stream) ;                    \
-        cudaStreamDestroy (stream) ;                        \
-    }                                                       \
-    stream = nullptr ;                                      \
 }
 
 #undef  GB_FREE_ALL
-#define GB_FREE_ALL GB_FREE_WORKSPACE
+#define GB_FREE_ALL                                         \
+{                                                           \
+    GB_FREE_WORKSPACE ;                                     \
+    GB_cuda_release_stream (&stream) ;                      \
+}
 
 #define BLOCK_SIZE 512
 #define LOG2_BLOCK_SIZE 9
@@ -32,9 +30,8 @@ GrB_Info GB_cuda_apply_binop
     GB_void *scalarx_cuda = NULL ;
     size_t scalarx_cuda_size = 0 ;
 
-    // FIXME: use the stream pool
     cudaStream_t stream = nullptr ;
-    CUDA_OK (cudaStreamCreate (&stream)) ;
+    GB_OK (GB_cuda_acquire_stream (&stream)) ;
 
     ASSERT (scalarx != NULL) ;
     // make a copy of scalarx to ensure it's not on the CPU stack
@@ -77,5 +74,6 @@ GrB_Info GB_cuda_apply_binop
     }
 
     GB_FREE_WORKSPACE ;
+    GB_OK (GB_cuda_release_stream (&stream)) ;
     return GrB_SUCCESS ; 
 }

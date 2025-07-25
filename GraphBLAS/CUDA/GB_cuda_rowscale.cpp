@@ -1,18 +1,10 @@
 #include "GB_cuda_ewise.hpp"
 
-#undef  GB_FREE_WORKSPACE
-#define GB_FREE_WORKSPACE                                   \
-{                                                           \
-    if (stream != nullptr)                                  \
-    {                                                       \
-        cudaStreamSynchronize (stream) ;                    \
-        cudaStreamDestroy (stream) ;                        \
-    }                                                       \
-    stream = nullptr ;                                      \
-}
-
 #undef  GB_FREE_ALL
-#define GB_FREE_ALL GB_FREE_WORKSPACE
+#define GB_FREE_ALL                                         \
+{                                                           \
+    GB_cuda_release_stream (&stream) ;                      \
+}
 
 #define BLOCK_SIZE 128
 #define LOG2_BLOCK_SIZE 7
@@ -27,9 +19,8 @@ GrB_Info GB_cuda_rowscale
 )
 {
     GrB_Info info ;
-    // FIXME: use the stream pool
     cudaStream_t stream = nullptr ;
-    CUDA_OK (cudaStreamCreate (&stream)) ;
+    GB_OK (GB_cuda_acquire_stream (&stream)) ;
 
     // compute gridsz, blocksz, call GB_cuda_rowscale_jit
     GrB_Index bnz = GB_nnz_held (B) ;
@@ -39,7 +30,7 @@ GrB_Info GB_cuda_rowscale
     GB_OK (GB_cuda_rowscale_jit ( C, D, B,
         semiring->multiply, flipxy, stream, gridsz, BLOCK_SIZE)) ;
 
-    GB_FREE_WORKSPACE ;
+    GB_OK (GB_cuda_release_stream (&stream)) ;
     return GrB_SUCCESS ;
 }
 

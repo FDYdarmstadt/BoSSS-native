@@ -6,8 +6,20 @@ bool GB_cuda_select_branch
     const GrB_IndexUnaryOp op
 )
 {
-    
+
+    int jit_control = GB_jitifyer_get_control ( ) ;
+    if (jit_control <= GxB_JIT_PAUSE)
+    { 
+        // JIT is off or paused
+        return (false) ;
+    }
+
     ASSERT (A != NULL && op != NULL) ;
+
+    if (op->hash == UINT64_MAX)
+    {
+        return false ;
+    }
 
     if (A->header_size == 0)
     {
@@ -33,8 +45,9 @@ bool GB_cuda_select_branch
         ok = ok && (GB_cuda_type_branch (op->ztype)) ;
     }
 
-    ok = ok && (op->hash != UINT64_MAX) ;
-
+    double work = GB_nnz_held (A) ;
+    int gpu_count = GB_ngpus_to_use (work) ;
+    ok = ok && (gpu_count > 0);
     return ok ;
 }
 

@@ -133,6 +133,7 @@ typedef struct
 
     bool cpu_features_avx2 ;        // x86_64 with AVX2
     bool cpu_features_avx512f ;     // x86_64 with AVX512f
+    bool cpu_features_rvv_1_0 ;     // RISC-V with RVV1.0
 
     //--------------------------------------------------------------------------
     // integer control
@@ -150,6 +151,13 @@ typedef struct
     // properties of each GPU:
     GB_cuda_device gpu_properties [GB_CUDA_MAX_GPUS] ;
 
+    //--------------------------------------------------------------------------
+    // OpenMP locks
+    //--------------------------------------------------------------------------
+
+    #define GB_GLOBAL_NLOCKS 8
+    GB_OPENMP_LOCK_T lock [GB_GLOBAL_NLOCKS] ;
+    bool lock_is_created [GB_GLOBAL_NLOCKS] ;
 }
 GB_Global_struct ;
 
@@ -226,6 +234,7 @@ static GB_Global_struct GB_Global =
     // CPU features
     .cpu_features_avx2 = false,         // x86_64 with AVX2
     .cpu_features_avx512f = false,      // x86_64 with AVX512f
+    .cpu_features_rvv_1_0 = false,      // RISC-V with RVV1.0
 
     // integer control
     .p_control = (int8_t) 32,
@@ -235,6 +244,7 @@ static GB_Global_struct GB_Global =
     // CUDA environment (DRAFT: in progress)
     .gpu_count = 0,                     // # of GPUs in the system
 
+    .lock_is_created = {0, 0, 0, 0},
 } ;
 
 //==============================================================================
@@ -357,15 +367,47 @@ void GB_Global_cpu_features_query (void)
         #endif
 
     }
+    #elif GBRISCV64
+    {
+
+        //----------------------------------------------------------------------
+        // RISC-V architecture: see if RVV1.0 is supported
+        //----------------------------------------------------------------------
+
+        #if !defined ( GBNCPUFEAT )
+        {
+            // Google's cpu_features package is available: use run-time tests
+            RiscvFeatures features = GetRiscvInfo ().features ;
+            GB_Global.cpu_features_rvv_1_0 = (bool) (features.V) ;
+
+        }
+        #else
+        {
+            #if defined ( GBRVV )
+            {
+                // the build system asserts whether or not RVV1.0 is available
+                GB_Global.cpu_features_rvv_1_0 = (bool) (GBRVV) ;
+            }
+            #else
+            {
+                // RVV1.0 not available
+                GB_Global.cpu_features_rvv_1_0 = false ;
+            }
+            #endif
+        }
+        #endif
+
+    }
     #else
     {
 
         //----------------------------------------------------------------------
-        // not on the x86_64 architecture, so no AVX2 or AVX512F acceleration
+        // not on the x86_64 or RISC-V architecture, so no AVX2, AVX512F or RVV1.0 acceleration
         //----------------------------------------------------------------------
 
         GB_Global.cpu_features_avx2 = false ;
         GB_Global.cpu_features_avx512f = false ;
+        GB_Global.cpu_features_rvv_1_0 = false ;
 
     }
     #endif
@@ -379,6 +421,11 @@ bool GB_Global_cpu_features_avx2 (void)
 bool GB_Global_cpu_features_avx512f (void)
 { 
     return (GB_Global.cpu_features_avx512f) ;
+}
+
+bool GB_Global_cpu_features_rvv_1_0 (void)
+{ 
+    return (GB_Global.cpu_features_rvv_1_0) ;
 }
 
 //------------------------------------------------------------------------------
@@ -524,7 +571,8 @@ void GB_Global_memtable_add (void *p, size_t size)
     #ifdef GB_DEBUG
     bool fail = false ;
     GBMDUMP ("memtable add %p size %ld\n", p, size) ;
-    #pragma omp critical(GB_memtable)
+//  #pragma omp critical(GB_memtable)
+    GB_OPENMP_LOCK_SET (3)
     {
         int n = GB_Global.nmemtable ;
         fail = (n > GB_MEMTABLE_SIZE) ;
@@ -548,6 +596,7 @@ void GB_Global_memtable_add (void *p, size_t size)
             GB_Global.nmemtable++ ;
         }
     }
+    GB_OPENMP_LOCK_UNSET (3)
     ASSERT (!fail) ;
     GB_Global_memtable_dump ( ) ;
     #endif
@@ -561,7 +610,8 @@ size_t GB_Global_memtable_size (void *p)
     #ifdef GB_DEBUG
     if (p == NULL) return (0) ;
     bool found = false ;
-    #pragma omp critical(GB_memtable)
+//  #pragma omp critical(GB_memtable)
+    GB_OPENMP_LOCK_SET (3)
     {
         int n = GB_Global.nmemtable ;
         for (int i = 0 ; i < n ; i++)
@@ -574,6 +624,7 @@ size_t GB_Global_memtable_size (void *p)
             }
         }
     }
+    GB_OPENMP_LOCK_UNSET (3)
     if (!found)
     {
         GBDUMP ("\nFAIL: %p not found\n", p) ;
@@ -592,7 +643,8 @@ bool GB_Global_memtable_find (void *p)
 
     #ifdef GB_DEBUG
     if (p == NULL) return (false) ;
-    #pragma omp critical(GB_memtable)
+//  #pragma omp critical(GB_memtable)
+    GB_OPENMP_LOCK_SET (3)
     {
         int n = GB_Global.nmemtable ;
         for (int i = 0 ; i < n ; i++)
@@ -604,6 +656,7 @@ bool GB_Global_memtable_find (void *p)
             }
         }
     }
+    GB_OPENMP_LOCK_UNSET (3)
     #endif
 
     return (found) ;
@@ -622,7 +675,8 @@ void GB_Global_memtable_remove (void *p)
     #ifdef GB_DEBUG
     bool found = false ;
     GBMDUMP ("memtable remove %p ", p) ;
-    #pragma omp critical(GB_memtable)
+//  #pragma omp critical(GB_memtable)
+    GB_OPENMP_LOCK_SET (3)
     {
         int n = GB_Global.nmemtable ;
         for (int i = 0 ; i < n ; i++)
@@ -638,6 +692,7 @@ void GB_Global_memtable_remove (void *p)
             }
         }
     }
+    GB_OPENMP_LOCK_UNSET (3)
     if (!found)
     {
         GBDUMP ("remove %p NOT FOUND\n", p) ;
@@ -674,10 +729,12 @@ void * GB_Global_malloc_function (size_t size)
     }
     else
     {
-        #pragma omp critical(GB_malloc_protection)
+//      #pragma omp critical(GB_malloc_protection)
+        GB_OPENMP_LOCK_SET (2)
         {
             p = GB_Global.malloc_function (size) ;
         }
+        GB_OPENMP_LOCK_UNSET (2)
     }
     GB_Global_memtable_add (p, size) ;
     return (p) ;
@@ -728,10 +785,12 @@ void * GB_Global_realloc_function (void *p, size_t size)
     }
     else
     {
-        #pragma omp critical(GB_malloc_protection)
+//      #pragma omp critical(GB_malloc_protection)
+        GB_OPENMP_LOCK_SET (2)
         {
             pnew = GB_Global.realloc_function (p, size) ;
         }
+        GB_OPENMP_LOCK_UNSET (2)
     }
     if (pnew != NULL)
     {
@@ -763,10 +822,12 @@ void GB_Global_free_function (void *p)
     }
     else
     {
-        #pragma omp critical(GB_malloc_protection)
+//      #pragma omp critical(GB_malloc_protection)
+        GB_OPENMP_LOCK_SET (2)
         {
             GB_Global.free_function (p) ;
         }
+        GB_OPENMP_LOCK_UNSET (2)
     }
     GB_Global_memtable_remove (p) ;
 }
@@ -1018,6 +1079,20 @@ int GB_Global_gpu_sm_get (int device)
     return (GB_Global.gpu_properties [device].number_of_sms) ;
 }
 
+int GB_Global_gpu_compute_capability_major_get (int device)
+{
+    // get the compute-capability-major
+    GB_GPU_DEVICE_CHECK (0) ;       // zero if invalid GPU
+    return (GB_Global.gpu_properties [device].compute_capability_major) ;
+}
+
+int GB_Global_gpu_compute_capability_minor_get (int device)
+{
+    // get the compute-capability-minor
+    GB_GPU_DEVICE_CHECK (0) ;       // zero if invalid GPU
+    return (GB_Global.gpu_properties [device].compute_capability_minor) ;
+}
+
 bool GB_Global_gpu_device_pool_size_set (int device, size_t size)
 {
     GB_GPU_DEVICE_CHECK (false) ;   // fail if invalid GPU
@@ -1090,5 +1165,63 @@ void GB_Global_timing_add (int k, double t)
 double GB_Global_timing_get (int k)
 {
     return (GB_Global.timing [k]) ;
+}
+
+//------------------------------------------------------------------------------
+// global OpenMP locks
+//------------------------------------------------------------------------------
+
+void GB_Global_lock_init (void)
+{
+    // initialize all locks
+    for (int k = 0 ; k < GB_GLOBAL_NLOCKS ; k++)
+    {
+        #if defined ( _OPENMP )
+        if (!GB_Global.lock_is_created [k])
+        {
+            omp_init_lock (&(GB_Global.lock [k])) ;
+            GB_Global.lock_is_created [k] = true ;
+        }
+        #else
+        GB_Global.lock [k] = 0 ;
+        #endif
+    }
+}
+
+void GB_Global_lock_destroy (void)
+{
+    // destroy all locks
+    #if defined ( _OPENMP )
+    for (int k = 0 ; k < GB_GLOBAL_NLOCKS ; k++)
+    {
+        if (GB_Global.lock_is_created [k])
+        {
+            omp_destroy_lock (&(GB_Global.lock [k])) ;
+            GB_Global.lock_is_created [k] = false ;
+        }
+    }
+    #endif
+}
+
+void GB_Global_lock_set (int k)
+{
+    // set a lock
+    #if defined ( _OPENMP )
+    if (GB_Global.lock_is_created [k])
+    {
+        omp_set_lock (&(GB_Global.lock [k])) ;
+    }
+    #endif
+}
+
+void GB_Global_lock_unset (int k)
+{
+    // unset a lock
+    #if defined ( _OPENMP )
+    if (GB_Global.lock_is_created [k])
+    {
+        omp_unset_lock (&(GB_Global.lock [k])) ;
+    }
+    #endif
 }
 

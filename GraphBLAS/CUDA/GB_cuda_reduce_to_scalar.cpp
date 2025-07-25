@@ -19,18 +19,13 @@
 #define GB_FREE_WORKSPACE                                   \
 {                                                           \
     GB_FREE_MEMORY (&zscalar, zscalar_size) ;               \
-    if (stream != nullptr)                                  \
-    {                                                       \
-        cudaStreamSynchronize (stream) ;                    \
-        cudaStreamDestroy (stream) ;                        \
-    }                                                       \
-    stream = nullptr ;                                      \
 }
 
 #define GB_FREE_ALL                                         \
 {                                                           \
     GB_FREE_WORKSPACE ;                                     \
     GB_Matrix_free (&V) ;                                   \
+    GB_cuda_release_stream (&stream) ;                      \
 }
 
 #include "GB_cuda_reduce.hpp"
@@ -62,10 +57,9 @@ GrB_Info GB_cuda_reduce_to_scalar
     // create the stream
     //--------------------------------------------------------------------------
 
-    // FIXME: use the stream pool
     cudaStream_t stream = nullptr ;
-    CUDA_OK (cudaStreamCreate (&stream)) ;
-
+    GB_OK (GB_cuda_acquire_stream (&stream)) ;
+    
     //--------------------------------------------------------------------------
     // determine problem characteristics and allocate worksbace
     //--------------------------------------------------------------------------
@@ -133,10 +127,10 @@ GrB_Info GB_cuda_reduce_to_scalar
         stream, gridsz, blocksz)) ;
 
     //--------------------------------------------------------------------------
-    // return result and destroy the stream
+    // return result and release the stream
     //--------------------------------------------------------------------------
 
-    CUDA_OK (cudaStreamSynchronize (stream)) ;
+    GB_OK (GB_cuda_release_stream (&stream)) ;
 
     if (has_cheeseburger)
     {

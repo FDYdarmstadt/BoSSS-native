@@ -1,22 +1,11 @@
 
 #include "GB_cuda_select.hpp"
 
-#undef  GB_FREE_WORKSPACE
-#define GB_FREE_WORKSPACE                                   \
-{                                                           \
-    if (stream != nullptr)                                  \
-    {                                                       \
-        cudaStreamSynchronize (stream) ;                    \
-        cudaStreamDestroy (stream) ;                        \
-    }                                                       \
-    stream = nullptr ;                                      \
-}
-
 #undef  GB_FREE_ALL
-#define GB_FREE_ALL         \
-{                           \
-    GB_phybix_free (C) ;    \
-    GB_FREE_WORKSPACE ;     \
+#define GB_FREE_ALL                         \
+{                                           \
+    GB_phybix_free (C) ;                    \
+    GB_cuda_release_stream (&stream) ;      \
 }
 
 #define BLOCK_SIZE 512
@@ -40,9 +29,8 @@ GrB_Info GB_cuda_select_sparse
     ASSERT (C != NULL && !(C->header_size == 0)) ;
     ASSERT (A != NULL && !(A->header_size == 0)) ;
 
-    // FIXME: use the stream pool
     cudaStream_t stream = nullptr ;
-    CUDA_OK (cudaStreamCreate (&stream)) ;
+    GB_OK (GB_cuda_acquire_stream (&stream)) ;
 
     GrB_Index anz = GB_nnz_held (A) ;
 
@@ -77,7 +65,7 @@ GrB_Info GB_cuda_select_sparse
     GB_OK (GB_cuda_select_sparse_jit (C, A,
         flipij, ythunk, op, stream, gridsz, BLOCK_SIZE)) ;
 
-    GB_FREE_WORKSPACE ;
+    GB_OK (GB_cuda_release_stream (&stream)) ;
 
     ASSERT (C->x != NULL) ;
 

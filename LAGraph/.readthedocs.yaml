@@ -7,12 +7,12 @@ build:
   tools:
     python: "3.12"
 
-formats:
-  - pdf
-
 sphinx:
   builder: html
   configuration: rtdocs/conf.py
+
+formats:
+  - pdf
 
 python:
   install:

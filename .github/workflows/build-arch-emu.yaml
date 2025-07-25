@@ -36,7 +36,7 @@ jobs:
       matrix:
         # For available CPU architectures, see:
         # https://github.com/marketplace/actions/setup-alpine-linux-environment
-        arch: [x86, armv7, ppc64le, s390x, riscv64, loongarch64]
+        arch: [x86, armv7, loongarch64]
         include:
           - arch: x86
             ccache-max: 64M
@@ -46,12 +46,6 @@ jobs:
             ccache-max: 60M
             extra-build-libs: ":GraphBLAS:LAGraph"
             extra-check-libs: ":GraphBLAS:LAGraph"
-          - arch: ppc64le
-            ccache-max: 28M
-          - arch: s390x
-            ccache-max: 28M
-          - arch: riscv64
-            ccache-max: 28M
           - arch: loongarch64
             ccache-max: 30M
 
@@ -88,7 +82,7 @@ jobs:
             autoconf
             automake
             libtool
-          # ${{ matrix.arch != 'riscv64' && 'valgrind' || '' }}
+            sudo
 
       - name: disable QEMU emulation
         if: matrix.arch == 'armv7'
@@ -129,6 +123,7 @@ jobs:
           # echo "/usr/lib/ccache" >> $GITHUB_PATH
 
       - name: build
+        id: build
         run: |
           echo "gcc --version"
           gcc --version
@@ -150,6 +145,7 @@ jobs:
                   -DBLA_VENDOR="Generic" \
                   -DGRAPHBLAS_COMPACT=ON \
                   -DSUITESPARSE_DEMOS=OFF \
+                  -DSUITESPARSE_USE_FORTRAN=ON \
                   -DBUILD_TESTING=OFF \
                   ..
             echo "::endgroup::"
@@ -171,12 +167,14 @@ jobs:
           done
 
       - name: ccache status
+        if: always() && (steps.build.outcome != 'skipped')
         continue-on-error: true
         run: ccache -s
 
       - name: save ccache
-        # Save the cache after we are done (successfully) building
+        # Save the cache after we are done building
         # This helps to retain the ccache even if the subsequent steps are failing.
+        if: always() && (steps.build.outcome != 'skipped')
         uses: actions/cache/save@v4
         with:
           path: /home/runner/rootfs/alpine-latest-${{ matrix.arch }}/home/runner/.ccache
