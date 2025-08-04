@@ -299,7 +299,8 @@ endif ( )
 #-------------------------------------------------------------------------------
 
 include ( CheckLanguage )
-option ( SUITESPARSE_USE_FORTRAN "ON (default): use Fortran. OFF: do not use Fortran" ON )
+# FIXME: fortran is off
+option ( SUITESPARSE_USE_FORTRAN "ON (default): use Fortran. OFF: do not use Fortran" OFF )
 if ( SUITESPARSE_USE_FORTRAN )
     message ( STATUS "Checking if Fortran is available and compatible with C/C++" )
     check_language ( Fortran )

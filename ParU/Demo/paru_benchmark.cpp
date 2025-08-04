@@ -332,6 +332,8 @@ int main(int argc, char **argv)
     // benchmark ParU
     //--------------------------------------------------------------------------
 
+// FIXME: disable ParU for now; just test UMFPACK
+#if 0
     for (int ord = 0 ; ord <= 1 ; ord++)
     {
         int ordering = (ord == 0) ? PARU_ORDERING_AMD :
@@ -537,6 +539,7 @@ int main(int argc, char **argv)
         }
         printf ("\n") ;
     }
+#endif
 
     //--------------------------------------------------------------------------
     // free everything and return
