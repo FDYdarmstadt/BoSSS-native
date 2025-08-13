@@ -1864,6 +1864,8 @@ on those platforms, nested parallelism is disabled when using \verb'gcc'.
 If using \verb'gcc', use a recent compiler (version 7.5.0 fails; 12.2.0
 works).
 
+FIXME: discuss \verb'OMP_MAX_ACTIVE_LEVELS=2'
+
 You can query ParU at run time to determine which BLAS library it is using, and
 whether or not it is compiled to use parallel or sequential factorization of
 its frontal matrix tree.  See \verb'ParU_Get' (Section~\ref{get}) for details.
