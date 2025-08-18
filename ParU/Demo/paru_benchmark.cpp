@@ -191,6 +191,7 @@ int main(int argc, char **argv)
     // benchmark UMFPACK
     //--------------------------------------------------------------------------
 
+// FIXME: umfpack benchmark disabled
 #if 0
 
     double umf_time = 0;
