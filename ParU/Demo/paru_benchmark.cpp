@@ -191,8 +191,7 @@ int main(int argc, char **argv)
     // benchmark UMFPACK
     //--------------------------------------------------------------------------
 
-// FIXME: umfpack benchmark disabled
-#if 0
+#if 1
 
     double umf_time = 0;
     double status,           // Info [UMFPACK_STATUS]
@@ -213,7 +212,8 @@ int main(int argc, char **argv)
         printf ("\n===== UMFPACK ordering: %d\n", ordering) ;
         int kthread = 0 ;
         sym_time = -1 ;
-        for (int nthreads = max_nthreads ; nthreads > 0 ; nthreads = nthreads/2)
+        for (int nthreads = max_nthreads ; nthreads > 0 ;
+            nthreads = (nthreads == 24) ? 16 : (nthreads/2))
         {
             printf ("# threads: %d\n", nthreads) ;
             #ifdef _OPENMP
@@ -346,7 +346,8 @@ int main(int argc, char **argv)
         int kthread = 0 ;
         sym_time = -1 ;
         int64_t ordering_used, strategy_used, umf_strategy_used ;
-        for (int nthreads = max_nthreads ; nthreads > 0 ; nthreads = nthreads/2)
+        for (int nthreads = max_nthreads ; nthreads > 0 ;
+            nthreads = (nthreads == 24) ? 16 : (nthreads/2))
         {
             printf ("# threads: %d\n", nthreads) ;
             ParU_Set (PARU_CONTROL_MAX_THREADS, (int64_t) nthreads, Control) ;
