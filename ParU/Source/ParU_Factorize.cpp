@@ -72,9 +72,9 @@ static void paru_frontal_flops
     // # of entries in U for this front, including diagonal
     int64_t nzu = tril + k*n ;
 
-    (*fl) += f ;
-    (*lnz) += nzl ;
-    (*unz) += nzu ;
+    (*fl) = f ;
+    (*lnz) = nzl ;
+    (*unz) = nzu ;
 }
 
 //------------------------------------------------------------------------------
@@ -227,6 +227,9 @@ ParU_Info ParU_Factorize
     // This case is handled by cmake.
     if (task_Q.size() * 2 > ((long unsigned int) nthreads))
     {
+
+// double tt1 = omp_get_wtime ( ) ;
+
         PRLEVEL(1, ("Parallel\n"));
         // checking user input
 
@@ -305,10 +308,13 @@ ParU_Info ParU_Factorize
             paru_free_work(Sym, Work);   // free the work DS
             ParU_FreeNumeric(Num_handle, Control);
         }
+// tt1 = omp_get_wtime ( ) - tt1 ;
+// printf ("HERE parallel task time %g, nthreads %d\n", tt1, nthreads) ;
     }
     else
 #endif
     {
+// double tt1 = omp_get_wtime ( ) ;
         PRLEVEL(1, ("Sequential\n"));
         Work->naft = 1;
         for (int64_t i = 0; i < nf; i++)
@@ -322,6 +328,8 @@ ParU_Info ParU_Factorize
                 break ;
             }
         }
+// tt1 = omp_get_wtime ( ) - tt1 ;
+// printf ("HERE sequential task time %g, nthreads %d\n", tt1, nthreads) ;
     }
 
     // restore the MKL and OpenMP settings to their original values
@@ -371,30 +379,36 @@ ParU_Info ParU_Factorize
     if (nf > 0)
     {
         ParU_Factors *LUs = Num->partial_LUs;
+        const int64_t *Super = Sym->Super;
         max_udiag = min_udiag = fabs(*(LUs[0].p));
         #ifdef PARU_COVERAGE
         #define M1 1000
         #else
         #define M1 65536
         #endif
-        if (Num->m < M1)
+// printf ("HERE wrapup would be nthreads: %d nused %d work (double) %g\n",
+//     nthreads, paru_nthreads ((double) Num->m, M1, nthreads), (double) nf) ;
+
+        int nth = paru_nthreads ((double) Num->m, M1, nthreads) ;
+        if (nth == 1)
         {
             //Serial
             for (int64_t f = 0; f < nf; f++)
             {
                 int64_t rowCount = Num->frowCount[f];
                 int64_t colCount = Num->fcolCount[f];
-                const int64_t *Super = Sym->Super;
                 int64_t col1 = Super[f];
                 int64_t col2 = Super[f + 1];
                 int64_t fp = col2 - col1;
                 max_rc = std::max(max_rc, rowCount);
                 max_cc = std::max(max_cc, colCount + fp);
+                double fl ;
+                int64_t lnz, unz ;
+                paru_frontal_flops (fp, rowCount-fp, colCount, &fl, &lnz, &unz);
+                sfc += fl ;
+                nnzL += lnz ;
+                nnzU += unz ;
                 double *X = LUs[f].p;
-
-                paru_frontal_flops (fp, rowCount - fp, colCount,
-                    &sfc, &nnzL, &nnzU) ;
-
                 for (int64_t i = 0; i < fp; i++)
                 {
                     double udiag = fabs(X[rowCount * i + i]);
@@ -405,11 +419,19 @@ ParU_Info ParU_Factorize
         }
         else
         {
+
+// double tt1 = omp_get_wtime ( ) ;
+
             //Parallel
-            const int64_t *Super = Sym->Super;
-            #pragma omp parallel for reduction(max:max_rc)      \
-                reduction(max: max_cc) if (nf > 65536)          \
-                num_threads(nthreads)
+            #pragma omp parallel for num_threads(nth) \
+                reduction(max:max_rc)       \
+                reduction(max:max_cc)       \
+                reduction(min:min_udiag)    \
+                reduction(max:max_udiag)    \
+                reduction(+:sfc)            \
+                reduction(+:nnzL)           \
+                reduction(+:nnzU)           \
+                schedule (static, 1)
             for (int64_t f = 0; f < nf; f++)
             {
                 int64_t rowCount = Num->frowCount[f];
@@ -419,30 +441,27 @@ ParU_Info ParU_Factorize
                 int64_t fp = col2 - col1;
                 max_rc = std::max(max_rc, rowCount);
                 max_cc = std::max(max_cc, colCount + fp);
-            }
-
-            for (int64_t f = 0; f < nf; f++)
-            {
-                int64_t rowCount = Num->frowCount[f];
-                int64_t colCount = Num->fcolCount[f];
-                int64_t col1 = Super[f];
-                int64_t col2 = Super[f + 1];
-                int64_t fp = col2 - col1;
-
-                paru_frontal_flops (fp, rowCount - fp, colCount,
-                    &sfc, &nnzL, &nnzU) ;
-
+                double fl ;
+                int64_t lnz, unz ;
+                paru_frontal_flops (fp, rowCount-fp, colCount, &fl, &lnz, &unz);
+                sfc += fl ;
+                nnzL += lnz ;
+                nnzU += unz ;
                 double *X = LUs[f].p;
-                #pragma omp parallel for reduction(min:min_udiag)   \
-                    reduction(max: max_udiag)                       \
-                    num_threads(nthreads)
+                double my_min_udiag = 1 ;
+                double my_max_udiag = -1 ;
                 for (int64_t i = 0; i < fp; i++)
                 {
                     double udiag = fabs(X[rowCount * i + i]);
-                    min_udiag = std::min(min_udiag, udiag);
-                    max_udiag = std::max(max_udiag, udiag);
+                    my_min_udiag = std::min(my_min_udiag, udiag);
+                    my_max_udiag = std::max(my_max_udiag, udiag);
                 }
+                min_udiag = std::min(min_udiag, my_min_udiag);
+                max_udiag = std::max(max_udiag, my_max_udiag);
             }
+
+// tt1 = omp_get_wtime ( ) - tt1 ;
+// printf ("HERE PARALLEL wrapup time %g, nthreads %d of %d\n", tt1, nth, nthreads) ;
         }
     }
 

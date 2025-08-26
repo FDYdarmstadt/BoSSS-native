@@ -1148,5 +1148,20 @@ extern "C" {
 }
 #endif
 
+static inline int paru_nthreads // return # of threads to use
+(
+    double work,                // total work to do
+    double chunk,               // give each thread at least this much work
+    int nthreads_max            // max # of threads to use
+)
+{ 
+    work  = std::max (work, (double) 1) ;
+    chunk = std::max (chunk, (double) 1) ;
+    int nthreads = (int64_t) floor (work / chunk) ;
+    nthreads = std::min (nthreads, nthreads_max) ;
+    nthreads = std::max (nthreads, (int) 1) ;
+    return ((int) nthreads) ;
+}
+
 #endif
 

@@ -191,7 +191,7 @@ int main(int argc, char **argv)
     // benchmark UMFPACK
     //--------------------------------------------------------------------------
 
-#if 1
+#if 0
 
     double umf_time = 0;
     double status,           // Info [UMFPACK_STATUS]
