@@ -214,6 +214,8 @@ ParU_Info ParU_Factorize
     // execute the task tree
     //--------------------------------------------------------------------------
 
+    // FIXME: reduce # of threads if problem is small
+
     #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
     int dynamic  = PARU_OPENMP_GET_DYNAMIC ;
     #endif

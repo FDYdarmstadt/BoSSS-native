@@ -1,3 +1,30 @@
+Aug 18, 2025: version 7.11.1
+
+    * UMFPACK 6.3.7: workaround for an Intel icx 2025.2 compiler bug
+    * LAGraph 1.2.1: bug fix for experimental maxflow method (FIXME IN PROGRESS)
+    * ParU 1.0.2: minor revisions for benchmarking
+    * Package versions in this release: (* denotes a new version)
+        SuiteSparse_config 7.11.1   *
+        AMD 3.3.4
+        BTF 2.3.3
+        CAMD 3.3.5
+        CCOLAMD 3.3.5
+        CHOLMOD 5.3.4
+        COLAMD 3.3.5
+        CSparse 4.3.2
+        CXSparse 4.4.2
+        Example 1.8.10              *
+        GraphBLAS 10.1.1
+        KLU 2.3.6
+        LDL 3.3.3
+        LAGraph 1.2.1               *   FIXME IN PROGRESS
+        SuiteSparse_Mongoose 3.3.5
+        ParU 1.0.2                  *
+        RBio 4.3.5
+        SPEX 3.2.4
+        SPQR 4.3.5
+        UMFPACK 6.3.7               *
+
 July 25, 2025: version 7.11.0
 
     * LAGraph v1.2: many new experimental algorithms, LAGraph_Random in src/

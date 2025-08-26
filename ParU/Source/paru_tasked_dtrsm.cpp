@@ -67,6 +67,7 @@ bool paru_tasked_dtrsm
         if (my_share == 0) my_share = 1;
         PRLEVEL(1, ("%% MKL local threads for trsm(" LD "x" LD ") in " LD " [[%d]]\n", m,
                     n, f, my_share));
+        // FIXME: reduce # of threads if problem is small
         mkl_set_num_threads_local(my_share);
         SUITESPARSE_BLAS_dtrsm("L", "L", "N", "U", m, n, &alpha, a, lda, b, ldb,
                                blas_ok);
@@ -77,6 +78,7 @@ bool paru_tasked_dtrsm
         int64_t num_blocks = n / worthwhile_dtrsm + 1;
         int64_t len_bloc = n / num_blocks;
         PRLEVEL(1, ("%%  num_blocks = " LD "\n", num_blocks));
+        // FIXME: add num_threads(my_share) here:
         #pragma omp parallel proc_bind(close)
         #pragma omp single nowait
         {

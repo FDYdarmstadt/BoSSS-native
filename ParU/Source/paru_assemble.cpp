@@ -31,6 +31,8 @@ void paru_assemble_all
     // get Control
     int32_t nthreads = Work->nthreads ;
 
+    // FIXME: reduce # of threads if problem is small
+
     DEBUGLEVEL(0);
     PARU_DEFINE_PRLEVEL;
 #ifndef NTIME

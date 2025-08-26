@@ -484,6 +484,8 @@ ParU_Info paru_init_rowFronts
 
     int64_t out_of_memory = 0;
 
+    // FIXME: reduce # of threads if problem is small
+
     #pragma omp parallel for num_threads(nthreads)
     for (int64_t row = 0; row < m; row++)
     {

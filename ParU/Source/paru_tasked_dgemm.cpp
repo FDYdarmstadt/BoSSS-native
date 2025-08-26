@@ -122,6 +122,8 @@ bool paru_tasked_dgemm
             // tasked dgemm with MKL BLAS: requires mkl_set_num_threads_local
             //------------------------------------------------------------------
 
+            // FIXME: reduce # of threads if problem is small
+
             int my_share = nthreads / naft;
             if (my_share == 0) my_share = 1;
             PRLEVEL(1, ("%% MKL local threads for DGEMM (" LD "x" LD ") in "
@@ -158,6 +160,7 @@ bool paru_tasked_dgemm
             PRLEVEL(1, ("%% col-blocks=" LD ",row-blocks=" LD " [" LD "]\n",
                 num_col_blocks, num_row_blocks,
                 num_col_blocks * num_row_blocks));
+            // FIXME: add num_threads(my_share) here:
             #pragma omp parallel proc_bind(close)
             #pragma omp single nowait
             {

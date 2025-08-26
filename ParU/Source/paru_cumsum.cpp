@@ -23,6 +23,8 @@ int64_t paru_cumsum
 )
 {
 
+    // FIXME: reduce # of threads if problem is small
+
     // n is size, X is size n and in/out
     int64_t tot = 0;
     if (X == NULL) return tot;
