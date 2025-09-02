@@ -216,32 +216,34 @@ ParU_Info ParU_Factorize
 
     // FIXME: reduce # of threads if problem is small
 
-    #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
-    int dynamic  = PARU_OPENMP_GET_DYNAMIC ;
-    #endif
-    int levels   = PARU_OPENMP_GET_MAX_ACTIVE_LEVELS ;
+    int omp_dynamic  = PARU_omp_get_dynamic ( ) ;
+    int blas_dynamic = BLAS_get_dynamic ( ) ;
+    int levels = PARU_OPENMP_GET_MAX_ACTIVE_LEVELS ;
+
+    printf ("In Factorize, level %d, max levels %d\n", omp_get_active_level (), levels) ;
 
 #if ! defined ( PARU_1TASK )
+
     // The parallel factorization gets stuck intermittently on Windows or Mac
     // with gcc, so always use the sequential factorization in that case.
     // This case is handled by cmake.
     if (task_Q.size() * 2 > ((long unsigned int) nthreads))
     {
 
-// double tt1 = omp_get_wtime ( ) ;
+double tt1 = omp_get_wtime ( ) ;
 
         PRLEVEL(1, ("Parallel\n"));
         // checking user input
 
-        // revise the MKL and OpenMP settings for the parallel task tree
-        #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
-        PARU_OPENMP_SET_DYNAMIC(0);
-        mkl_set_dynamic((int)0);
-        // mkl_set_threading_layer(MKL_THREADING_INTEL);
-        // mkl_set_interface_layer(MKL_INTERFACE_ILP64);
-        #endif
+        // revise the OpenMP and BLAS settings for the parallel task tree
+//      #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+        PARU_omp_set_dynamic (0) ;
+        BLAS_set_dynamic (1) ;
+//      #endif
         BLAS_set_num_threads(1);
         PARU_OPENMP_SET_MAX_ACTIVE_LEVELS(4);
+
+        printf ("TASKING In Factorize, level %d, max levels %d\n", omp_get_active_level (), omp_get_max_active_levels ( )) ;
 
         const int64_t size = (int64_t)task_Q.size();
         const int64_t steps = size == 0 ? 1 : size;
@@ -267,7 +269,6 @@ ParU_Info ParU_Factorize
                 {
                     #pragma omp atomic update
                     Work->naft++;
-
                     ParU_Info myInfo =
                         paru_exec_tasks(t, task_num_child, chain_task, Work,
                             Sym, Num);
@@ -278,19 +279,19 @@ ParU_Info ParU_Factorize
                     }
                     #pragma omp atomic update
                     Work->naft--;
-
                     #pragma omp atomic update
                     Work->resq--;
                 }
             }
             start += steps;
         }
+
         // chain break
         if (chain_task != -1 && info == PARU_SUCCESS)
         {
             #pragma omp atomic write
             Work->naft = 1;
-            PRLEVEL(1, ("Chain_taskd " LD " has remained\n", chain_task));
+            PRLEVEL(-11, ("Chain_taskd " LD " has remained\n", chain_task));
             info = paru_exec_tasks_seq(chain_task, task_num_child, Work,
                 Sym, Num);
         }
@@ -308,13 +309,15 @@ ParU_Info ParU_Factorize
             paru_free_work(Sym, Work);   // free the work DS
             ParU_FreeNumeric(Num_handle, Control);
         }
-// tt1 = omp_get_wtime ( ) - tt1 ;
-// printf ("HERE parallel task time %g, nthreads %d\n", tt1, nthreads) ;
+tt1 = omp_get_wtime ( ) - tt1 ;
+printf ("HERE parallel task time %g, nthreads %d\n", tt1, nthreads) ;
+
     }
     else
 #endif
     {
-// double tt1 = omp_get_wtime ( ) ;
+
+double tt1 = omp_get_wtime ( ) ;
         PRLEVEL(1, ("Sequential\n"));
         Work->naft = 1;
         for (int64_t i = 0; i < nf; i++)
@@ -328,15 +331,13 @@ ParU_Info ParU_Factorize
                 break ;
             }
         }
-// tt1 = omp_get_wtime ( ) - tt1 ;
-// printf ("HERE sequential task time %g, nthreads %d\n", tt1, nthreads) ;
+tt1 = omp_get_wtime ( ) - tt1 ;
+printf ("HERE sequential task time %g, nthreads %d\n", tt1, nthreads) ;
     }
 
-    // restore the MKL and OpenMP settings to their original values
-    #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
-    PARU_OPENMP_SET_DYNAMIC (dynamic) ;
-    mkl_set_dynamic ((int) dynamic) ;
-    #endif
+    // restore the OpenMP and BLAS settings to their original values
+    PARU_omp_set_dynamic (omp_dynamic) ;
+    BLAS_set_dynamic (blas_dynamic) ;
     BLAS_set_num_threads (PARU_OPENMP_MAX_THREADS) ;
     PARU_OPENMP_SET_MAX_ACTIVE_LEVELS (levels);
 
@@ -386,10 +387,10 @@ ParU_Info ParU_Factorize
         #else
         #define M1 65536
         #endif
-// printf ("HERE wrapup would be nthreads: %d nused %d work (double) %g\n",
-//     nthreads, paru_nthreads ((double) Num->m, M1, nthreads), (double) nf) ;
 
         int nth = paru_nthreads ((double) Num->m, M1, nthreads) ;
+printf ("HERE wrapup would be nthreads: %d nused, %d # fronts: %g\n",
+nthreads, nth, (double) nf) ;
         if (nth == 1)
         {
             //Serial
@@ -420,7 +421,7 @@ ParU_Info ParU_Factorize
         else
         {
 
-// double tt1 = omp_get_wtime ( ) ;
+double tt1 = omp_get_wtime ( ) ;
 
             //Parallel
             #pragma omp parallel for num_threads(nth) \
@@ -460,8 +461,8 @@ ParU_Info ParU_Factorize
                 max_udiag = std::max(max_udiag, my_max_udiag);
             }
 
-// tt1 = omp_get_wtime ( ) - tt1 ;
-// printf ("HERE PARALLEL wrapup time %g, nthreads %d of %d\n", tt1, nth, nthreads) ;
+tt1 = omp_get_wtime ( ) - tt1 ;
+printf ("HERE PARALLEL wrapup time %g, nthreads %d of %d\n", tt1, nth, nthreads) ;
         }
     }
 

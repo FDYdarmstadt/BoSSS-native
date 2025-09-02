@@ -14,6 +14,14 @@
 //
 
 #include <cinttypes>
+
+#if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+    extern "C"
+    {
+        #include "mkl.h"
+    }
+#endif
+
 #define SUITESPARSE_BLAS_DEFINITIONS
 #include "ParU.h"
 #include "paru_omp.hpp"
@@ -314,6 +322,10 @@ extern "C"
     #define NTIME
 #endif
 
+// FIXME:
+#undef NTIME
+#undef NPR
+
 #define DLONG
 
 // silence these diagnostics:
@@ -486,56 +498,126 @@ static int print_level = -1;
     }
 #endif
 
+// -----------------------------------------------------------------------------
+// BLAS threading control
+// -----------------------------------------------------------------------------
+
 #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
 
-    #undef mkl_set_num_threads
-    #undef mkl_set_num_threads_local
-    #undef mkl_set_dynamic
+    // -------------------------------------------------------------------------
+    // Intel MKL BLAS
+    // -------------------------------------------------------------------------
 
-    #ifdef MATLAB_MEX_FILE
+    static inline void BLAS_set_num_threads (int nthreads)
+    {
+        // set the global # of threads for MKL
+        mkl_set_num_threads (nthreads) ;
+    }
 
-        extern "C"
-        {
-            void mkl_serv_set_num_threads (int n) ;
-            void mkl_serv_set_num_threads_local (int n) ;
-            void mkl_serv_set_dynamic (int flag);
-        }
-        #define mkl_set_num_threads         mkl_serv_set_num_threads
-        #define mkl_set_num_threads_local   mkl_serv_set_num_threads
-        #define mkl_set_dynamic             mkl_serv_set_dynamic
+    static inline int BLAS_set_num_threads_local (int nthreads)
+    {
+        // set the local # of threads for MKL and return the prior setting
+        int prior = mkl_set_num_threads_local (nthreads) ;
+        return (prior) ;
+    }
 
-    #else
+    static inline int BLAS_get_dynamic (void)
+    {
+        // return the MKL dynamic threading option
+        return (mkl_get_dynamic ()) ;
+    }
 
-        extern "C"
-        {
-            void MKL_Set_Num_Threads (int n) ;
-            void MKL_Set_Num_Threads_Local (int n) ;
-            void MKL_Set_Dynamic (int flag);
-        }
+    static inline int BLAS_set_dynamic (int dynamic)
+    {
+        // set the MKL dynamic threading option and return the prior setting
+        int prior = mkl_get_dynamic ( ) ;
+        mkl_set_dynamic (dynamic) ;
+        return (prior) ;
+    }
 
-        #define mkl_set_num_threads         MKL_Set_Num_Threads
-        #define mkl_set_num_threads_local   MKL_Set_Num_Threads_Local
-        #define mkl_set_dynamic             MKL_Set_Dynamic
+// #elif ( defined ( BLAS_OpenBLAS ))
+#elif 0
 
-    #endif
-
-    #define BLAS_set_num_threads(n) mkl_set_num_threads(n)
-
-#elif ( defined ( BLAS_OpenBLAS ) )
-
+    // -------------------------------------------------------------------------
     // OpenBLAS
+    // -------------------------------------------------------------------------
+
     extern "C"
     {
-        void openblas_set_num_threads (int n) ;
+        // ideally uses OpenBLAS 0.3.22 or later:
+        void openblas_set_num_threads (int nthreads) ;
+        #if 0
+        // requires OpenBLAS 0.3.27 or later:
+        int  openblas_set_num_threads_local (int nthreads) ;
+        #endif
     }
-    #define BLAS_set_num_threads(n) openblas_set_num_threads(n)
+
+    static inline void BLAS_set_num_threads (int nthreads)
+    {
+        // set the global # of threads for OpenBLAS
+        openblas_set_num_threads (nthreads) ;
+    }
+
+    static inline int BLAS_set_num_threads_local (int nthreads)
+    {
+        #if 1
+        // OpenBLAS < 0.3.27
+        // nothing to do except to return the # OpenMP threads
+        return (PARU_omp_get_num_threads ( )) ;
+        #else
+        // requires OpenBLAS 0.3.27
+        // set the local # of threads for OpenBLAS and return the prior setting
+        int prior = openblas_set_num_threads_local (nthreads) ;
+        return (prior) ;
+        #endif
+    }
+
+    static inline int BLAS_get_dynamic (void)
+    {
+        // return the OpenMP dynamic threading option
+        return (PARU_omp_get_dynamic ( )) ;
+    }
+
+    static inline int BLAS_set_dynamic (int dynamic)
+    {
+        // set the OpenMP dynamic threading option and return the prior one
+        return (PARU_omp_set_dynamic (dynamic)) ;
+    }
 
 #else
 
+    // -------------------------------------------------------------------------
     // Generic BLAS
-    #define BLAS_set_num_threads(n)
+    // -------------------------------------------------------------------------
+
+    static inline void BLAS_set_num_threads (int nthreads)
+    {
+        // nothing to do
+        ;
+    }
+
+    static inline int BLAS_set_num_threads_local (int nthreads)
+    {
+        // nothing to do except to return the # OpenMP threads
+        return (PARU_omp_get_num_threads ( )) ;
+    }
+
+    static inline int BLAS_get_dynamic (void)
+    {
+        // return the OpenMP dynamic threading option
+        return (PARU_omp_get_dynamic ( )) ;
+    }
+
+    static inline int BLAS_set_dynamic (int dynamic)
+    {
+        // set the OpenMP dynamic threading option and return the prior one
+        return (PARU_omp_set_dynamic (dynamic)) ;
+    }
 
 #endif
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 // To be able to use set
 #include <algorithm>

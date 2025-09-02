@@ -36,6 +36,15 @@ bool paru_tasked_dgemm
     int32_t nthreads = Work->nthreads ;
     int64_t worthwhile_dgemm = Work->worthwhile_dgemm ;
     int64_t trivial = Work->trivial ;
+    bool small = (M < worthwhile_dgemm && N < worthwhile_dgemm) ;
+    bool tiny = (M < trivial && N < trivial && K < trivial) ;
+
+    #define CHUNK ((double) 1e8)
+    double work = ((double) M) * ((double) N) * ((double) K) ;
+//  int nth = paru_nthreads (work, CHUNK, nthreads) ;
+    int nth = nthreads ;
+
+    int my_share = 0 ;
 
     DEBUGLEVEL(0);
     // alpha is always -1  in my DGEMMs
@@ -48,24 +57,29 @@ bool paru_tasked_dgemm
     naft = Work->naft;
     if (naft == 1)
     {
-        BLAS_set_num_threads(nthreads);
+        // let the BLAS decide how many threads to use
+        BLAS_set_num_threads (nth) ;
+        printf ("proc_bind: %d ", omp_get_proc_bind ( )) ;
+        printf ("dynamic: %d\n", omp_get_dynamic ( )) ;
     }
     else
     {
-        BLAS_set_num_threads(1);
+        // use a single thread in the BLAS
+        BLAS_set_num_threads (1) ;
     }
+
 #ifndef NTIME
     double start_time = PARU_OPENMP_GET_WTIME;
 #endif
 
-    if (M < trivial && N < trivial && K < trivial)
+    if (tiny)
     {
 
         //----------------------------------------------------------------------
         // trivial dgemm: do this without the BLAS
         //----------------------------------------------------------------------
 
-        PRLEVEL(1, ("%% SMALL DGEMM (" LD "," LD "," LD ") in "
+        PRLEVEL(-1, ("%% SMALL DGEMM (" LD "," LD "," LD ") in "
             LD "\n", M, N, K, f));
         for (int64_t i = 0; i < M; i++)
         {
@@ -80,8 +94,8 @@ bool paru_tasked_dgemm
         }
 
     }
-    else if ((M < worthwhile_dgemm && N < worthwhile_dgemm) ||
-        (naft == 1) || (naft >= nthreads))
+//    else if (small || (naft == 1) || (naft >= nth))
+    else if (small || (naft >= nth))
     {
 
         //----------------------------------------------------------------------
@@ -89,20 +103,15 @@ bool paru_tasked_dgemm
         //----------------------------------------------------------------------
 
         // if small or no other tasks competing or there are lots of other tasks
-#ifndef NDEBUG
-        if (naft == 1)
-        {
-            PRLEVEL(1, ("%% A nthreads DGEMM (" LD "x" LD ") in " LD
-                "\n", M, N, f));
-        }
-        else if (M < worthwhile_dgemm && N < worthwhile_dgemm)
-        {
-            PRLEVEL(1, ("%% Single call DGEMM (" LD "x" LD ") in " LD
-                "\n", M, N, f));
-        }
-#endif
+
+        PRLEVEL(-1, ("%% A naft: %ld nth: %d DGEMM (" LD "x" LD ") in " LD "\n",
+            naft, nth, M, N, f));
+
+        my_share = (small || (naft >= nth)) ? 1 : nth ;
+        int prior = BLAS_set_num_threads_local (my_share) ;
         SUITESPARSE_BLAS_dgemm("N", "N", M, N, K, &alpha, A, lda, B, ldb, &beta,
                                C, ldc, blas_ok);
+        BLAS_set_num_threads_local (prior) ;
 
     }
     else
@@ -114,6 +123,7 @@ bool paru_tasked_dgemm
 
         // This case is tested in ParU/Tcov, sometimes miss it, depending on
         // how the threads are scheduled.
+        my_share = std::max ((int) 1, (int) (nth / naft)) ;
 
         #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
         {
@@ -122,17 +132,14 @@ bool paru_tasked_dgemm
             // tasked dgemm with MKL BLAS: requires mkl_set_num_threads_local
             //------------------------------------------------------------------
 
-            // FIXME: reduce # of threads if problem is small
-
-            int my_share = nthreads / naft;
-            if (my_share == 0) my_share = 1;
-            PRLEVEL(1, ("%% MKL local threads for DGEMM (" LD "x" LD ") in "
+            PRLEVEL(-1, ("%% MKL local threads for DGEMM (" LD "x" LD ") in "
                 LD " [[%d]]\n", M, N, f, my_share));
+
             // using my share of threads
-            mkl_set_num_threads_local(my_share);
+            int prior = BLAS_set_num_threads_local (my_share) ;
             SUITESPARSE_BLAS_dgemm("N", "N", M, N, K, &alpha, A, lda, B, ldb,
                 &beta, C, ldc, blas_ok);
-            mkl_set_num_threads_local(0);
+            BLAS_set_num_threads_local (prior) ;
 
         }
         #else
@@ -149,7 +156,7 @@ bool paru_tasked_dgemm
             // sometimes is not triggered, depending on the non-deterministic
             // task ordering.
 
-            PRLEVEL(1, ("%%YES tasking for DGEMM (" LD "x" LD
+            PRLEVEL(-1, ("%%YES tasking for DGEMM (" LD "x" LD
                 ") in " LD " \n", M, N, f));
             int64_t num_col_blocks = N / worthwhile_dgemm + 1;
             int64_t num_row_blocks = M / worthwhile_dgemm + 1;
@@ -157,11 +164,15 @@ bool paru_tasked_dgemm
             int64_t len_col = N / num_col_blocks;
             int64_t len_row = M / num_row_blocks;
 
-            PRLEVEL(1, ("%% col-blocks=" LD ",row-blocks=" LD " [" LD "]\n",
+            PRLEVEL(-1, ("%% col-blocks=" LD ",row-blocks=" LD " [" LD "]\n",
                 num_col_blocks, num_row_blocks,
                 num_col_blocks * num_row_blocks));
-            // FIXME: add num_threads(my_share) here:
-            #pragma omp parallel proc_bind(close)
+            // FIXME: add num_threads(nth) here:
+            printf ("TASKING using %d threads, active level %d, max levels %d\n",
+                omp_get_num_threads (),
+                omp_get_active_level (),
+                omp_get_max_active_levels ()) ;
+            #pragma omp parallel proc_bind(close) num_threads(nth)
             #pragma omp single nowait
             {
                 for (int64_t I = 0; I < num_row_blocks; I++)
@@ -200,13 +211,15 @@ bool paru_tasked_dgemm
 #ifndef NTIME
     double time = PARU_OPENMP_GET_WTIME;
     time -= start_time;
-    PRLEVEL(1, ("%% DGEMM (" LD "," LD "," LD ")%1.1f in " LD " {" LD
-        "} in %lf seconds\n", M, N, K, beta, f, naft, time));
+    PRLEVEL(-1, ("%% DGEMM (" LD "," LD "," LD ")%1.1f in " LD " {naft: " LD
+        "} in %lf seconds, work %g, nthreads %d, nth %d, my_share %d\n",
+        M, N, K, beta, f, naft, time, work, nthreads, nth, my_share));
 #endif
 
 #ifdef COUNT_FLOPS
     #pragma omp atomic update
     Work->flp_cnt_dgemm += (double)2 * M * N * K;
 #endif
+
     return (blas_ok) ;
 }
