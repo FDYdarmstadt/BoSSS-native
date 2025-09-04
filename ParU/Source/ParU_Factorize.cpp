@@ -77,6 +77,14 @@ static void paru_frontal_flops
     (*unz) = nzu ;
 }
 
+#ifndef NPR
+#ifndef CBLAS_H
+#if defined ( BLAS_OpenBLAS )
+extern "C" { char *openblas_get_config (void) ; }
+#endif
+#endif
+#endif
+
 //------------------------------------------------------------------------------
 // ParU_Factorize: factorize a sparse matrix A
 //------------------------------------------------------------------------------
@@ -97,6 +105,10 @@ ParU_Info ParU_Factorize
     {
         return (PARU_INVALID) ;
     }
+
+    #if defined ( BLAS_OpenBLAS )
+    PRLEVEL (-1, ("OpenBLAS config: %s\n", openblas_get_config ( ))) ;
+    #endif
 
     ParU_Info info ;
     PARU_DEFINE_PRLEVEL;
@@ -127,6 +139,7 @@ ParU_Info ParU_Factorize
         Work->diag_toler       = Control->diag_toler ;
         Work->prescale         = Control->prescale ;
     }
+    Work->nthreads_for_blas = BLAS_get_max_threads ( ) ;
 
     int32_t nthreads = Work->nthreads ;
     size_t mem_chunk = Work->mem_chunk ;
@@ -220,8 +233,6 @@ ParU_Info ParU_Factorize
     int blas_dynamic = BLAS_get_dynamic ( ) ;
     int levels = PARU_OPENMP_GET_MAX_ACTIVE_LEVELS ;
 
-    printf ("In Factorize, level %d, max levels %d\n", omp_get_active_level (), levels) ;
-
 #if ! defined ( PARU_1TASK )
 
     // The parallel factorization gets stuck intermittently on Windows or Mac
@@ -230,20 +241,13 @@ ParU_Info ParU_Factorize
     if (task_Q.size() * 2 > ((long unsigned int) nthreads))
     {
 
-double tt1 = omp_get_wtime ( ) ;
-
         PRLEVEL(1, ("Parallel\n"));
         // checking user input
 
         // revise the OpenMP and BLAS settings for the parallel task tree
-//      #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
         PARU_omp_set_dynamic (0) ;
         BLAS_set_dynamic (1) ;
-//      #endif
-        BLAS_set_num_threads(1);
         PARU_OPENMP_SET_MAX_ACTIVE_LEVELS(4);
-
-        printf ("TASKING In Factorize, level %d, max levels %d\n", omp_get_active_level (), omp_get_max_active_levels ( )) ;
 
         const int64_t size = (int64_t)task_Q.size();
         const int64_t steps = size == 0 ? 1 : size;
@@ -291,7 +295,7 @@ double tt1 = omp_get_wtime ( ) ;
         {
             #pragma omp atomic write
             Work->naft = 1;
-            PRLEVEL(-11, ("Chain_taskd " LD " has remained\n", chain_task));
+            PRLEVEL(1, ("Chain_taskd " LD " has remained\n", chain_task));
             info = paru_exec_tasks_seq(chain_task, task_num_child, Work,
                 Sym, Num);
         }
@@ -309,15 +313,12 @@ double tt1 = omp_get_wtime ( ) ;
             paru_free_work(Sym, Work);   // free the work DS
             ParU_FreeNumeric(Num_handle, Control);
         }
-tt1 = omp_get_wtime ( ) - tt1 ;
-printf ("HERE parallel task time %g, nthreads %d\n", tt1, nthreads) ;
 
     }
     else
 #endif
     {
 
-double tt1 = omp_get_wtime ( ) ;
         PRLEVEL(1, ("Sequential\n"));
         Work->naft = 1;
         for (int64_t i = 0; i < nf; i++)
@@ -331,14 +332,11 @@ double tt1 = omp_get_wtime ( ) ;
                 break ;
             }
         }
-tt1 = omp_get_wtime ( ) - tt1 ;
-printf ("HERE sequential task time %g, nthreads %d\n", tt1, nthreads) ;
     }
 
     // restore the OpenMP and BLAS settings to their original values
     PARU_omp_set_dynamic (omp_dynamic) ;
     BLAS_set_dynamic (blas_dynamic) ;
-    BLAS_set_num_threads (PARU_OPENMP_MAX_THREADS) ;
     PARU_OPENMP_SET_MAX_ACTIVE_LEVELS (levels);
 
     if (info != PARU_SUCCESS)
@@ -388,9 +386,7 @@ printf ("HERE sequential task time %g, nthreads %d\n", tt1, nthreads) ;
         #define M1 65536
         #endif
 
-        int nth = paru_nthreads ((double) Num->m, M1, nthreads) ;
-printf ("HERE wrapup would be nthreads: %d nused, %d # fronts: %g\n",
-nthreads, nth, (double) nf) ;
+        int nth = paru_nthreads_to_use ((double) Num->m, M1, nthreads) ;
         if (nth == 1)
         {
             //Serial
@@ -420,9 +416,6 @@ nthreads, nth, (double) nf) ;
         }
         else
         {
-
-double tt1 = omp_get_wtime ( ) ;
-
             //Parallel
             #pragma omp parallel for num_threads(nth) \
                 reduction(max:max_rc)       \
@@ -460,9 +453,6 @@ double tt1 = omp_get_wtime ( ) ;
                 min_udiag = std::min(min_udiag, my_min_udiag);
                 max_udiag = std::max(max_udiag, my_max_udiag);
             }
-
-tt1 = omp_get_wtime ( ) - tt1 ;
-printf ("HERE PARALLEL wrapup time %g, nthreads %d of %d\n", tt1, nth, nthreads) ;
         }
     }
 

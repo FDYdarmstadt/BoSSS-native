@@ -449,19 +449,19 @@ int SuiteSparse_version     // returns SUITESPARSE_VERSION
 
 #define SUITESPARSE_HAS_VERSION_FUNCTION
 
-#define SUITESPARSE_DATE "Aug 18, 2025"
+#define SUITESPARSE_DATE "TODO, 2025 FIXME"
 #define SUITESPARSE_MAIN_VERSION    7
-#define SUITESPARSE_SUB_VERSION     11
-#define SUITESPARSE_SUBSUB_VERSION  1
+#define SUITESPARSE_SUB_VERSION     12
+#define SUITESPARSE_SUBSUB_VERSION  0
 
 // version format x.y
 #define SUITESPARSE_VER_CODE(main,sub) ((main) * 1000 + (sub))
-#define SUITESPARSE_VERSION SUITESPARSE_VER_CODE(7, 11)
+#define SUITESPARSE_VERSION SUITESPARSE_VER_CODE(7, 12)
 
 // version format x.y.z
 #define SUITESPARSE__VERCODE(main,sub,patch) \
     (((main)*1000ULL + (sub))*1000ULL + (patch))
-#define SUITESPARSE__VERSION SUITESPARSE__VERCODE(7,11,1)
+#define SUITESPARSE__VERSION SUITESPARSE__VERCODE(7,12,0)
 
 //==============================================================================
 // SuiteSparse interface to the BLAS and LAPACK libraries
@@ -532,7 +532,7 @@ int SuiteSparse_version     // returns SUITESPARSE_VERSION
 
 #if defined ( __cplusplus )
 
-    #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+    #if defined ( BLAS_Intel10 )
         #ifndef _MKL_TYPES_H_
         typedef struct _MKL_Complex8  { float  real ; float  imag ; } MKL_Complex8 ;
         typedef struct _MKL_Complex16 { double real ; double imag ; } MKL_Complex16 ;

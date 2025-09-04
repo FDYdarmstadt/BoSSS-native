@@ -153,7 +153,7 @@ void paru_assemble_all
 
         #define CHUNK 65536
         double work = ((double) el->nrowsleft) * ((double) el->ncolsleft) ;
-        nth = paru_nthreads (work, CHUNK, nthreads) ;
+        nth = paru_nthreads_to_use (work, CHUNK, nthreads) ;
 
         if (el->nrowsleft * el->ncolsleft < 4096 || el->nrowsleft < 1024
             #ifndef PARU_COVERAGE

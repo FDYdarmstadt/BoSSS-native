@@ -15,7 +15,7 @@
 
 #include <cinttypes>
 
-#if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+#if defined ( BLAS_Intel10 )
     extern "C"
     {
         #include "mkl.h"
@@ -502,7 +502,7 @@ static int print_level = -1;
 // BLAS threading control
 // -----------------------------------------------------------------------------
 
-#if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+#if defined ( BLAS_Intel10 )
 
     // -------------------------------------------------------------------------
     // Intel MKL BLAS
@@ -516,7 +516,7 @@ static int print_level = -1;
 
     static inline int BLAS_set_num_threads_local (int nthreads)
     {
-        // set the local # of threads for MKL and return the prior setting
+        // set the local # of threads for MKL and return prior setting
         int prior = mkl_set_num_threads_local (nthreads) ;
         return (prior) ;
     }
@@ -524,19 +524,24 @@ static int print_level = -1;
     static inline int BLAS_get_dynamic (void)
     {
         // return the MKL dynamic threading option
-        return (mkl_get_dynamic ()) ;
+        return (mkl_get_dynamic ( )) ;
     }
 
     static inline int BLAS_set_dynamic (int dynamic)
     {
-        // set the MKL dynamic threading option and return the prior setting
+        // set the MKL dynamic threading option and return prior setting
         int prior = mkl_get_dynamic ( ) ;
         mkl_set_dynamic (dynamic) ;
         return (prior) ;
     }
 
-// #elif ( defined ( BLAS_OpenBLAS ))
-#elif 0
+    static inline int BLAS_get_max_threads (void)
+    {
+        // return the max # of MKL threads
+        return (mkl_get_max_threads ( )) ;
+    }
+
+#elif defined ( BLAS_OpenBLAS )
 
     // -------------------------------------------------------------------------
     // OpenBLAS
@@ -546,7 +551,8 @@ static int print_level = -1;
     {
         // ideally uses OpenBLAS 0.3.22 or later:
         void openblas_set_num_threads (int nthreads) ;
-        #if 0
+        int  openblas_get_num_threads (void) ;
+        #if defined ( SUITESPARSE_HAVE_OPENBLAS_SET_NUM_THREADS_LOCAL )
         // requires OpenBLAS 0.3.27 or later:
         int  openblas_set_num_threads_local (int nthreads) ;
         #endif
@@ -554,21 +560,23 @@ static int print_level = -1;
 
     static inline void BLAS_set_num_threads (int nthreads)
     {
-        // set the global # of threads for OpenBLAS
+        // set the global # of threads for OpenBLAS; according to the
+        // documenation, this can be done only during initialization, not
+        // per-call
         openblas_set_num_threads (nthreads) ;
     }
 
     static inline int BLAS_set_num_threads_local (int nthreads)
     {
-        #if 1
-        // OpenBLAS < 0.3.27
-        // nothing to do except to return the # OpenMP threads
-        return (PARU_omp_get_num_threads ( )) ;
-        #else
-        // requires OpenBLAS 0.3.27
-        // set the local # of threads for OpenBLAS and return the prior setting
+        #if defined ( SUITESPARSE_HAVE_OPENBLAS_SET_NUM_THREADS_LOCAL )
+        // set the local # of threads for OpenBLAS and return prior setting
+        // requires OpenBLAS 0.3.27 or later:
         int prior = openblas_set_num_threads_local (nthreads) ;
         return (prior) ;
+        #else
+        // OpenBLAS < 0.3.27
+        // nothing to do; return 0 which means # of threads is unknown
+        return (0) ;
         #endif
     }
 
@@ -580,8 +588,14 @@ static int print_level = -1;
 
     static inline int BLAS_set_dynamic (int dynamic)
     {
-        // set the OpenMP dynamic threading option and return the prior one
+        // set the OpenMP dynamic threading option and return prior one
         return (PARU_omp_set_dynamic (dynamic)) ;
+    }
+
+    static inline int BLAS_get_max_threads (void)
+    {
+        // return the max # of OpenBLAS threads
+        return (openblas_get_num_threads ( )) ;
     }
 
 #else
@@ -598,8 +612,8 @@ static int print_level = -1;
 
     static inline int BLAS_set_num_threads_local (int nthreads)
     {
-        // nothing to do except to return the # OpenMP threads
-        return (PARU_omp_get_num_threads ( )) ;
+        // nothing to do; return 0 which means # of threads is unknown
+        return (0) ;
     }
 
     static inline int BLAS_get_dynamic (void)
@@ -610,8 +624,14 @@ static int print_level = -1;
 
     static inline int BLAS_set_dynamic (int dynamic)
     {
-        // set the OpenMP dynamic threading option and return the prior one
+        // set the OpenMP dynamic threading option and return prior one
         return (PARU_omp_set_dynamic (dynamic)) ;
+    }
+
+    static inline int BLAS_get_max_threads (void)
+    {
+        // return the max # of generic threads (0 means unknown)
+        return (0) ;
     }
 
 #endif
@@ -759,6 +779,8 @@ struct paru_work
     int32_t nthreads ;
     int32_t prescale ;
 
+    int32_t nthreads_for_blas ; // # of threads the BLAS says it can use;
+        // 0: unknown, 1: sequential, >1: threaded BLAS is in use
 };
 
 //------------------------------------------------------------------------------
@@ -1230,7 +1252,7 @@ extern "C" {
 }
 #endif
 
-static inline int paru_nthreads // return # of threads to use
+static inline int paru_nthreads_to_use // return # of threads to use
 (
     double work,                // total work to do
     double chunk,               // give each thread at least this much work

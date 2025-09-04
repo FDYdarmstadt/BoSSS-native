@@ -532,7 +532,7 @@ int SuiteSparse_version     // returns SUITESPARSE_VERSION
 
 #if defined ( __cplusplus )
 
-    #if ( defined ( BLAS_Intel10_64ilp ) || defined ( BLAS_Intel10_64lp ) )
+    #if defined ( BLAS_Intel10 )
         #ifndef _MKL_TYPES_H_
         typedef struct _MKL_Complex8  { float  real ; float  imag ; } MKL_Complex8 ;
         typedef struct _MKL_Complex16 { double real ; double imag ; } MKL_Complex16 ;

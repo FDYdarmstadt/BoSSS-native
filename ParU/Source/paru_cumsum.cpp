@@ -26,7 +26,7 @@ int64_t paru_cumsum
 {
 
     // reduce # of threads if problem is small
-    int nth = paru_nthreads ((double) n, CHUNK, nthreads) ;
+    int nth = paru_nthreads_to_use ((double) n, CHUNK, nthreads) ;
 
     // n is size, X is size n and in/out
     int64_t tot = 0;

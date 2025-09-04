@@ -97,7 +97,7 @@ end
 if (try_intel && (ismac || isunix))
     v = version ('-blas') ;
     if (contains (v, 'Intel'))
-        flags = [flags ' -DBLAS_Intel10_64ilp'] ;
+        flags = [flags ' -DBLAS_Intel10_64ilp -DBLAS_Intel10'] ;
     end
 end
 

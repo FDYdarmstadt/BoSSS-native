@@ -107,7 +107,6 @@ ParU_Info paru_exec_tasks
     ParU_Numeric Num
 )
 {
-
     const int64_t *task_parent = Sym->task_parent;
     int64_t daddy = task_parent[t];
     const int64_t *task_map = Sym->task_map;

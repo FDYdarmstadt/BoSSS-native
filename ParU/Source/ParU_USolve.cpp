@@ -83,7 +83,7 @@ ParU_Info ParU_USolve
     }
 
     // get Control
-    BLAS_set_num_threads (paru_nthreads (Control)) ;
+    int prior = BLAS_set_num_threads_local (paru_nthreads (Control)) ;
 
     for (int64_t f = nf - 1; f >= 0; --f)
     {
@@ -194,7 +194,7 @@ ParU_Info ParU_USolve
     PRLEVEL(1, (" \n"));
 #endif
     PARU_FREE(Num->max_col_count, double, work);
-    BLAS_set_num_threads (PARU_OPENMP_MAX_THREADS) ;
+    BLAS_set_num_threads_local (prior) ;
     return (blas_ok ? PARU_SUCCESS : PARU_TOO_LARGE);
 }
 
@@ -256,7 +256,7 @@ ParU_Info ParU_USolve
     }
 
     // get Control
-    BLAS_set_num_threads (paru_nthreads (Control)) ;
+    int prior = BLAS_set_num_threads_local (paru_nthreads (Control)) ;
 
     for (int64_t f = nf - 1; f >= 0; --f)
     {
@@ -377,6 +377,6 @@ ParU_Info ParU_USolve
     PRLEVEL(1, (" \n"));
 #endif
     PARU_FREE(Num->max_col_count * nrhs, double, work);
-    BLAS_set_num_threads (PARU_OPENMP_MAX_THREADS) ;
+    BLAS_set_num_threads_local (prior) ;
     return (blas_ok ? PARU_SUCCESS : PARU_TOO_LARGE);
 }

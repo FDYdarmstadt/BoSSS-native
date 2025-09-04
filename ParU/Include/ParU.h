@@ -53,25 +53,25 @@ typedef enum ParU_Info
     PARU_TOO_LARGE = -4         // problem too large for the BLAS
 } ParU_Info ;
 
-#define PARU_DATE "Aug 18, 2025"
+#define PARU_DATE "FIXME, 2025"
 #define PARU_VERSION_MAJOR  1
-#define PARU_VERSION_MINOR  0
-#define PARU_VERSION_UPDATE 2
+#define PARU_VERSION_MINOR  1
+#define PARU_VERSION_UPDATE 0
 
-#define PARU__VERSION SUITESPARSE__VERCODE(1,0,2)
+#define PARU__VERSION SUITESPARSE__VERCODE(1,1,0)
 #if !defined (SUITESPARSE__VERSION) || \
-    (SUITESPARSE__VERSION < SUITESPARSE__VERCODE(7,11,1))
-#error "ParU 1.0.2 requires SuiteSparse_config 7.11.1 or later"
+    (SUITESPARSE__VERSION < SUITESPARSE__VERCODE(7,12,0))
+#error "ParU 1.1.0 requires SuiteSparse_config 7.12.0 or later"
 #endif
 
 #if !defined (UMFPACK__VERSION) || \
     (UMFPACK__VERSION < SUITESPARSE__VERCODE(6,3,7))
-#error "ParU 1.0.2 requires UMFPACK 6.3.7 or later"
+#error "ParU 1.1.0 requires UMFPACK 6.3.7 or later"
 #endif
 
 #if !defined (CHOLMOD__VERSION) || \
     (CHOLMOD__VERSION < SUITESPARSE__VERCODE(5,3,4))
-#error "ParU 1.0.2 requires CHOLMOD 5.3.4 or later"
+#error "ParU 1.1.0 requires CHOLMOD 5.3.4 or later"
 #endif
 
 //  the same values as UMFPACK_STRATEGY defined in UMFPACK/Include/umfpack.h

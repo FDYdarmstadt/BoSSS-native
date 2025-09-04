@@ -74,7 +74,7 @@
  * below.
  */
 
-#define UMFPACK_DATE "Aug 18, 2025"
+#define UMFPACK_DATE "FIXME, 2025"
 #define UMFPACK_MAIN_VERSION   6
 #define UMFPACK_SUB_VERSION    3
 #define UMFPACK_SUBSUB_VERSION 7
@@ -84,8 +84,8 @@
 
 #define UMFPACK__VERSION SUITESPARSE__VERCODE(6,3,7)
 #if !defined (SUITESPARSE__VERSION) || \
-    (SUITESPARSE__VERSION < SUITESPARSE__VERCODE(7,11,1))
-#error "UMFPACK 6.3.7 requires SuiteSparse_config 7.11.1 or later"
+    (SUITESPARSE__VERSION < SUITESPARSE__VERCODE(7,12,0))
+#error "UMFPACK 6.3.7 requires SuiteSparse_config 7.12.0 or later"
 #endif
 
 #if !defined (AMD__VERSION) || \
