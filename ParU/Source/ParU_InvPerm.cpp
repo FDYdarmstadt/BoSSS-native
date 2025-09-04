@@ -159,7 +159,7 @@ ParU_Info ParU_InvPerm
 #endif
 
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     // X(p,:) = B
@@ -187,7 +187,7 @@ ParU_Info ParU_InvPerm
     }
 
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     PRLEVEL(1, ("%% mRHS ParU_InvPerm %lf seconds\n", time));
 #endif

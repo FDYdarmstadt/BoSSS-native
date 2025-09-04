@@ -74,7 +74,7 @@ ParU_Info ParU_LSolve
     PRLEVEL(PR, (" \n"));
 #endif
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
     int64_t n1 = Sym->n1;   // row+col singletons
     const int64_t *Ps = Num->Ps;  // row permutation S->LU
@@ -198,9 +198,9 @@ ParU_Info ParU_LSolve
         }
     }
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
-    PRLEVEL(-1, ("%% lsolve took %1.1lf\n", time));
+    PRLEVEL(1, ("%% lsolve took %1.1lf\n", time));
 #endif
 #ifndef NDEBUG
     PRLEVEL(1, ("%%after lsolve x is:\n%%"));
@@ -258,7 +258,7 @@ ParU_Info ParU_LSolve
     PRLEVEL(PR, (" \n"));
 #endif
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     int64_t n1 = Sym->n1;   // row+col singletons
@@ -401,9 +401,9 @@ ParU_Info ParU_LSolve
         }
     }
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
-    PRLEVEL(-1, ("%% mRHS lsolve took %1.1lfs\n", time));
+    PRLEVEL(1, ("%% mRHS lsolve took %1.1lfs\n", time));
 #endif
 #ifndef NDEBUG
     PRLEVEL(1, ("%% after lsolve X is:\n"));

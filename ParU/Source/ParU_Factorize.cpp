@@ -113,7 +113,7 @@ ParU_Info ParU_Factorize
     ParU_Info info ;
     PARU_DEFINE_PRLEVEL;
 #ifndef NTIME
-    double my_start_time = PARU_OPENMP_GET_WTIME;
+    double my_start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     // get Control
@@ -231,7 +231,7 @@ ParU_Info ParU_Factorize
 
     int omp_dynamic  = PARU_omp_get_dynamic ( ) ;
     int blas_dynamic = BLAS_get_dynamic ( ) ;
-    int levels = PARU_OPENMP_GET_MAX_ACTIVE_LEVELS ;
+    int levels = PARU_omp_get_max_active_levels ( ) ;
 
 #if ! defined ( PARU_1TASK )
 
@@ -247,7 +247,7 @@ ParU_Info ParU_Factorize
         // revise the OpenMP and BLAS settings for the parallel task tree
         PARU_omp_set_dynamic (0) ;
         BLAS_set_dynamic (1) ;
-        PARU_OPENMP_SET_MAX_ACTIVE_LEVELS(4);
+        PARU_omp_set_max_active_levels (4) ;
 
         const int64_t size = (int64_t)task_Q.size();
         const int64_t steps = size == 0 ? 1 : size;
@@ -337,7 +337,7 @@ ParU_Info ParU_Factorize
     // restore the OpenMP and BLAS settings to their original values
     PARU_omp_set_dynamic (omp_dynamic) ;
     BLAS_set_dynamic (blas_dynamic) ;
-    PARU_OPENMP_SET_MAX_ACTIVE_LEVELS (levels);
+    PARU_omp_set_max_active_levels (levels) ;
 
     if (info != PARU_SUCCESS)
     {
@@ -468,7 +468,7 @@ ParU_Info ParU_Factorize
     Num->nnzU = nnzU;
     Num->sfc= sfc;
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= my_start_time;
     PRLEVEL(1, ("factorization time took is %lf\n", time));
 #endif

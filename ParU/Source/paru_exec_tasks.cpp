@@ -42,7 +42,7 @@ ParU_Info paru_exec_tasks_seq
                 task_map[t] + 1, task_map[t + 1], num_original_children));
     ParU_Info myInfo;
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
     for (int64_t f = task_map[t] + 1; f <= task_map[t + 1]; f++)
     {
@@ -55,7 +55,7 @@ ParU_Info paru_exec_tasks_seq
     }
     int64_t num_rem_children;
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     PRLEVEL(1, ("task time task " LD " is %lf\n", t, time));
 #endif
@@ -120,7 +120,7 @@ ParU_Info paru_exec_tasks
                 task_map[t] + 1, task_map[t + 1], num_original_children));
     ParU_Info myInfo;
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
     for (int64_t f = task_map[t] + 1; f <= task_map[t + 1]; f++)
     {
@@ -129,7 +129,7 @@ ParU_Info paru_exec_tasks
     }
     int64_t num_rem_children;
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     PRLEVEL(1, ("task time task " LD " is %lf\n", t, time));
 #endif

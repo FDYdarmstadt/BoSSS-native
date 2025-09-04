@@ -185,7 +185,7 @@ ParU_Info ParU_Perm
 #endif
 
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     if (s == NULL)
@@ -216,7 +216,7 @@ ParU_Info ParU_Perm
     }
 
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     PRLEVEL(1, ("%% mRHS ParU_Perm %lf seconds\n", time));
 #endif

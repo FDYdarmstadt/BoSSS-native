@@ -55,7 +55,7 @@ bool paru_tasked_dgemm
     naft = Work->naft;
 
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     if (tiny)
@@ -154,9 +154,9 @@ bool paru_tasked_dgemm
                 num_col_blocks, num_row_blocks,
                 num_col_blocks * num_row_blocks));
             PRLEVEL (2, ("TASKING using %d threads, active level %d, max levels %d\n",
-                omp_get_num_threads (),
-                omp_get_active_level (),
-                omp_get_max_active_levels ())) ;
+                PARU_omp_get_num_threads (),
+                PARU_omp_get_active_level (),
+                PARU_omp_get_max_active_levels ())) ;
 
             #pragma omp parallel proc_bind(close) num_threads(my_share)
             #pragma omp single nowait
@@ -200,7 +200,7 @@ bool paru_tasked_dgemm
     //--------------------------------------------------------------------------
 
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     PRLEVEL(1, ("DGEMM (" LD "," LD "," LD ")%1.1f in " LD " {naft: " LD
         "} in %lf seconds, work %g, nthreads %d, nth %d, my_share: %d\n",

@@ -36,13 +36,13 @@ void paru_assemble_all
     PARU_DEFINE_PRLEVEL;
 #ifndef NTIME
     double tot_assem_time = 0;
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     const int64_t *snM = Sym->super2atree;
     int64_t eli = snM[f];
     PRLEVEL(PR, ("%% Eliminate all of " LD " in " LD "(f=" LD ") (tid=%d)\n", e, eli, f,
-                 PARU_OPENMP_GET_THREAD_ID));
+                 PARU_omp_get_thread_num ( )));
 
 #ifndef NDEBUG
     PR = 1;
@@ -243,8 +243,8 @@ void paru_assemble_all
                     PRLEVEL(1, ("%% colInd =" LD " \n", colInd));
                     if (colInd < 0) continue;
                     PRLEVEL(1, ("inside paralle region %d j=" LD " (tid=%d)\n",
-                                PARU_OPENMP_GET_ACTIVE_LEVEL, j,
-                                PARU_OPENMP_GET_THREAD_NUM));
+                                PARU_omp_get_active_level ( ), j,
+                                PARU_omp_get_thread_num ( )));
                     int64_t fcolind = colRelIndex[j];
 
                     double *dC = curEl_Num + fcolind * curEl->nrows;
@@ -274,13 +274,13 @@ void paru_assemble_all
 #endif
 
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
     #pragma omp atomic update
     tot_assem_time += time;
     if (f > Sym->nf - 5)
     {
-        PRLEVEL(-1, ("%% assemble all " LD "\t->" LD
+        PRLEVEL(1, ("%% assemble all " LD "\t->" LD
             "\t took %lf seconds, nth %d\n", e, eli, time, nth));
     }
 #endif

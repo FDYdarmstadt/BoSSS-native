@@ -64,7 +64,7 @@ ParU_Info ParU_Solve
     int64_t m = Sym->m;
     // if (Num->res == PARU_SINGULAR)  //THIS Won't happen because Num is freed
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
 
     double *t = PARU_MALLOC (m, double);
@@ -102,9 +102,9 @@ ParU_Info ParU_Solve
 
     PARU_FREE(m, int64_t, t);
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
-    PRLEVEL(-1, ("%%solve has been finished in %lf seconds\n", time));
+    PRLEVEL(1, ("%%solve has been finished in %lf seconds\n", time));
 #endif
 #ifndef NDEBUG
     PRLEVEL(1, ("%%after solve x is:\n%% ["));
@@ -174,7 +174,7 @@ ParU_Info ParU_Solve
     PRLEVEL(1, ("%% mRHS inside Solve\n"));
     int64_t m = Sym->m;
 #ifndef NTIME
-    double start_time = PARU_OPENMP_GET_WTIME;
+    double start_time = PARU_omp_get_wtime ( ) ;
 #endif
     double *T = PARU_MALLOC (m * nrhs, double);
     if (T == NULL)
@@ -223,9 +223,9 @@ ParU_Info ParU_Solve
     PARU_FREE(m * nrhs, int64_t, T);
 
 #ifndef NTIME
-    double time = PARU_OPENMP_GET_WTIME;
+    double time = PARU_omp_get_wtime ( ) ;
     time -= start_time;
-    PRLEVEL(-1, ("%% mRHS solve has been finished in %lf seconds\n", time));
+    PRLEVEL(1, ("%% mRHS solve has been finished in %lf seconds\n", time));
 #endif
     return PARU_SUCCESS;
 }
