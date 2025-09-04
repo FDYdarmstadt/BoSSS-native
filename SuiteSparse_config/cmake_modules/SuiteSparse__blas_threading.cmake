@@ -16,6 +16,19 @@ set ( CMAKE_REQUIRED_LINK_OPTIONS ${BLAS_LINKER_FLAGS} )
 set ( CMAKE_REQUIRED_INCLUDES     ${BLAS_INCLUDE_DIRS} )
 
 #-------------------------------------------------------------------------------
+# cross-compiling: do not use try_run
+#-------------------------------------------------------------------------------
+
+if ( NOT ( ${CMAKE_SYSTEM} MATCHES ${CMAKE_HOST_SYSTEM} ) )
+
+    # assume we do not have openblas_set_num_threads_local
+    message ( STATUS "target system: ${CMAKE_SYSTEM}" )
+    message ( STATUS "host system:   ${CMAKE_HOST_SYSTEM}" )
+    return ( )
+
+endif ( )
+
+#-------------------------------------------------------------------------------
 # check the Intel MKL properties
 #-------------------------------------------------------------------------------
 
@@ -23,9 +36,9 @@ string ( REGEX MATCH "^Intel" is_Intel ${BLA_VENDOR} )
 
 if ( is_Intel )
 
-    #-----------------------------------------------------------------------
-    # determine if MKL is single-threaded or multi-threaded
-    #-----------------------------------------------------------------------
+    #---------------------------------------------------------------------------
+    # determine if MKL is single-threaded or multi-threaded (info only)
+    #---------------------------------------------------------------------------
 
     # check if the Intel MKL is single-threaded or multi-threaded
 
