@@ -19,7 +19,7 @@
 
     static inline double PARU_omp_get_wtime (void)
     {
-        // get the current wallcloc time
+        // get the current wallclock time
         return (omp_get_wtime ( )) ;
     }
 
@@ -91,12 +91,6 @@
     static inline double PARU_omp_get_wtime (void)
     {
         return (0) ;
-    }
-
-    static inline double PARU_omp_get_wtime (void)
-    {
-        // get the current wallcloc time
-        return (omp_get_wtime ( )) ;
     }
 
     static inline int PARU_omp_get_max_threads (void)
