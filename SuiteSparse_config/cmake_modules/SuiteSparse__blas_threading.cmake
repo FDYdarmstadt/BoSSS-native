@@ -11,21 +11,50 @@
 # determine the BLAS library properties: sequential or multithreaded
 #-------------------------------------------------------------------------------
 
+# This script determines more information about the BLAS library being linked
+# against.  For OpenBLAS and Intel MKL, it can determine if the BLAS libraries
+# are single or multithreaded (but only if not cross-compiling).  It can
+# discover if the OpenBLAS has the openblas_set_num_threads_local method
+# (requiring v0.3.27 or later).
+
+# Most of the result of this script is informational, appearing in the cmake
+# output.  A single #define is added for OpenBLAS, if it has the
+# openblas_set_num_threads_local function:
+#
+#  add_compile_definitions ( SUITESPARSE_HAVE_OPENBLAS_SET_NUM_THREADS_LOCAL )
+
+# Other BLAS libraries (ACML, Arm, Apple, etc) are not queried.
+
 set ( CMAKE_REQUIRED_LIBRARIES    ${BLAS_LIBRARIES} )
 set ( CMAKE_REQUIRED_LINK_OPTIONS ${BLAS_LINKER_FLAGS} )
 set ( CMAKE_REQUIRED_INCLUDES     ${BLAS_INCLUDE_DIRS} )
 
 #-------------------------------------------------------------------------------
-# cross-compiling: do not use try_run
+# cross-compiling: just use try_compile, not try_run
 #-------------------------------------------------------------------------------
 
 if ( NOT ( ${CMAKE_SYSTEM} MATCHES ${CMAKE_HOST_SYSTEM} ) )
 
-    # assume we do not have openblas_set_num_threads_local
     message ( STATUS "target system: ${CMAKE_SYSTEM}" )
     message ( STATUS "host system:   ${CMAKE_HOST_SYSTEM}" )
-    return ( )
 
+    if ( ${BLA_VENDOR} STREQUAL "OpenBLAS" )
+        # check if OpenBLAS has openblas_set_num_threads_local (Apr 2024 or later)
+        try_compile ( OPENBLAS_2024_COMPILES
+            ${CMAKE_CURRENT_BINARY_DIR}
+            ${PROJECT_SOURCE_DIR}/../SuiteSparse_config/cmake_modules/check_openblas_Apr2024.c
+            LINK_OPTIONS    ${BLAS_LINKER_FLAGS}
+            LINK_LIBRARIES  ${BLAS_LIBRARIES} )
+        if ( ${OPENBLAS_2024_COMPILES} )
+            # We have OpenBLAS 0.3.27 or later;
+            add_compile_definitions ( SUITESPARSE_HAVE_OPENBLAS_SET_NUM_THREADS_LOCAL )
+            message ( STATUS "BLAS: OpenBLAS v0.3.27 or later" )
+        else ( )
+            message ( STATUS "BLAS: OpenBLAS v0.2.14 to v0.3.26" )
+        endif ( )
+    endif ( )
+
+    return ( )
 endif ( )
 
 #-------------------------------------------------------------------------------
@@ -40,8 +69,6 @@ if ( is_Intel )
     # determine if MKL is single-threaded or multi-threaded (info only)
     #---------------------------------------------------------------------------
 
-    # check if the Intel MKL is single-threaded or multi-threaded
-
     try_run ( MKL_RUNS MKL_COMPILES
         ${CMAKE_CURRENT_BINARY_DIR}
         ${PROJECT_SOURCE_DIR}/../SuiteSparse_config/cmake_modules/check_mkl.c
@@ -55,12 +82,12 @@ if ( is_Intel )
             message ( FATAL_ERROR "Intel MKL failed to run" )
         endif ( )
         if ( ${MKL_OUTPUT} EQUAL 1 )
-            message ( STATUS "Intel MKL: single-threaded" )
+            message ( STATUS "BLAS: Intel MKL: single-threaded" )
         else ( )
-            message ( STATUS "Intel MKL: multi-threaded (threads: ${MKL_OUTPUT})" )
+            message ( STATUS "BLAS: Intel MKL: multi-threaded (threads: ${MKL_OUTPUT})" )
         endif ( )
     else ( )
-        message ( FATAL_ERROR "Intel MKL failed to compile" )
+        message ( FATAL_ERROR "BLAS: Intel MKL failed to compile" )
     endif ( )
 
 endif ( )
@@ -81,10 +108,10 @@ if ( ${BLA_VENDOR} STREQUAL "OpenBLAS" )
     if ( ${OPENBLAS_2015_COMPILES} )
         if ( ${OPENBLAS_2015_RUNS} STREQUAL "FAILED_TO_RUN" )
             # OpenBLAS compiled but failed to run ... why?
-            message ( FATAL_ERROR "OpenBLAS failed to run (v0.2.14 or later is required)" )
+            message ( FATAL_ERROR "BLAS: OpenBLAS failed to run (v0.2.14 or later is required)" )
         endif ( ) 
     else ( )
-        message ( FATAL_ERROR "OpenBLAS failed to compile (v0.2.14 or later is required)" )
+        message ( FATAL_ERROR "BLAS: OpenBLAS failed to compile (v0.2.14 or later is required)" )
     endif ( )
 
     # check if OpenBLAS has openblas_set_num_threads_local (Apr 2024 or later)
@@ -98,22 +125,22 @@ if ( ${BLA_VENDOR} STREQUAL "OpenBLAS" )
     if ( ${OPENBLAS_2024_COMPILES} )
         if ( ${OPENBLAS_2024_RUNS} STREQUAL "FAILED_TO_RUN" )
             # OpenBLAS compiled but failed to run ... why?
-            message ( FATAL_ERROR "OpenBLAS v0.3.27 or later: failed to run" )
+            message ( FATAL_ERROR "BLAS: OpenBLAS v0.3.27 or later: failed to run" )
         endif ( )
         # We have OpenBLAS 0.3.27 or later;
         add_compile_definitions ( SUITESPARSE_HAVE_OPENBLAS_SET_NUM_THREADS_LOCAL )
         if ( ${OPENBLAS_2024_OUTPUT} EQUAL 1 )
-            message ( STATUS "OpenBLAS v0.3.27 or later: single-threaded" )
+            message ( STATUS "BLAS: OpenBLAS v0.3.27 or later: single-threaded" )
         else ( )
-            message ( STATUS "OpenBLAS v0.3.27 or later: multi-threaded (threads: ${OPENBLAS_2024_OUTPUT})" )
+            message ( STATUS "BLAS: OpenBLAS v0.3.27 or later: multi-threaded (threads: ${OPENBLAS_2024_OUTPUT})" )
         endif ( )
     else ( )
         # We have OpenBLAS 0.2.14 to 0.3.26;
         # openblas_set_num_threads_local is not available
         if ( ${OPENBLAS_2015_OUTPUT} EQUAL 1 )
-            message ( STATUS "OpenBLAS v0.2.14 to v0.3.26: single-threaded" )
+            message ( STATUS "BLAS: OpenBLAS v0.2.14 to v0.3.26: single-threaded" )
         else ( )
-            message ( STATUS "OpenBLAS v0.2.14 to v0.3.26: multi-threaded (threads: ${OPENBLAS_2015_OUTPUT})" )
+            message ( STATUS "BLAS: OpenBLAS v0.2.14 to v0.3.26: multi-threaded (threads: ${OPENBLAS_2015_OUTPUT})" )
         endif ( )
     endif ( )
 endif ( )
