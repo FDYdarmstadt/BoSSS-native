@@ -54,7 +54,7 @@ jobs:
           brew install --overwrite python@3.10 python@3.11 python@3.12
           brew uninstall cmake
           brew reinstall gcc
-          brew install autoconf automake ccache gmp lapack libomp mpfr openblas
+          brew install autoconf automake ccache cmake gmp lapack libomp mpfr openblas
           HOMEBREW_PREFIX=$(brew --prefix)
           echo "HOMEBREW_PREFIX=$(brew --prefix)" >> $GITHUB_ENV
 
