@@ -322,10 +322,6 @@ extern "C"
     #define NTIME
 #endif
 
-// FIXME:
-#undef NTIME
-#undef NPR
-
 #define DLONG
 
 // silence these diagnostics:
@@ -441,7 +437,7 @@ typedef struct  /* SWType */
 // uncomment the following line to turn on debugging mode
 // #undef NDEBUG
 // uncomment the following line to turn on OpenMP timing
-//#undef NTIME
+// #undef NTIME
 
 #ifndef NDEBUG
     #undef NPR

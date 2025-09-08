@@ -439,8 +439,8 @@ ParU_Info paru_init_rowFronts
     // copying Diag_map
     if (Diag_map)
     {
-        #pragma omp taskloop default(none) shared(Sym, Diag_map, inv_Diag_map) \
-        grainsize(512)
+        #pragma omp taskloop default(none) \
+            shared(Sym, Diag_map, inv_Diag_map) grainsize(512)
         for (int64_t i = 0; i < Sym->n; i++)
         {
             Diag_map[i] = Sym->Diag_map[i];
@@ -484,9 +484,10 @@ ParU_Info paru_init_rowFronts
 
     int64_t out_of_memory = 0;
 
-    // FIXME: reduce # of threads if problem is small
+    #define CHUNK 65535
+    int nth = paru_nthreads_to_use ((double) m, CHUNK, nthreads) ;
 
-    #pragma omp parallel for num_threads(nthreads)
+    #pragma omp parallel for num_threads(nth)
     for (int64_t row = 0; row < m; row++)
     {
         int64_t e = Sym->row2atree[row];

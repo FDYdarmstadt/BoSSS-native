@@ -217,8 +217,8 @@ ParU_Info ParU_Factorize
     for (int64_t i = 0; i < (int64_t)task_Q.size(); i++)
     {
         int64_t t = task_Q[i];
-        PRLEVEL(PR, ("" LD "[" LD "-" LD "](" LD ") ", t, task_map[t] + 1, task_map[t + 1],
-                    task_depth[t]));
+        PRLEVEL(PR, ("" LD "[" LD "-" LD "](" LD ") ", t, task_map[t] + 1,
+            task_map[t + 1], task_depth[t]));
     }
     PRLEVEL(PR, ("\n"));
 #endif
@@ -227,19 +227,22 @@ ParU_Info ParU_Factorize
     // execute the task tree
     //--------------------------------------------------------------------------
 
-    // FIXME: reduce # of threads if problem is small
-
     int omp_dynamic  = PARU_omp_get_dynamic ( ) ;
     int blas_dynamic = BLAS_get_dynamic ( ) ;
     int levels = PARU_omp_get_max_active_levels ( ) ;
 
-#if ! defined ( PARU_1TASK )
-
     // The parallel factorization gets stuck intermittently on Windows or Mac
     // with gcc, so always use the sequential factorization in that case.
-    // This case is handled by cmake.
+    // This case is handled by cmake, which #define's PARU_1TASK.
+
+#if ! defined ( PARU_1TASK )
+
     if (task_Q.size() * 2 > ((long unsigned int) nthreads))
     {
+
+        //----------------------------------------------------------------------
+        // parallel task tree
+        //----------------------------------------------------------------------
 
         PRLEVEL(1, ("Parallel\n"));
         // checking user input
@@ -319,6 +322,12 @@ ParU_Info ParU_Factorize
 #endif
     {
 
+        //----------------------------------------------------------------------
+        // handle frontal matrices one at a time
+        //----------------------------------------------------------------------
+
+        // Parallelism is exploited when factorizing each frontal matrix.
+
         PRLEVEL(1, ("Sequential\n"));
         Work->naft = 1;
         for (int64_t i = 0; i < nf; i++)
@@ -334,7 +343,10 @@ ParU_Info ParU_Factorize
         }
     }
 
+    //--------------------------------------------------------------------------
     // restore the OpenMP and BLAS settings to their original values
+    //--------------------------------------------------------------------------
+
     PARU_omp_set_dynamic (omp_dynamic) ;
     BLAS_set_dynamic (blas_dynamic) ;
     PARU_omp_set_max_active_levels (levels) ;
