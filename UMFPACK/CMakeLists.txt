@@ -12,7 +12,7 @@
 # cmake 3.22 is required to find the BLAS in SuiteSparse_config
 cmake_minimum_required ( VERSION 3.22 )
 
-set ( UMFPACK_DATE "Aug 18, 2025" )
+set ( UMFPACK_DATE "FIXME, 2025" )
 set ( UMFPACK_VERSION_MAJOR 6 CACHE STRING "" FORCE )
 set ( UMFPACK_VERSION_MINOR 3 CACHE STRING "" FORCE )
 set ( UMFPACK_VERSION_SUB   7 CACHE STRING "" FORCE )
@@ -45,10 +45,10 @@ include ( SuiteSparsePolicy )
 #-------------------------------------------------------------------------------
 
 if ( NOT SUITESPARSE_ROOT_CMAKELISTS )
-    find_package ( SuiteSparse_config 7.11.0
+    find_package ( SuiteSparse_config 7.12.0
         PATHS ${CMAKE_SOURCE_DIR}/../SuiteSparse_config/build NO_DEFAULT_PATH )
     if ( NOT TARGET SuiteSparse::SuiteSparseConfig )
-        find_package ( SuiteSparse_config 7.11.0 REQUIRED )
+        find_package ( SuiteSparse_config 7.12.0 REQUIRED )
     endif ( )
 
     find_package ( AMD 3.3.4
