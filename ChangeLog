@@ -1,6 +1,6 @@
 Nov 4, 2025: version 7.12.1
 
-    * SuiteSparse_config 7.12.0: fix for ninja; checking BLAS properties
+    * SuiteSparse_config 7.12.1: fix for ninja; checking BLAS properties
     * Package versions in this release: (* denotes a new version)
         SuiteSparse_config 7.12.1   *
         AMD 3.3.4
