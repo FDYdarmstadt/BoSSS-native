@@ -242,4 +242,7 @@ message ( STATUS "Looking for any 32-bit BLAS" )
 set ( BLA_SIZEOF_INTEGER 4 )
 find_package ( BLAS REQUIRED )
 include ( SuiteSparseBLAS32 )
+if ( NOT DEFINED BLA_VENDOR )
+    set ( BLA_VENDOR Generic )
+endif ( )
 
