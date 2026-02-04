@@ -10,7 +10,7 @@
 SuiteSparse:  A Suite of Sparse matrix packages at http://suitesparse.com
 -----------------------------------------------------------------------------
 
-Nov 4, 2025, SuiteSparse VERSION 7.12.1
+Feb 4, 2026, SuiteSparse VERSION 7.12.2
 
 SuiteSparse is a set of sparse-matrix-related packages written or co-authored
 by Tim Davis, available at https://github.com/DrTimothyAldenDavis/SuiteSparse .
