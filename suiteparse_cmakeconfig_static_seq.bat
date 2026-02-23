@@ -1,10 +1,10 @@
 cmake --fresh ^
-      -S .\SuitSparse_7.12.2 -B .\SuitSparse_7.12.2_config_static_omp ^
+      -S .\SuiteSparse_7.12.2 -B ..\SuiteSparse_7.12.2_config_win_static_seq ^
 	  -G "Visual Studio 17 2022" -A x64 ^
 	  --log-level=VERBOSE ^
 	  -DBLA_VENDOR=Intel10_64lp ^
 	  -DBLAS_INCLUDE_DIRS="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/include" ^
-	  -DBLAS_LIBRARIES="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_intel_lp64.lib;C:/Program Files (x86)/Intel/oneAPI/compiler/latest/lib/libiomp5md.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_intel_thread.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_core.lib" ^
+	  -DBLAS_LIBRARIES="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_intel_lp64.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_sequential.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_core.lib" ^
 	  -DSUITESPARSE_USE_FORTRAN=OFF ^
 	  -DCMAKE_C_FLAGS="/I\"%MKLROOT%\include\"" ^
       -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake ^
@@ -16,8 +16,6 @@ cmake --fresh ^
 	  -DMPFR_LIBRARY="C:\vcpkg\installed\x64-windows\lib\mpfr.lib" ^
 	  -DBUILD_SHARED_LIBS=OFF ^
 	  -DBUILD_STATIC_LIBS=ON ^
-	  -DSUITESPARSE_USE_OPENMP=ON
-
-::  dynamic
-:: -DBLAS_LIBRARIES="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_intel_lp64.lib;    C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/libiomp5md.lib      C:/Program Files (x86)/Intel/oneAPI/compiler/latest/lib/mkl_intel_thread.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_core.lib" ^
- 	  
+	  -DSUITESPARSE_USE_OPENMP=OFF
+	  
+::       --debug-trycompile ^
