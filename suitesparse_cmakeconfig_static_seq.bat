@@ -1,5 +1,12 @@
+echo off
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "SUPPOSED TO BE EXECUTED FROM MKL CMD !!!"
+echo "(e.g., by call \"C:\Program Files (x86)\Intel\oneAPI\setvars.bat\" intel64 vs2022   "
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo ON
+
 cmake --fresh ^
-      -S .\SuiteSparse_7.12.2 -B ..\SuiteSparse_7.12.2_config_win_static_seq ^
+      -S .\SuiteSparse_7.12.2 -B .\SuiteSparse_7.12.2_config_win_static_seq ^
 	  -G "Visual Studio 17 2022" -A x64 ^
 	  --log-level=VERBOSE ^
 	  -DBLA_VENDOR=Intel10_64lp ^
