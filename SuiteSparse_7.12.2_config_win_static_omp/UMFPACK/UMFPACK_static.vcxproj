@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8C98ADCD-25E8-3BC3-9272-AD25D07C212C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>UMFPACK_static</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UMFPACK_static.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">umfpack_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UMFPACK_static.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">umfpack_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">UMFPACK_static.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">umfpack_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">UMFPACK_static.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">umfpack_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;BLAS_Intel10_64lp;BLAS_Intel10;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/UMFPACK/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp/UMFPACK/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\UMFPACKConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack_version.tex.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/UMFPACK/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp/UMFPACK/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\UMFPACKConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack_version.tex.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/UMFPACK/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp/UMFPACK/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\UMFPACKConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack_version.tex.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/UMFPACK/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_omp/UMFPACK/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\UMFPACKConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Config\umfpack_version.tex.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_assemble.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_assemble_fixq.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_blas3_update.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_build_tuples.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_create_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_extend_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_garbage_collection.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_get_memory.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_grow_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_init_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_kernel.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_kernel_init.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_kernel_wrapup.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_lhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_local_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_lsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_ltsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_mem_alloc_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_mem_alloc_head_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_mem_alloc_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_mem_free_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_mem_init_memoryspace.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_row_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_scale_column.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_set_stats.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_start_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_store_lu.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_store_lu_drop.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_symbolic_usage.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_triplet_map_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_triplet_map_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_triplet_nomap_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_triplet_nomap_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_tuple_lengths.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_uhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_usolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_utsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_valid_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_di_valid_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_assemble.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_assemble_fixq.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_blas3_update.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_build_tuples.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_create_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_extend_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_garbage_collection.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_get_memory.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_grow_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_init_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_kernel.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_kernel_init.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_kernel_wrapup.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_lhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_local_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_lsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_ltsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_mem_alloc_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_mem_alloc_head_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_mem_alloc_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_mem_free_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_mem_init_memoryspace.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_row_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_scale_column.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_set_stats.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_start_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_store_lu.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_store_lu_drop.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_symbolic_usage.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_triplet_map_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_triplet_map_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_triplet_nomap_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_triplet_nomap_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_tuple_lengths.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_uhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_usolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_utsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_valid_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_dl_valid_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_analyze.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_apply_order.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_cholmod.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_colamd.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_free.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_fsize.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_is_permutation.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_malloc.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_realloc.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_i_singletons.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_analyze.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_apply_order.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_cholmod.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_colamd.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_free.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_fsize.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_is_permutation.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_malloc.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_realloc.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_l_singletons.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_assemble.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_assemble_fixq.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_blas3_update.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_build_tuples.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_create_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_extend_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_garbage_collection.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_get_memory.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_grow_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_init_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_kernel.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_kernel_init.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_kernel_wrapup.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_lhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_local_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_lsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_ltsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_mem_alloc_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_mem_alloc_head_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_mem_alloc_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_mem_free_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_mem_init_memoryspace.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_row_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_scale_column.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_set_stats.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_start_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_store_lu.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_store_lu_drop.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_symbolic_usage.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_triplet_map_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_triplet_map_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_triplet_nomap_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_triplet_nomap_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_tuple_lengths.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_uhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_usolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_utsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_valid_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zi_valid_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_assemble.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_assemble_fixq.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_blas3_update.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_build_tuples.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_create_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_extend_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_garbage_collection.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_get_memory.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_grow_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_init_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_kernel.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_kernel_init.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_kernel_wrapup.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_lhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_local_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_lsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_ltsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_mem_alloc_element.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_mem_alloc_head_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_mem_alloc_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_mem_free_tail_block.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_mem_init_memoryspace.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_row_search.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_scale_column.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_set_stats.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_start_front.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_store_lu.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_store_lu_drop.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_symbolic_usage.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_triplet_map_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_triplet_map_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_triplet_nomap_nox.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_triplet_nomap_x.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_tuple_lengths.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_uhsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_usolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_utsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_valid_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umf_zl_valid_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_col_to_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_copy_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_copy_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_deserialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_deserialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_free_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_free_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_get_determinant.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_get_lunz.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_get_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_get_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_load_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_load_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_qsymbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_matrix.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_status.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_save_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_save_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_serialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_serialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_triplet_to_col.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_di_wsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_col_to_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_copy_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_copy_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_deserialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_deserialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_free_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_free_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_get_determinant.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_get_lunz.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_get_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_get_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_load_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_load_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_qsymbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_matrix.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_status.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_save_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_save_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_serialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_serialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_triplet_to_col.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_dl_wsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_gn_tictoc.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_gn_timer.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_version.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_col_to_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_copy_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_copy_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_deserialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_deserialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_free_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_free_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_get_determinant.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_get_lunz.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_get_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_get_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_load_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_load_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_qsymbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_matrix.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_status.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_save_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_save_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_serialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_serialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_triplet_to_col.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zi_wsolve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_col_to_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_copy_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_copy_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_deserialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_deserialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_free_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_free_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_get_determinant.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_get_lunz.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_get_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_get_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_load_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_load_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_qsymbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_matrix.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_perm.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_status.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_triplet.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_report_vector.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_save_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_save_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_scale.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_serialize_numeric.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_serialize_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_solve.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_symbolic.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_transpose.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_triplet_to_col.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\UMFPACK\Source2\umfpack_zl_wsolve.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\ZERO_CHECK.vcxproj">
+      <Project>{BEFA68BF-A81B-3358-A82F-A9036A71AA8B}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\AMD\AMD_static.vcxproj">
+      <Project>{39D6B66A-98DC-3599-BCB2-D4AB5263E26E}</Project>
+      <Name>AMD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CAMD\CAMD_static.vcxproj">
+      <Project>{4E103CFC-BB36-33A3-B2CD-1AD43F5696F6}</Project>
+      <Name>CAMD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CCOLAMD_static.vcxproj">
+      <Project>{78FB5DD1-62DD-3193-9487-1E1FD405424E}</Project>
+      <Name>CCOLAMD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CHOLMOD\CHOLMOD_static.vcxproj">
+      <Project>{20FEBF9A-E555-3848-AFA5-1CF206297745}</Project>
+      <Name>CHOLMOD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\COLAMD\COLAMD_static.vcxproj">
+      <Project>{3964D1E8-8565-3E07-94EC-B3D2B731496D}</Project>
+      <Name>COLAMD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\SuiteSparse_config\SuiteSparseConfig_static.vcxproj">
+      <Project>{B4A3D4AA-6B38-3C31-B649-C612FC330E04}</Project>
+      <Name>SuiteSparseConfig_static</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
