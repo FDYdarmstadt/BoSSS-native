@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C14B7C1A-E319-3460-B7EF-7F0C2E5A2F98}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>CAMD_static</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CAMD_static.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">camd_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CAMD_static.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">camd_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">CAMD_static.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">camd_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">CAMD_static.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">camd_static</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CAMD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CAMD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\CAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CAMD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CAMD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\CAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CAMD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CAMD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\CAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CAMD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CAMD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\CAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Config\camd_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CAMD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_1.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_2.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_aat.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l1.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l2.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_aat.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_control.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_defaults.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_dump.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_info.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_order.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_postorder.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_preprocess.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_l_valid.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_order.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_postorder.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_preprocess.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_valid.c" />
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CAMD\Source\camd_version.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\ZERO_CHECK.vcxproj">
+      <Project>{501BEC0F-7B56-3FFF-BBA7-28DFF5344E89}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\SuiteSparse_config\SuiteSparseConfig_static.vcxproj">
+      <Project>{B841C81D-D19A-3CAE-9316-F8BF77B50F60}</Project>
+      <Name>SuiteSparseConfig_static</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveNugetPackages>false</ResolveNugetPackages>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AF0B0FB1-31A3-3E0C-800F-9BADB6F0624F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Check;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Cholesky;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Utility;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\MatrixOps;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Modify;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Partition;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Supernodal;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\GKlib;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\libmetis;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Check;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Cholesky;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Utility;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\MatrixOps;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Modify;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Partition;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Supernodal;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\GKlib;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\libmetis;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Check;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Cholesky;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Utility;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\MatrixOps;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Modify;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Partition;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Supernodal;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\GKlib;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\libmetis;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Check;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Cholesky;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Utility;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\MatrixOps;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Modify;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Partition;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Supernodal;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Include;C:\Program Files (x86)\Intel\oneAPI\mkl\latest\include;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\GKlib;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\libmetis;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\SuiteSparse_metis\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CHOLMOD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CHOLMOD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestTargets.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\DartConfiguration.tcl.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Templates\CTestScript.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\CHOLMODConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseLAPACK.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__thread.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CHOLMOD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CHOLMOD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestTargets.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\DartConfiguration.tcl.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Templates\CTestScript.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\CHOLMODConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseLAPACK.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__thread.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CHOLMOD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CHOLMOD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestTargets.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\DartConfiguration.tcl.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Templates\CTestScript.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\CHOLMODConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseLAPACK.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__thread.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CHOLMOD/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2 -BC:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq --check-stamp-file C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2_config_win_static_seq/CHOLMOD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTest.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestTargets.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CTestUseLaunchers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckFunctionExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckIncludeFileCXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckSymbolExists.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckTypeSize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\DartConfiguration.tcl.in;C:\Program Files\CMake\share\cmake-4.2\Modules\FindBLAS.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindLAPACK.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Program Files\CMake\share\cmake-4.2\Templates\CTestScript.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\CHOLMODConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CHOLMOD\Config\cholmod_version.tex.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseBLAS32.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseLAPACK.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__blas_threading.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparse__thread.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\check_mkl.c;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\ZERO_CHECK.vcxproj">
+      <Project>{501BEC0F-7B56-3FFF-BBA7-28DFF5344E89}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\CHOLMOD_static.vcxproj">
+      <Project>{20904F7D-ED30-3E61-B6A9-6046F266E9D6}</Project>
+      <Name>CHOLMOD_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\cholmod_di_demo.vcxproj">
+      <Project>{02F0F3EC-D9E2-3896-BEA9-21930B793C74}</Project>
+      <Name>cholmod_di_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\cholmod_dl_demo.vcxproj">
+      <Project>{507BEFA6-7415-37E6-BAD9-2FA0D20E0098}</Project>
+      <Name>cholmod_dl_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\cholmod_si_demo.vcxproj">
+      <Project>{81B2023F-5EC8-398F-9BE5-63C01C1A7C1B}</Project>
+      <Name>cholmod_si_demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\cholmod_sl_demo.vcxproj">
+      <Project>{60248EC6-BC7D-3932-992D-6BD2ACC9B66F}</Project>
+      <Name>cholmod_sl_demo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_aat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_control.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_defaults.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_dump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_aat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_control.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_defaults.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_dump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_order.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_post_tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_postorder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_preprocess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_l_valid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_order.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_post_tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_postorder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_preprocess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_valid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\Source\amd_version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\AMD\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D9CB59A6-7CCB-30B5-AFAB-2EE6A08622C5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
