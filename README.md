@@ -1,4 +1,4 @@
-# MS Windows Dynamilc Libraries Workflow
+# MS Windows Dynamic Libraries Workflow
 workflow for creating Thirdparty DLLs with Intel MKL libraries using cmd
 
 Information about versions
@@ -29,7 +29,7 @@ This repository contains the description of the workflow to build third party li
 What is it all about?
 ---------------------
 The workflows considers the suggested workflows from third-parties (taken from INSTALLS.txt,etc).
-The *-config directories contain the describtion of workflows and Batchfiles to automatically build
+The *-config directories contain the description of workflows and Batchfiles to automatically build
 the thirdparty-DLLs. Other directories are unzipped third-party directories or self-build visual studio 
 solutions. Do not touch these directories, unless you know what you are doing! All necessary changes are 
 made from within *-config directories! To execute all build-Batchfiles run BUILD_ALL.bat. With CLEAN_ALL.bat 
