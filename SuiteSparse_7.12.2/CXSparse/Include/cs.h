@@ -27,7 +27,7 @@
 #define _CXS_H
 
 #ifndef NCOMPLEX
-#if 1
+#if 0
 #  ifdef __cplusplus
 #    include <complex>
 #  else
@@ -346,7 +346,7 @@ cs_dld *cs_dl_ddone (cs_dld *D, cs_dl *C, void *w, int64_t ok) ;
 /* -------------------------------------------------------------------------- */
 
 #ifndef NCOMPLEX
-#if 1
+#if 0
 
 /* --- primary CSparse routines and data structures ------------------------- */
 
@@ -773,7 +773,7 @@ cs_cld *cs_cl_ddone (cs_cld *D, cs_cl *C, void *w, int64_t ok) ;
 /* -------------------------------------------------------------------------- */
 
 #ifndef NCOMPLEX
-#if 1
+#if 0
 cs_di *cs_i_real (cs_ci *A, int32_t real) ;
 cs_ci *cs_i_complex (cs_di *A, int32_t real) ;
 cs_dl *cs_l_real (cs_cl *A, int64_t real) ;
