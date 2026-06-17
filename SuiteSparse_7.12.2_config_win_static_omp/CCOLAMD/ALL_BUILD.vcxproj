@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Source;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Source;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Source;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,7 +99,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Source;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Source;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -108,7 +108,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\CMakeLists.txt">
+    <CustomBuild Include="$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CCOLAMD/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
@@ -120,8 +120,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CCOLAMD/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
@@ -133,8 +133,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CCOLAMD/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
@@ -146,8 +146,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/kummer/Documents/BoSSS-native/SuiteSparse_7.12.2/CCOLAMD/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
@@ -159,8 +159,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CheckLanguage.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\WriteBasicConfigVersionFile.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\CCOLAMDConfig.cmake.in;$(WORKINGDIR)\SuiteSparse_7.12.2\CCOLAMD\Config\ccolamd.h.in;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparsePolicy.cmake;$(WORKINGDIR)\SuiteSparse_7.12.2\SuiteSparse_config\cmake_modules\SuiteSparseReport.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
@@ -168,13 +168,13 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\ZERO_CHECK.vcxproj">
+    <ProjectReference Include="$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\ZERO_CHECK.vcxproj">
       <Project>{BEFA68BF-A81B-3358-A82F-A9036A71AA8B}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="C:\Users\kummer\Documents\BoSSS-native\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CCOLAMD_static.vcxproj">
+    <ProjectReference Include="$(WORKINGDIR)\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\CCOLAMD_static.vcxproj">
       <Project>{78FB5DD1-62DD-3193-9487-1E1FD405424E}</Project>
       <Name>CCOLAMD_static</Name>
     </ProjectReference>

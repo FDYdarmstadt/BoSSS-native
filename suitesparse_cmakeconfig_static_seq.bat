@@ -13,7 +13,7 @@ cmake --fresh ^
 	  -DBLAS_INCLUDE_DIRS="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/include" ^
 	  -DBLAS_LIBRARIES="C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_intel_lp64.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_sequential.lib;C:/Program Files (x86)/Intel/oneAPI/mkl/latest/lib/mkl_core.lib" ^
 	  -DSUITESPARSE_USE_FORTRAN=OFF ^
-	  -DCMAKE_C_FLAGS="/I\"%MKLROOT%\include\"" ^
+	  -DCMAKE_C_FLAGS="/I\"%MKLROOT%\include\" /DNTIMER" ^
       -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake ^
 	  -DVCPKG_TARGET_TRIPLET=x64-windows ^
 	  -DGMP_ROOT="C:\vcpkg\installed\x64-windows" ^

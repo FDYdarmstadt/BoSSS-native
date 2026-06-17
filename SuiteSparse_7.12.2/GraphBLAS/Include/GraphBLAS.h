@@ -194,9 +194,9 @@
         // Let the cmake configuration script determine the complex type
         // that is available:
         // Compiler has support for C99 floating point number arithmetic
-        #define GxB_HAVE_COMPLEX_C99
+/* #undef GxB_HAVE_COMPLEX_C99 */
         // Compiler has support for MSVC-style complex numbers
-/* #undef GxB_HAVE_COMPLEX_MSVC */
+        #define GxB_HAVE_COMPLEX_MSVC
     #endif
 
     #if defined (GxB_HAVE_COMPLEX_MSVC)

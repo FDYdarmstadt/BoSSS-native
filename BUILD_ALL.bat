@@ -77,6 +77,8 @@ del "log.txt" /q
 CALL SuiteSparse_7.12.2_config_win_static_omp\vsgen-umfpack-omp.bat
 CALL SuiteSparse_7.12.2_config_win_static_seq\vsgen-umfpack-seq.bat
 
+
+
 :: Contains SEQ and OpenMP build
 CALL pardiso-config\vsgen-pardiso.bat 
 
