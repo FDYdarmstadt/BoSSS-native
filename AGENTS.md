@@ -2,11 +2,40 @@
 
 ## Purpose
 - This repository bundles the build scripts, third-party sources, generated project files, and helper assets required to produce the native BoSSS libraries on Windows and Linux.
+- The C#-package BoSSS loads the native libraries built from this repository at runtime, 
+  and uses them accordingly via wrapper functions. 
+  Therefore, libraries have to be build as shared libraries (DLLs on Windows, `.so` files on Linux). 
 - The native package supports three parallelization levels:
   - serial (`_seq`): single-threaded
   - OpenMP (`_omp`): shared-memory parallelization on one machine
   - MPI (`_mpi`): distributed-memory parallelization across processes
-- Not every dependency supports every mode. For example, Metis is built only in sequential mode, while the BoSSS shared libraries are built in all three variants.
+- Not every dependency supports every mode. 
+  For example, Metis is built only in sequential mode, while the BoSSS shared libraries are built in all three variants.
+
+## Details on library organization
+- The libraries are organized as follows:
+  - For Linux (for AMD64), which is, historically, the newer target platform for BoSSS
+    (and therefore, more cleanly organized), there are three main files:
+    - `libBoSSSnative_seq.so`: essential parts are BLAS, LAPACK, PARDISO from the sequential Intel MKL;
+    - `libBoSSSnative_omp.so`: essential parts are BLAS, LAPACK, PARDISO from the OpenMP-parallel Intel MKL;
+    - `libBoSSSnative_mpi.so`: e.g, parallel MUMPS
+  - Windows, currently (2024-06) is more fractured: 
+    - `PARDISO_seq.dll`: sequential BLAS, LAPACK and PARDISO from Intel MKL
+    - `PARDISO_omp.dll`: OpenMP-parallel BLAS, LAPACK and PARDISO from Intel MKL
+    - MPI-parallel libraries: e.g., `HYPRE.dll`, `dmumps-mpi.dll`
+    - this might be cleaned up in future, and agents are especially encouraged to update this document
+      if, e.g., the DLLs are renamed or re-organized.
+- BLAS and LAPACK have a very central role:
+  - they are required by BoSSS itself, but also by several dependencies such as UMFPACK, PARDISO, and MUMPS
+  - one should use highly optimized implementations for performance reasons, therefore we currently rely on Intel MKL for both Windows and Linux builds on x64/AMD64 platforms
+  - if some library is MPI-parallelized, it must link to single-threaded BLAS/LAPACK
+  - typically, the MKL libraries are rather large, around 100 MB. Therefore, 
+    MPI-parallel libraries like e.g., Hypre or MUMPS, 
+    should be linked against the single-threaded MKL libraries **which are already used for BoSSS itself**
+    - Linux: Hypre and MUMPS are in `libBoSSSnative_mpi.so` and 
+      link against the single-threaded MKL libraries in `libBoSSSnative_seq.so`
+    - Windows: Hypre (`HYPRE.dll`) and MUMPS (`dmumps-mpi.dll`) are in separate DLLs 
+      and link against the sequential DLLs `PARDISO_seq.dll` which contain the BLAS and LAPACK
 
 ## Repository layout
 - Windows entry points: `BUILD_ALL.bat`, `CLEAN_ALL.bat`, `SET_PATHS.bat`
