@@ -79,6 +79,7 @@ printf "\e[4;35m\nBuilding of BoSSSnative shared objects started!\e[0m\n\n"
 # declare some path variables
 export MUMPSDIR=MUMPS_5.0.2
 export METISDIR=metis-5.1.0
+export SUITESPARSEDIR=SuiteSparse_7.12.2
 export TECIODIR=TECIO
 export BOSSSNATIVESEQ=BoSSSnative_seq
 export BOSSSNATIVEMPI=BoSSSnative_mpi
@@ -110,9 +111,16 @@ if [ "$(uname -s)" = "Linux" ]; then
 fi
 
 # Set Pathvariable for Intel MKL
-if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
-    printf "\e[31mWarning: Unable to locate intel mkl, exiting ...\n\e[0m" 
-	#&& exit -1
+if [ -f /opt/intel/bin/compilervars.sh ]; then
+    if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
+        printf "\e[31mWarning: Unable to source Intel compiler variables.\n\e[0m"
+    fi
+elif [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "$MKLROOT" ]; then
+    if ! source /opt/intel/oneapi/setvars.sh ; then
+        printf "\e[31mWarning: Unable to source Intel oneAPI variables.\n\e[0m"
+    fi
+elif [ -z "$MKLROOT" ]; then
+    printf "\e[31mWarning: Unable to locate Intel MKL.\n\e[0m"
 fi
 printf "Setting path to intel mkl: $MKLROOT\n"
 
@@ -137,7 +145,7 @@ if [ -d "$LIBDIR" ]; then
     mkdir $LIBDIR/dependencies
 fi
 
-# create the dependeny directory
+# create the dependency directory
 if [ -d "$LIBDIR/dependencies" ]; then
     printf "\e[32mDependency folder $LIBDIR/dependencies already exists, resetting ...\e[0m\n"
     rm -r $LIBDIR/dependencies
@@ -149,6 +157,76 @@ fi
 
 printf "\e[32m\nSet-up completed commencing build process\e[0m\n"
 printf "\n==========================================\n"
+
+build_suitesparse_umfpack() {
+  local mode="$1"
+  local use_openmp="$2"
+  local blas_vendor="$3"
+  local blas_libraries="$4"
+  local build_dir="$INCLUDEDIR/suitesparse_build_$mode"
+  local install_dir="$INCLUDEDIR/suitesparse_$mode"
+  local archive_names="libsuitesparseconfig libamd libcamd libccolamd libcolamd libcholmod libumfpack"
+  local archive
+  local missing=
+
+  for archive in $archive_names; do
+    if [ ! -f "$INCLUDEDIR/${archive}_${mode}.a" ]; then
+      missing=1
+    fi
+  done
+
+  if [ -z "$missing" ]; then
+    printf "\e[32mSuiteSparse/UMFPACK static archives for $mode exist, skipping compilation\e[0m\n"
+    return 0
+  fi
+
+  if [ -z "$MKLROOT" ]; then
+    printf "\e[31mMKLROOT is not set; cannot configure SuiteSparse/UMFPACK for $mode.\nNow exiting ...\n\e[0m"
+    exit -1
+  fi
+
+  printf "\e[33mSuiteSparse/UMFPACK static archives for $mode incomplete, commencing CMake build\e[0m\n"
+  rm -rf "$build_dir" "$install_dir"
+
+  if ! cmake \
+      -S "$WORKINGDIR/$SUITESPARSEDIR" \
+      -B "$build_dir" \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX="$install_dir" \
+      -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+      -DBLA_VENDOR="$blas_vendor" \
+      -DBLAS_INCLUDE_DIRS="$MKLROOT/include" \
+      -DBLAS_LIBRARIES="$blas_libraries" \
+      -DBUILD_SHARED_LIBS=OFF \
+      -DBUILD_STATIC_LIBS=ON \
+      -DBUILD_TESTING=OFF \
+      -DSUITESPARSE_DEMOS=OFF \
+      -DSUITESPARSE_ENABLE_PROJECTS=umfpack \
+      -DSUITESPARSE_REQUIRE_BLAS=ON \
+      -DSUITESPARSE_USE_64BIT_BLAS=OFF \
+      -DSUITESPARSE_USE_CUDA=OFF \
+      -DSUITESPARSE_USE_FORTRAN=OFF \
+      -DSUITESPARSE_USE_OPENMP="$use_openmp" \
+      -DCHOLMOD_USE_CUDA=OFF \
+      -DCHOLMOD_USE_OPENMP="$use_openmp" \
+      -DSUITESPARSE_CONFIG_USE_OPENMP="$use_openmp" >&3 2>&4 ; then
+    printf "\e[31mAn Error occured while configuring SuiteSparse/UMFPACK for $mode!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+  fi
+
+  if ! cmake --build "$build_dir" --target install --parallel >&3 2>&4 ; then
+    printf "\e[31mAn Error occured while building SuiteSparse/UMFPACK for $mode!\nPlease check the output and commence accordingly.\nNow exiting ...\n\e[0m" && exit -1
+  fi
+
+  for archive in $archive_names; do
+    if [ ! -f "$install_dir/lib/${archive}.a" ]; then
+      printf "\e[31mExpected $install_dir/lib/${archive}.a was not produced by SuiteSparse/UMFPACK for $mode.\nNow exiting ...\n\e[0m"
+      exit -1
+    fi
+    cp "$install_dir/lib/${archive}.a" "$INCLUDEDIR/${archive}_${mode}.a"
+  done
+
+  printf "\e[32mDone compiling SuiteSparse/UMFPACK static archives for $mode\e[0m\n"
+}
 
 printf "\e[35m\nSearching for required thirdparty libraries\e[0m\n"
 
@@ -296,6 +374,16 @@ else
   cd $WORKINGDIR
   printf "\e[32mDone compiling METIS\e[0m\n"
 fi
+
+printf "\n==========================================\n"
+
+printf "\e[35m\nChecking for sequential SuiteSparse/UMFPACK\e[0m\n"
+build_suitesparse_umfpack "seq" "OFF" "Intel10_64lp_seq" "-Wl,--start-group;$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_sequential.a;$MKLROOT/lib/intel64/libmkl_core.a;-Wl,--end-group;-lpthread;-lm;-ldl"
+
+printf "\n==========================================\n"
+
+printf "\e[35m\nChecking for OpenMP SuiteSparse/UMFPACK\e[0m\n"
+build_suitesparse_umfpack "omp" "ON" "Intel10_64lp" "-Wl,--start-group;$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_gnu_thread.a;$MKLROOT/lib/intel64/libmkl_core.a;-Wl,--end-group;-lgomp;-lpthread;-lm;-ldl"
 
 printf "\n==========================================\n"
 
