@@ -111,9 +111,16 @@ if [ "$(uname -s)" = "Linux" ]; then
 fi
 
 # Set Pathvariable for Intel MKL
-if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
-    printf "\e[31mWarning: Unable to locate intel mkl\n\e[0m" 
-	#&& exit -1
+if [ -f /opt/intel/bin/compilervars.sh ]; then
+    if ! source /opt/intel/bin/compilervars.sh -arch $ARCH -platform $PLTFRM ; then
+        printf "\e[31mWarning: Unable to source Intel compiler variables.\n\e[0m"
+    fi
+elif [ -f /opt/intel/oneapi/setvars.sh ] && [ -z "$MKLROOT" ]; then
+    if ! source /opt/intel/oneapi/setvars.sh ; then
+        printf "\e[31mWarning: Unable to source Intel oneAPI variables.\n\e[0m"
+    fi
+elif [ -z "$MKLROOT" ]; then
+    printf "\e[31mWarning: Unable to locate Intel MKL.\n\e[0m"
 fi
 printf "Setting path to intel mkl: $MKLROOT\n"
 
@@ -154,7 +161,8 @@ printf "\n==========================================\n"
 build_suitesparse_umfpack() {
   local mode="$1"
   local use_openmp="$2"
-  local blas_libraries="$3"
+  local blas_vendor="$3"
+  local blas_libraries="$4"
   local build_dir="$INCLUDEDIR/suitesparse_build_$mode"
   local install_dir="$INCLUDEDIR/suitesparse_$mode"
   local archive_names="libsuitesparseconfig libamd libcamd libccolamd libcolamd libcholmod libumfpack"
@@ -186,7 +194,7 @@ build_suitesparse_umfpack() {
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX="$install_dir" \
       -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-      -DBLA_VENDOR=Intel10_64lp \
+      -DBLA_VENDOR="$blas_vendor" \
       -DBLAS_INCLUDE_DIRS="$MKLROOT/include" \
       -DBLAS_LIBRARIES="$blas_libraries" \
       -DBUILD_SHARED_LIBS=OFF \
@@ -370,12 +378,12 @@ fi
 printf "\n==========================================\n"
 
 printf "\e[35m\nChecking for sequential SuiteSparse/UMFPACK\e[0m\n"
-build_suitesparse_umfpack "seq" "OFF" "$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_sequential.a;$MKLROOT/lib/intel64/libmkl_core.a"
+build_suitesparse_umfpack "seq" "OFF" "Intel10_64lp_seq" "-Wl,--start-group;$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_sequential.a;$MKLROOT/lib/intel64/libmkl_core.a;-Wl,--end-group;-lpthread;-lm;-ldl"
 
 printf "\n==========================================\n"
 
 printf "\e[35m\nChecking for OpenMP SuiteSparse/UMFPACK\e[0m\n"
-build_suitesparse_umfpack "omp" "ON" "$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_gnu_thread.a;$MKLROOT/lib/intel64/libmkl_core.a"
+build_suitesparse_umfpack "omp" "ON" "Intel10_64lp" "-Wl,--start-group;$MKLROOT/lib/intel64/libmkl_intel_lp64.a;$MKLROOT/lib/intel64/libmkl_gf_lp64.a;$MKLROOT/lib/intel64/libmkl_gnu_thread.a;$MKLROOT/lib/intel64/libmkl_core.a;-Wl,--end-group;-lgomp;-lpthread;-lm;-ldl"
 
 printf "\n==========================================\n"
 

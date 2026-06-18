@@ -102,6 +102,11 @@
   ```bash
   ./BUILD_ALL_LINUX.sh --clean
   ```
+- Note: Note: since the build in docker clones the repository from the host from the `/host-repo` mount, see above, to avoid problems with EOL, changes are not tested in the container unless they are committed. Therefore, for testing it is actually more practical to copy from the host into the container, for example:
+  ```bash
+  docker run --rm -v `pwd`:/host-repo floriankummer81/bosssbuild-ubuntu18.04 /bin/bash -c "cd ~ && mkdir BoSSS-native && cp -r /host-repo/* ./BoSSS-native/ && cd BoSSS-native && ./BUILD_ALL_LINUX.sh && cp -r ./lib/* /host-repo/lib/"
+  ```
+  
 
 ## Verifying changes
 - Agents should verify build-related changes with the strongest build that is practical on the current system, and report exactly what was run.
