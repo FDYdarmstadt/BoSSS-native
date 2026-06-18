@@ -80,7 +80,7 @@
     <Link>
       <AdditionalDependencies>umfpack_static.lib;amd_static.lib;colamd_static.lib;camd_static.lib;ccolamd_static.lib;cholmod_static.lib;suitesparseconfig_static.lib;mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\Release;..\SuiteSparse_7.12.2_config_win_static_omp\AMD\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\COLAMD\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\CAMD\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\CHOLMOD\Debug;..\SuiteSparse_7.12.2_config_win_static_omp\SuiteSparse_config\Debug;%MKL_OPENMP_DIR%;%MKL_LIB_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>exports_omp.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -113,7 +113,7 @@
     <Link>
       <AdditionalDependencies>umfpack_static.lib;amd_static.lib;colamd_static.lib;camd_static.lib;ccolamd_static.lib;cholmod_static.lib;suitesparseconfig_static.lib;mkl_intel_thread.lib;mkl_intel_lp64.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\Release;..\SuiteSparse_7.12.2_config_win_static_omp\UMFPACK\Release;..\SuiteSparse_7.12.2_config_win_static_omp\AMD\Release;..\SuiteSparse_7.12.2_config_win_static_omp\COLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_omp\CAMD\Release;..\SuiteSparse_7.12.2_config_win_static_omp\CCOLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_omp\CHOLMOD\Release;..\SuiteSparse_7.12.2_config_win_static_omp\SuiteSparse_config\Release;%MKL_OPENMP_DIR%;%MKL_LIB_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>exports_omp.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -136,7 +136,7 @@
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="exports.def" />
+    <None Include="exports_omp.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

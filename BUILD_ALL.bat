@@ -172,7 +172,7 @@ ECHO Total failures ... %ERRORS%
 :: get finished: add linked libraries
 :: MUMPS ...
 copy ".\WinDlls\*.dll" "%DESTDIR%\" /y
-copy "%DESTDIR%\BoSSSnative_omp.dll" "%DESTDIR%\BoSSSnative2_omp.dll" /y
+copy "%DESTDIR%\BoSSSnative_omp.dll" "%DESTDIR%\BoSSSnative_omp.dll" /y
 copy "%INTEL_REDIST%\libiomp5md.dll" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y
