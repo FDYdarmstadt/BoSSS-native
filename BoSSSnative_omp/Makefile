@@ -3,10 +3,13 @@ SHELL := /bin/bash
 CURRENTDIRECTORY := $(BOSSSNATIVEOMP)
 WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
 TARGET := libBoSSSnative_omp.so
-LIBINCLUDE :=$(INCLUDEDIR)/libumfpack_omp.a $(INCLUDEDIR)/libamd_omp.a $(INCLUDEDIR)/libcolamd_omp.a \
-	     $(INCLUDEDIR)/libcamd_omp.a $(INCLUDEDIR)/libccolamd_omp.a $(INCLUDEDIR)/libcholmod_omp.a \
-	     $(INCLUDEDIR)/libsuitesparseconfig_omp.a \
-	     ${MKLROOT}/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a \
+# UMFPACK_LIBS: linked with --whole-archive so all symbols are included in the .so
+# even though no wrapper calls them directly (required for re-export via version script)
+UMFPACK_LIBS := $(INCLUDEDIR)/libumfpack_omp.a $(INCLUDEDIR)/libamd_omp.a \
+	        $(INCLUDEDIR)/libcolamd_omp.a $(INCLUDEDIR)/libcamd_omp.a \
+	        $(INCLUDEDIR)/libccolamd_omp.a $(INCLUDEDIR)/libcholmod_omp.a \
+	        $(INCLUDEDIR)/libsuitesparseconfig_omp.a
+LIBINCLUDE :=${MKLROOT}/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a \
 	     $(MKLROOT)/lib/intel64/libmkl_gnu_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a
 
 all: $(TARGET)
@@ -15,7 +18,11 @@ all: $(TARGET)
 # into one dynamic library
 $(TARGET): $(patsubst %.c,%.o,$(WRAPPERS))
 	@printf "\e[34mTrying to link ...\e[0m\n"
-	$(CC) $^ -fopenmp -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version  -lpthread -lm -ldl  -lgomp -Wl,-rpath,'$$ORIGIN'/dependencies
+	$(CC) $^ -fopenmp -shared -o $(LIBDIR)/$@ \
+	       -Wl,--whole-archive $(UMFPACK_LIBS) -Wl,--no-whole-archive \
+	       -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group \
+	       -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_omp.version \
+	       -lpthread -lm -ldl -lgomp -Wl,-rpath,'$$ORIGIN'/dependencies
 	@printf "\e[34mSuccess!\e[0m\n"
 
 # This generic target matches any file with the pattern BASENAME.o

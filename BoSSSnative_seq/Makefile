@@ -15,11 +15,14 @@ ALGOIMWRAPPER_CPP_SOURCES := $(ALGOIMWRAPPER_DIR)/Algoimwrapper.cpp # C++ source
 TARGET := libBoSSSnative_seq.so
 
 # Libraries and dependencies
+# UMFPACK_LIBS: linked with --whole-archive so all symbols are included in the .so
+# even though no wrapper calls them directly (required for re-export via version script)
+UMFPACK_LIBS := $(INCLUDEDIR)/libumfpack_seq.a $(INCLUDEDIR)/libamd_seq.a \
+                $(INCLUDEDIR)/libcolamd_seq.a $(INCLUDEDIR)/libcamd_seq.a \
+                $(INCLUDEDIR)/libccolamd_seq.a $(INCLUDEDIR)/libcholmod_seq.a \
+                $(INCLUDEDIR)/libsuitesparseconfig_seq.a
 LIBINCLUDE :=$(INCLUDEDIR)/libpord_seq.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)/libmumps_common_seq.a \
              $(INCLUDEDIR)/libdmumps_seq.a $(INCLUDEDIR)/libsmumps_seq.a $(INCLUDEDIR)/libmetis.a \
-			 $(INCLUDEDIR)/libumfpack_seq.a $(INCLUDEDIR)/libamd_seq.a $(INCLUDEDIR)/libcolamd_seq.a \
-			 $(INCLUDEDIR)/libcamd_seq.a $(INCLUDEDIR)/libccolamd_seq.a $(INCLUDEDIR)/libcholmod_seq.a \
-			 $(INCLUDEDIR)/libsuitesparseconfig_seq.a \
              $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a \
              $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a \
              $(INCLUDEDIR)/libtecio.a
@@ -63,7 +66,9 @@ $(WRAPPER_OBJECTS): %.o: %.c
 # Compile and link BoSSSnative_seq including Algoimwrapper
 $(TARGET): $(WRAPPER_OBJECTS) $(ALGOIMWRAPPER_C_OBJECTS) $(ALGOIMWRAPPER_CPP_OBJECTS)
 	@printf "\e[34mTrying to link libBoSSSnative_seq.so (including Algoimwrapper) ...\e[0m\n"
-	$(CC) $^ -shared -o $(LIBDIR)/$@ -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group \
+	$(CC) $^ -shared -o $(LIBDIR)/$@ \
+	       -Wl,--whole-archive $(UMFPACK_LIBS) -Wl,--no-whole-archive \
+	       -Wl,--start-group $(LIBINCLUDE) -Wl,--end-group \
 	       -Wl,--unresolved-symbols=report-all -Wl,--version-script=libBoSSSnative_seq.version \
 	       -lpthread -lm -ldl -lstdc++ -lgfortran -Wl,-rpath,'$$ORIGIN'/dependencies
 	@printf "\e[34mSuccess!\e[0m\n"
