@@ -1,6 +1,6 @@
 @echo off
 
-ECHO ^>^>^>^>^>^>PARDISO BUILD^>^>^>^>^>^>
+ECHO ^>^>^>^>^>^>BoSSSnative BUILD^>^>^>^>^>^>
 ECHO =======================
 ECHO.
 
@@ -17,10 +17,10 @@ GOTO EOF
 )
 ::Define all pending directories
 SET "PARDISO_CONFIG=%WORKINGDIR%\pardiso-config"
-SET "PARDISO_BUILD=%WORKINGDIR%\PARDISO"
+SET "PARDISO_BUILD=%WORKINGDIR%\BoSSSnative_win"
 
 ECHO ======================
-ECHO clean PARDISO
+ECHO clean BoSSSnative_win
 ECHO ======================
 
 cd %PARDISO_BUILD%
@@ -28,7 +28,7 @@ cd %PARDISO_BUILD%
 
 rmdir x64 /s /q
 ECHO ======================
-ECHO build PARDISO 
+ECHO build BoSSSnative 
 ECHO ======================
 
 for %%i in (*.sln) do set SLN_NAME=%%~ni
@@ -37,13 +37,13 @@ SET CONFIG=Release
 
 ::echo checkpoint5: %PARDISO_TYPE%
 
-::devenv PARDISO-seq.vcxproj /Build "Release|x64"
-::devenv PARDISO-openMP.vcxproj /Build "Release|x64"
+::devenv BoSSSnative_seq.vcxproj /Build "Release|x64"
+::devenv BoSSSnative_omp.vcxproj /Build "Release|x64"
 set "DLL="
 ::IF %PARDISO_TYPE%==SEQ (
 CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% libfakeintel.vcxproj
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-seq.vcxproj
-CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% PARDISO-openMP.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% BoSSSnative_seq.vcxproj
+CALL msbuild /property:Configuration=%CONFIG% /property:Platform=%PLATFORM% /property:SolutionName=%SLN_NAME% BoSSSnative_omp.vcxproj
 
 
 ::check if build was successful
@@ -51,8 +51,8 @@ CD "%PARDISO_BUILD%\%PLATFORM%\%CONFIG%"
 set "CHECK="
 set "FAILCHECK="
 IF NOT EXIST libfakeintel.dll SET FAILCHECK=1
-IF NOT EXIST PARDISO_seq.dll SET FAILCHECK=1
-IF NOT EXIST PARDISO_omp.dll SET FAILCHECK=1
+IF NOT EXIST BoSSSnative_seq.dll SET FAILCHECK=1
+IF NOT EXIST BoSSSnative_omp.dll SET FAILCHECK=1
 IF NOT DEFINED FAILCHECK (
 ECHO Build successful
   set CHECK=1
@@ -62,6 +62,6 @@ ECHO Build failed
 
 :EOF
 CD %WORKINGDIR%
-ECHO building PARDISO finished, returning to working directory ...
+ECHO building BoSSSnative finished, returning to working directory ...
 ECHO =======================
 ECHO ^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>^>

@@ -20,8 +20,8 @@
     - `libBoSSSnative_omp.so`: essential parts are BLAS, LAPACK, PARDISO from the OpenMP-parallel Intel MKL;
     - `libBoSSSnative_mpi.so`: e.g, parallel MUMPS
   - Windows, currently (2024-06) is more fractured: 
-    - `PARDISO_seq.dll`: sequential BLAS, LAPACK and PARDISO from Intel MKL
-    - `PARDISO_omp.dll`: OpenMP-parallel BLAS, LAPACK and PARDISO from Intel MKL
+    - `BoSSSnative_seq.dll`: sequential BLAS, LAPACK, PARDISO and UMFPACK from Intel MKL / SuiteSparse
+    - `BoSSSnative_omp.dll`: OpenMP-parallel BLAS, LAPACK, PARDISO and UMFPACK from Intel MKL / SuiteSparse
     - MPI-parallel libraries: e.g., `HYPRE.dll`, `dmumps-mpi.dll`
     - this might be cleaned up in future, and agents are especially encouraged to update this document
       if, e.g., the DLLs are renamed or re-organized.
@@ -36,10 +36,10 @@
     - Linux: Hypre and MUMPS are in `libBoSSSnative_mpi.so` and 
       link against the single-threaded MKL libraries in `libBoSSSnative_seq.so`
     - Windows: Hypre (`HYPRE.dll`) and MUMPS (`dmumps-mpi.dll`) are in separate DLLs 
-      and link against the sequential DLLs `PARDISO_seq.dll` which contain the BLAS and LAPACK
+      and link against the sequential DLL `BoSSSnative_seq.dll` which contains BLAS and LAPACK
 
 ## Repository layout
-- Windows entry points: `BUILD_ALL.bat`, `CLEAN_ALL.bat`, `SET_PATHS.bat`
+- Windows entry points: `BUILD_ALL.bat`, `CLEAN_ALL.bat`, `SET_PATHS.bat`, `BoSSSnative_win/BoSSSnative.sln`
 - Linux entry point: `BUILD_ALL_LINUX.sh`
 - Linux cleanup in practice is handled via `BUILD_ALL_LINUX.sh --clean`; `CLEAN_ALL_LINUX.sh` currently only contains a stub.
 - Windows output directory: `BUILDS`
@@ -67,7 +67,7 @@
   ```
 - `BUILD_ALL.bat` currently drives these builds:
   - SuiteSparse / UMFPACK helper generation
-  - PARDISO
+  - BoSSSnative (from `BoSSSnative_win`)
   - Algoim wrapper
   - HYPRE
   - Metis
@@ -126,8 +126,8 @@
   ```
 - After a successful build, do not rely only on the build tool exit code. Also check that the expected shared libraries were produced.
 - Windows outputs should appear in `BUILDS`, especially:
-  - `PARDISO_seq.dll`
-  - `PARDISO_omp.dll`
+  - `BoSSSnative_seq.dll`
+  - `BoSSSnative_omp.dll`
   - `HYPRE.dll`
   - `dmumps-seq.dll`
   - `dmumps-mpi.dll`
@@ -142,7 +142,7 @@
   ldd lib/libBoSSSnative_mpi.so
   ```
   There should be no `not found` entries.
-- Finally, verify that important symbols expected by the C# BoSSS wrappers are actually exported. The Windows export list in `PARDISO/exports.def` is a useful reference. It includes PARDISO entry points and many BLAS/LAPACK symbols such as `pardiso_`, `pardisoinit_`, `dgemm_`, `dgetrf_`, `dgetrs_`, `dgesvd_`, and `LAPACKE_dgesvd`.
+- Finally, verify that important symbols expected by the C# BoSSS wrappers are actually exported. The Windows export list in `BoSSSnative_win/exports.def` is a useful reference. It includes PARDISO entry points and many BLAS/LAPACK symbols such as `pardiso_`, `pardisoinit_`, `dgemm_`, `dgetrf_`, `dgetrs_`, `dgesvd_`, and `LAPACKE_dgesvd`.
 - On Linux, inspect the generated `.so` files with `nm` or `readelf`, for example:
   ```bash
   nm -D lib/libBoSSSnative_seq.so | grep -i dgemm
@@ -151,9 +151,9 @@
   ```
 - On Windows, use `dumpbin` from a Visual Studio developer shell:
   ```bat
-  dumpbin /exports BUILDS\PARDISO_seq.dll | findstr /i dgemm
-  dumpbin /exports BUILDS\PARDISO_omp.dll | findstr /i dgemm
-  dumpbin /exports BUILDS\PARDISO_seq.dll | findstr /i pardiso
+  dumpbin /exports BUILDS\BoSSSnative_seq.dll | findstr /i dgemm
+  dumpbin /exports BUILDS\BoSSSnative_omp.dll | findstr /i dgemm
+  dumpbin /exports BUILDS\BoSSSnative_seq.dll | findstr /i pardiso
   ```
 - When symbol names differ by platform or compiler convention, check case-insensitively and look for the expected Fortran-style variants, usually with a trailing underscore. If a build cannot be run on the current machine, say so explicitly and still perform any lightweight checks that are possible, such as checking script syntax, changed paths, expected output names, and relevant export definitions.
 

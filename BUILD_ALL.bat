@@ -82,8 +82,8 @@ CALL SuiteSparse_7.12.2_config_win_static_seq\vsgen-umfpack-seq.bat
 :: Contains SEQ and OpenMP build
 CALL pardiso-config\vsgen-pardiso.bat 
 
-copy "PARDISO\%PLATFORM%\%CONFIG%\PARDISO*.dll" "%DESTDIR%\" /y
-copy "PARDISO\%PLATFORM%\%CONFIG%\libfakeintel.dll" "%DESTDIR%\" /y
+copy "BoSSSnative_win\%PLATFORM%\%CONFIG%\BoSSSnative*.dll" "%DESTDIR%\" /y
+copy "BoSSSnative_win\%PLATFORM%\%CONFIG%\libfakeintel.dll" "%DESTDIR%\" /y
 if %errorlevel%==0 set PARDISO_STATUS=success
 if not %errorlevel%==0 (
 set PARDISO_STATUS=failure
@@ -172,7 +172,7 @@ ECHO Total failures ... %ERRORS%
 :: get finished: add linked libraries
 :: MUMPS ...
 copy ".\WinDlls\*.dll" "%DESTDIR%\" /y
-copy "%DESTDIR%\PARDISO_omp.dll" "%DESTDIR%\PARDISO2_omp.dll" /y
+copy "%DESTDIR%\BoSSSnative_omp.dll" "%DESTDIR%\BoSSSnative2_omp.dll" /y
 copy "%INTEL_REDIST%\libiomp5md.dll" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBIFCOREMD.DLL" "%DESTDIR%\" /y
 copy "%INTEL_REDIST%\LIBMMD.DLL" "%DESTDIR%\" /y

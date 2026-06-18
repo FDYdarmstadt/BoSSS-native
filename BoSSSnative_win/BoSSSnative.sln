@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PARDISO-seq", "PARDISO-seq.vcxproj", "{85161984-C6EC-4D68-AD25-EA1635E0CC5F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BoSSSnative_seq", "BoSSSnative_seq.vcxproj", "{85161984-C6EC-4D68-AD25-EA1635E0CC5F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PARDISO-openMP", "PARDISO-openMP.vcxproj", "{53067BE5-342A-4774-A3F0-1C16D1BBFE58}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BoSSSnative_omp", "BoSSSnative_omp.vcxproj", "{53067BE5-342A-4774-A3F0-1C16D1BBFE58}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfakeintel", "libfakeintel.vcxproj", "{4A8BB78A-2848-4E9C-9E0C-2C6F462E832F}"
 EndProject

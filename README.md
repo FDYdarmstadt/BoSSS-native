@@ -44,7 +44,7 @@ The scripts are not fully portable. They still assume specific installation root
 `BUILD_ALL.bat` expects `WORKINGDIR` to point to the repository root. It then calls `SET_PATHS.bat`, populates `PATH`, writes `variables.txt` and `PropertySheet.props`, and drives the Windows builds for:
 
 - SuiteSparse / UMFPACK helper generation
-- PARDISO
+- BoSSSnative (`BoSSSnative_win`)
 - Algoim
 - HYPRE
 - Metis
@@ -121,7 +121,7 @@ The current top-level scripts and directories cover at least these third-party c
 - MUMPS
 - Metis
 - HYPRE
-- PARDISO
+- BoSSSnative (Windows BLAS/LAPACK/PARDISO/UMFPACK DLL bundle)
 - TECIO
 - Algoim
 - SuiteSparse / UMFPACK helpers
