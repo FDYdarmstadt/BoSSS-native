@@ -77,8 +77,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>x64\Debug;C:\libs\Intel\MKL\10.2.5.035\em64t\lib;..\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>umfpack_static.lib;amd_static.lib;colamd_static.lib;camd_static.lib;ccolamd_static.lib;cholmod_static.lib;suitesparseconfig_static.lib;mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>x64\Debug;..\debug;..\SuiteSparse_7.12.2_config_win_static_seq\UMFPACK\Release;..\SuiteSparse_7.12.2_config_win_static_seq\AMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\COLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CCOLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\SuiteSparse_config\Release;C:\libs\Intel\MKL\10.2.5.035\em64t\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -108,8 +108,8 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_core.lib;mkl_sequential.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>x64\Release;..\Release;%MKL_LIB_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>umfpack_static.lib;amd_static.lib;colamd_static.lib;camd_static.lib;ccolamd_static.lib;cholmod_static.lib;suitesparseconfig_static.lib;mkl_intel_lp64.lib;mkl_core.lib;mkl_sequential.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>x64\Release;..\Release;..\SuiteSparse_7.12.2_config_win_static_seq\UMFPACK\Release;..\SuiteSparse_7.12.2_config_win_static_seq\AMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\COLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CCOLAMD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\CHOLMOD\Release;..\SuiteSparse_7.12.2_config_win_static_seq\SuiteSparse_config\Release;%MKL_LIB_DIR%;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
