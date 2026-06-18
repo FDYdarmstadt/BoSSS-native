@@ -17,6 +17,9 @@ TARGET := libBoSSSnative_seq.so
 # Libraries and dependencies
 LIBINCLUDE :=$(INCLUDEDIR)/libpord_seq.a $(INCLUDEDIR)/libmpiseq.a $(INCLUDEDIR)/libmumps_common_seq.a \
              $(INCLUDEDIR)/libdmumps_seq.a $(INCLUDEDIR)/libsmumps_seq.a $(INCLUDEDIR)/libmetis.a \
+			 $(INCLUDEDIR)/libumfpack_seq.a $(INCLUDEDIR)/libamd_seq.a $(INCLUDEDIR)/libcolamd_seq.a \
+			 $(INCLUDEDIR)/libcamd_seq.a $(INCLUDEDIR)/libccolamd_seq.a $(INCLUDEDIR)/libcholmod_seq.a \
+			 $(INCLUDEDIR)/libsuitesparseconfig_seq.a \
              $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gf_lp64.a \
              $(MKLROOT)/lib/intel64/libmkl_sequential.a $(MKLROOT)/lib/intel64/libmkl_core.a \
              $(INCLUDEDIR)/libtecio.a

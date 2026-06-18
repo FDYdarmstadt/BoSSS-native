@@ -3,7 +3,11 @@ SHELL := /bin/bash
 CURRENTDIRECTORY := $(BOSSSNATIVEOMP)
 WRAPPERS := $(wildcard $(WORKINGDIR)/$(CURRENTDIRECTORY)/wrapper/*.c)
 TARGET := libBoSSSnative_omp.so
-LIBINCLUDE :=${MKLROOT}/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a $(MKLROOT)/lib/intel64/libmkl_gnu_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a
+LIBINCLUDE :=$(INCLUDEDIR)/libumfpack_omp.a $(INCLUDEDIR)/libamd_omp.a $(INCLUDEDIR)/libcolamd_omp.a \
+	     $(INCLUDEDIR)/libcamd_omp.a $(INCLUDEDIR)/libccolamd_omp.a $(INCLUDEDIR)/libcholmod_omp.a \
+	     $(INCLUDEDIR)/libsuitesparseconfig_omp.a \
+	     ${MKLROOT}/lib/intel64/libmkl_gf_lp64.a $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a \
+	     $(MKLROOT)/lib/intel64/libmkl_gnu_thread.a $(MKLROOT)/lib/intel64/libmkl_core.a
 
 all: $(TARGET)
 
